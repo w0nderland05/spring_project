@@ -63,7 +63,8 @@
 
 -- **스터디 관리**
     
-    ![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/d854e10d-6413-4e05-bd75-d7a0954ffba2/Untitled.png)
+   ![image](https://user-images.githubusercontent.com/109841880/228295262-e5558219-530d-42ee-ab24-c97c595fd827.png)
+
     
     - 스터디 목록
         
@@ -85,7 +86,7 @@
             - <회원목록>
             삭제하기 (checkbox) → 선택 회원 삭제하기 / 선택 리뷰 삭제하기
                 
-                ![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/c2866443-2f96-4675-b729-cf1cf4554dd0/Untitled.png)
+            ![image](https://user-images.githubusercontent.com/109841880/228295594-fb441bff-146c-4c2c-bf03-3fbcd391b8ef.png)
                 
                 - 스터디 코드
                 - 회원명
