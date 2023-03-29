@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 - **회원관리**
     - 회원 목록
         - 가입일시
@@ -26,15 +27,17 @@
             - 탈퇴 사유
             - 탈퇴하기
             - 완료하기
+=======
+# 관리자 기능 설계 
+>>>>>>> d7b6d1b72b85908bd667b62de8332272376f3bba
 
 - **스터디 관리**
     
-    ![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/d854e10d-6413-4e05-bd75-d7a0954ffba2/Untitled.png)
+   ![image](https://user-images.githubusercontent.com/109841880/228295262-e5558219-530d-42ee-ab24-c97c595fd827.png)
+
     
     - 스터디 목록
-        
-        (리스트) 
-        
+        (리스트 ) 
         - 선택하기 ( 선택 스터디 삭제하기)
         - 스터디 코드 : 자동 생성
         - 스터디 명
@@ -51,7 +54,7 @@
             - <회원목록>
             삭제하기 (checkbox) → 선택 회원 삭제하기 / 선택 리뷰 삭제하기
                 
-                ![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/c2866443-2f96-4675-b729-cf1cf4554dd0/Untitled.png)
+            ![image](https://user-images.githubusercontent.com/109841880/228295594-fb441bff-146c-4c2c-bf03-3fbcd391b8ef.png)
                 
                 - 스터디 코드
                 - 회원명
@@ -109,6 +112,7 @@
     
 - ++ 스터디 개설 양식 관리 (← 스터디 등록 삭제 )
     
+<<<<<<< HEAD
     
 - **커뮤니티 관리**
     - 커뮤니티 목록
@@ -217,3 +221,5 @@
             - 사기/ 사칭 / 유출
             - 기타 - text (100)
         - 사용 여부 ( 사용 / 미사용 )
+=======
+>>>>>>> d7b6d1b72b85908bd667b62de8332272376f3bba
