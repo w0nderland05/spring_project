@@ -39,7 +39,7 @@ public class User extends BaseEntity {
     @Column(length=11)
     private String cellPhone;
     @Lob
-    private String adminMemo; // 관리 기록
+    private String adminMemo; // 관리자 메모
 
     @Enumerated(EnumType.STRING)
     @Column(length=30, nullable=false)

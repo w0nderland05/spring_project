@@ -2,13 +2,14 @@
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
-    <title>제목!</title>
-    <link rel="stylesheet" type="text/css" th:href="@{/front/css/front/style.css}">
+    <title th:if="${pageTitle != null}" th:text="${pageTitle}"></title>
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css">
+    <link rel="stylesheet" type="text/css" th:href="@{/front/css/style.css}">
     <link th:each="cssFile : ${addCss}" rel="stylesheet" type="text/css"
           th:href="@{/front/css/{file}.css(file=${cssFile})}">
     <th:block layout:fragment="addCss"></th:block>
 
-    <script th:src="@{/front/js/front/common.js}"></script>
+    <script th:src="@{/front/js/common.js}"></script>
     <script th:each="jsFile : ${addScript}" th:src="@{/front/js/{file}.js(file=${jsFile})}"></script>
     <th:block layout:fragment="addScript"></th:block>
 </head>

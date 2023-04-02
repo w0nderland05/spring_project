@@ -17,6 +17,11 @@ public class MvcConfig implements WebMvcConfigurer {
     @Value("${fileupload.path}")
     private String fileUploadPath;
 
+    /**
+     * 정적 경로 설정
+     *
+     * @param registry
+     */
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
 
@@ -25,12 +30,20 @@ public class MvcConfig implements WebMvcConfigurer {
                 .addResourceLocations("file:///" + fileUploadPath);
     }
 
-    // 메세지 설정
+    /**
+     * 메세지 설정
+     *
+     * @desc
+     *      - messages.commons : 공통 메세지
+     *      - messages.errors : 에러 관련 메세지
+     *      - messages.validation : 유효성 검사 관련 메세지
+     */
+
     @Bean
     public MessageSource messageSource() {
         ResourceBundleMessageSource ms = new ResourceBundleMessageSource();
         ms.setDefaultEncoding("UTF-8");
-        ms.setBasenames("messages.commons", "messages.errors");
+        ms.setBasenames("messages.commons", "messages.errors", "messages.validation");
         return ms;
     }
 }

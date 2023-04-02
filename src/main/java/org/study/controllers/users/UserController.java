@@ -1,23 +1,32 @@
 package org.study.controllers.users;
 
-import org.springframework.context.annotation.Configuration;
+import jakarta.validation.Valid;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
 // 사용자 관련 컨트롤러
-@Configuration
+@Controller
 @RequestMapping("/user")
 public class UserController {
 
     // 회원가입 양식 - GET /user
     @GetMapping
-    public String join() {
+    public String join(Model model) {
+        UserJoin userJoin = new UserJoin();
+        model.addAttribute("userJoin", userJoin);
 
         return "front/user/join";
     }
 
     // 회원가입 처리 - POST /user
     @PostMapping
-    public String joinPs() {
+    public String joinPs(@Valid UserJoin userJoin, Errors errors) {
+
+        if (errors.hasErrors()) {
+            return "front/user/join";
+        }
 
         return "redirect:/user/login";
     }
