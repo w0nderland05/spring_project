@@ -1,0 +1,42 @@
+package org.study.models.member;
+
+import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Service;
+import org.study.controllers.users.UserJoin;
+import org.study.entities.User;
+import org.study.repositories.UserRepository;
+
+@Service
+@RequiredArgsConstructor
+public class UserSaveService {
+
+    private final UserRepository repository;
+
+    private final PasswordEncoder passwordEncoder;
+
+    public void save(UserJoin userJoin) {
+        User user;
+
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        if (auth.isAuthenticated()) { // 회원 정보 수정
+            UserInfo userInfo = (UserInfo)auth.getPrincipal();
+            user = repository.findById(userInfo.getUserNo()).orElse(UserJoin.of(userJoin));
+            user.setUserNm(userJoin.getUserNm());
+            user.setEmail(userJoin.getEmail());
+            user.setCellPhone(userJoin.getCellPhone());
+        } else { // 회원 정보 추가
+            user = UserJoin.of(userJoin);
+        }
+
+        if (userJoin.getUserPw() != null) { // 비밀번호 수정이 있는 경우 변경 처리
+            String hash = passwordEncoder.encode(userJoin.getUserPw());
+            user.setUserPw(hash);
+        }
+
+        repository.saveAndFlush(user);
+    }
+}

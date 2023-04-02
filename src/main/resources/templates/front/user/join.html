@@ -9,6 +9,7 @@
             <div class="terms">
                 <input type="checkbox" name="termsAgree" value="true" th:field="*{termsAgree}" id="termsAgree">
                 <label for="termsAgree" th:text="#{user.join.termsAgree}"></label>
+                <div class="error" th:each="err : ${#fields.errors('termsAgree')}" th:text="${err}"></div>
             </div>
             <button type="submit" th:text="#{user.join.action}"></button>
         </form>

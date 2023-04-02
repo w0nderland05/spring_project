@@ -30,7 +30,7 @@ public class UserInfoService implements UserDetailsService {
         return UserInfo.builder()
                 .userNo(user.getUserNo())
                 .userId(user.getUserId())
-                .userNm(user.getUserPw())
+                .userNm(user.getUserNm())
                 .userPw(user.getUserPw())
                 .email(user.getEmail())
                 .cellPhone(user.getCellPhone())
