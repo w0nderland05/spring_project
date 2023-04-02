@@ -31,3 +31,4 @@ input:read-only, textarea:read-only { background-color: #f8f8f8; }
 select option:disabled { color: red; background-color: #f8f8f8; }
 
 .error { box-shadow: 2px 2px 4px #666; padding: 15px; border-radius: 5px; margin: 5px 0; color: red; font-size: 12px; }
+.dn { display: none !important; }
