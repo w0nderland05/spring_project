@@ -45,7 +45,7 @@ public class UserController {
     }
 
     // 회원정보 수정 - GET /user/사용자 ID
-    @GetMapping("/{userId}")
+    @GetMapping("/{userId}/edit")
     public String edit(@PathVariable String userId) {
 
         return "front/user/edit";
