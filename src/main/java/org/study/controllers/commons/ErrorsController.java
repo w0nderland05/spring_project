@@ -17,4 +17,14 @@ public class ErrorsController {
 
         return "error/401";
     }
+
+    /**
+     * 페이지 없음 오류 페이지
+     *
+     * @return
+     */
+    @GetMapping("/404")
+    public String status404(){
+        return "error/404";
+    }
 }

@@ -27,13 +27,12 @@ public class UserJoinValidator implements Validator, CellPhoneValidator {
     @Override
     public void validate(Object target, Errors errors) {
         UserJoin userJoin = (UserJoin)target;
-        String userId = userJoin.getUserId();
+        String userEmail = userJoin.getUserEmail();
         String userPw = userJoin.getUserPw();
         String userPwCk = userJoin.getUserPwCk();
-        String cellPhone = userJoin.getCellPhone();
 
         /** 1. 아이디 중복 여부 S */
-        if (userId != null && !userId.isBlank() && repository.isUserExists(userId)) {
+        if (userEmail != null && !userEmail.isBlank() && repository.isUserExists(userEmail)) {
             errors.rejectValue("userId", "user.validation.exists");
         }
         /** 1. 아이디 중복 여부 E */
@@ -44,15 +43,6 @@ public class UserJoinValidator implements Validator, CellPhoneValidator {
         }
         /** 2. 비밀번호, 비밀번호 확인 체크 E */
 
-        /** 3. 휴대전화 번호가 있다면 체크 S */
-        if (cellPhone != null && !cellPhone.isBlank()) {
-            cellPhone = cellPhone.replaceAll("\\D", "");
-            userJoin.setCellPhone(cellPhone);
 
-            if (!checkCellPhoneNumber(cellPhone)) {
-                errors.rejectValue("cellPhone", "validation.wrongCellphoneType");
-            }
-        }
-        /** 3. 휴대전화 번호가 있다면 체크 E */
     }
 }

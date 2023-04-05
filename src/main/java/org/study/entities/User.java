@@ -24,6 +24,7 @@ import org.study.commons.constants.UserRole;
 public class User extends BaseEntity {
     @Id @GeneratedValue
     private Long userNo;
+
     @Column(unique=true, nullable=false, length=45)
     private String userId;
 
