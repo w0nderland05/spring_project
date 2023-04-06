@@ -2,10 +2,13 @@ package org.study.entities;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter @Setter
 @Entity
 @MappedSuperclass
-public class BaseMemberEntity { // 모든 엔티티 공통으로 사용
+public class BaseMemberEntity extends BaseEntity { // 모든 엔티티 공통으로 사용
     @Id
     @GeneratedValue
     private Long IdNo;
