@@ -6,7 +6,7 @@
     <main layout:fragment="content">
         <form id="frmLogin" name="frmLogin" method="post" th:action="@{/user/login}" autocomplete="off" th:object="${userLogin}">
             <div class="error global" th:if="*{success == 'false'}" th:text="#{user.login.fail}"></div>
-            <input type="text" name="userId" th:placeholder="#{userId}" th:field="*{userId}">
+            <input type="text" name="userId" th:placeholder="#{userEmail}" th:field="*{userEmail}">
             <input type="password" name="userPw" th:placeholder="#{userPw}" th:field="*{userPw}">
             <button type="submit" th:text="#{user.login.action}"></button>
             <div class="links">
