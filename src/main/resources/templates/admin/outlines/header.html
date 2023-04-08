@@ -1,6 +1,16 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <header th:fragment="common">
-    <h1>헤더!</h1>
+    <section class="left_logo"><i class="xi-soundcloud">로고_관리자페이지</section>
+    <Section class="right">
+        <a th:href="@{/}" class="btn1">
+            <i class="xi-external-link"></i>
+            사이트 바로가기
+        </a>
+        <a th:href="@{/user/logout}" class="btn1">
+            <i class="xi-log-out"></i>
+            로그아웃
+        </a>
+    </Section>
 </header>
 </html>
