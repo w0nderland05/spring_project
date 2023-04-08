@@ -26,7 +26,6 @@ public class Study extends BaseEntity {
 
     private LocalDateTime requestDt;//개설신청일시
 
-
     @Column(nullable = false)
     private boolean approveStatus; //승인상태
 
@@ -50,5 +49,5 @@ public class Study extends BaseEntity {
     @ManyToOne
     @JoinColumn(name="user_No")
     @ToString.Exclude
-    private User user;
+    private Member member;
 }

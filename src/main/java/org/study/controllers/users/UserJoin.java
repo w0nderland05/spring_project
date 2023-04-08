@@ -9,8 +9,7 @@ import jakarta.validation.constraints.Size;
 import lombok.Data;
 import org.modelmapper.ModelMapper;
 import org.study.commons.constants.Gender;
-import org.study.entities.User;
-
+import org.study.entities.Member;
 import java.util.Calendar;
 
 /**
@@ -44,8 +43,8 @@ public class UserJoin {
     private boolean termsAgree; // 회원가입 약관 동의
 
     // User 엔티티로 변환
-    public static User of(UserJoin userJoin) {
+    public static Member of(UserJoin userJoin) {
 
-        return new ModelMapper().map(userJoin, User.class);
+        return new ModelMapper().map(userJoin, Member.class);
     }
 }
