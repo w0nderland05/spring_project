@@ -9,6 +9,7 @@ import lombok.Setter;
 @Entity
 @MappedSuperclass
 public class BaseMemberEntity extends BaseEntity { // 모든 엔티티 공통으로 사용
+
     @Id
     @GeneratedValue
     private Long IdNo;
