@@ -25,8 +25,8 @@ public class UserSaveService {
             UserInfo userInfo = (UserInfo)auth.getPrincipal();
             user = repository.findById(userInfo.getUserNo()).orElse(UserJoin.of(userJoin));
             user.setUserNm(userJoin.getUserNm());
-            user.setEmail(userJoin.getEmail());
-            user.setCellPhone(userJoin.getCellPhone());
+            user.setEmail(userJoin.getUserEmail());
+            user.setCellPhone(userJoin.getCellphone());
         } else { // 회원 정보 추가
             user = UserJoin.of(userJoin);
         }
