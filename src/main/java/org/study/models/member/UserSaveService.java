@@ -5,8 +5,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.study.controllers.users.UserJoin;
-import org.study.entities.Member;
+import org.study.controllers.user.UserJoin;
 import org.study.entities.User;
 import org.study.repositories.UserRepository;
 
@@ -19,14 +18,14 @@ public class UserSaveService {
     private final PasswordEncoder passwordEncoder;
 
     public void save(UserJoin userJoin) {
-       Member member;
+       User user;
 
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         if (auth.getPrincipal() instanceof UserInfo) { // 회원 정보 수정
             UserInfo userInfo = (UserInfo)auth.getPrincipal();
             user = repository.findById(userInfo.getUserNo()).orElse(UserJoin.of(userJoin));
             user.setUserNm(userJoin.getUserNm());
-            user.setEmail(userJoin.getUserEmail());
+            user.setUserEmail(userJoin.getUserEmail());
             user.setCellPhone(userJoin.getCellphone());
         } else { // 회원 정보 추가
             user = UserJoin.of(userJoin);
