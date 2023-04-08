@@ -2,17 +2,18 @@ package org.study.entities;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import org.study.commons.constants.RegionType;
 
 import java.time.LocalDateTime;
 
 @Entity
-@Data
-@Builder
+@Data @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@EntityListeners(AuditingEntityListener.class)
 public class Study extends BaseEntity {
-
 
     @Id
     @GeneratedValue
@@ -24,6 +25,8 @@ public class Study extends BaseEntity {
     @Column(nullable = false)
     private String category; //카테고리
 
+    @CreatedDate
+    @Column(updatable = false)
     private LocalDateTime requestDt;//개설신청일시
 
     @Column(nullable = false)
@@ -49,5 +52,5 @@ public class Study extends BaseEntity {
     @ManyToOne
     @JoinColumn(name="user_No")
     @ToString.Exclude
-    private Member member;
+    private User user;
 }
