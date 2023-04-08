@@ -7,6 +7,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.study.commons.constants.UserRole;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * 회원 엔티티
  *
@@ -45,4 +48,7 @@ public class User extends BaseEntity {
     @Enumerated(EnumType.STRING)
     @Column(length=30, nullable=false)
     private UserRole role = UserRole.USER; // 사용자 역할, 기본값은 USER(일반사용자)
+
+    @OneToMany(mappedBy="user")
+    private List<Study> study = new ArrayList<>();
 }
