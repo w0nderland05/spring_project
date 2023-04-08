@@ -38,6 +38,8 @@ public class UserJoin {
 
     private Calendar birth;
 
+    private String cellphone; //휴대전화번호
+
     @AssertTrue
     private boolean termsAgree; // 회원가입 약관 동의
 
