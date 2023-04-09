@@ -17,7 +17,7 @@ public class LoginController {
 
         model.addAttribute("userLogin", userLogin);
 
-        return "user/login";
+        return "front/user/login";
     }
 
 }

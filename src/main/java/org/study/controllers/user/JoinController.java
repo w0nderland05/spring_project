@@ -36,7 +36,7 @@ public class JoinController {
         joinValidator.validate(userJoin, errors);
 
         if (errors.hasErrors()) {
-            return "user/join";
+            return "front/user/join";
         }
 
         service.save(userJoin);
