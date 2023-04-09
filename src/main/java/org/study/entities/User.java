@@ -35,6 +35,8 @@ public class User extends BaseEntity{
     @Column(nullable = false,length=35)
     private String userNm; // 회원명
 
+    @Column(nullable = false, length=40)
+    private String userNickNm; // 닉네임
 
     @Column(nullable=false, length=65)
     private String userPw;
@@ -47,6 +49,6 @@ public class User extends BaseEntity{
     private UserRole role = UserRole.USER; // 사용자 역할, 기본값은 USER(일반사용자)
 
 
-   @OneToMany(mappedBy="user")
+    @OneToMany(mappedBy="user")
     private List<Study> study = new ArrayList<>();
 }

@@ -25,6 +25,7 @@ public class UserJoinService {
                 .userEmail(join.getUserEmail())
                 .userPw(hash)
                 .userNm(join.getUserNm())
+                .userNickNm(join.getUserNickNm())
                 .cellPhone(join.getCellphone())
                 .role(UserRole.USER)
                 .build();

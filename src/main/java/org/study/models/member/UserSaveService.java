@@ -18,7 +18,7 @@ public class UserSaveService {
     private final PasswordEncoder passwordEncoder;
 
     public void save(UserJoin userJoin) {
-       User user;
+        User user;
 
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         if (auth.getPrincipal() instanceof UserInfo) { // 회원 정보 수정
@@ -26,6 +26,7 @@ public class UserSaveService {
             user = repository.findById(userInfo.getUserNo()).orElse(UserJoin.of(userJoin));
             user.setUserNm(userJoin.getUserNm());
             user.setUserEmail(userJoin.getUserEmail());
+            user.setUserNickNm(userJoin.getUserNickNm());
             user.setCellPhone(userJoin.getCellphone());
         } else { // 회원 정보 추가
             user = UserJoin.of(userJoin);

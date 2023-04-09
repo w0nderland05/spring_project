@@ -32,6 +32,7 @@ public class UserInfoService implements UserDetailsService {
                 .userNo(member.getUserNo())
                 .userEmail(member.getUserEmail())
                 .userNm(member.getUserNm())
+                .userNickNm(member.getUserNickNm())
                 .userPw(member.getUserPw())
                 .cellPhone(member.getCellPhone())
                 .authorities(authorities) // 사용자 권한 설정
