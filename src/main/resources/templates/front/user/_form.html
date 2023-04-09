@@ -3,8 +3,8 @@
       <th:block th:fragment="user_form">
           <ul class="user_form" th:object="${userJoin}">
               <li class="rows">
-                  <input type="text" name="userId" th:field="*{userEmail}" th:placeholder="#{userId}">
-                  <div class="error" th:each="err : ${#fields.errors('userId')}" th:text="${err}"></div>
+                  <input type="text" name="userId" th:field="*{userEmail}" th:placeholder="#{userEmail}">
+                  <div class="error" th:each="err : ${#fields.errors('userEmail')}" th:text="${err}"></div>
               </li>
               <li class="rows">
                   <input type="password" name="userPw" th:field="*{userPw}" th:placeholder="#{userPw}">
@@ -24,12 +24,8 @@
                   <div class="error" th:each="err : ${#fields.errors('userNm')}" th:text="${err}"></div>
               </li>
               <li class="rows">
-                  <input type="text" name="email" th:field="*{email}" th:placeholder="#{email}">
-                  <div class="error" th:each="err : ${#fields.errors('email')}" th:text="${err}"></div>
-              </li>
-              <li class="rows">
-                  <input type="text" name="cellPhone" th:field="*{cellPhone}" th:placeholder="#{cellPhone}">
-                  <div class="error" th:each="err : ${#fields.errors('cellPhone')}" th:text="${err}"></div>
+                  <input type="text" name="cellPhone" th:field="*{cellphone}" th:placeholder="#{cellPhone}">
+                  <div class="error" th:each="err : ${#fields.errors('cellphone')}" th:text="${err}"></div>
               </li>
           </ul>
       </th:block>

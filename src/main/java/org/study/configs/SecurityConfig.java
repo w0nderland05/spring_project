@@ -19,7 +19,7 @@ public class SecurityConfig {
         http.formLogin()
                 .loginPage("/user/login")
                 .defaultSuccessUrl("/")
-                .usernameParameter("userId")
+                .usernameParameter("userEmail")
                 .passwordParameter("userPw")
                 .failureUrl("/user/login?success=false")
                 .and()
@@ -28,7 +28,7 @@ public class SecurityConfig {
                 .logoutSuccessUrl("/");
 
         http.authorizeHttpRequests()
-                .requestMatchers("/", "/user", "/user/login", "/error/**").permitAll()
+                .requestMatchers("/", "/user/**", "/error/**").permitAll()
                 .requestMatchers("/admin/**").hasAuthority("ADMIN")
                 .anyRequest().authenticated();
 

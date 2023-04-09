@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
+import org.study.models.member.UserJoinService;
 import org.study.models.member.UserSaveService;
 
 // 사용자 관련 컨트롤러
@@ -18,7 +19,7 @@ public class JoinController {
     private final UserJoinValidator joinValidator;
 
     // 회원 정보 저장 서비스(가입, 수정)
-    private final UserSaveService service;
+    private final UserJoinService service;
 
     // 회원가입 양식 - GET /user
     @GetMapping
@@ -39,9 +40,9 @@ public class JoinController {
             return "front/user/join";
         }
 
-        service.save(userJoin);
+        service.join(userJoin);
 
-        return "redirect:/user/login";
+        return "redirect:/user/login"; // 회원가입 성공시 -> 로그인 페이지 이동
     }
 
     // 회원정보 수정 - GET /user/사용자 ID

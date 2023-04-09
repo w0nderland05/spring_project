@@ -2,6 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org"
     xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
     layout:decorate="~{front/layouts/main}">
+
     <main layout:fragment="content">
         <form method="post" name="frmSave" th:action="@{/user/join}" th:object="${userJoin}" autocomplete="off">
             <div class="error global" th:each="err : ${#fields.globalErrors()}" th:text="${err}"></div>
