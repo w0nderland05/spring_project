@@ -10,7 +10,7 @@ import org.study.models.member.UserSaveService;
 
 // 사용자 관련 컨트롤러
 @Controller
-@RequestMapping("/user")
+@RequestMapping("/user/join")
 @RequiredArgsConstructor
 public class JoinController {
 
@@ -26,7 +26,7 @@ public class JoinController {
         UserJoin userJoin = new UserJoin();
         model.addAttribute("userJoin", userJoin);
 
-        return "user/join";
+        return "front/user/join";
     }
 
     // 회원가입 처리 - POST /user

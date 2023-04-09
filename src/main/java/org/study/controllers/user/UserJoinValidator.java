@@ -31,9 +31,9 @@ public class UserJoinValidator implements Validator, CellPhoneValidator {
         String userPw = userJoin.getUserPw();
         String userPwCk = userJoin.getUserPwCk();
 
-        /** 1. 아이디 중복 여부 S */
+        /** 1. 이메일 중복 여부 S */
         if (userEmail != null && !userEmail.isBlank() && repository.isUserExists(userEmail)) {
-            errors.rejectValue("userId", "user.validation.exists");
+            errors.rejectValue("userEmail", "user.validation.exists");
         }
         /** 1. 아이디 중복 여부 E */
 

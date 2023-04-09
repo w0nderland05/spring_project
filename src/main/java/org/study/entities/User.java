@@ -20,7 +20,7 @@ import java.util.List;
 @Entity
 @Table(indexes={ // 이메일 및 사용자 역할은 조회가 많이 될 수 있으므로 인덱스 부여
         // 관리자 페이지에서 최신 회원순으로 조회를 많이 할 수 있으므로 인덱스 부여
-        @Index(name="id`x_user_email", columnList = "email"),
+        @Index(name="idx_user_email", columnList = "userEmail"),
         @Index(name="idx_user_role", columnList = "role"),
         @Index(name="idx_user_createdAt", columnList = "createdAt DESC")
 })

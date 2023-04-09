@@ -23,7 +23,6 @@
                   <input type="text" name="userNm" th:field="*{userNm}" th:placeholder="#{userNm}">
                   <div class="error" th:each="err : ${#fields.errors('userNm')}" th:text="${err}"></div>
               </li>
-
               <li class="rows">
                   <input type="text" name="email" th:field="*{email}" th:placeholder="#{email}">
                   <div class="error" th:each="err : ${#fields.errors('email')}" th:text="${err}"></div>
