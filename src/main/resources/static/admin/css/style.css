@@ -49,17 +49,21 @@ textarea {
     margin: 5px 0;
     color : red;
 }
+
 .form dl{
     display: flex;
     margin-bottom: 10px;
     align-items: center;
 }
+
 .form dl dt{
     width: 150px;
 }
+
 .form dl dd{
     flex-grow: 1;
 }
+
 /** 공통 버튼 */
 .btn1, .btn2{
     border: 1px solid #000;
@@ -69,18 +73,22 @@ textarea {
     cursor: pointer;
     font-size: 13px;
 }
+
 .btn2{
     background: #fff;
     font-size: 14px;
     font-weight: bold;
 }
+
 .btn1:hover{
     background: #000;
     color: #fff;
 }
+
 .btn2:hover{
     background: orange;
 }
+
 .submit_btn{
     color: #fff;
     border-radius: 5px;
@@ -96,6 +104,7 @@ textarea {
     display: block;
     line-height: 45px;
 }
+
 
 /** 관리자 헤더 영역  S */
 header{
@@ -115,6 +124,7 @@ header .btn1{
 }
 /** 관리자 헤더 영역 E */
 
+
 /** 관리자 메인 영역 > side 부분 S */
 main{
     display: flex;
@@ -125,14 +135,9 @@ main > aside{
     background: #e0e0e0;
     border-right: 2px solid #000;
 }
-main > section{
-    flex-grow: 1;
-    padding: 20px;
-    background: #fff;
-}
 main > aside a{
     display: block;
-    padding: 15px 20px;
+    padding: 25px 20px;
     text-align: center;
     border-bottom: 1px solid #000;
     font-size: 20px;
@@ -142,9 +147,18 @@ main > aside a{
 main > aside a *{
     font-size: 20px;
 }
-main > aside a:hover, main > aside a.on, main > aside a:hover *, main > aside a.on *{
+main > aside a:hover,
+main > aside a.on,
+main > aside a:hover *,
+main > aside a.on *{
     background: #000;
     color: #fff;
+}
+
+main > section{
+    flex-grow: 1;
+    padding: 20px;
+    background: #fff;
 }
 
 main nav{
