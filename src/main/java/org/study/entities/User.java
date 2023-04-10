@@ -48,7 +48,6 @@ public class User extends BaseEntity{
     @Column(length=30, nullable=false)
     private UserRole role = UserRole.USER; // 사용자 역할, 기본값은 USER(일반사용자)
 
-
     @OneToMany(mappedBy="user")
     private List<Study> study = new ArrayList<>();
 
