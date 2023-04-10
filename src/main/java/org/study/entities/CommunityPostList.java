@@ -1,9 +1,16 @@
 package org.study.entities;
 
 import jakarta.persistence.*;
+<<<<<<< HEAD
 import jakarta.validation.constraints.Email;
 import lombok.*;
 import org.apache.catalina.User;
+=======
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+>>>>>>> 755442685748a07458b19984865ee2bef7960aa0
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 @Entity

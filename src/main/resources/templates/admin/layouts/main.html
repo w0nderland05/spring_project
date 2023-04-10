@@ -5,7 +5,7 @@
     <title th:if="${pageTitle != null}" th:text="${pageTitle}"></title>
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css">
     <link rel="stylesheet" type="text/css" th:href="@{/admin/css/style.css}">
-    <link rel="stylesheet" type="text/css" th:each="cssFile : ${addCss}"
+    <link rel="stylesheet" type="text/css" th:each="cssFile : ${addCss}" \
           th:href="@{/admin/css/{file}.css(file=${cssFile})}">
     <th:block layout:fragment="addCss"></th:block>
 
