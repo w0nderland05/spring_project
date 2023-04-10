@@ -47,5 +47,5 @@ public class Community extends BaseEntity {
 
     @ManyToOne
     @JoinColumn(name = "userNo")
-    private Member member;
+    private User user;
 }
