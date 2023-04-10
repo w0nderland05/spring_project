@@ -10,11 +10,7 @@ public class MainController {
 
     @GetMapping
     public String main(){
-<<<<<<< HEAD
-        return "/admin/main";
-=======
 
         return "/admin/layouts/main";
->>>>>>> member
     }
 }

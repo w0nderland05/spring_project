@@ -1,8 +1,14 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <header th:fragment="common">
-    <section class="left_logo"><i class="xi-soundcloud">로고_관리자페이지</section>
-    <Section class="right">
+    <section class="left_logo">
+        <!--
+        이 i태그가 복제되는 버그?가 있어서 일단 보류
+        <i class="xi-soundcloud">
+        -->
+        로고_관리자페이지
+    </section>
+    <section class="right">
         <a th:href="@{/}" class="btn1">
             <i class="xi-external-link"></i>
             사이트 바로가기
@@ -11,6 +17,6 @@
             <i class="xi-log-out"></i>
             로그아웃
         </a>
-    </Section>
+    </section>
 </header>
 </html>
