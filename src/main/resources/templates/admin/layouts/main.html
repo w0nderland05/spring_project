@@ -14,13 +14,15 @@
     <th:block layout:fragment="addScript"></th:block>
 </head>
 <body>
+<!-- 위의 헤더 부분-->
 <header th:replace="~{admin/outlines/header::common}"></header>
 
 <main>
+    <!-- 왼쪽에 있는 사이드 바 부분 -->
     <aside th:replace="~{admin/outlines/side::menus}"></aside>
+    <!-- 이곳이 메인 부분 -> 이곳에 넣어주여야 함 -->
     <section id="main_content" layout:fragment="content"></section>
 </main>
-<footer th:replace="~{admin/outlines/footer::common}"></footer>
 <iframe name="ifrmProcess" class="dn"></iframe>
 </body>
 </html>

@@ -4,7 +4,6 @@ import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-import java.time.LocalDateTime;
 
 @Entity
 @Data
@@ -44,7 +43,7 @@ public class Community extends BaseEntity {
     private boolean movement; // 글 작성 후 이동
 
     @ManyToOne
-    @JoinColumn(name = "user_No")
+    @JoinColumn(name = "user_no")
     private User user;
 
 }
