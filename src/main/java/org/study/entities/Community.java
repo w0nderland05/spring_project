@@ -42,11 +42,10 @@ public class Community extends BaseEntity {
     private boolean reply; // 댓글사용
 
     private boolean movement; // 글 작성 후 이동
-<<<<<<< HEAD
-=======
+
 
     @ManyToOne
     @JoinColumn(name = "userNo")
     private User user;
->>>>>>> 755442685748a07458b19984865ee2bef7960aa0
+
 }
