@@ -2,10 +2,7 @@ package org.study.entities;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.apache.catalina.User;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
@@ -21,6 +18,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 public class CommunityPostList extends BaseEntity {
 
     @Id @GeneratedValue
+    @Column(length = 8)
     private Long code; // 코드번호
 
     @Column(nullable = false)
@@ -29,6 +27,7 @@ public class CommunityPostList extends BaseEntity {
     @Column(nullable = false, length = 150)
     private String postNm; // 게시글 제목
 
+    // 작성자명과 이메일은 매핑으로 가져옴.
     // 작성일시와 수정일시는 BaseEntity
 
     @Column(columnDefinition = "int default '0' not null")
@@ -36,6 +35,7 @@ public class CommunityPostList extends BaseEntity {
 
     @ManyToOne
     @JoinColumn(name = "userNo")
+    @ToString.Exclude
     private User user;
 
 }
