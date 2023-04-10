@@ -34,6 +34,8 @@ public class CommunityController {
 
     /**
      * 카테고리 목록 ->(페이지이동)-> 수정하기 버튼 => 수정 & 등록완료 => 목록페이지 이동
+     *: 코드 302 로 페이지 임시이동 예정
+     *
      * @return
      */
     @PostMapping("/save")
