@@ -16,7 +16,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 @EntityListeners(AuditingEntityListener.class)
 public class Community extends BaseEntity {
 
-    // 카테고리 목록 & 등록 S
+    // 카테고리 목록 & 등록 Entity
     @Id
     @Column(length = 40, nullable = false, unique = true)
     private String categoryId; // 카테고리ID
