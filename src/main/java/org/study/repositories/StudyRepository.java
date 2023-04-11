@@ -5,5 +5,5 @@ import org.study.entities.Study;
 
 public interface StudyRepository extends JpaRepository<Study,Long> {
 
-    Study findByStudyCode(Long StudyCode);
+    Study findByStudyCode(Long studyCode);
 }
