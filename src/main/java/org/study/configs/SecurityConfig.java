@@ -29,6 +29,7 @@ public class SecurityConfig {
 
         http.authorizeHttpRequests()
                 .requestMatchers("/", "/user/**", "/error/**").permitAll()
+                .requestMatchers("/user/mypage/**").hasAuthority("USER")
                 .requestMatchers("/admin/**").hasAuthority("ADMIN")
                 .anyRequest().authenticated();
 
