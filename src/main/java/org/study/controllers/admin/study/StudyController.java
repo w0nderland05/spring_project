@@ -30,6 +30,18 @@ public class StudyController {
     }
 
     /**
+     * 관리자 승인/미승인 페이지
+     * => 개설신청관리에서 '처리하기'버튼 클릭시 나오는 관리자 페이지
+     * ( approve.html에서 th:action="@{/admin/study/approve}" 갈 예정
+     *
+     * @return
+     */
+    @GetMapping("/approve")
+    public String approve(){
+        return "admin/study/approve";
+    }
+
+    /**
      * 카테고리 관리
      *
      * @return
@@ -38,6 +50,6 @@ public class StudyController {
     public String category(){
         return "admin/study/category";
     }
-    
+
 
 }
