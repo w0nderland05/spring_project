@@ -27,8 +27,8 @@ public class UserController {
      */
     @GetMapping("/detail")
     public String detail(){
-        return "admin/user/detail";
 
+        return "admin/user/detail";
     }
 
     /**
@@ -43,6 +43,6 @@ public class UserController {
     public String manage(@PathVariable Long userNo){
 
         // 이 부분 좀 더 생각해보고, 수정 바랍니다.
-        return "redirect: admin/user";
+        return "redirect: /admin/user/detail";
     }
 }
