@@ -40,7 +40,6 @@ public class StudyController {
     public String approve(){
         return "admin/study/approve";
     }
-
     /**
      * 카테고리 관리
      *
