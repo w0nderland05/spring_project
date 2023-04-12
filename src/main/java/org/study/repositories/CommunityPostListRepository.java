@@ -6,5 +6,5 @@ import org.study.entities.Community;
 import org.study.entities.CommunityPostList;
 
 public interface CommunityPostListRepository extends JpaRepository<Community, Long>, QuerydslPredicateExecutor<Community> {
-    CommunityPostList findByCode(Long code);
+
 }
