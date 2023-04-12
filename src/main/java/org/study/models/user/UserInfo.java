@@ -1,4 +1,4 @@
-package org.study.models.member;
+package org.study.models.user;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.study.commons.constants.Gender;
 
 import java.util.Collection;
 
@@ -24,7 +25,7 @@ public class UserInfo implements UserDetails {
     private String userNickNm;
     private String email;
     private String cellPhone;
-
+    private Gender gender;
     private Collection<GrantedAuthority> authorities;
 
     @Override

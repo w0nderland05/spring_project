@@ -1,4 +1,4 @@
-package org.study.models.member;
+package org.study.models.user;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
@@ -26,6 +26,7 @@ public class UserSaveService {
             user = repository.findById(userInfo.getUserNo()).orElse(UserJoin.of(userJoin));
             user.setUserNm(userJoin.getUserNm());
             user.setUserEmail(userJoin.getUserEmail());
+            user.setUserPw(userJoin.getUserPw());
             user.setUserNickNm(userJoin.getUserNickNm());
             user.setCellPhone(userJoin.getCellphone());
         } else { // 회원 정보 추가

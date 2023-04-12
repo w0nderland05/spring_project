@@ -1,4 +1,4 @@
-package org.study.models.member;
+package org.study.models.user;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
@@ -21,22 +21,23 @@ public class UserInfoService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User member = repository.findByUserEmail(username);
+        User user = repository.findByUserEmail(username);
 
-        if (member == null) {
+        if (user == null) {
             throw new UsernameNotFoundException(username);
         }
         
         // 사용자 권한 
-        List<GrantedAuthority> authorities = Arrays.asList(new SimpleGrantedAuthority(member.getRole().toString()));
+        List<GrantedAuthority> authorities = Arrays.asList(new SimpleGrantedAuthority(user.getRole().toString()));
 
         return UserInfo.builder()
-                .userNo(member.getUserNo())
-                .userEmail(member.getUserEmail())
-                .userNm(member.getUserNm())
-                .userNickNm(member.getUserNickNm())
-                .userPw(member.getUserPw())
-                .cellPhone(member.getCellPhone())
+                .userNo(user.getUserNo())
+                .userEmail(user.getUserEmail())
+                .userNm(user.getUserNm())
+                .userNickNm(user.getUserNickNm())
+                .userPw(user.getUserPw())
+                .cellPhone(user.getCellPhone())
+                .gender(user.getGender())
                 .authorities(authorities) // 사용자 권한 설정
                 .build();
     }
