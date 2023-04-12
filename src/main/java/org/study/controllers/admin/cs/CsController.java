@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class CsController {
 
     /**
-     * <신고 관리> 클릭시 나오는 페이지<
+     * <신고 관리> 클릭시 나오는 페이지
      * == 신고 목록
      *
      * @return
