@@ -1,15 +1,18 @@
 package org.study.admin.study;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.TestPropertySource;
 import org.study.commons.constants.RegionType;
+import org.study.controllers.admin.study.Category;
 import org.study.entities.Study;
 import org.study.repositories.StudyRepository;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @SpringBootTest
@@ -18,6 +21,7 @@ public class StudyTest {
 
     @Autowired
     private StudyRepository studyRepository;
+
 
     @Test
     @DisplayName("study entity 등록")

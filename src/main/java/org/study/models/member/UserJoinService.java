@@ -4,6 +4,7 @@ package org.study.models.member;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.study.commons.constants.Gender;
 import org.study.commons.constants.UserRole;
 import org.study.controllers.user.UserJoin;
 import org.study.entities.User;
@@ -28,6 +29,7 @@ public class UserJoinService {
                 .userNickNm(join.getUserNickNm())
                 .cellPhone(join.getCellphone())
                 .role(UserRole.USER)
+                .gender(Gender.MAN)
                 .build();
 
         repository.save(user);

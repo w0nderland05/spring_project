@@ -26,8 +26,10 @@ public class Study extends BaseEntity {
     @Column(nullable = false)
     private String category; //카테고리
 
+    /**
     @Column(nullable = false)
-    private String userEmail;
+    private String userEmail; //신청자
+    */
 
     @CreatedDate
     @Column(updatable = false)
