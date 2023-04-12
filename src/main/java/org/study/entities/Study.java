@@ -5,6 +5,7 @@ import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import org.study.commons.constants.RegionType;
+import org.study.commons.constants.Status;
 
 import java.time.LocalDateTime;
 
@@ -25,13 +26,17 @@ public class Study extends BaseEntity {
     @Column(nullable = false)
     private String category; //카테고리
 
+    @Column(nullable = false)
+    private String userEmail;
+
     @CreatedDate
     @Column(updatable = false)
     private LocalDateTime requestDt;//개설신청일시
 
     @Column(nullable = false)
-    private boolean approveStatus; //승인상태
+    private Status approveStatus =Status.APPLY ; //승인상태 (기본은 승인대기==신청)
 
+    @Column(nullable = false)
     private LocalDateTime regStatusDt;//상태처리일시
 
     private Long maxMember; //신청최대인원수
@@ -52,5 +57,5 @@ public class Study extends BaseEntity {
     @ManyToOne
     @JoinColumn(name="user_No")
     @ToString.Exclude
-    private User user;
+    private User user;  //회원 목록 조회할 때 필요할 듯
 }
