@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.study.commons.constants.Gender;
 import org.study.commons.constants.UserRole;
 
 import java.util.ArrayList;
@@ -43,6 +44,10 @@ public class User extends BaseEntity{
 
     @Column(length=11)
     private String cellPhone;
+
+    @Enumerated(EnumType.STRING)
+    @Column(length=30, nullable = false)
+    private Gender gender = Gender.MAN; // 성별, 기본값은 Man
 
     @Enumerated(EnumType.STRING)
     @Column(length=30, nullable=false)
