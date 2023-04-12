@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 import org.study.commons.constants.Gender;
 import org.study.commons.constants.UserRole;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 /**
@@ -46,12 +47,18 @@ public class User extends BaseEntity{
     private String cellPhone;
 
     @Enumerated(EnumType.STRING)
-    @Column(length=30, nullable = false)
+    @Column(length=30)
     private Gender gender = Gender.MAN; // 성별, 기본값은 Man
 
     @Enumerated(EnumType.STRING)
-    @Column(length=30, nullable=false)
+    @Column(length=30, nullable = false)
     private UserRole role = UserRole.USER; // 사용자 역할, 기본값은 USER(일반사용자)
+    
+    /**
+     * 추가해야하는 부분 ( !!중요!! UserInfo랑 UserInfoService 수정 !!중요!!)
+     * ++ 이용제한은 UserSaveService에도 추가해야함
+     * 탈퇴일시, 이용제한 ( 만약 라디오로 할거면 Enum으로, 캘린더로 할거면 이건 강사님한테 물어보던가 구글링 )
+    */
 
     @OneToMany(mappedBy="user")
     private List<Study> study = new ArrayList<>();
