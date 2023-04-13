@@ -13,7 +13,7 @@ a {
 dl, dt, dd, ul, ol, li {
     margin: 0; padding: 0;
 }
-ul, ol {
+ ol {
     list-style: none;
 }
 img {
@@ -168,3 +168,4 @@ main nav.sub_menus{
     margin-bottom: 20px;
 }
 /** 관리자 메인 영역  > side 부분 E */
+
