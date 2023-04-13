@@ -3,6 +3,7 @@ package org.study.entities;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import org.study.commons.constants.RegionType;
 import org.study.commons.constants.Status;
@@ -15,7 +16,11 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @EntityListeners(AuditingEntityListener.class)
+<<<<<<< HEAD
 public class Study{
+=======
+public class Study extends BaseEntity{
+>>>>>>> f8193567d14903e854600291d71d39e58367873e
 
     @Id
     @GeneratedValue
@@ -33,9 +38,11 @@ public class Study{
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
+    @Enumerated(EnumType.STRING)
     private Status approveStatus =Status.APPLY ; //승인상태 (기본은 승인대기==신청)
 
-    @Column(nullable = false)
+    @Column(insertable = false)
+    @LastModifiedDate
     private LocalDateTime regStatusDt;//상태처리일시
 
     private Long maxMember; //신청최대인원수
@@ -52,6 +59,8 @@ public class Study{
     @Lob
     @Column(nullable = false)
     private String Introduction; //소개글
+
+    // 파일 첨부에 대한 필드도 작성해야 할 것 같습니다.
 
     @ManyToOne
     @JoinColumn(name="user_No")
