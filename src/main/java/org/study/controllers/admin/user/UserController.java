@@ -18,6 +18,7 @@ public class UserController {
      */
     @GetMapping
     public String index() {
+
         return "admin/user/index";
     }
 
