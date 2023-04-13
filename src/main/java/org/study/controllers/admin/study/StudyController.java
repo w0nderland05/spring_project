@@ -1,12 +1,18 @@
 package org.study.controllers.admin.study;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import java.util.List;
 
 @Controller
 @RequestMapping("/admin/study")
 public class StudyController {
+
+
 
     /**
      * <스터디관리> 클릭시 나오는 페이지
@@ -16,6 +22,9 @@ public class StudyController {
      */
     @GetMapping
     public String index(){
+
+
+
         return "admin/study/index";
     }
 
@@ -26,6 +35,7 @@ public class StudyController {
      */
     @GetMapping("/approvals")
     public String approvals(){
+
         return "admin/study/approvals";
     }
 

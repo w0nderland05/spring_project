@@ -3,6 +3,46 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{admin/layouts/main}">
 <section layout:fragment="content">
+<<<<<<< HEAD
+    <nav th:replace="~{admin/study/_submenu::menus}"></nav>
+    <table border="1" >
+      <thead>
+      <tr>
+            <th>
+                <input type="checkbox">
+            </th>
+            <th>스터디 코드</th>
+            <th>스터디명</th>
+            <th>카테고리</th>
+            <th>회원명</th>
+            <th>이메일</th>
+            <th>개설신청일시</th>
+            <th>승인상태</th>
+            <th>처리일시</th>
+            <th>비고란</th>
+      </tr>
+      </thead>
+        <tbody>
+       <!--th:each="study: ${studies}" 컨트롤러 완성후 추가예정-->
+        <tr>
+            <td>
+                <input type="checkbox">
+            </td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        </tbody>
+    </table>
+
+=======
     <h1>스터디 목록 페이지 == '스터디관리'클릭시 나오는 페이지</h1>
+>>>>>>> 5fd627507ace88f9ef256ba89f5f60c755d41bd9
 </section>
 </html>
