@@ -14,14 +14,11 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 })
 @EntityListeners(AuditingEntityListener.class)
 // 게시글 목록 Entity
-public class CommunityPostList extends BaseEntity {
+public class CommunityPost extends BaseEntity {
 
     @Id @GeneratedValue
     @Column(length = 8)
     private Long code; // 코드번호
-
-    @Column(nullable = false)
-    private String category; // 카테고리
 
     @Column(nullable = false, length = 150)
     private String postNm; // 게시글 제목
@@ -37,4 +34,7 @@ public class CommunityPostList extends BaseEntity {
     @ToString.Exclude
     private User user;
 
+    @OneToOne
+    @JoinColumn(name = "boardNm")
+    private CommunityBoard category;
 }
