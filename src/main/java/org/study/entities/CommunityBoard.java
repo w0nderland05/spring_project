@@ -2,8 +2,6 @@ package org.study.entities;
 
 import jakarta.persistence.*;
 import lombok.*;
-import org.springframework.data.jpa.domain.support.AuditingEntityListener;
-
 
 @Entity
 @Data
@@ -13,16 +11,15 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 @Table(indexes={
         @Index(name="idx_user_createdAt", columnList = "createdAt DESC")
 })
-@EntityListeners(AuditingEntityListener.class)
-public class Community extends BaseEntity {
+public class CommunityBoard extends BaseEntity {
 
-    // 카테고리 목록 & 등록 Entity
+    // 게시판 목록 & 등록 Entity
     @Id
     @Column(length = 40, nullable = false, unique = true)
-    private String categoryId; // 카테고리ID
+    private String boardId; // 게시판ID
 
     @Column(length = 40, nullable = false, unique = true)
-    private String categoryNm; // 카테고리명
+    private String boardNm; // 게시판명
 
     // 생성일자는 베이스 엔티티에서 사용
 
@@ -46,5 +43,4 @@ public class Community extends BaseEntity {
     @ManyToOne
     @JoinColumn(name = "user_no")
     private User user;
-
 }
