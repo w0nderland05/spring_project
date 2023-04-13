@@ -60,6 +60,7 @@ public class User extends BaseEntity{
     */
 
     @OneToMany(mappedBy="user")
+    @Column(name="join_study")
     private List<Study> study = new ArrayList<>();
 
     @OneToMany(mappedBy = "user")

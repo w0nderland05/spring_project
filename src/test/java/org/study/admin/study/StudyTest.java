@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.TestPropertySource;
 import org.study.commons.constants.RegionType;
+import org.study.commons.constants.Status;
 import org.study.controllers.admin.study.Category;
 import org.study.entities.Study;
 import org.study.models.study.StudyApplyService;
@@ -26,22 +27,21 @@ public class StudyTest {
     @Autowired
     private StudyApplyService applyService;
     @Test
-    @DisplayName("study entity 등록")
-    public void study() {
-        List<Study> studies = new ArrayList<>();
+    @DisplayName("스터디 신청 시 제대로 db에 들어가는 지 ")
+    public void apply() {
         Study study = Study.builder()
                 .studyNm("공부해요")
                 .category("study")
                 .maxMember(10L)
                 .numOfWeek(10L)
+                .approveStatus(Status.APPLY)
                 .regionType(RegionType.ONLINE)
                 .simpleIntro("안녕하세용~")
                 .Introduction("Lob은 largeObject의 줄임말이었다...하하")
                 .build();
 
-        studies.add(study);
-        studyRepository.saveAndFlush(study);
-        System.out.println(studies);
+        studyRepository.save(study);
+        System.out.println(study);
 
     }
 
@@ -83,7 +83,7 @@ public class StudyTest {
     @Test
     @DisplayName("스터디 신청 데이터와 DB 데이터의 일치 여부 체크")
     public void assertApplyToDB(){
-
+// mock 사용
 
     }
 
