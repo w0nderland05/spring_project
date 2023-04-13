@@ -1,7 +1,6 @@
 package org.study.entities;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Email;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -64,5 +63,5 @@ public class User extends BaseEntity{
     private List<Study> study = new ArrayList<>();
 
     @OneToMany(mappedBy = "user")
-    private List<CommunityPostList> communityPostLists = new ArrayList<>();
+    private List<CommunityPost> communityPostLists = new ArrayList<>();
 }
