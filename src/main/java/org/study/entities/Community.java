@@ -28,6 +28,7 @@ public class Community extends BaseEntity {
 
     private String manager; // 처리자
 
+    @Column(name="is_use")
     private boolean use; // 사용여부
 
     @Column(nullable = false)
