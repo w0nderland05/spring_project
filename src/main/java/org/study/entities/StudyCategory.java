@@ -1,7 +1,22 @@
 package org.study.entities;
 
-public class StudyCategory extends BaseEntity{
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
 
+@Entity
+public class StudyCategory {
+
+    @Id
+    @GeneratedValue
+    private Long scNo;//스터디카테고리 넘버
+
+    @Column(nullable = false)
     private String scNm; //스터디카테고리명
-    private  boolean scUse;//스터디카테고리사용여부
+
+    @Column
+    private Boolean scUse; //스터디카테고리 사용여부
+
+
 }

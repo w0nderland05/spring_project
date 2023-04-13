@@ -8,13 +8,14 @@ import org.study.commons.constants.RegionType;
 import org.study.commons.constants.Status;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Data @Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @EntityListeners(AuditingEntityListener.class)
-public class Study extends BaseEntity {
+public class Study{
 
     @Id
     @GeneratedValue
@@ -26,15 +27,11 @@ public class Study extends BaseEntity {
     @Column(nullable = false)
     private String category; //카테고리
 
-    /**
-    @Column(nullable = false)
-    private String userEmail; //신청자
-    */
-
     @CreatedDate
     @Column(updatable = false)
     private LocalDateTime requestDt;//개설신청일시
 
+    @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private Status approveStatus =Status.APPLY ; //승인상태 (기본은 승인대기==신청)
 
@@ -59,5 +56,6 @@ public class Study extends BaseEntity {
     @ManyToOne
     @JoinColumn(name="user_No")
     @ToString.Exclude
-    private User user;  //회원 목록 조회할 때 필요할 듯
+    private User user;  //개설회원 정보
+
 }
