@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{admin/layouts/main}">
+<section layout:fragment="content">
+    <nav th:replace="~{admin/study/_submenu::menus}"></nav>
+<table border="1">
+    <thead>
+    <tr>
+        <td>번호</td>
+        <td>스터디코드</td>
+        <td>스터디명</td>
+        <td>카테고리</td>
+        <td>회원명</td>
+        <td>이메일</td>
+        <td>개설신청일시</td>
+        <td>승인관리</td>
+    </tr>
+    </thead>
+    <tbody>
+    <!--th:each="study, num: ${study}" 컨트롤러 완성후 추가예정-->
+        <tr >
+            <td>[[${num.count}]]</td>
+            <td>스터디코드</td>
+            <td>스터디명</td>
+            <td>카테고리</td>
+            <td>회원명</td>
+            <td>이메일</td>
+            <td>개설신청일시</td>
+            <td>
+                <button type="button">처리하기</button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+</section>
+</html>
