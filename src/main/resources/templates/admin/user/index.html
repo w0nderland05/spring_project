@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{admin/layouts/main}">
+<section layout:fragment="content">
+    <nav class ="" th:replace="~{admin/user/_submenu::menus}"></nav>
+    <form method="post" th:action="@{/admin/user}">
+        <table class="">
+            <thead>
+                <tr>
+                    <th>
+                        <input type="checkbox" class="" data-target-name="#">
+                    </th>
+                    <th>회원번호</th>
+                    <th>이메일</th>
+                    <th>회원명</th>
+                    <th>닉네임</th>
+                    <th>회원구분</th>
+                    <th>전화번호</th>
+                    <th>생년월일</th>
+                    <th>가입일시</th>
+                    <th>활동여부</th>
+                    <th>관리</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <!-- 체크 박스 -->
+                    <td>
+                        <input type="checkbox" name="bId" th:value="#">
+                    </td>
+                    <!-- 회원 번호 -->
+                    <td th:text="*{userNo}"></td>
+                    <!-- 이메일 -->
+                    <!-- 회원명 -->
+                    <!-- 닉네임 -->
+                    <!-- 회원구분 -->
+                    <!-- 전화번호 -->
+                    <!-- 생년월일 -->
+                    <!-- 가입일시 -->
+                    <!-- 활동 여부 -->
+                    <!-- 관리 -->
+                </tr>
+            </tbody>
+        </table>
+    </form>
+</section>
+</html>

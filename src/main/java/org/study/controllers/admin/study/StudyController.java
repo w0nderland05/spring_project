@@ -51,6 +51,7 @@ public class StudyController {
         return "admin/study/approve";
     }
 
+
     /**
      * 카테고리 관리
      *

@@ -7,6 +7,7 @@ import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 import org.modelmapper.ModelMapper;
+import org.study.commons.constants.Gender;
 import org.study.entities.User;
 import java.util.Calendar;
 
@@ -33,7 +34,7 @@ public class UserJoin {
     private String userNm; // 회원명
 
     @Enumerated(EnumType.STRING)
-    private Enum gender ; 
+    private Gender gender ;
 
     private Calendar birth; //생년월일
 

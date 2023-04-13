@@ -12,6 +12,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 @Table(indexes={
         @Index(name="idx_user_createdAt", columnList = "createdAt DESC")
 })
+<<<<<<< HEAD
 
 @EntityListeners(AuditingEntityListener.class)
 
@@ -19,6 +20,10 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 // 게시글 목록 Entity
 
+=======
+@EntityListeners(AuditingEntityListener.class)
+// 게시글 목록 Entity
+>>>>>>> 5fd627507ace88f9ef256ba89f5f60c755d41bd9
 public class CommunityPostList extends BaseEntity {
 
     @Id @GeneratedValue

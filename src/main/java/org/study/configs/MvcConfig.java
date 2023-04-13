@@ -57,4 +57,5 @@ public class MvcConfig implements WebMvcConfigurer {
         registry.addViewController("/")
                 .setViewName("front/main/index");
     }
+
 }
