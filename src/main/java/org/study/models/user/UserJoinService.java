@@ -1,4 +1,4 @@
-package org.study.models.member;
+package org.study.models.user;
 
 
 import lombok.RequiredArgsConstructor;
@@ -28,6 +28,7 @@ public class UserJoinService {
                 .userNm(join.getUserNm())
                 .userNickNm(join.getUserNickNm())
                 .cellPhone(join.getCellphone())
+                .gender(Gender.MAN)
                 .role(UserRole.USER)
                 .gender(Gender.MAN)
                 .build();
