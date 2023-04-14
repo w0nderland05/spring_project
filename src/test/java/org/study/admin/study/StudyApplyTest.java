@@ -16,6 +16,7 @@ import org.study.commons.constants.UserRole;
 import org.study.entities.Study;
 import org.study.entities.StudyCategory;
 import org.study.entities.User;
+import org.study.models.study.StudyApplyService;
 import org.study.repositories.StudyCategoryRepository;
 import org.study.repositories.StudyRepository;
 import org.study.repositories.UserRepository;
@@ -27,13 +28,15 @@ import java.util.List;
 @TestPropertySource(locations="classpath:application-test.properties")
 @ExtendWith(MockitoExtension.class)
 public class StudyApplyTest {
+    /**
     @Autowired
     private StudyRepository studyRepository;
 
     @Autowired
-<<<<<<< HEAD:src/test/java/org/study/admin/study/StudyApplyTest.java
-    private UserRepository userRepository;
-=======
+    private StudyCategoryRepository scRepository;
+
+    // private final StudyApplyService applyService;
+    @Autowired
     private StudyApplyService applyService;
     @Test
     @DisplayName("스터디 신청 시 제대로 db에 들어가는 지 ")
@@ -48,12 +51,9 @@ public class StudyApplyTest {
                 .simpleIntro("안녕하세용~")
                 .Introduction("Lob은 largeObject의 줄임말이었다...하하")
                 .build();
->>>>>>> 2aa59e21d66c1993d0bd0fcfeeb33aeac3aa71be:src/test/java/org/study/admin/study/StudyTest.java
+    }
 
-    @Autowired
-    private StudyCategoryRepository scRepository;
 
-   // private final StudyApplyService applyService;
     /**
      * @Test Case - StudyApplyService::apply
      *
@@ -64,6 +64,7 @@ public class StudyApplyTest {
      * 1. 등록에서의 최종 목표는 예외 발생 없이 등록이 되는 것
      * 2. 제대로 등록하기 위한 유효성 검사 항목이 다음과 같이 정리됩니다.
      */
+    /**
     @BeforeEach
     public void UserInsert(){
         for(int i=1;i<10;i++) {
@@ -85,6 +86,7 @@ public class StudyApplyTest {
         /**
          * 회원이 스터디 개설 신청한게 db에 들어갔는지
          */
+    /**
         List<Study> studies = new ArrayList<>();
         for (int i = 1; i < 10; i++) {
             Study study = Study.builder()
@@ -116,14 +118,6 @@ public class StudyApplyTest {
     @Test
     @DisplayName("스터디 개설 신청이 완료되면 예외가 발생하지 않음(최종 목적)")
     public void applySuccess() {
-<<<<<<< HEAD:src/test/java/org/study/admin/study/StudyApplyTest.java
-        Study study = studyRepository.findByStudyCode(8L);
-        System.out.println(study);
-=======
-
-
-
->>>>>>> 2aa59e21d66c1993d0bd0fcfeeb33aeac3aa71be:src/test/java/org/study/admin/study/StudyTest.java
     }
 
     @Test
