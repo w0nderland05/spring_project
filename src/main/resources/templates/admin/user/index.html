@@ -3,23 +3,21 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{admin/layouts/main}">
 <section layout:fragment="content">
-    <nav class ="" th:replace="~{admin/user/_submenu::menus}"></nav>
+    <nav th:replace="~{admin/user/_submenu::menus}"></nav>
     <form method="post" th:action="@{/admin/user}">
-        <table class="">
+        <table border="1">
             <thead>
                 <tr>
                     <th>
-                        <input type="checkbox" class="" data-target-name="#">
+                        <input type="checkbox">
                     </th>
                     <th>회원번호</th>
                     <th>이메일</th>
                     <th>회원명</th>
-                    <th>닉네임</th>
                     <th>회원구분</th>
-                    <th>전화번호</th>
-                    <th>생년월일</th>
                     <th>가입일시</th>
-                    <th>활동여부</th>
+                    <th>탈퇴일시</th>
+                    <td>이용제한</td>
                     <th>관리</th>
                 </tr>
             </thead>
@@ -27,19 +25,27 @@
                 <tr>
                     <!-- 체크 박스 -->
                     <td>
-                        <input type="checkbox" name="bId" th:value="#">
+                        <input type="checkbox">
                     </td>
                     <!-- 회원 번호 -->
-                    <td th:text="*{userNo}"></td>
+                    <td></td>
                     <!-- 이메일 -->
+                    <td></td>
                     <!-- 회원명 -->
-                    <!-- 닉네임 -->
+                    <td></td>
                     <!-- 회원구분 -->
-                    <!-- 전화번호 -->
-                    <!-- 생년월일 -->
+                    <td></td>
                     <!-- 가입일시 -->
-                    <!-- 활동 여부 -->
+                    <td></td>
+                    <!-- 탈퇴일시 -->
+                    <td></td>
+                    <!-- 이용제한 -->
+                    <td></td>
                     <!-- 관리 -->
+                    <td>
+                        <a class="btn2">스터디보기</a>
+                        <a class="btn2">이용관리</a>
+                    </td>
                 </tr>
             </tbody>
         </table>

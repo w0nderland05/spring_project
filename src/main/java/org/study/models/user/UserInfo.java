@@ -8,6 +8,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.study.commons.constants.Gender;
 
+import java.time.LocalDateTime;
 import java.util.Collection;
 
 /**
@@ -26,6 +27,10 @@ public class UserInfo implements UserDetails {
     private String email;
     private String cellPhone;
     private Gender gender;
+
+    // 탈퇴일자에 필요한 맴버 변수
+    // private LocalDateTime exitDate;
+
     private Collection<GrantedAuthority> authorities;
 
     @Override
