@@ -14,7 +14,6 @@
                   <input type="password" name="userPwCk" th:field="*{userPwCk}" th:placeholder="#{userPwCk}">
                   <div class="error" th:each="err : ${#fields.errors('userPwCk')}" th:text="${err}"></div>
               </li>
-              <button type="button" th:text="#{user.join.userPwCk}"></button>
               <li class="rows">
                   <input type="text" name="text" th:field="*{userNickNm}" th:placeholder="#{userNickNm}">
                   <div class="error" th:each="err : ${#fields.errors('userNickNm')}" th:text="${err}"></div>

@@ -32,3 +32,9 @@ select option:disabled { color: red; background-color: #f8f8f8; }
 
 .error { box-shadow: 2px 2px 4px #666; padding: 15px; border-radius: 5px; margin: 5px 0; color: red; font-size: 12px; }
 .dn { display: none !important; }
+
+.layout_width { max-width: 1140px; min-width: 1000px; margin: 0 auto; }
+
+/** 사이트 헤더 공통 S */
+header nav .inner { display: flex; justify-content: space-between; }
+/** 사이트 헤더 공통 E */
