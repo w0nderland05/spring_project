@@ -7,6 +7,9 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class StudyApplyService {
 
+    /**
+     * studyTest에서 작성한 apply()를 토대로
+     */
     public void apply(){
 
     }

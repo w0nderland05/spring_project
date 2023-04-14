@@ -1,50 +1,42 @@
 package org.study.admin.study;
 
+import jakarta.validation.constraints.AssertTrue;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.TestPropertySource;
+import org.study.commons.constants.Gender;
 import org.study.commons.constants.RegionType;
 import org.study.commons.constants.Status;
-import org.study.controllers.admin.study.Category;
+import org.study.commons.constants.UserRole;
 import org.study.entities.Study;
-import org.study.models.study.StudyApplyService;
+import org.study.entities.StudyCategory;
+import org.study.entities.User;
+import org.study.repositories.StudyCategoryRepository;
 import org.study.repositories.StudyRepository;
+import org.study.repositories.UserRepository;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 @SpringBootTest
 @TestPropertySource(locations="classpath:application-test.properties")
-public class StudyTest {
-
+@ExtendWith(MockitoExtension.class)
+public class StudyApplyTest {
     @Autowired
     private StudyRepository studyRepository;
 
     @Autowired
-    private StudyApplyService applyService;
-    @Test
-    @DisplayName("스터디 신청 시 제대로 db에 들어가는 지 ")
-    public void apply() {
-        Study study = Study.builder()
-                .studyNm("공부해요")
-                .category("study")
-                .maxMember(10L)
-                .numOfWeek(10L)
-                .approveStatus(Status.APPLY)
-                .regionType(RegionType.ONLINE)
-                .simpleIntro("안녕하세용~")
-                .Introduction("Lob은 largeObject의 줄임말이었다...하하")
-                .build();
+    private UserRepository userRepository;
 
-        studyRepository.save(study);
-        System.out.println(study);
+    @Autowired
+    private StudyCategoryRepository scRepository;
 
-    }
-
+   // private final StudyApplyService applyService;
     /**
      * @Test Case - StudyApplyService::apply
      *
@@ -55,6 +47,48 @@ public class StudyTest {
      * 1. 등록에서의 최종 목표는 예외 발생 없이 등록이 되는 것
      * 2. 제대로 등록하기 위한 유효성 검사 항목이 다음과 같이 정리됩니다.
      */
+    @BeforeEach
+    public void UserInsert(){
+        for(int i=1;i<10;i++) {
+            User user = User.builder()
+                    .userEmail("user0"+i+"@korea.org")
+                    .userNm("사용자0"+i)
+                    .userPw("12345678")
+                    .userNickNm("사용자0"+i)
+                    .gender(Gender.MAN)
+                    .role(UserRole.USER)
+                    .cellPhone("01000001111")
+                    .build();
+
+            userRepository.save(user);
+        }
+        User user1 = userRepository.findByUserEmail("userO1@korea.org");
+
+
+        /**
+         * 회원이 스터디 개설 신청한게 db에 들어갔는지
+         */
+        List<Study> studies = new ArrayList<>();
+        for (int i = 1; i < 10; i++) {
+            Study study = Study.builder()
+                    .studyNm("공부해요")
+                    .category("study")
+                    .maxMember(10L)
+                    .numOfWeek(10L)
+                    .approveStatus(Status.APPLY)
+                    .regionType(RegionType.ONLINE)
+                    .simpleIntro("안녕하세용~")
+                    .Introduction("Lob은 largeObject의 줄임말이었다...하하")
+                    .user()
+                    .build();
+
+            studyRepository.save(study);
+            studies.add(study);
+        }
+        System.out.println(studies);
+
+    }
+
 
 
     /** 단위 테스트 S */
@@ -65,13 +99,16 @@ public class StudyTest {
     @Test
     @DisplayName("스터디 개설 신청이 완료되면 예외가 발생하지 않음(최종 목적)")
     public void applySuccess() {
-
-
+        Study study = studyRepository.findByStudyCode(8L);
+        System.out.println(study);
     }
 
     @Test
     @DisplayName("스터디 신청 필수 항목 유효성 검사 - 카테고리, 한줄 소개글, 소개내용, 메인 사진")
     public void applyValidationTest(){
+        // 카테고리는 나중에 검사
+
+
 
     }
 
@@ -83,15 +120,16 @@ public class StudyTest {
     @Test
     @DisplayName("스터디 신청 데이터와 DB 데이터의 일치 여부 체크")
     public void assertApplyToDB(){
-// mock 사용
+
 
     }
 
 
-
-
     /** 단위 테스트 E */
 
+    /**
+     * 스터디에 들어가있는 회원 조회 -> querydsl 사용
+     */
 
 }
 

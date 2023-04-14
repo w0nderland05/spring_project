@@ -18,7 +18,7 @@ import java.time.LocalDateTime;
 public class Study extends BaseEntity{
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long studyCode; //스터디코드
 
     @Column(nullable = false, length = 150)
