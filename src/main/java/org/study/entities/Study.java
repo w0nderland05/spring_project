@@ -16,11 +16,10 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @EntityListeners(AuditingEntityListener.class)
-<<<<<<< HEAD
+
 public class Study{
-=======
-public class Study extends BaseEntity{
->>>>>>> f8193567d14903e854600291d71d39e58367873e
+
+    private String mode; //update이면 수정모드
 
     @Id
     @GeneratedValue
@@ -38,7 +37,6 @@ public class Study extends BaseEntity{
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    @Enumerated(EnumType.STRING)
     private Status approveStatus =Status.APPLY ; //승인상태 (기본은 승인대기==신청)
 
     @Column(insertable = false)
@@ -47,7 +45,10 @@ public class Study extends BaseEntity{
 
     private Long maxMember; //신청최대인원수
 
-    private Long numOfWeek; //스터디 주당횟수
+    @Column(nullable = false)
+    private Long remainSeat; //남은 자리수
+
+    private String numOfWeek; //스터디 주당횟수(라디오로 선택된 값 그대로 반영)
 
     @Enumerated(EnumType.STRING)
     @Column(length=30, nullable=false)
@@ -66,5 +67,10 @@ public class Study extends BaseEntity{
     @JoinColumn(name="user_No")
     @ToString.Exclude
     private User user;  //개설회원 정보
+
+
+//    리뷰 컬럼 추가
+//    미승인사유 컬럼 추가
+
 
 }

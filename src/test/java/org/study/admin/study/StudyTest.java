@@ -33,7 +33,7 @@ public class StudyTest {
                 .studyNm("공부해요")
                 .category("study")
                 .maxMember(10L)
-                .numOfWeek(10L)
+                .numOfWeek("주3회")
                 .approveStatus(Status.APPLY)
                 .regionType(RegionType.ONLINE)
                 .simpleIntro("안녕하세용~")
