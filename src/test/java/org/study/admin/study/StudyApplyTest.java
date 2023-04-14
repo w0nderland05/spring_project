@@ -31,7 +31,24 @@ public class StudyApplyTest {
     private StudyRepository studyRepository;
 
     @Autowired
+<<<<<<< HEAD:src/test/java/org/study/admin/study/StudyApplyTest.java
     private UserRepository userRepository;
+=======
+    private StudyApplyService applyService;
+    @Test
+    @DisplayName("스터디 신청 시 제대로 db에 들어가는 지 ")
+    public void apply() {
+        Study study = Study.builder()
+                .studyNm("공부해요")
+                .category("study")
+                .maxMember(10L)
+                .numOfWeek("주3회")
+                .approveStatus(Status.APPLY)
+                .regionType(RegionType.ONLINE)
+                .simpleIntro("안녕하세용~")
+                .Introduction("Lob은 largeObject의 줄임말이었다...하하")
+                .build();
+>>>>>>> 2aa59e21d66c1993d0bd0fcfeeb33aeac3aa71be:src/test/java/org/study/admin/study/StudyTest.java
 
     @Autowired
     private StudyCategoryRepository scRepository;
@@ -99,8 +116,14 @@ public class StudyApplyTest {
     @Test
     @DisplayName("스터디 개설 신청이 완료되면 예외가 발생하지 않음(최종 목적)")
     public void applySuccess() {
+<<<<<<< HEAD:src/test/java/org/study/admin/study/StudyApplyTest.java
         Study study = studyRepository.findByStudyCode(8L);
         System.out.println(study);
+=======
+
+
+
+>>>>>>> 2aa59e21d66c1993d0bd0fcfeeb33aeac3aa71be:src/test/java/org/study/admin/study/StudyTest.java
     }
 
     @Test
