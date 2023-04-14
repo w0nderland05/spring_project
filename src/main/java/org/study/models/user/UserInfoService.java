@@ -39,6 +39,7 @@ public class UserInfoService implements UserDetailsService {
                 .cellPhone(user.getCellPhone())
                 .gender(user.getGender())
                 .authorities(authorities) // 사용자 권한 설정
+                // .exitDate(user.getExitDate()) // 탈퇴일자
                 .build();
     }
 }

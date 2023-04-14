@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.CreatedDate;
 import org.study.commons.constants.Gender;
 import org.study.commons.constants.UserRole;
 
@@ -57,7 +58,7 @@ public class User extends BaseEntity{
     /**
      * 추가해야하는 부분 ( !!중요!! UserInfo랑 UserInfoService 수정 !!중요!!)
      * ++ 이용제한은 UserSaveService에도 추가해야함
-     * 탈퇴일시, 이용제한 ( 만약 라디오로 할거면 Enum으로, 캘린더로 할거면 이건 강사님한테 물어보던가 구글링 )
+     * 탈퇴일자, 이용제한 ( 만약 라디오로 할거면 Enum으로, 캘린더로 할거면 이건 강사님한테 물어보던가 구글링 )
     */
 
     @OneToMany(mappedBy="user")
