@@ -9,13 +9,17 @@ import org.study.commons.constants.RegionType;
 import org.study.commons.constants.Status;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Data @Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @EntityListeners(AuditingEntityListener.class)
-public class Study extends BaseEntity{
+
+public class Study{
+
+    private String mode; //update이면 수정모드
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,17 +31,12 @@ public class Study extends BaseEntity{
     @Column(nullable = false)
     private String category; //카테고리
 
-    /**
-    @Column(nullable = false)
-    private String userEmail; //신청자
-    */
-
     @CreatedDate
     @Column(updatable = false)
     private LocalDateTime requestDt;//개설신청일시
 
-    @Column(nullable = false)
     @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
     private Status approveStatus =Status.APPLY ; //승인상태 (기본은 승인대기==신청)
 
     @Column(insertable = false)
@@ -46,7 +45,10 @@ public class Study extends BaseEntity{
 
     private Long maxMember; //신청최대인원수
 
-    private Long numOfWeek; //스터디 주당횟수
+    @Column(nullable = false)
+    private Long remainSeat; //남은 자리수
+
+    private String numOfWeek; //스터디 주당횟수(라디오로 선택된 값 그대로 반영)
 
     @Enumerated(EnumType.STRING)
     @Column(length=30, nullable=false)
@@ -64,5 +66,11 @@ public class Study extends BaseEntity{
     @ManyToOne
     @JoinColumn(name="user_No")
     @ToString.Exclude
-    private User user;  //회원 목록 조회할 때 필요할 듯
+    private User user;  //개설회원 정보
+
+
+//    리뷰 컬럼 추가
+//    미승인사유 컬럼 추가
+
+
 }
