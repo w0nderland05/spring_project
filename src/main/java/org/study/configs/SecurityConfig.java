@@ -27,6 +27,7 @@ public class SecurityConfig {
                 .logoutRequestMatcher(new AntPathRequestMatcher("/user/logout"))
                 .logoutSuccessUrl("/");
 
+<<<<<<< HEAD
         /**
         http.authorizeHttpRequests()
                 .requestMatchers("/", "/user/**", "/error/**").permitAll()
@@ -38,6 +39,14 @@ public class SecurityConfig {
                         .requestMatchers("/user/mypage/**").authenticated()
                         .requestMatchers("/admin/**").hasAuthority("ADMIN")
                         .anyRequest().permitAll();
+=======
+//        http.authorizeHttpRequests()
+//                .requestMatchers("/", "/user/**", "/error/**").permitAll()
+//                .requestMatchers("/user/mypage/**").hasAuthority("USER")
+//                .requestMatchers("/admin/**").hasAuthority("ADMIN")
+//                .anyRequest().authenticated();
+
+>>>>>>> 2aa59e21d66c1993d0bd0fcfeeb33aeac3aa71be
         /**
          *  관리자 페이지에 권한없는 요청 URL 접속시 401 코드 및 오류 페이지 이동
          *  그 외에는 로그인 페이지로 이동
