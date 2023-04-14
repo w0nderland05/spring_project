@@ -32,7 +32,7 @@ public class StudyRegisterValidator implements Validator {
         // or 맵핑된 User에서 회원 갖고올거면 안해도 됨
 
         // 2. 신청 최대 인원수
-        
+
 
     }
 
