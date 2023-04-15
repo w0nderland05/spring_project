@@ -1,6 +1,25 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <header th:fragment="common">
-    <h1>헤더!</h1>
+    <section class="top">
+
+    </section>
+    <nav class="menus">
+        <div class="inner layout_width">
+            <section class="left">
+                <a href="#" th:text="#{menus.study.create}">스터디 만들기</a>
+                <a href="#" th:text="#{menus.study.join}">스터디 함께해요</a>
+                <a href="#" th:text="#{menus.community}">커뮤니티</a>
+            </section>
+            <section>
+                <form name='sSearch' method="get" th:action="@{/study/list}" autocomplete="off">
+                    <input type="text" name="skey" th:value="${skey}">
+                    <input type="image">
+                </form>
+                <a th:href="@{/user/login}" th:text="#{user.login}" class="btn1">로그인</a>
+                <a th:href="@{/user/join}" th:text="#{user.join}" class="btn1 red">회원가입</a>
+            </section>
+        </div>
+    </nav>
 </header>
 </html>
