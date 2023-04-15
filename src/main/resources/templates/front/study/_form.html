@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<th:block th:fragment="form" >
+
+    <dl>
+        <dt>스터디코드</dt>
+        <dd>
+            <input  type="text" name="studyCode">
+        </dd>
+    </dl>
+    <dl>
+        <dt>
+            <select name="stCategory">
+                <option value="scNm">---카테고리---</option>
+                <option value="a">a</option>
+                <option value="b">b</option>
+                <option value="c">c</option>
+            </select>
+        </dt>
+        <dd>
+            <input type="text">
+        </dd>
+    </dl>
+    <dl>
+        <dt>회원정보</dt>
+        <dd></dd>
+    </dl>
+    <dl>
+        <dt>신청최대 인원수</dt>
+        <dd>
+            <input type="radio" name="limit" value="true" id="limit_1">
+            <label for="limit_1">
+                제한있음
+                <input type="text" name="limit">
+            </label>
+            <input type="radio" name="limit" value="false" id="limit_0">
+            <label for="limit_0">
+                제한없음
+            </label>
+        </dd>
+    </dl>
+    <dl>
+        <dt>스터디 주당횟수</dt>
+        <dd>
+            <input type="radio" name="numOfWeek" value="true" id="num_1">
+            <label for="num_1">
+                주1회
+            </label>
+            <input type="radio" name="numOfWeek" value="true" id="num_2">
+            <label for="num_2">
+                주2회
+            </label>
+            <input type="radio" name="numOfWeek" value="true" id="num_3">
+            <label for="num_3">
+                주3회
+            </label>
+            <input type="radio" name="numOfWeek" value="true" id="num_4">
+            <label for="num_4">
+                주4회이상
+            </label>
+        </dd>
+    </dl>
+    <dl>
+        <dt>지역</dt>
+        <dd>
+            <input type="radio" name="regionType" value="true" id="online">
+            <label for="online">
+                온라인
+            </label>
+            <input type="radio" name="regionType" value="false" id="offline">
+            <label for="offline">
+                오프라인
+                <select>
+                    <option value="state">---시/도---</option>
+                    <option value="state">서울특별시</option>
+                    <option value="state">경기도</option>
+                    <option value="state">인천광역시</option>
+                    <option value="city">a</option>
+                </select>
+                <select>
+                    <option value="city">---군/구---</option>
+                    <option value="city">a</option>
+                    <option value="city">a</option>
+                    <option value="city">a</option>
+                </select>
+            </label>
+        </dd>
+    </dl>
+    <dl>
+        <dt>메인사진</dt>
+        <dd>
+            <button type="button">파일 업로드</button>
+        </dd>
+    </dl>
+    <dl>
+        <dt>한줄소개글</dt>
+        <dd>
+            <input type="text">
+        </dd>
+    </dl>
+    <dl>
+        <dt>소개글</dt>
+        <dd>
+            <!--에디터 추가 -->
+            <input type="text">
+            <button type="button"> 파일 업로드</button>
+        </dd>
+    </dl>
+
+</th:block>
+</html>
