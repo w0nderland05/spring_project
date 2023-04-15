@@ -1,10 +1,16 @@
 package org.study.entities;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
  * 범용 분류 entity
  */
+@Data @Builder
+@NoArgsConstructor @AllArgsConstructor
 @Entity
 @Table(indexes={
         @Index(name="idx_listOrder_desc", columnList="listOrder DESC"),
