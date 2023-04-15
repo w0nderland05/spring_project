@@ -16,7 +16,6 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @EntityListeners(AuditingEntityListener.class)
-
 public class Study{
 
     private String mode; //update이면 수정모드
@@ -59,12 +58,12 @@ public class Study{
 
     @Lob
     @Column(nullable = false)
-    private String Introduction; //소개글
+    private String introduction; //소개글
 
     // 파일 첨부에 대한 필드도 작성해야 할 것 같습니다.
 
     @ManyToOne
-    @JoinColumn(name="user_No")
+    @JoinColumn(name="user_no")
     @ToString.Exclude
     private User user;  //개설회원 정보
 
