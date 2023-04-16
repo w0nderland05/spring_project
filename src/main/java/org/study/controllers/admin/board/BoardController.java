@@ -1,4 +1,4 @@
-package org.study.controllers.admin.community;
+package org.study.controllers.admin.board;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -7,51 +7,61 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/admin/community")
-public class CommunityController {
-
+public class BoardController {
 
     /**
-     * <커뮤니티관리> 클릭하면 나오는 페이지
-     * == 카테고리 목록
+     * <게시판관리> 클릭하면 나오는 페이지
+     * == 게시판목록
      *
      * @return
      */
-    @GetMapping
+    @GetMapping("/admin/board")
     public String index(){
-        return "admin/community/index";
+        return "admin/board/index";
     }
 
     /**
-     * 카테고리 등록  (세부목록 클릭시 )
+     * 게시판 등록  (세부목록 클릭시 )
      *
      * @return
      */
-    @GetMapping("/register")
+    @GetMapping("/admin/board/register")
     public String register(){
-        return "admin/community/register";
+        return "admin/board/register";
     }
 
     /**
-     * 카테고리 목록 ->(페이지이동)-> 수정하기 버튼 => 수정 & 등록완료 => 목록페이지 이동
+     * 게시판 목록 ->(페이지이동)-> 수정하기 버튼 => 수정 & 등록완료 => 목록페이지 이동
      *: 코드 302 로 페이지 임시이동 예정
      *
      * @return
      */
-    @PostMapping("/save")
+    @PostMapping("/admin/board/save")
     public String save(){
-         return "redirect:/admin/community";
+        return "redirect:/admin/board";
     }
 
     /**
-     * 게시글 목록
+     * 커뮤니티 게시글 목록
      *
      * @return
      */
-    @GetMapping("/lists")
+    @GetMapping("/admin/community")
     public String lists(){
         return "admin/community/lists";
     }
+
+    /**
+     * 문의 관리 목록
+     *
+     * @return
+     */
+    @GetMapping("admin/cs/qna")
+    public String qna(){
+        return "admin/cs/qna";
+    }
+
+
 
     /**
      * 게시글 상세 -> 게시글 수정 & 삭제 가능
@@ -59,6 +69,7 @@ public class CommunityController {
      */
     @GetMapping("/update/{code}")
     public String update(@PathVariable Long code){
-        return "admin/community/update";
+        return "admin/board/update";
     }
+
 }

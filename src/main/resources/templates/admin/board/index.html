@@ -3,15 +3,17 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{admin/layouts/main}">
 <section layout:fragment="content">
-    <nav th:replace="~{admin/community/_submenu::menus}"></nav>
-    <form method="post" th:action="@{/admin/community}">
+    <nav th:replace="~{admin/board/_submenu::menus}"></nav>
+    <form method="post" th:action="@{/admin/board}">
         <!-- 게시판 목록 S -->
-        <div class="category-list">
+        <div role="region" aria-label="data table" tabindex="0" class="primary">
             <div class="middle-title">카테고리 목록</div>
-            <table id="list" border="1">
+            <table id="list">
                 <thead>
                 <tr>
-                    <th><input type="checkbox"></th>
+                    <th class="checkbox">
+                        <input type="checkbox">
+                    </th>
                     <th>게시판ID</th>
                     <th>게시판명</th>
                     <th>처리일시</th>
@@ -38,9 +40,10 @@
                     </td>
                 </tbody>
             </table>
-            <button type="button">삭제하기</button>
-            <button type="button"><a href="@{/admin/community/update}">수정하기</a></button>
         </div>
+        <!-- div 태그 안에 table을 넣어놔서 삭제, 수정하기 버튼은 따로 css 주세요! (대윤) -->
+        <button type="button">삭제하기</button>
+        <button type="button"><a href="@{/admin/community/update}">수정하기</a></button>
         <!-- 게시판 목록 E -->
     </form>
 </section>
