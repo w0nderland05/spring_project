@@ -47,6 +47,7 @@ public class Board extends BaseEntity {
     @Enumerated(EnumType.STRING)
     @Column(length=20, nullable = false)
     private AfterWriteTarget afterWriteTarget = AfterWriteTarget.VIEW; // 글 작성 후 이동 경로
+
     private boolean useComment; // 댓글 사용여부
     @Column(length=60, nullable = false)
     private String skin; // 스킨명
