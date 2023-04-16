@@ -30,6 +30,7 @@ public class UserJoinValidator implements Validator, CellPhoneValidator {
         String userEmail = userJoin.getUserEmail();
         String userPw = userJoin.getUserPw();
         String userPwCk = userJoin.getUserPwCk();
+        String cellPhone = userJoin.getCellphone();
 
         /** 1. 이메일 중복 여부 S */
         if (userEmail != null && !userEmail.isBlank() && repository.isUserExists(userEmail)) {
@@ -43,6 +44,14 @@ public class UserJoinValidator implements Validator, CellPhoneValidator {
         }
         /** 2. 비밀번호, 비밀번호 확인 체크 E */
 
-
+        /** 3. 휴대전화번호 검증 S */
+        if (cellPhone != null && !cellPhone.isBlank()) {
+            cellPhone = cellPhone.replaceAll("\\D", "");
+            userJoin.setCellphone(cellPhone);
+            if (!checkCellPhoneNumber(cellPhone)) {
+                errors.rejectValue("cellPhone", "Mobile.wrong");
+            }
+        }
+        /** 3. 휴대전화번호 검증 E */
     }
 }

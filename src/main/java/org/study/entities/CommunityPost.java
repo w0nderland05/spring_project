@@ -1,3 +1,4 @@
+
 package org.study.entities;
 
 import com.fasterxml.jackson.databind.ser.Serializers;
@@ -40,3 +41,4 @@ public class CommunityPost extends BaseEntity {
     @JoinColumn(name = "boardNm")
     private CommunityBoard category;
 }
+
