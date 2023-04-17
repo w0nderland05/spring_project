@@ -34,14 +34,20 @@
                         <td></td>  <!-- 이메일 -->
                         <td></td>  <!-- 전화번호 -->
                         <td></td>  <!-- 신고일시 -->
-                        <td></td>  <!-- 처리상태 -->
+                        <td>
+                            <select>  <!-- db로 바로 저장 될 수 있도록 연결 필요 -->
+                                <option value="clear">처리 완료</option>
+                                <option value="ready" selected>처리 대기중</option>
+                                <option value="hold">처리 보류</option>
+                            </select>
+                        </td>  <!-- 처리상태 -->
                         <td></td>  <!-- 신고사유 -->
                         <td>  <!-- 비고 -->
                             <a class="btn2">상세보기</a>
                             <!--유입 구분이 스터디면 스터디 소개 페이지 이동, 커뮤니티면 게시글 상세 ( 수정, 삭제 가능 )페이지 이동-->
                         </td>
                     </tr>
-                </tbody> 
+                </tbody>
             </table>
         </div>
         <div>
