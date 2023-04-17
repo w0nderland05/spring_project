@@ -38,10 +38,6 @@ public class Report extends BaseEntity {
     @Column(length=11)
     private String cellPhone;
 
-    @CreatedDate
-    @Column(updatable = false)
-    private LocalDateTime reportDt; // 신고 일자, BaseEntity - createdBy 가져와서 써야하는지?
-
     @Enumerated(EnumType.STRING)
     @Column(length = 20, nullable = false)
     private ReportStatus status = ReportStatus.READY;
