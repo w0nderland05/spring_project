@@ -36,7 +36,7 @@ public class UserJoinValidator implements Validator, CellPhoneValidator {
         if (userEmail != null && !userEmail.isBlank() && repository.isUserExists(userEmail)) {
             errors.rejectValue("userEmail", "user.validation.exists");
         }
-        /** 1. 아이디 중복 여부 E */
+        /** 1. 이메일 중복 여부 E */
 
         /** 2. 비밀번호, 비밀번호 확인 체크 S */
         if (userPw != null && !userPw.isBlank() && userPwCk != null && !userPwCk.isBlank() && !userPw.equals(userPwCk)) {
