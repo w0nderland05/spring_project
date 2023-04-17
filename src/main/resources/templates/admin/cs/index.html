@@ -38,6 +38,7 @@
                         <td></td>  <!-- 신고사유 -->
                         <td>  <!-- 비고 -->
                             <a class="btn2">상세보기</a>
+                            <!--유입 구분이 스터디면 스터디 소개 페이지 이동, 커뮤니티면 게시글 상세 ( 수정, 삭제 가능 )페이지 이동-->
                         </td>
                     </tr>
                 </tbody>
@@ -45,9 +46,9 @@
         </div>
         <div>
             <button type="button">삭제하기</button>
-            <button type="button"><a href="@{/admin/cs/update}">수정하기</a></button>
+            <button type="button">수정하기</button>  <!--체크 선택 후 수정하기 누르면 바로 적용될 수 있게!-->
         </div>
     </form>
-    <h1>신고 목록 페이지 == '신고관리' 클릭시 나오는 페이지 </h1>
+<!--    <h1>신고 목록 페이지 == '신고관리' 클릭시 나오는 페이지 </h1>-->
 </section>
 </html>

@@ -21,6 +21,16 @@ public class CsController {
 
 
     /**
+     * 신고 사유 관리
+     *
+     * @return
+     */
+    @GetMapping("/reason")
+    public String reason(){
+        return "admin/cs/reason";
+    }
+
+    /**
      * 문의 관리
      *
      * @return
@@ -30,5 +40,14 @@ public class CsController {
         return "admin/cs/qna";
     }
 
+    /**
+     * 문의 상세보기
+     *
+     * @return
+     */
+    @GetMapping("/view")
+    public String view(){
+        return "admin/cs/view";
+    }
 
 }
