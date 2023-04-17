@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{admin/layouts/main}">
+<section layout:fragment="content">
+    <nav th:replace="~{admin/cs/_submenu::menus}"></nav>
+    <form method="post" th:action="@{/admin/cs/reason}">
+        <div role="region" aria-label="data table" tabindex="0" class="primary">
+            <table id = "list">
+                <thead>
+                    <tr>
+                        <th>
+                            <input type="checkbox">
+                        </th>
+                        <th>신고 사유</th>
+                        <th>사용 여부</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                <tr>
+                    <td>
+                        <input type="checkbox">
+                    </td>
+                    <td>
+                        <input type="text" placeholder="추가할 신고사유를 입력해주세요">
+                    </td>
+                    <td>
+                        <input type="radio" name="use" value="1" id="use_1">
+                        <label for="use_1">사용</label>
+                        <input type="radio" name="use" value="0" id="use_0">
+                        <label for="use_0">미사용</label>
+                    </td>
+                </tr>
+
+                </tbody>
+            </table>
+        </div>
+        <div>
+            <button type="button">삭제하기</button>
+            <button type="button">수정하기</button>
+        </div>
+    </form>
+</section>
+</html>
