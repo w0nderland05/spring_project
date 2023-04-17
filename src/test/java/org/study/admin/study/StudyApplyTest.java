@@ -1,28 +1,11 @@
 package org.study.admin.study;
 
-import jakarta.validation.constraints.AssertTrue;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.TestPropertySource;
-import org.study.commons.constants.Gender;
-import org.study.commons.constants.RegionType;
-import org.study.commons.constants.Status;
-import org.study.commons.constants.UserRole;
-import org.study.entities.Study;
-import org.study.entities.StudyCategory;
-import org.study.entities.User;
-import org.study.models.study.StudyApplyService;
-import org.study.repositories.StudyCategoryRepository;
-import org.study.repositories.StudyRepository;
-import org.study.repositories.UserRepository;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @SpringBootTest
 @TestPropertySource(locations="classpath:application-test.properties")
