@@ -56,7 +56,7 @@ public class BoardController {
      *
      * @return
      */
-    @GetMapping("admin/cs/qna")
+    @GetMapping
     public String qna(){
         return "admin/cs/qna";
     }
