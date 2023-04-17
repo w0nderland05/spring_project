@@ -23,6 +23,7 @@ public class Category extends BaseEntity {
 
     @Column(name="is_use")
     private boolean use; // 사용 여부
+
     @Column(length=30, nullable = false)
     private String location; // 노출 위치
 
