@@ -20,7 +20,6 @@ public class ReportController {
     }
 
 
-<<<<<<< HEAD:src/main/java/org/study/controllers/admin/cs/CsController.java
     /**
      * 신고 사유 관리
      *
@@ -40,8 +39,6 @@ public class ReportController {
     public String qna(){
         return "admin/cs/qna";
     }
-=======
->>>>>>> origin/study:src/main/java/org/study/controllers/admin/report/ReportController.java
 
     /**
      * 문의 상세보기
