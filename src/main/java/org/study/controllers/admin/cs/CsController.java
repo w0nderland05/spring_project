@@ -1,4 +1,4 @@
-package org.study.controllers.admin.report;
+package org.study.controllers.admin.cs;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping("/admin/cs")
-public class ReportController {
+public class CsController {
 
     /**
      * <신고 관리> 클릭시 나오는 페이지

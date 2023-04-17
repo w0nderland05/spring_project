@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
+@RequestMapping("/admin/board")
 public class BoardController {
 
     /**
@@ -15,7 +16,7 @@ public class BoardController {
      *
      * @return
      */
-    @GetMapping("/admin/board")
+    @GetMapping
     public String index(){
         return "admin/board/index";
     }
@@ -25,7 +26,7 @@ public class BoardController {
      *
      * @return
      */
-    @GetMapping("/admin/board/register")
+    @GetMapping("/register")
     public String register(){
         return "admin/board/register";
     }
@@ -36,11 +37,10 @@ public class BoardController {
      *
      * @return
      */
-    @PostMapping("/admin/board/save")
+    @PostMapping("/save")
     public String save(){
         return "redirect:/admin/board";
     }
-
 
     /**
      * 게시글 상세 -> 게시글 수정 & 삭제 가능
