@@ -25,7 +25,9 @@ public class BoardConfigTest {
 
     @Test
     @DisplayName("필수 입력 값 체크 - BoardConfigFailException 발생")
+    void BoardConfig_Essential(){
 
+    }
 
 
 }
