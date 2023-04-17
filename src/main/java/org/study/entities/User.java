@@ -9,6 +9,7 @@ import org.springframework.data.annotation.CreatedDate;
 import org.study.commons.constants.Gender;
 import org.study.commons.constants.UserRole;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -46,6 +47,9 @@ public class User extends BaseEntity{
 
     @Column(length=11)
     private String cellPhone;
+
+    @Column(length=8)
+    private LocalDate birth;
 
     @Enumerated(EnumType.STRING)
     @Column(length=30)

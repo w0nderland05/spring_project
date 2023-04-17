@@ -9,55 +9,38 @@ public class UserJoinTest {
 
 
     @Test
-    @DisplayName("가입-예외 발생하지 않고, 성공적으로 가입됨(최종 목적), test시 true 반환")
-    void joinSuccess(){
-
-    }
-
-    /** 유효성 검사 S */
-    @Test
-    @DisplayName("자동생성- 회원번호 자동생성되는지 체크")
-    void JoinTest_Auto_Increment_UserNo(){
+    @DisplayName("회원가입 성공시 true 반환 (최종목적)")
+    void JoinSuccess(){
 
     }
 
     @Test
-    @DisplayName("필수항목 유효성 검사-이메일 형식 아니면 ")
-    void joinTest_Valid_Essential_Of_Email(){
+    @DisplayName("User가 Null일때 JoinFailException 발생")
+    void JoinUser_Null_Fail(){
 
     }
 
     @Test
-    @DisplayName("필수항목 유효성 검사-비밀번호 암호화 정도")
-    void JoinTest_Valid_Essential_Of_PassWord(){
+    @DisplayName("User 객체에 값이 비어있으면 예외 발생")
+    void JoinUser_Empty_Fail(){
 
     }
 
     @Test
-    @DisplayName("필수항목 유효성 검사-생년월일_2023기준, 1900이하 존재 x")
-    void JoinTest_Valid_Essential_Of_Birth(){
+    @DisplayName("회원가입 완료후 비밀번호 해시화 되었는지 체크")
+    void JoinUser_Password_Hash(){
 
     }
 
     @Test
-    @DisplayName("필수항목 유효성 검사-휴대전화번호_양식에 맞는지 체크")
-    void JoinTest_Valid_Essential_Of_CellPhone(){
+    @DisplayName("생성된 해시과 실제 비밀번호 일치하는지 체크")
+    void JoinUser_Password_Equals_Hash(){
 
     }
 
     @Test
-    @DisplayName("필수항목 유효성 검사 - 필수항목 천체 체크")
-    void JoinTest_Essential(){
-
-    }
-    /** 유효성 검사 E */
-
-
-    /** DB 연결 성공 */
-
-    @Test
-    @DisplayName("Email로 회원 목록 조회 체크")
+    @DisplayName("Email로 DB-회원 목록 조회 체크")
     void Check_UserList_for_Email(){
-        
+
     }
 }

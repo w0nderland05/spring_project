@@ -69,9 +69,7 @@ public class StudyApplyTest {
 
     /** 단위 테스트 E */
 
-    /**
-     * 스터디에 들어가있는 회원 조회 -> querydsl 사용
-     */
+
 
 }
 
