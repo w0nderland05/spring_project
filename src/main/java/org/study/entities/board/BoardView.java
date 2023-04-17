@@ -12,11 +12,13 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(indexes=@Index(name="idx_id_uid", columnList = "idBoardData, uid"))
+@IdClass(BoardViewId.class)
 public class BoardView {
 
     @Id
     private Long idBoardData; // 게시글 번호
 
+    @Id
     @Column(length=50)
     private String uid; // 사용자별 UID
 }
