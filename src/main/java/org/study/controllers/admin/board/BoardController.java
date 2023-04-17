@@ -43,28 +43,6 @@ public class BoardController {
     }
 
     /**
-     * 커뮤니티 게시글 목록
-     *
-     * @return
-     */
-    @GetMapping("/admin/community")
-    public String lists(){
-        return "admin/community/lists";
-    }
-
-    /**
-     * 문의 관리 목록
-     *
-     * @return
-     */
-    @GetMapping
-    public String qna(){
-        return "admin/cs/qna";
-    }
-
-
-
-    /**
      * 게시글 상세 -> 게시글 수정 & 삭제 가능
      * @return
      */
