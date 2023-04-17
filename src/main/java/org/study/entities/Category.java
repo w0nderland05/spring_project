@@ -29,6 +29,7 @@ public class Category extends BaseEntity {
 
     @Column(length=60, nullable=false)
     private String cateNm; // 분류명
+
     private Long listOrder; // 진열 순서 - 숫자가 높을수록 진열 우선 가중치 부여
 
     @Column(length=20)
