@@ -21,20 +21,6 @@ public class StudyApplyTest {
     // private final StudyApplyService applyService;
     @Autowired
     private StudyApplyService applyService;
-    @Test
-    @DisplayName("스터디 신청 시 제대로 db에 들어가는 지 ")
-    public void apply() {
-        Study study = Study.builder()
-                .studyNm("공부해요")
-                .category("study")
-                .maxMember(10L)
-                .numOfWeek("주3회")
-                .approveStatus(Status.APPLY)
-                .regionType(RegionType.ONLINE)
-                .simpleIntro("안녕하세용~")
-                .Introduction("Lob은 largeObject의 줄임말이었다...하하")
-                .build();
-    }
 
 
     /**
@@ -48,50 +34,6 @@ public class StudyApplyTest {
      * 2. 제대로 등록하기 위한 유효성 검사 항목이 다음과 같이 정리됩니다.
      */
     /**
-    @BeforeEach
-    public void UserInsert(){
-        for(int i=1;i<10;i++) {
-            User user = User.builder()
-                    .userEmail("user0"+i+"@korea.org")
-                    .userNm("사용자0"+i)
-                    .userPw("12345678")
-                    .userNickNm("사용자0"+i)
-                    .gender(Gender.MAN)
-                    .role(UserRole.USER)
-                    .cellPhone("01000001111")
-                    .build();
-
-            userRepository.save(user);
-        }
-        User user1 = userRepository.findByUserEmail("userO1@korea.org");
-
-
-        /**
-         * 회원이 스터디 개설 신청한게 db에 들어갔는지
-         */
-    /**
-        List<Study> studies = new ArrayList<>();
-        for (int i = 1; i < 10; i++) {
-            Study study = Study.builder()
-                    .studyNm("공부해요")
-                    .category("study")
-                    .maxMember(10L)
-                    .numOfWeek(10L)
-                    .approveStatus(Status.APPLY)
-                    .regionType(RegionType.ONLINE)
-                    .simpleIntro("안녕하세용~")
-                    .Introduction("Lob은 largeObject의 줄임말이었다...하하")
-                    .user()
-                    .build();
-
-            studyRepository.save(study);
-            studies.add(study);
-        }
-        System.out.println(studies);
-
-    }
-
-
 
     /** 단위 테스트 S */
 
