@@ -3,8 +3,8 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{admin/layouts/main}">
 <section layout:fragment="content">
-    <nav th:replace="~{admin/community/_submenu::menus}"></nav>
-    <form method="post" th:action="@{/admin/community}">
+    <nav th:replace="~{admin/board/_submenu::menus}"></nav>
+    <form method="post" th:action="@{/admin/board}">
         <!-- 게시판 목록 S -->
         <div role="region" aria-label="data table" tabindex="0" class="primary">
             <div class="middle-title">카테고리 목록</div>

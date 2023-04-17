@@ -52,15 +52,6 @@ public class StudyController {
     }
 
 
-    /**
-     * 카테고리 관리
-     *
-     * @return
-     */
-    @GetMapping("/category")
-    public String category(){
-        return "admin/study/category";
-    }
 
 
 }

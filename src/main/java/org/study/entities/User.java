@@ -65,6 +65,4 @@ public class User extends BaseEntity{
     private List<Study> studies = new ArrayList<>();
 
 
-    @OneToMany(mappedBy = "user")
-    private List<CommunityPost> communityPostLists = new ArrayList<>();
 }

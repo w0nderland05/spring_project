@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{admin/layouts/main}">
+<section layout:fragment="content">
+    <nav th:replace="~{admin/category/_submenu::menus}"></nav>
+
+    <form class="form" method="post" th:action="@{/admin/category}" autocomplete="off">
+
+        </div>
+    </form>
+</section>
+</html>

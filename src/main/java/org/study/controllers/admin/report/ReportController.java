@@ -1,4 +1,4 @@
-package org.study.controllers.admin.cs;
+package org.study.controllers.admin.report;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping("/admin/cs")
-public class CsController {
+public class ReportController {
 
     /**
      * <신고 관리> 클릭시 나오는 페이지
@@ -20,6 +20,7 @@ public class CsController {
     }
 
 
+<<<<<<< HEAD:src/main/java/org/study/controllers/admin/cs/CsController.java
     /**
      * 신고 사유 관리
      *
@@ -39,6 +40,8 @@ public class CsController {
     public String qna(){
         return "admin/cs/qna";
     }
+=======
+>>>>>>> origin/study:src/main/java/org/study/controllers/admin/report/ReportController.java
 
     /**
      * 문의 상세보기
