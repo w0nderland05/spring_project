@@ -47,6 +47,7 @@ public class Report extends BaseEntity {
     private ReportStatus status = ReportStatus.READY;
 
     // 신고 사유 관리
+    @Column(nullable=false)
     private String reason;  // 신고 사유
 
     private boolean useStatus;  // 사용 여부
