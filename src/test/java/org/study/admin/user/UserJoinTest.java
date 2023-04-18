@@ -1,16 +1,54 @@
 package org.study.admin.user;
 
+import lombok.RequiredArgsConstructor;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.context.annotation.ComponentScan;
+import org.study.commons.constants.Gender;
+import org.study.commons.constants.UserRole;
+import org.study.controllers.user.UserJoin;
+import org.study.entities.User;
+import org.study.models.user.UserJoinService;
+import org.study.repositories.UserRepository;
+
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @SpringBootTest
+@RequiredArgsConstructor
 public class UserJoinTest {
 
+    private final UserJoinService service;
+
+    private final UserRepository repository;
+
+    @BeforeEach
+    UserJoin join() {
+
+        UserJoin userJoin = new UserJoin();
+        userJoin.setUserEmail("user01@korea.org");
+        userJoin.setUserNm("사용자01");
+        userJoin.setUserPw("82everywin!");
+        userJoin.setUserPwCk("82everywin!");
+        userJoin.setUserNickNm("뚜비");
+        userJoin.setGender(Gender.MAN);
+        userJoin.setBirth(LocalDate.of(2000,8,2));
+        userJoin.setCellphone("010-0011-0022");
+        userJoin.setTermsAgree(true);
+        return userJoin;
+    }
 
     @Test
     @DisplayName("회원가입 성공시 true 반환 (최종목적)")
     void JoinSuccess(){
+        UserJoin userJoin = join();
+
+        service.join(userJoin);
+
 
     }
 

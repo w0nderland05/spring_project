@@ -30,8 +30,8 @@ public class UserJoinService {
                 .userNm(join.getUserNm())
                 .userNickNm(join.getUserNickNm())
                 .cellPhone(join.getCellphone())
-                .gender(Gender.MAN)
-                .role(UserRole.USER)
+                .gender(join.getGender())
+                .role(UserRole.USER) //기본
                 .birth(LocalDate.of(2000,3,1))
                 .build();
 
