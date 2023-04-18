@@ -11,5 +11,5 @@ public class UserCommunityController {
      * @return
      */
     @GetMapping("/user/community")
-    public String community() {return "/front/community";}
+    public String community() {return "/front/community/community";}
 }
