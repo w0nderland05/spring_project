@@ -7,7 +7,7 @@
     <form method="post" th:action="@{/admin/board}">
         <!-- 게시판 목록 S -->
         <div role="region" aria-label="data table" tabindex="0" class="primary">
-            <div class="middle-title">카테고리 목록</div>
+            <div class="middle-title">게시판 목록</div>
             <table id="list">
                 <thead>
                 <tr>
@@ -34,7 +34,7 @@
                     <td><!-- DB에서 자동입력 --></td>
                     <td><!-- DB에서 자동입력 --></td>
                     <td>
-                        <button>
+                        <button class="btn1">
                             <a href="#">미리보기</a> <!-- 사용자 페이지 해당 카테고리로 이동 -->
                         </button>
                     </td>
@@ -42,8 +42,9 @@
             </table>
         </div>
         <!-- div 태그 안에 table을 넣어놔서 삭제, 수정하기 버튼은 따로 css 주세요! (대윤) -->
-        <button type="button">삭제하기</button>
-        <button type="button"><a href="@{/admin/community/update}">수정하기</a></button>
+        <div class="btn">
+        <button class="btn1" type="button">삭제하기</button>
+        </div>
         <!-- 게시판 목록 E -->
     </form>
 </section>
