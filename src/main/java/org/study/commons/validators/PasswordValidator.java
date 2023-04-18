@@ -23,11 +23,6 @@ public interface PasswordValidator {
             return "비밀번호에 동일한 문자를 과도하게 연속해서 사용할 수 없습니다.";
         }
 
-        // 아이디 포함 확인
-        if(userPw.contains(userEmail)){
-            return "비밀번호에 ID를 포함할 수 없습니다.";
-        }
-
         // 특수문자 확인
         Pattern passPattern3 = Pattern.compile("\\W");
         Pattern passPattern4 = Pattern.compile("[!@#$%^*+=-]");
