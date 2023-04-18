@@ -4,6 +4,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.study.commons.validators.PasswordValidator;
 import org.study.controllers.user.UserJoinValidator;
 
 /**
@@ -13,6 +14,9 @@ import org.study.controllers.user.UserJoinValidator;
  */
 @SpringBootTest
 public class UserJoinValidatorTest {
+
+
+    private PasswordValidator passwordValidator;
 
     @Autowired
     private UserJoinValidator validator;

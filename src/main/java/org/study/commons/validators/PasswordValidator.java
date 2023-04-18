@@ -6,7 +6,7 @@ import java.util.regex.Pattern;
 public interface PasswordValidator {
 
     // 비밀번호 유효성 검사
-    private String checkPassword(String userPw, String userEmail ){
+    default String checkPassword(String userPw, String userEmail ){
 
         Pattern passPattern1 = Pattern.compile("^(?=.*[a-zA-Z])(?=.*\\d)(?=.*\\W).{8,20}$");
         Matcher passMatcher1 = passPattern1.matcher(userPw);
@@ -14,7 +14,11 @@ public interface PasswordValidator {
         if(!passMatcher1.find()){
             return "비밀번호는 영문과 특수문자 숫자를 포함하여 8자 이상이어야 합니다.";
         }
+        return "true";
 
+        default
+/**
+ * de
         // 반복된 문자 확인
         Pattern passPattern2 = Pattern.compile("(\\w)\\1\\1\\1");
         Matcher passMatcher2 = passPattern2.matcher(userPw);
@@ -45,5 +49,7 @@ public interface PasswordValidator {
         }
 
         return "";
+ */
     }
+
 }
