@@ -8,7 +8,7 @@ import java.util.Objects;
 
 @NoArgsConstructor
 @AllArgsConstructor
-public class BoardViewId implements Serializable {
+public class BoardViewId implements Serializable { //Serializable : 파일 정렬
     private Long idBoardData; // 게시글 번호
     private String uid; // Unique ID
 

@@ -8,19 +8,22 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("/admin/category")
 public class CategoryController {
+
     /**
-     * 카테고리리스트
+     * <카테고리 관리>클릭시 나오는 페이지
+     * == 카테고리 목록
+     *
      * @return
      */
     @GetMapping
-    public String CategoryList(){
+    public String index(){
         return "admin/category/index";
 
 
     }
 
     /**
-     * 카테고리 등록  (세부목록 클릭시 )
+     * 카테고리 관리 -> 카테고리 등록
      *
      * @return
      */

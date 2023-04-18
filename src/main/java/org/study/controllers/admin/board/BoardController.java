@@ -26,13 +26,13 @@ public class BoardController {
      *
      * @return
      */
-    @GetMapping("/register")
+    @GetMapping("/config")
     public String register(){
-        return "admin/board/register";
+        return "admin/board/config";
     }
 
     /**
-     * 게시판 목록 ->(페이지이동)-> 수정하기 버튼 => 수정 & 등록완료 => 목록페이지 이동
+     * 게시판 목록 ->//(페이지이동)//-> 수정하기 버튼 => 수정 & 등록완료 => 목록페이지 이동
      *: 코드 302 로 페이지 임시이동 예정
      *
      * @return

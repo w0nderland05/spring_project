@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class CsController {
 
     /**
-     * <신고 관리> 클릭시 나오는 페이지
+     * <CS 관리> 클릭시 나오는 페이지
      * == 신고 목록
      *
      * @return
@@ -21,17 +21,7 @@ public class CsController {
 
 
     /**
-     * 신고 사유 관리
-     *
-     * @return
-     */
-    @GetMapping("/reason")
-    public String reason(){
-        return "admin/cs/reason";
-    }
-
-    /**
-     * 문의 관리
+     * 문의 목록
      *
      * @return
      */
@@ -41,6 +31,7 @@ public class CsController {
     }
 
     /**
+     * 문의 목록
      * 문의 상세보기
      *
      * @return
