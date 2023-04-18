@@ -3,10 +3,10 @@ package org.study.commons.validators;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public interface UserJoinValidator {
+public interface PasswordValidator {
 
     // 비밀번호 유효성 검사
-    private String checkPassword(String userPw, String userEamil ){
+    private String checkPassword(String userPw, String userEmail ){
 
         Pattern passPattern1 = Pattern.compile("^(?=.*[a-zA-Z])(?=.*\\d)(?=.*\\W).{8,20}$");
         Matcher passMatcher1 = passPattern1.matcher(userPw);
@@ -24,7 +24,7 @@ public interface UserJoinValidator {
         }
 
         // 아이디 포함 확인
-        if(userPw.contains(userEamil)){
+        if(userPw.contains(userEmail)){
             return "비밀번호에 ID를 포함할 수 없습니다.";
         }
 
@@ -42,38 +42,6 @@ public interface UserJoinValidator {
                     return "비밀번호에 특수문자는 !@#$^*+=-만 사용 가능합니다.";
                 }
             }
-        }
-
-        //연속된 문자 확인
-        int ascSeqCharCnt = 0; // 오름차순 연속 문자 카운트
-        int descSeqCharCnt = 0; // 내림차순 연속 문자 카운트
-
-        char char_0;
-        char char_1;
-        char char_2;
-
-        int diff_0_1;
-        int diff_1_2;
-
-        for(int i = 0; i < userPw.length()-2; i++){
-            char_0 = userPw.charAt(i);
-            char_1 = userPw.charAt(i+1);
-            char_2 = userPw.charAt(i+2);
-
-            diff_0_1 = char_0 - char_1;
-            diff_1_2 = char_1 - char_2;
-
-            if(diff_0_1 == 1 && diff_1_2 == 1){
-                ascSeqCharCnt += 1;
-            }
-
-            if(diff_0_1 == -1 && diff_1_2 == -1){
-                descSeqCharCnt -= 1;
-            }
-        }
-
-        if(ascSeqCharCnt > 1 || descSeqCharCnt > 1){
-            return "비밀번호에 연속된 문자열을 사용할 수 없습니다.";
         }
 
         return "";
