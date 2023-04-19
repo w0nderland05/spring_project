@@ -49,7 +49,7 @@ public interface PasswordValidator {
         return "true";
     }
 
-    // 연속 해서 사용하는 문자의 기준이 몇개인지 >>
+    // 연속 해서 사용하는 문자의 기준이 몇개인지 >>4개->3개
     // 여기서 기본 조건을 통과하는 기준을 갖춘건지
     default String Repeat_Character(String userPw){
         // 반복된 문자 확인

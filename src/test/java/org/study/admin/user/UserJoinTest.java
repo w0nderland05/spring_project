@@ -55,7 +55,6 @@ public class UserJoinTest {
     @Test
     @DisplayName("User가 Null일때 JoinFailException 발생")
     void JoinUser_Null_Fail(){
-
     }
 
     @Test
