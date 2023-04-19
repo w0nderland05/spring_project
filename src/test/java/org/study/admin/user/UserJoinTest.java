@@ -54,9 +54,8 @@ public class UserJoinTest {
 
     @Test
     @DisplayName("User가 Null일때 JoinFailException 발생")
-    void joinUser_Null_Fail(){
+    void JoinUser_Null_Fail(){}
 
-    }
 
     @Test
     @DisplayName("User 객체에 값이 비어있으면 예외 발생")
