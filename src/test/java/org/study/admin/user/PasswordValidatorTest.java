@@ -34,7 +34,7 @@ public class PasswordValidatorTest {
      */
     @Test
     @DisplayName("오류 메세지 반환해야 통과 - 예외상황  ")
-    void PassWord_Find_Exception(){
+    void passWord_Find_Exception(){
         assertPasswordFail("user01!"); //8자 미만
         assertPasswordFail("123456?!!"); // 영문x
         assertPasswordFail("username!"); // 숫자
@@ -46,14 +46,14 @@ public class PasswordValidatorTest {
 
     @Test
     @DisplayName("특수문자 확인 - 올바른 비번(최종목적)")
-    void Password_Special_Character(){
+    void password_Special_Character(){
         String userPw="82everywin!";
         assertEquals("true",validator.special_character(userPw));
     }
 
     @Test
     @DisplayName("특수문자 확인- % 사용시 오류 msg -반환시 통과 ")
-    void Password_Special_Character1_Fail1(){
+    void password_Special_Character1_Fail1(){
         String userPw="82everywin%";
         String msg= "비밀번호에 특수문자는 !@#$^*+=-만 사용 가능합니다.";
         assertEquals(msg,validator.special_character(userPw));
@@ -61,7 +61,7 @@ public class PasswordValidatorTest {
 
     @Test
     @DisplayName("특수문자 확인- & 사용시 오류 msg -반환시 통과 ")
-    void Password_Special_Character_Fail2(){
+    void password_Special_Character_Fail2(){
         String userPw="82everywin&";
         String msg= "비밀번호에 특수문자는 !@#$^*+=-만 사용 가능합니다.";
         assertEquals(msg,validator.special_character(userPw));
@@ -69,14 +69,14 @@ public class PasswordValidatorTest {
 
     @Test
     @DisplayName("반복된 문자 확인 - 올바른 비번(최종목적) ")
-    void Password_Repeat_Character(){
+    void password_Repeat_Character(){
         String userPw="82everywin!";
         assertEquals("true",validator.Repeat_Character(userPw));
     }
 
     @Test
     @DisplayName("반복된 문자 확인 - 연속문자 사용시 msg - 반환시 통과  ")
-    void Password_Repeat_Character_Fail(){
+    void password_Repeat_Character_Fail(){
       //  String userPw="abcdefghi"; // 이경우는 연속사용x -> 통과하면 x
         String userPw ="aaabbb"; //-> 여기서 테스트 통과 x
         String msg="비밀번호에 동일한 문자를 과도하게 연속해서 사용할 수 없습니다.";

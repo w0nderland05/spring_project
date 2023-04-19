@@ -24,7 +24,7 @@ public class UserJoinValidatorTest {
     /** 유효성 검사 S */
     @Test
     @DisplayName("자동생성- 회원번호 자동생성되는지 체크")
-    void Join_Auto_Increment_UserNo(){
+    void join_Auto_Increment_UserNo(){
 
     }
 
@@ -36,25 +36,25 @@ public class UserJoinValidatorTest {
 
     @Test
     @DisplayName("필수항목 유효성 검사-비밀번호 암호화 강도")
-    void Join_Valid_Essential_Of_PassWord(){
+    void join_Valid_Essential_Of_PassWord(){
 
     }
 
     @Test
     @DisplayName("필수항목 유효성 검사-비밀번호 확인 중복체크")
-    void Join_Valid_Essential_Of_PassWord_Check(){
+    void join_Valid_Essential_Of_PassWord_Check(){
 
     }
 
     @Test
     @DisplayName("필수항목 유효성 검사-생년월일_2023년 기준, 1900년이하 존재 x")
-    void Join_Valid_Essential_Of_Birth(){
+    void join_Valid_Essential_Of_Birth(){
 
     }
 
     @Test
     @DisplayName("필수항목 유효성 검사-휴대전화번호_양식에 맞는지 체크")
-    void Join_Valid_Essential_Of_CellPhone(){
+    void join_Valid_Essential_Of_CellPhone(){
 
     }
 

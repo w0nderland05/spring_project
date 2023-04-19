@@ -38,25 +38,25 @@ public class UserLoginTest {
 
     @Test
     @DisplayName("이메일 값 존재하지 않는 경우 (틀리게 입력 ) - '존재하지 않는 이메일 입니다'메세지 반환 체크")
-    void Login_NotFound_Email(){
+    void login_NotFound_Email(){
 
     }
 
     @Test
     @DisplayName("비밀번호 값 존재하지 않는 경우(틀리게 입력)-'존재하지 않는 비밀번호 입니다'메세지 반환")
-    void Login_NotFound_Password(){
+    void login_NotFound_Password(){
 
     }
 
     @Test
     @DisplayName("등록된 회원이지만, 비밀번호가 일치하지 않는 경우 -'비밀번호가 일치하지 않습니다'메세지 반환")
-    void Login_NotEquals_Password(){
+    void login_NotEquals_Password(){
 
     }
 
     @Test
     @DisplayName("'아이디 저장'시 session에 값 저장되어있는지 체크")
-    void Login_Email_Save_Session(){
+    void login_Email_Save_Session(){
 
     }
 

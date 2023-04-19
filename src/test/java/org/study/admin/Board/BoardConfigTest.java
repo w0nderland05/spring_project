@@ -13,19 +13,19 @@ public class BoardConfigTest {
 
     @Test
     @DisplayName("게시판 등록 성공시 True값 반환")
-    void ConfigSuccess(){
+    void configSuccess(){
 
     }
 
     @Test
     @DisplayName("Config Null값일때 BoardConfigFailException 발생")
-    void BoardConfig_Null_Exception(){
+    void boardConfig_Null_Exception(){
 
     }
 
     @Test
     @DisplayName("필수 입력 값 체크 - BoardConfigFailException 발생")
-    void BoardConfig_Essential(){
+    void boardConfig_Essential(){
 
     }
 
