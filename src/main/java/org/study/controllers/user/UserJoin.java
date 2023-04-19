@@ -9,6 +9,8 @@ import lombok.Data;
 import org.modelmapper.ModelMapper;
 import org.study.commons.constants.Gender;
 import org.study.entities.User;
+
+import java.time.LocalDate;
 import java.util.Calendar;
 
 /**
@@ -36,7 +38,7 @@ public class UserJoin {
     @Enumerated(EnumType.STRING)
     private Gender gender ;
 
-    private Calendar birth; //생년월일
+    private LocalDate birth; //생년월일
 
     private String cellphone; //휴대전화번호
 

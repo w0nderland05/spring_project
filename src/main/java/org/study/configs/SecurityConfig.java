@@ -35,6 +35,7 @@ public class SecurityConfig {
                 .requestMatchers("/admin/**").hasAuthority("ADMIN")
                 .anyRequest().authenticated();
         */
+<<<<<<< HEAD
         http.authorizeHttpRequests()
                         .requestMatchers("/user/mypage/**").authenticated()
                         .requestMatchers("/admin/**").hasAuthority("ADMIN")
@@ -47,6 +48,9 @@ public class SecurityConfig {
 //                .anyRequest().authenticated();
 
 >>>>>>> 2aa59e21d66c1993d0bd0fcfeeb33aeac3aa71be
+=======
+
+>>>>>>> 569d3cb91b44457436f568481e20338a4c959a44
         /**
          *  관리자 페이지에 권한없는 요청 URL 접속시 401 코드 및 오류 페이지 이동
          *  그 외에는 로그인 페이지로 이동

@@ -10,6 +10,8 @@ import org.study.controllers.user.UserJoin;
 import org.study.entities.User;
 import org.study.repositories.UserRepository;
 
+import java.time.LocalDate;
+
 @Service
 @RequiredArgsConstructor
 public class UserJoinService {
@@ -28,9 +30,9 @@ public class UserJoinService {
                 .userNm(join.getUserNm())
                 .userNickNm(join.getUserNickNm())
                 .cellPhone(join.getCellphone())
-                .gender(Gender.MAN)
-                .role(UserRole.USER)
-                .gender(Gender.MAN)
+                .gender(join.getGender())
+                .role(UserRole.USER) //기본
+                .birth(LocalDate.of(2000,3,1))
                 .build();
 
         repository.save(user);

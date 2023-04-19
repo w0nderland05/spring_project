@@ -12,8 +12,6 @@ import java.util.List;
 @RequestMapping("/admin/study")
 public class StudyController {
 
-
-
     /**
      * <스터디관리> 클릭시 나오는 페이지
      * ==스터디 목록
@@ -22,8 +20,6 @@ public class StudyController {
      */
     @GetMapping
     public String index(){
-
-
 
         return "admin/study/index";
     }
@@ -52,15 +48,6 @@ public class StudyController {
     }
 
 
-    /**
-     * 카테고리 관리
-     *
-     * @return
-     */
-    @GetMapping("/category")
-    public String category(){
-        return "admin/study/category";
-    }
 
 
 }

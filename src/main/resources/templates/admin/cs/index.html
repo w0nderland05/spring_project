@@ -3,6 +3,58 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{admin/layouts/main}">
 <section layout:fragment="content">
-    <h1>신고 목록 페이지 == '신고관리' 클릭시 나오는 페이지 </h1>
+    <nav th:replace="~{admin/cs/_submenu::menus}"></nav>
+    <form method="post" th:action="@{/admin/cs}">
+        <div role="region" aria-label="data table" tabindex="0" class="primary">
+            <table id = "list">
+                <thead>
+                    <tr>
+                        <th>
+                            <input type="checkbox">
+                        </th>
+                        <th>유입 구분</th>
+                        <th>코드번호</th>
+                        <th>신고자명</th>
+                        <th>이메일</th>
+                        <th>전화번호</th>
+                        <th>신고일시</th>
+                        <th>처리 상태</th>
+                        <th>신고 사유</th>
+                        <th>비고</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <input type="checkbox">
+                        </td>
+                        <td></td>  <!-- 유입구분 -->
+                        <td></td>  <!-- 코드번호 -->
+                        <td></td>  <!-- 신고자명 -->
+                        <td></td>  <!-- 이메일 -->
+                        <td></td>  <!-- 전화번호 -->
+                        <td></td>  <!-- 신고일시 -->
+                        <td>
+                            <select>  <!-- db로 바로 저장 될 수 있도록 연결 필요 -->
+                                <option value="clear">처리 완료</option>
+                                <option value="ready" selected>처리 대기중</option>
+                                <option value="hold">처리 보류</option>
+                            </select>
+                        </td>  <!-- 처리상태 -->
+                        <td></td>  <!-- 신고사유 -->
+                        <td>  <!-- 비고 -->
+                            <a class="btn2">상세보기</a>
+                            <!--유입 구분이 스터디면 스터디 소개 페이지 이동, 커뮤니티면 게시글 상세 ( 수정, 삭제 가능 )페이지 이동-->
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div>
+            <button type="button">삭제하기</button>
+            <button type="button">수정하기</button>  <!--체크 선택 후 수정하기 누르면 바로 적용될 수 있게!-->
+        </div>
+    </form>
+<!--    <h1>신고 목록 페이지 == '신고관리' 클릭시 나오는 페이지 </h1>-->
 </section>
 </html>

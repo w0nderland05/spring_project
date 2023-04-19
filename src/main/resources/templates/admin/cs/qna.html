@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{admin/layouts/main}">
+<section layout:fragment="content">
+    <nav th:replace="~{admin/cs/_submenu::menus}"></nav>
+    <form method="post" th:action="@{/admin/cs/qna}">
+        <div role="region" aria-label="data table" tabindex="0" class="primary">
+            <table id = "list">
+                <thead>
+                    <tr>
+                        <th>
+                            <input type="checkbox">
+                        </th>
+                        <th>문의 번호</th>
+                        <th>문의 유형</th>
+                        <th>회원명</th>
+                        <th>이메일</th>
+                        <th>처리 상태</th>
+                        <th>문의 일시</th>
+                        <th>답변 일시</th>
+                        <th>비고</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <input type="checkbox">
+                        </td>
+                        <td></td>   <!-- 문의 번호 -->
+                        <td></td>   <!-- 문의 유형 -->
+                        <td></td>   <!-- 회원명 -->
+                        <td></td>   <!-- 이메일 -->
+                        <td>
+                            <select>
+                                <option value="clear">답변 완료</option>
+                                <option value="ready" selected>미완료</option>
+                            </select>
+                        </td>   <!-- 처리 상태 -->
+                        <td></td>   <!-- 문의 일시 -->
+                        <td></td>   <!-- 답변 일시 -->
+                        <td>  <!-- 비고 -->
+                            <a class="btn2">상세보기</a>
+                            <!-- 문의 내역 페이지로 이동 -->
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div>
+            <button type="button">삭제하기</button>
+            <button type="button">수정하기</button>  <!--체크 선택 후 수정하기 누르면 바로 적용될 수 있게!-->
+        </div>
+    </form>
+</section>
+</html>

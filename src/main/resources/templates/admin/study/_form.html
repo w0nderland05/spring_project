@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<th:block th:fragment="form">
+<th:block th:fragment="form" >
 
 <dl>
     <dt>스터디코드</dt>
@@ -10,12 +10,12 @@
 </dl>
 <dl>
     <dt>
-        <section name="stCategory">
+        <select name="stCategory">
+            <option value="scNm">---카테고리---</option>
             <option value="a">a</option>
-            <option value="b">a</option>
-            <option value="c">a</option>
-            <option value="d">a</option>
-        </section>
+            <option value="b">b</option>
+            <option value="c">c</option>
+        </select>
     </dt>
     <dd>
         <input type="text">
@@ -46,15 +46,15 @@
         <label for="num_1">
             주1회
         </label>
-        <input type="radio" name="limit" value="true" id="num_2">
+        <input type="radio" name="numOfWeek" value="true" id="num_2">
         <label for="num_2">
             주2회
         </label>
-        <input type="radio" name="limit" value="true" id="num_3">
+        <input type="radio" name="numOfWeek" value="true" id="num_3">
         <label for="num_3">
             주3회
         </label>
-        <input type="radio" name="limit" value="true" id="num_4">
+        <input type="radio" name="numOfWeek" value="true" id="num_4">
         <label for="num_4">
             주4회이상
         </label>
@@ -70,10 +70,19 @@
         <input type="radio" name="regionType" value="false" id="offline">
         <label for="offline">
             오프라인
-            <section>
-                <option value="구 ">a</option>
-                <option value="b">a</option>
-            </section>
+            <select>
+                <option value="state">---시/도---</option>
+                <option value="state">서울특별시</option>
+                <option value="state">경기도</option>
+                <option value="state">인천광역시</option>
+                <option value="city">a</option>
+            </select>
+            <select>
+                <option value="city">---군/구---</option>
+                <option value="city">a</option>
+                <option value="city">a</option>
+                <option value="city">a</option>
+            </select>
         </label>
     </dd>
 </dl>

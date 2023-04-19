@@ -4,15 +4,14 @@
       layout:decorate="~{admin/layouts/main}">
 <section layout:fragment="content">
     <nav th:replace="~{admin/study/_submenu::menus}"></nav>
-
+    <h1>관리자 승인상태처리</h1>
     <form class='form' method="post" th:action="@{/admin/board/save}" autocomplete="off">
         <th:block th:replace="~{admin/study/_form::form}"></th:block>
-        <button type="submit" class="submit_btn">등록하기</button>
     </form>
     <div>
-        <button type="button">수정</button>
-        <button type="button">승인</button>
-        <button type="button">미승인</button>
+        <button type="button" class="btn1">수정</button>
+        <button type="button" class="btn1">승인</button>
+        <button type="button" class="btn1">미승인</button>
     </div>
 </section>
 </html>
