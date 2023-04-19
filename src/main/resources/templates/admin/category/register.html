@@ -6,8 +6,7 @@
     <nav th:replace="~{admin/category/_submenu::menus}"></nav>
 
     <form class="form" method="post" th:action="@{/admin/category}" autocomplete="off">
-
-        </div>
+    <th:block th:replace="~{admin/category/_form::form}"></th:block>
     </form>
 </section>
 </html>
