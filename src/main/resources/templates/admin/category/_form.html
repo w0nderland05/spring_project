@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <th:block th:fragment="form">
+        <dl>
+            <dt>분류코드</dt>
+            <dd>
+                <input type="text" name="cateCd">
+            </dd>
+        </dl>
+        <dl>
+            <dt>사용여부</dt>
+            <dd>
+                <input type="radio" name="use" value="true" id="use_0">
+                <label for="use_0">사용</label>
+
+                <input type="radio" name="use" value="false" id="use_1">
+                <label for="use_1">미사용</label>
+            </dd>
+        </dl>
+        <dl>
+            
+        </dl>
+    </th:block>
+</html>
