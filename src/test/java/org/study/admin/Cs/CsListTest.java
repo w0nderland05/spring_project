@@ -19,7 +19,7 @@ public class CsListTest {
      */
     @Test
     @DisplayName("신고목록 조회가능한지 체크-ReportNotFoundException 예외 발생")
-    void Report_gets(){
+    void report_gets(){
 
     }
 
@@ -32,7 +32,7 @@ public class CsListTest {
      */
     @Test
     @DisplayName("Code를 통해서 하나의 목록만 조회 가능한지 체크")
-    void Report_get(){
+    void report_get(){
 
     }
 
@@ -43,7 +43,7 @@ public class CsListTest {
      */
     @Test
     @DisplayName("최신 등록순으로 정렬되는지 체크")
-    void Report_Lists_By_CreatedDt(){
+    void report_Lists_By_CreatedDt(){
 
     }
 }

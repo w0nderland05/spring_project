@@ -1,31 +1,40 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-      <th:block th:fragment="user_form">
-          <ul class="user_form" th:object="${userJoin}">
-              <li class="rows">
-                  <input type="text" name="userId" th:field="*{userEmail}" th:placeholder="#{userEmail}">
-                  <div class="error" th:each="err : ${#fields.errors('userEmail')}" th:text="${err}"></div>
-              </li>
-              <li class="rows">
-                  <input type="password" name="userPw" th:field="*{userPw}" th:placeholder="#{userPw}">
-                  <div class="error" th:each="err : ${#fields.errors('userPw')}" th:text="${err}"></div>
-              </li>
-              <li class="rows">
-                  <input type="password" name="userPwCk" th:field="*{userPwCk}" th:placeholder="#{userPwCk}">
-                  <div class="error" th:each="err : ${#fields.errors('userPwCk')}" th:text="${err}"></div>
-              </li>
-              <li class="rows">
-                  <input type="text" name="text" th:field="*{userNickNm}" th:placeholder="#{userNickNm}">
-                  <div class="error" th:each="err : ${#fields.errors('userNickNm')}" th:text="${err}"></div>
-              </li>
-              <li class="rows">
-                  <input type="text" name="userNm" th:field="*{userNm}" th:placeholder="#{userNm}">
-                  <div class="error" th:each="err : ${#fields.errors('userNm')}" th:text="${err}"></div>
-              </li>
-              <li class="rows">
-                  <input type="text" name="cellPhone" th:field="*{cellphone}" th:placeholder="#{cellPhone}">
-                  <div class="error" th:each="err : ${#fields.errors('cellphone')}" th:text="${err}"></div>
-              </li>
-          </ul>
-      </th:block>
+    <th:block th:fragment="user_form">
+        <ul class="user_form" th:object="${userJoin}">
+            <!-- 이메일 -->
+            <li class="rows">
+                <input type="text" name="userId" th:field="*{userEmail}" th:placeholder="#{userEmail}">
+                <div class="error" th:each="err : ${#fields.errors('userEmail')}" th:text="${err}"></div>
+            </li>
+            <!-- 비밀번호 -->
+            <li class="rows">
+                <input type="password" name="userPw" th:field="*{userPw}" th:placeholder="#{userPw}">
+                <div class="error" th:each="err : ${#fields.errors('userPw')}" th:text="${err}"></div>
+            </li>
+            <!-- 비밀번호 확인 -->
+            <li class="rows">
+                <input type="password" name="userPwCk" th:field="*{userPwCk}" th:placeholder="#{userPwCk}">
+                <div class="error" th:each="err : ${#fields.errors('userPwCk')}" th:text="${err}"></div>
+            </li>
+            <!-- 닉네임 -->
+            <li class="rows">
+                <input type="text" name="text" th:field="*{userNickNm}" th:placeholder="#{userNickNm}">
+                <div class="error" th:each="err : ${#fields.errors('userNickNm')}" th:text="${err}"></div>
+            </li>
+            <!-- 회원명 -->
+            <li class="rows">
+                <input type="text" name="userNm" th:field="*{userNm}" th:placeholder="#{userNm}">
+                <div class="error" th:each="err : ${#fields.errors('userNm')}" th:text="${err}"></div>
+            </li>
+            <!-- 전화번호 -->
+            <li class="rows">
+                <input type="text" name="cellPhone" th:field="*{cellphone}" th:placeholder="#{cellPhone}">
+                <div class="error" th:each="err : ${#fields.errors('cellphone')}" th:text="${err}"></div>
+            </li>
+            <!-- 생년월일 -->
+            
+            <!-- 성별 -->
+        </ul>
+    </th:block>
 </html>

@@ -18,7 +18,7 @@ public class CsReportTest {
      */
     @Test
     @DisplayName("신고한 회원이 가입된 회원인지 체크")
-    void Report_User_Email_isExists(){
+    void report_User_Email_isExists(){
 
     }
 
@@ -30,7 +30,23 @@ public class CsReportTest {
      */
     @Test
     @DisplayName("가입회원이면 회원 목록 가져오는데 성공하는지 체크")
-    void Report_User_List(){
+    void report_User_List(){
+
+    }
+    /**
+     * 신고 세부 유형에따라 신고대상 조회
+     * 파일명:'ReportRegisterService'의 reportTarget()
+     * 회원신고일경우 - 회원정보조회/ 게시글신고일 경우 - 게시글 조회
+     */
+    @Test
+    @DisplayName("신고대상 회원일경우 신고된 회원정보 조회되는지 체크")
+    void report_Target_Member(){
+
+    }
+
+    @Test
+    @DisplayName("신고대상 게시글일경우 신고된 게시글정보 조회되는지 체크")
+    void report_Target_Boardlist(){
 
     }
 
@@ -40,20 +56,20 @@ public class CsReportTest {
      */
     @Test
     @DisplayName("필수 항목 - 신고사유 값 null이면 -ReportFailExceptio예외 발생")
-    void Report_Reason_Null_Then_Fail(){
+    void report_Reason_Null_Then_Fail(){
 
     }
 
     // 미필요시 삭제 가능합니다. servic에서 바로 ReportStatus.READY으로 넣으면 되기에 생략 가능합니다.
     @Test
     @DisplayName("신고가 접수되면 기본 상태인 ReportStatus.READY로 입력되는지 체크")
-    void Report_Status_READY(){
+    void report_Status_READY(){
 
     }
 
     @Test
     @DisplayName("신고한 게시글이 DB에 성공적으로 입력시 true 반환(최종목적)")
-    void ReportSuccess(){
+    void reportSuccess(){
 
     }
 
