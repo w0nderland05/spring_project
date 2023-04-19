@@ -36,7 +36,7 @@ public class UserJoin {
     private String userNm; // 회원명
 
     @Enumerated(EnumType.STRING)
-    private Gender gender ;
+    private Gender gender ; // 성별
 
     private LocalDate birth; //생년월일
 
