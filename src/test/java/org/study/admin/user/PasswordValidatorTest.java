@@ -78,7 +78,9 @@ public class PasswordValidatorTest {
     @DisplayName("반복된 문자 확인 - 연속문자 사용시 msg - 반환시 통과  ")
     void password_Repeat_Character_Fail(){
       //  String userPw="abcdefghi"; // 이경우는 연속사용x -> 통과하면 x
-        String userPw ="aaabbb"; //-> 여기서 테스트 통과 x
+       // String userPw ="aaabbb"; //-> 여기서 테스트 통과 x
+        String userPw="aaaa";
+      //  String userPw ="aaaabbb"; //-> 여기서 테스트 통과 x
         String msg="비밀번호에 동일한 문자를 과도하게 연속해서 사용할 수 없습니다.";
         assertEquals(msg,validator.Repeat_Character(userPw));
     }

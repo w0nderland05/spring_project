@@ -30,10 +30,10 @@ public interface PasswordValidator {
      * 1) 영문+숫자 2) 영문+특수문자 3) 숫자 + 특수문자
      */
 
-   default String special_character(String userPw){
+    default String special_character(String userPw){
         // 특수문자 확인
         Pattern passPattern3 = Pattern.compile("\\W");
-        Pattern passPattern4 = Pattern.compile("[!@#$^*+=-]");
+        Pattern passPattern4 = Pattern.compile("[!?@#$^*+=-]");
 
         for(int i = 0; i < userPw.length(); i++){
             String s = String.valueOf(userPw.charAt(i));
@@ -49,11 +49,12 @@ public interface PasswordValidator {
         return "true";
     }
 
-    // 연속 해서 사용하는 문자의 기준이 몇개인지 >>
+    // 연속 해서 사용하는 문자의 기준이 몇개인지 >>4개->3개
+    // 연속 해서 사용하는 문자의 기준이 몇개인지 >> 3번 반복
     // 여기서 기본 조건을 통과하는 기준을 갖춘건지
     default String Repeat_Character(String userPw){
         // 반복된 문자 확인
-        Pattern passPattern2 = Pattern.compile("(\\w)\\1\\1\\1");
+        Pattern passPattern2 = Pattern.compile("(\\w)\\1\\1");
         Matcher passMatcher2 = passPattern2.matcher(userPw);
 
         if(passMatcher2.find()){
@@ -63,7 +64,7 @@ public interface PasswordValidator {
         return "true";
     }
 
-    // Repeat_Character 테스트 통과시  checkPassword() 에 메서드 주입합시다.
+    // Repeat_Character 테스트 통과시  checkPassword() 에 메서드 주입합시다. -> 완료
 
 
 
