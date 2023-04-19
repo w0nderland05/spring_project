@@ -32,7 +32,7 @@ public class UserJoinService {
                 .cellPhone(join.getCellphone())
                 .gender(join.getGender())
                 .role(UserRole.USER) //기본
-                .birth(LocalDate.of(2000,3,1))
+                .birth(join.getBirth())
                 .build();
 
         repository.save(user);

@@ -38,7 +38,7 @@ public class UserJoin {
     @Enumerated(EnumType.STRING)
     private Gender gender ; // 성별
 
-    private LocalDate birth; //생년월일
+    private String birth; //생년월일
 
     private String cellphone; //휴대전화번호
 
