@@ -33,8 +33,14 @@
                 <div class="error" th:each="err : ${#fields.errors('cellphone')}" th:text="${err}"></div>
             </li>
             <!-- 생년월일 -->
-            
+            <li class="rows">
+                <input type="date" name="birth" th:field="*{birth}" th:placeholder="#{birth}">
+            </li>
             <!-- 성별 -->
+            <li class="rows">
+                <input type="radio" name="gender" value="man">남
+                <input type="radio" name="gender" value="woman">여
+            </li>
         </ul>
     </th:block>
 </html>
