@@ -4,8 +4,12 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.TestPropertySource;
+import org.study.models.study.StudyApplyService;
+
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 @SpringBootTest
 @TestPropertySource(locations="classpath:application-test.properties")
@@ -33,7 +37,10 @@ public class StudyApplyTest {
      * 1. 등록에서의 최종 목표는 예외 발생 없이 등록이 되는 것
      * 2. 제대로 등록하기 위한 유효성 검사 항목이 다음과 같이 정리됩니다.
      */
-    /**
+    /** */
+
+    @Autowired
+    private StudyApplyService applyService;
 
     /** 단위 테스트 S */
 
@@ -43,6 +50,9 @@ public class StudyApplyTest {
     @Test
     @DisplayName("스터디 개설 신청이 완료되면 예외가 발생하지 않음(최종 목적)")
     public void applySuccess() {
+        assertDoesNotThrow(() -> {
+            applyService.apply();
+        });
     }
 
     @Test
