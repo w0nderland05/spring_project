@@ -1,24 +1,50 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-    <th:block th:fragment="form">
+    <th:block th:fragment="form" th:object="${categoryForm}">
+        <div class="error" th:each="err : ${#fields.globalErrors()}" th:text="${err}"></div>
         <dl>
             <dt>분류코드</dt>
             <dd>
-                <input type="text" name="cateCd">
+                <input type="text" name="cateCd" th:field="*{cateCd}">
+                <div class="error" th:each="err : ${#fields.errors('cateCd')}" th:text="${err}"></div>
             </dd>
         </dl>
         <dl>
             <dt>사용여부</dt>
             <dd>
-                <input type="radio" name="use" value="true" id="use_0">
+                <input type="radio" name="use" value="true" id="use_0" th:field="*{use}">
                 <label for="use_0">사용</label>
 
-                <input type="radio" name="use" value="false" id="use_1">
+                <input type="radio" name="use" value="false" id="use_1" th:field="*{use}">
                 <label for="use_1">미사용</label>
+                <div class="error" th:each="err : ${#fields.errors('use')}" th:text="${err}"></div>
             </dd>
         </dl>
         <dl>
-            
+            <dt>노출위치코드</dt>
+            <dd>
+                <input type="text" name="location" th:field="*{location}">
+                <div class="error" th:each="err : ${#fields.errors('location')}" th:text="${err}"></div>
+            </dd>
+        </dl>
+        <dl>
+            <dt>분류명</dt>
+            <dd>
+                <input type="text" name="cateNm" th:field="*{cateNm}">
+                <div class="error" th:each="err : ${#fields.errors('cateNm')}" th:text="${err}"></div>
+            </dd>
+        </dl>
+        <dl>
+            <dt>진열순서</dt>
+            <dd>
+                <input type="number" name="listOrder" th:field="*{listOrder}">
+            </dd>
+        </dl>
+        <dl>
+            <dt>하위분류코드</dt>
+            <dd>
+                <input type="text" name="parentCateCd">
+            </dd>
         </dl>
     </th:block>
 </html>
