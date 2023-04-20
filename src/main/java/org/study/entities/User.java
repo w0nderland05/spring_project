@@ -49,7 +49,7 @@ public class User extends BaseEntity{
     private String cellPhone;
 
     @Column(length=8)
-    private LocalDate birth;
+    private String birth;
 
     @Enumerated(EnumType.STRING)
     @Column(length=30)

@@ -36,7 +36,7 @@ public class UserJoinTest {
         userJoin.setUserPwCk("82everywin!");
         userJoin.setUserNickNm("뚜비");
         userJoin.setGender(Gender.MAN);
-        userJoin.setBirth(LocalDate.of(2000,8,2));
+        userJoin.setBirth("2000-08-02)");
         userJoin.setCellphone("010-0011-0022");
         userJoin.setTermsAgree(true);
         return userJoin;
