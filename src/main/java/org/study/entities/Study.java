@@ -18,7 +18,7 @@ import java.util.List;
 @EntityListeners(AuditingEntityListener.class)
 public class Study{
 
-    private String mode; //update이면 수정모드
+
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -42,10 +42,12 @@ public class Study{
     @LastModifiedDate
     private LocalDateTime regStatusDt;//상태처리일시
 
-    private Long maxMember; //신청최대인원수
+    private Long maxMember; //신청최대인원수 // 0 - 무제한, 숫자 - 제한
 
     @Column(nullable = false)
     private Long remainSeat; //남은 자리수
+
+    private boolean activeStatus; //모집상태(모집중 - true, 모집마감(자리없음) -false)
 
     private String numOfWeek; //스터디 주당횟수(라디오로 선택된 값 그대로 반영)
 
@@ -68,8 +70,6 @@ public class Study{
     private User user;  //개설회원 정보
 
 
-//    리뷰 컬럼 추가
-//    미승인사유 컬럼 추가
 
 
 }
