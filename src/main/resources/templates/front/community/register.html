@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{front/layouts/main}">
+<section layout:fragment="content">
+    <form method="post" th:action="@{/user/community/register}">
+        <div class="category">
+            <label for="categoryCode">카테고리</label>
+            <select id="categoryCode" autocomplete="categoryCode" name="categoryCode">
+                <option value>카테고리를 선택해주세요.</option>
+                <option value="qna">질문과답변</option>
+                <option value="free">자유게시판</option>
+            </select>
+        </div>
+        <div class="title">
+            <label for="title">제목</label>
+            <input type="text" id="title" placeholder="제목을 입력하세요." name="title">
+        </div>
+        <div class="tags">
+            태그 -
+            <span>내용을 대표하는 태그를 입력해주세요.</span>
+            <div>
+                <input type="text" autocomplete="off" autocapitalize="none" spellcheck="false" tabindex="0"
+                       aria-autocomplete="list" aria-expanded="false" aria-haspopup="true" role="combobox"
+                       aria-describedby="placeholder" placeholder="태그를 입력해주세요.">
+            </div>
+        </div>
+        <button type="submit"></button>
+    </form>
+</section>
+</html>
