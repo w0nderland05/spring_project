@@ -56,11 +56,9 @@ public class BoardConfigTest {
     @Test
     @DisplayName("예외 없이 게시판이 성공적으로 등록 ")
     void configSuccess(){
-<<<<<<< HEAD
-       repository.save(boardConfig);
-=======
-        
->>>>>>> 2c17401d804b1f27598dcd8c4feb155ed2ecdd1f
+
+    //   repository.save(boardConfig);
+
     }
 
     @Test
