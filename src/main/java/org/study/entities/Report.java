@@ -42,7 +42,7 @@ public class Report extends BaseEntity {
     private String process;
 
     //개설회원 정보
-    @ManyToOne
+    @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="user_no")
     @ToString.Exclude
     private User user;
