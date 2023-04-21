@@ -49,6 +49,4 @@ public class BoardConfig {
     // 스킨 선택 안할 시 메세지 출력 ??
 
     private boolean isReview; // 후기 게시판 여부
-
-
 }
