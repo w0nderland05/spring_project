@@ -13,6 +13,8 @@ import org.study.commons.constants.board.ViewType;
 import org.study.controllers.admin.board.BoardConfig;
 import org.study.repositories.board.BoardRepository;
 
+import static org.junit.jupiter.api.Assertions.*;
+
 /**
  * '게시판 관리 - 게시판 등록'에 해당하는 테스트 클래스 입니다.
  * 파일명 : "BoardConfigService"
@@ -22,7 +24,6 @@ import org.study.repositories.board.BoardRepository;
 @SpringBootTest
 public class BoardConfigTest {
 
-    @Autowired
     private BoardConfig boardConfig;
 
     @Autowired
@@ -33,6 +34,7 @@ public class BoardConfigTest {
 
     @BeforeEach
     BoardConfig config() {
+
         boardConfig = new BoardConfig();
         boardConfig.setMode("create");
         boardConfig.setBId("bId");
@@ -54,23 +56,25 @@ public class BoardConfigTest {
     }
 
     @Test
-    @DisplayName("예외 없이 게시판이 성공적으로 등록 ")
+    @DisplayName("예외 없이 게시판이 성공적으로 등록 (최종목적) ")
     void configSuccess(){
+        assertDoesNotThrow(()->{
+            service.config(boardConfig);
+        });
 
-    //   repository.save(boardConfig);
 
     }
 
     @Test
-    @DisplayName("Config Null값일때 BoardConfigFailException 발생")
+    @DisplayName("BoardConfig Null값일때 예외메세지발생")
     void boardConfig_Null_Exception(){
-        BoardConfig.builder().bId(null);
-
-//        assertNotThrows(()->)
+        assertTh
     }
 
+    /** 유효성 검사 S */
+
     @Test
-    @DisplayName("필수 입력 값 체크 - BoardConfigFailException 발생")
+    @DisplayName("필수 입력 값 체크 -예외메세지발생")
     void boardConfig_Essential(){
 
     }
