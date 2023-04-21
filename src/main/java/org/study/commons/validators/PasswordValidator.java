@@ -29,14 +29,12 @@ public interface PasswordValidator {
         return userPw.matches(passPattern2);
     }
 
-    // 연속 해서 사용하는 문자의 기준이 몇개인지 >>4개->3개
     // 연속 해서 사용하는 문자의 기준이 몇개인지 >> 3번 반복
-    // 여기서 기본 조건을 통과하는 기준을 갖춘건지
     default boolean repeat_character(String userPw){
         // 반복된 문자 확인
         String passPattern3 = "(\\w)\\1{2,}";
 
-        // 
+        //
         return userPw.matches("^(?!.*" + passPattern3 + ").*$");
     }
 
