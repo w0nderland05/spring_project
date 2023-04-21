@@ -6,6 +6,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 import org.study.commons.validators.CellPhoneValidator;
+import org.study.commons.validators.PasswordValidator;
 import org.study.repositories.UserRepository;
 
 /**
@@ -14,7 +15,7 @@ import org.study.repositories.UserRepository;
  */
 @Component
 @RequiredArgsConstructor
-public class UserJoinValidator implements Validator, CellPhoneValidator {
+public class UserJoinValidator implements Validator, CellPhoneValidator, PasswordValidator {
 
     @NonNull
     private UserRepository repository;
@@ -39,11 +40,24 @@ public class UserJoinValidator implements Validator, CellPhoneValidator {
         }
         /** 1. 이메일 중복 여부 E */
 
-        /** 2. 비밀번호, 비밀번호 확인 체크 S */
-        if (userPw != null && !userPw.isBlank() && userPwCk != null && !userPwCk.isBlank() && !userPw.equals(userPwCk)) {
+        /** 2-1. 비밀번호 유효성 검사 S*/
+        if(userPw != null && !userPw.isBlank()){
+            if(!checkPassword(userPw)){
+                errors.rejectValue("userPw", "user.validation.checkPassword");
+            }else if(!special_character(userPw)){
+                errors.rejectValue("userPw","user.validation.special_character");
+            }else if(!repeat_character(userPw)){
+                errors.rejectValue("userPw","user.validation.repeat_character");
+            }
+        }
+
+        /** 2-1. 비밀번호 유효성 검사 E*/
+
+        /** 2-2. 비밀번호 확인 체크 S */
+        if (userPwCk != null && !userPwCk.isBlank() && !userPw.equals(userPwCk)) {
             errors.rejectValue("userPw", "user.validation.passwordIncorrect");
         }
-        /** 2. 비밀번호, 비밀번호 확인 체크 E */
+        /** 2-2. 비밀번호 확인 체크 E */
 
         /** 3. 휴대전화번호 검증 S */
         if (cellPhone != null && !cellPhone.isBlank()) {
