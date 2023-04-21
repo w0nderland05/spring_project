@@ -23,11 +23,14 @@ import org.study.repositories.board.BoardRepository;
 public class BoardConfigTest {
 
     @Autowired
+    private BoardConfig boardConfig;
+
+    @Autowired
     private BoardRepository repository;
 
     @BeforeEach
     BoardConfig config() {
-        BoardConfig boardConfig = new BoardConfig();
+        boardConfig = new BoardConfig();
         boardConfig.setMode("create");
         boardConfig.setBId("bId");
         boardConfig.setBoardNm("게시판명");
@@ -50,7 +53,7 @@ public class BoardConfigTest {
     @Test
     @DisplayName("예외 없이 게시판이 성공적으로 등록 ")
     void configSuccess(){
-//        repository.save(boardConfig);
+       repository.save(boardConfig);
     }
 
     @Test
