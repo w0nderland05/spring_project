@@ -25,6 +25,9 @@ public class BoardConfigTest {
     @Autowired
     private BoardRepository repository;
 
+    @Autowired
+    private BoardConfigService service;
+
     @BeforeEach
     BoardConfig config() {
         BoardConfig boardConfig = new BoardConfig();
@@ -50,7 +53,7 @@ public class BoardConfigTest {
     @Test
     @DisplayName("게시판 등록 성공시 True값 반환")
     void configSuccess(){
-//        repository.save(boardConfig);
+        
     }
 
     @Test
