@@ -35,7 +35,7 @@ public class BoardConfigTest {
     private BoardConfigService service;
 
     @BeforeEach
-    BoardConfig config() {
+    void config() {
         boardConfig = new BoardConfig();
         boardConfig.setMode("create");
         boardConfig.setBId("bId");
@@ -52,8 +52,6 @@ public class BoardConfigTest {
         boardConfig.setUseComment(true);
         boardConfig.setSkin(SkinType.DEFAULT.toString());
         boardConfig.setReview(true);
-
-        return boardConfig;
     }
 
     @Test
