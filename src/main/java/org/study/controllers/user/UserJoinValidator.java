@@ -43,17 +43,39 @@ public class UserJoinValidator implements Validator, CellPhoneValidator, Passwor
         }
         /** 1. 이메일 중복 여부 E */
 
+<<<<<<< HEAD
         /** 비밀번호 체크
          *
          */
 //
         /** 2. 비밀번호, 비밀번호 확인 체크 S */
         if (userPw != null && !userPw.isBlank() && userPwCk != null && !userPwCk.isBlank() && !userPw.equals(userPwCk)) {
+=======
+        /** 2. 비밀번호 유효성 검사 S*/
+        if(userPw != null && !userPw.isBlank()){
+            // 일단 비밀번호 입력을 안했을 경우 NotBlank에서 에러 메세지
+            if(!checkPassword(userPw)){
+                // 8자리 이상, 특수문자가 들어가지 않는 경우 에러 메세지
+                errors.rejectValue("userPw", "user.validation.checkPassword");
+            }else if(!special_character(userPw)){
+                // 정해준 특수문자(!?@#$^*+=-)를 기입하지 않는 경우 에러 메세지
+                errors.rejectValue("userPw","user.validation.special_character");
+            }else if(!repeat_character(userPw)){
+                // 3번 이상 문자를 연속으로 입력한 경우 에러 메세지
+                errors.rejectValue("userPw","user.validation.repeat_character");
+            }
+        }
+
+        /** 2. 비밀번호 유효성 검사 E*/
+
+        /** 3. 비밀번호 확인 체크 S */
+        if (userPwCk != null && !userPwCk.isBlank() && !userPw.equals(userPwCk)) {
+>>>>>>> 591b5283c3b7e476c87400da699e641a91752c63
             errors.rejectValue("userPw", "user.validation.passwordIncorrect");
         }
-        /** 2. 비밀번호, 비밀번호 확인 체크 E */
+        /** 3. 비밀번호 확인 체크 E */
 
-        /** 3. 휴대전화번호 검증 S */
+        /** 4. 휴대전화번호 검증 S */
         if (cellPhone != null && !cellPhone.isBlank()) {
             cellPhone = cellPhone.replaceAll("\\D", "");
             userJoin.setCellphone(cellPhone);
@@ -61,6 +83,6 @@ public class UserJoinValidator implements Validator, CellPhoneValidator, Passwor
                 errors.rejectValue("cellPhone", "Mobile.wrong");
             }
         }
-        /** 3. 휴대전화번호 검증 E */
+        /** 4. 휴대전화번호 검증 E */
     }
 }
