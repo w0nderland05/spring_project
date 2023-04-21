@@ -7,11 +7,13 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.TestPropertySource;
 import org.study.commons.constants.board.AfterWriteTarget;
 import org.study.commons.constants.board.SkinType;
 import org.study.commons.constants.board.ViewType;
 import org.study.controllers.admin.board.BoardConfig;
 import org.study.repositories.board.BoardRepository;
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * '게시판 관리 - 게시판 등록'에 해당하는 테스트 클래스 입니다.
@@ -20,6 +22,7 @@ import org.study.repositories.board.BoardRepository;
  *
  */
 @SpringBootTest
+@TestPropertySource(locations="classpath:application-test.properties")
 public class BoardConfigTest {
 
     @Autowired
@@ -56,9 +59,9 @@ public class BoardConfigTest {
     @Test
     @DisplayName("예외 없이 게시판이 성공적으로 등록 ")
     void configSuccess(){
-
-    //   repository.save(boardConfig);
-
+        assertDoesNotThrow(()->{
+            service.config(boardConfig);
+        });
     }
 
     @Test

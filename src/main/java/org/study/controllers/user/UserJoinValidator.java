@@ -43,14 +43,14 @@ public class UserJoinValidator implements Validator, CellPhoneValidator, Passwor
         }
         /** 1. 이메일 중복 여부 E */
 
-<<<<<<< HEAD
         /** 비밀번호 체크
          *
          */
 //
         /** 2. 비밀번호, 비밀번호 확인 체크 S */
         if (userPw != null && !userPw.isBlank() && userPwCk != null && !userPwCk.isBlank() && !userPw.equals(userPwCk)) {
-=======
+
+        }
         /** 2. 비밀번호 유효성 검사 S*/
         if(userPw != null && !userPw.isBlank()){
             // 일단 비밀번호 입력을 안했을 경우 NotBlank에서 에러 메세지
@@ -70,7 +70,6 @@ public class UserJoinValidator implements Validator, CellPhoneValidator, Passwor
 
         /** 3. 비밀번호 확인 체크 S */
         if (userPwCk != null && !userPwCk.isBlank() && !userPw.equals(userPwCk)) {
->>>>>>> 591b5283c3b7e476c87400da699e641a91752c63
             errors.rejectValue("userPw", "user.validation.passwordIncorrect");
         }
         /** 3. 비밀번호 확인 체크 E */

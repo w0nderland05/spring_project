@@ -25,13 +25,15 @@ public class BoardConfigService {
                 .rowsPerPage(config.getRowsPerPage())
                 .useViewList(config.isUseViewList())
                 .category(config.getCategory())
-                .viewType(ViewType.ADMIN) // 관리자만
+                .viewType(ViewType.ADMIN) // 게시판은 관리자만 등록할 수 있게 설정
                 .useEditor(config.isUseEditor())
-//                .useFileAttach() 타입을 어떻게..?
-//                .useImageAttach() 타입을 어떻게..?
+//                .useFileAttach() 타입 추후 테스트
+//                .useImageAttach() 타입 추후 테스트
+
+                // 체크한 값으로 선택 되도록 설정
                 .afterWriteTarget(AfterWriteTarget.valueOf(config.getAfterWriteTarget()))
                 .useComment(config.isUseComment())
-//                .skin(SkinType.valueOf(config.getSkin())) 타입 해결해야함.
+                .skin(SkinType.DEFAULT) // 스킨은 기본 값으로 초기 설정
                 .isReview(config.isReview())
                 .build();
 
