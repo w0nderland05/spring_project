@@ -1,7 +1,6 @@
 package org.study.controllers.admin.study;
 
 import lombok.RequiredArgsConstructor;
-import org.hibernate.mapping.Join;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 import org.study.repositories.StudyRepository;
@@ -19,7 +18,7 @@ public class StudyRegisterValidator implements Validator {
     @Override
     public void validate(Object target, Errors errors) {
         // 1. 필수 항목 체크
-        Study study = (Study) target;
+        StudyConfig study = (StudyConfig) target;
         String studyNm = study.getStudyNm();
         String category = study.getCategory();
         Long maxMember = study.getMaxMember();

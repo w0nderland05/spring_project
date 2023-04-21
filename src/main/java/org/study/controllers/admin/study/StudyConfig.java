@@ -12,8 +12,9 @@ import java.time.LocalDateTime;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Study {
+public class StudyConfig {
 
+    private String mode; //update이면 수정모드
     private Long studyCode; //스터디코드
 
     private String studyNm; //스터디명
