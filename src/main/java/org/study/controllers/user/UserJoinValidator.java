@@ -42,7 +42,6 @@ public class UserJoinValidator implements Validator, CellPhoneValidator, Passwor
             errors.rejectValue("userEmail", "user.validation.exists");
         }
         /** 1. 이메일 중복 여부 E */
-
         /** 비밀번호 체크
          *
          */
