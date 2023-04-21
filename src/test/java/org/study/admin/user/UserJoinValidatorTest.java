@@ -31,16 +31,9 @@ public class UserJoinValidatorTest {
     @Test
     @DisplayName("필수항목 체크 -  BadRequestException 발생")
     void join_User_Null_BadRequest() {
-        //assertThrows(org.study.admin.user.BadRequestException.class, () -> {
-        //validator.validate();
-        //});
-    }
-
-    @Test
-    @DisplayName("자동생성- 회원번호 자동생성되는지 체크")
-    void join_Auto_Increment_UserNo(){
 
     }
+
 
     @Test
     @DisplayName("필수항목 유효성 검사-이메일 형식체크")
@@ -67,24 +60,17 @@ public class UserJoinValidatorTest {
     }
 
     @Test
-    @DisplayName("Email로 DB-회원 목록 조회 체크")
-    void check_UserList_for_Email(){
-
-    }
-
-
-
-    @Test
-    @DisplayName("필수항목 유효성 검사-생년월일_2023년 기준, 1900년이하 존재 x")
-    void join_Valid_Essential_Of_Birth(){
-
-    }
-
-    @Test
     @DisplayName("필수항목 유효성 검사-휴대전화번호_양식에 맞는지 체크")
     void join_Valid_Essential_Of_CellPhone(){
 
     }
 
     /** 유효성 검사 E */
+
+    @Test
+    @DisplayName("Email로 DB-회원 목록 조회 체크")
+    void check_UserList_for_Email(){
+
+    }
 }
+
