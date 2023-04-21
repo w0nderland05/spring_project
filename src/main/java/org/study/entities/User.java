@@ -48,7 +48,7 @@ public class User extends BaseEntity{
     @Column(length=11)
     private String cellPhone;
 
-    @Column(length=8)
+    @Column(length=10)
     private String birth;
 
     @Enumerated(EnumType.STRING)

@@ -5,7 +5,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
+import org.study.admin.user.BadRequestException;
 import org.study.commons.validators.CellPhoneValidator;
+import org.study.commons.validators.PasswordValidator;
 import org.study.repositories.UserRepository;
 
 /**
@@ -14,7 +16,7 @@ import org.study.repositories.UserRepository;
  */
 @Component
 @RequiredArgsConstructor
-public class UserJoinValidator implements Validator, CellPhoneValidator {
+public class UserJoinValidator implements Validator, CellPhoneValidator, PasswordValidator {
 
     @NonNull
     private UserRepository repository;
@@ -26,7 +28,9 @@ public class UserJoinValidator implements Validator, CellPhoneValidator {
 
     @Override
     public void validate(Object target, Errors errors) {
+
         UserJoin userJoin = (UserJoin)target;
+
         String userEmail = userJoin.getUserEmail();
         String userPw = userJoin.getUserPw();
         String userPwCk = userJoin.getUserPwCk();
@@ -39,6 +43,9 @@ public class UserJoinValidator implements Validator, CellPhoneValidator {
         }
         /** 1. 이메일 중복 여부 E */
 
+        /** 비밀번호 체크
+         *
+         */
 //
         /** 2. 비밀번호, 비밀번호 확인 체크 S */
         if (userPw != null && !userPw.isBlank() && userPwCk != null && !userPwCk.isBlank() && !userPw.equals(userPwCk)) {

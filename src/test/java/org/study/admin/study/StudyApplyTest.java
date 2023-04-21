@@ -13,7 +13,6 @@ import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 @SpringBootTest
 @TestPropertySource(locations="classpath:application-test.properties")
-@ExtendWith(MockitoExtension.class)
 public class StudyApplyTest {
     /**
     @Autowired
