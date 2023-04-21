@@ -68,7 +68,7 @@ public class UserJoinTest {
 
     // 필수 항목 체크
     @Test
-    @DisplayName("필수항목 체크 - ")
+    @DisplayName("필수항목 체크 - @NotBlank 값의 오류메세지 제대로 나오는지 ")
     void join_User_Null_BadRequest() {
         userJoin.setUserEmail(null);
         Set<ConstraintViolation<UserJoin>> violations = validator.validate(userJoin);

@@ -12,7 +12,7 @@ import org.junit.jupiter.api.Test;
 public class BoardConfigTest {
 
     @Test
-    @DisplayName("게시판 등록 성공시 반환")
+    @DisplayName("예외 없이 게시판이 성공적으로 등록 ")
     void configSuccess(){
 
     }
