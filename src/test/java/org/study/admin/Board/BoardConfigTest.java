@@ -7,11 +7,13 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.TestPropertySource;
 import org.study.commons.constants.board.AfterWriteTarget;
 import org.study.commons.constants.board.SkinType;
 import org.study.commons.constants.board.ViewType;
 import org.study.controllers.admin.board.BoardConfig;
 import org.study.repositories.board.BoardRepository;
+import static org.junit.jupiter.api.Assertions.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -22,6 +24,7 @@ import static org.junit.jupiter.api.Assertions.*;
  *
  */
 @SpringBootTest
+@TestPropertySource(locations="classpath:application-test.properties")
 public class BoardConfigTest {
 
     private BoardConfig boardConfig;
@@ -33,8 +36,7 @@ public class BoardConfigTest {
     private BoardConfigService service;
 
     @BeforeEach
-    BoardConfig config() {
-
+    void config(){
         boardConfig = new BoardConfig();
         boardConfig.setMode("create");
         boardConfig.setBId("bId");
@@ -42,7 +44,7 @@ public class BoardConfigTest {
         boardConfig.setUse(true);
         boardConfig.setRowsPerPage(10L);
         boardConfig.setUseViewList(true);
-        boardConfig.setCategory("");
+        boardConfig.setCategory("QnA Notice");
         boardConfig.setViewType(ViewType.ADMIN.toString());
         boardConfig.setUseEditor(true);
         boardConfig.setUseFileAttach(null);
@@ -52,7 +54,6 @@ public class BoardConfigTest {
         boardConfig.setSkin(SkinType.DEFAULT.toString());
         boardConfig.setReview(true);
 
-        return boardConfig;
     }
 
     @Test
@@ -61,14 +62,13 @@ public class BoardConfigTest {
         assertDoesNotThrow(()->{
             service.config(boardConfig);
         });
-
-
+        System.out.println(boardConfig);
     }
 
     @Test
-    @DisplayName("BoardConfig Null값일때 예외메세지발생")
+    @DisplayName("BoardConfig- 필수입력값 Null값일때 예외메세지발생")
     void boardConfig_Null_Exception(){
-        assertTh
+        //assertTh
     }
 
     /** 유효성 검사 S */
