@@ -39,6 +39,7 @@ public class UserJoinValidator implements Validator, CellPhoneValidator {
         }
         /** 1. 이메일 중복 여부 E */
 
+//
         /** 2. 비밀번호, 비밀번호 확인 체크 S */
         if (userPw != null && !userPw.isBlank() && userPwCk != null && !userPwCk.isBlank() && !userPw.equals(userPwCk)) {
             errors.rejectValue("userPw", "user.validation.passwordIncorrect");
