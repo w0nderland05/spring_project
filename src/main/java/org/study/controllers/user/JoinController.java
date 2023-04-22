@@ -1,5 +1,7 @@
 package org.study.controllers.user;
 
+import com.fasterxml.jackson.databind.DatabindContext;
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -27,7 +29,8 @@ public class JoinController {
     public String join(Model model) {
         UserJoin userJoin = new UserJoin();
         model.addAttribute("userJoin", userJoin);
-
+        // 달력 부분 1900 년도까지 minDate 설정
+        model.addAttribute("minDate", "1900-01-01");
         return "front/user/join";
     }
 
@@ -59,15 +62,4 @@ public class JoinController {
 
         return "redirect:/mypage"; // 회원정보 수정 후 마이페이지 이동
     }
-
-    // 달력 날짜 조정하기
-    /**
-     * @GetMapping
-     *     public void date(@RequestParam(name = "minDate", defaultValue = "1900-01-01") String minDate, Model model){
-     *         model.addAttribute("minDate",minDate);
-     *     }
-     *
-     */
-
-
 }
