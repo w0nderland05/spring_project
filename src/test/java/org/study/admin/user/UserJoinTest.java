@@ -50,7 +50,7 @@ public class UserJoinTest {
         userJoin.setUserPwCk("82everywin!");
         userJoin.setUserNickNm("뚜비");
         userJoin.setGender(Gender.MAN);
-        userJoin.setBirth("20000802"); // service 를 통해 들어가는건 validate 걸친 예
+        userJoin.setBirth("2000-08-02"); // service 를 통해 들어가는건 validate 걸친 예
         userJoin.setCellphone("01000110022"); //생일과 마찬가지
         userJoin.setTermsAgree(true);
 
@@ -71,7 +71,6 @@ public class UserJoinTest {
     @DisplayName("필수항목 체크 - @NotBlank 값의 오류메세지 제대로 나오는지 ")
     void join_User_Null_BadRequest() {
         userJoin.setUserEmail(null);
-        Set<ConstraintViolation<UserJoin>> violations = validator.validate(userJoin);
 
         }
 

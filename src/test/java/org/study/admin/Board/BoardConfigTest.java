@@ -7,11 +7,15 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.TestPropertySource;
 import org.study.commons.constants.board.AfterWriteTarget;
 import org.study.commons.constants.board.SkinType;
 import org.study.commons.constants.board.ViewType;
 import org.study.controllers.admin.board.BoardConfig;
 import org.study.repositories.board.BoardRepository;
+import static org.junit.jupiter.api.Assertions.*;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * '게시판 관리 - 게시판 등록'에 해당하는 테스트 클래스 입니다.
@@ -20,9 +24,9 @@ import org.study.repositories.board.BoardRepository;
  *
  */
 @SpringBootTest
+@TestPropertySource(locations="classpath:application-test.properties")
 public class BoardConfigTest {
 
-    @Autowired
     private BoardConfig boardConfig;
 
     @Autowired
@@ -32,7 +36,7 @@ public class BoardConfigTest {
     private BoardConfigService service;
 
     @BeforeEach
-    BoardConfig config() {
+    void config(){
         boardConfig = new BoardConfig();
         boardConfig.setMode("create");
         boardConfig.setBId("bId");
@@ -40,7 +44,7 @@ public class BoardConfigTest {
         boardConfig.setUse(true);
         boardConfig.setRowsPerPage(10L);
         boardConfig.setUseViewList(true);
-        boardConfig.setCategory("");
+        boardConfig.setCategory("QnA Notice");
         boardConfig.setViewType(ViewType.ADMIN.toString());
         boardConfig.setUseEditor(true);
         boardConfig.setUseFileAttach(null);
@@ -50,27 +54,27 @@ public class BoardConfigTest {
         boardConfig.setSkin(SkinType.DEFAULT.toString());
         boardConfig.setReview(true);
 
-        return boardConfig;
     }
 
     @Test
-    @DisplayName("예외 없이 게시판이 성공적으로 등록 ")
+    @DisplayName("예외 없이 게시판이 성공적으로 등록 (최종목적) ")
     void configSuccess(){
-
-    //   repository.save(boardConfig);
-
+        assertDoesNotThrow(()->{
+            service.config(boardConfig);
+        });
+        System.out.println(boardConfig);
     }
 
     @Test
-    @DisplayName("Config Null값일때 BoardConfigFailException 발생")
+    @DisplayName("BoardConfig- 필수입력값 Null값일때 예외메세지발생")
     void boardConfig_Null_Exception(){
-        BoardConfig.builder().bId(null);
-
-//        assertNotThrows(()->)
+        //assertTh
     }
 
+    /** 유효성 검사 S */
+
     @Test
-    @DisplayName("필수 입력 값 체크 - BoardConfigFailException 발생")
+    @DisplayName("필수 입력 값 체크 -예외메세지발생")
     void boardConfig_Essential(){
 
     }

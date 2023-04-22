@@ -7,6 +7,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.study.commons.constants.board.AfterWriteTarget;
+import org.study.commons.constants.board.SkinType;
 import org.study.commons.constants.board.ViewType;
 import org.study.entities.BaseEntity;
 
@@ -50,6 +51,6 @@ public class Board extends BaseEntity {
 
     private boolean useComment; // 댓글 사용여부
     @Column(length=60, nullable = false)
-    private String skin; // 스킨명
+    private SkinType skin; // 스킨명
     private boolean isReview; // 후기 게시판 여부
 }
