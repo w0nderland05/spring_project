@@ -8,6 +8,8 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 import org.study.models.user.UserJoinService;
 
+import java.time.LocalDateTime;
+
 // 사용자 관련 컨트롤러
 @Controller
 @RequestMapping("/user/join")
@@ -57,5 +59,15 @@ public class JoinController {
 
         return "redirect:/mypage"; // 회원정보 수정 후 마이페이지 이동
     }
+
+    // 달력 날짜 조정하기
+    /**
+     * @GetMapping
+     *     public void date(@RequestParam(name = "minDate", defaultValue = "1900-01-01") String minDate, Model model){
+     *         model.addAttribute("minDate",minDate);
+     *     }
+     *
+     */
+
 
 }
