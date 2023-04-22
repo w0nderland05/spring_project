@@ -1,14 +1,22 @@
 package org.study.admin.user;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.validation.Errors;
+import org.springframework.validation.Validator;
+import org.study.commons.constants.Gender;
 import org.study.commons.validators.PasswordValidator;
+import org.study.controllers.user.UserJoin;
 import org.study.controllers.user.UserJoinValidator;
 import org.study.models.user.UserJoinService;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.BDDMockito.*;
+import static org.mockito.Mockito.*;
 
 /**
  * UserJoinValidator 파일을 통해서 각 항목에 대한 유효성 검사를 진행할 예정입니다.
@@ -17,20 +25,41 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
  */
 @SpringBootTest
 public class UserJoinValidatorTest {
-
-
-    @Autowired
-    private UserJoinValidator validator;
+    private UserJoin userJoin;
 
     @Autowired
     private UserJoinService service;
 
+    @BeforeEach
+    void join() {
+
+        userJoin = new UserJoin();
+        userJoin.setUserEmail("user01@korea.org");
+        userJoin.setUserNm("사용자01");
+        userJoin.setUserPw("82everywin!");
+        userJoin.setUserPwCk("82everywin!");
+        userJoin.setUserNickNm("뚜비");
+        userJoin.setGender(Gender.MAN);
+        userJoin.setBirth("2000-08-02"); // service 를 통해 들어가는건 validate 걸친 예
+        userJoin.setCellphone("01000110022"); //생일과 마찬가지
+        userJoin.setTermsAgree(true);
+
+        //service.join(userJoin);
+
+    }
     /** 유효성 검사 S */
 
     // 필수 항목 체크
     @Test
     @DisplayName("필수항목 체크 -  BadRequestException 발생")
     void join_User_Null_BadRequest() {
+       UserJoinValidator validator = mock(UserJoinValidator.class);
+
+
+       // given
+        willReturn("비밀번호는 특수문자를 포함해 8글자 이상이어야 합니다.").given(validator).validate(any(),any());
+       //when
+       // userjoin.setUserPw("!2345");
 
     }
 
