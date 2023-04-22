@@ -55,12 +55,12 @@ public class CsReportTest {
      * 필수 항목 (신고 사유 )에 대해 체크합니다.
      */
     @Test
-    @DisplayName("필수 항목 - 신고사유 값 null이면 -ReportFailExceptio예외 발생")
+    @DisplayName("필수 항목 - 신고사유 값 null이면 -ReportFailException 예외 발생")
     void report_Reason_Null_Then_Fail(){
 
     }
 
-    // 미필요시 삭제 가능합니다. servic에서 바로 ReportStatus.READY으로 넣으면 되기에 생략 가능합니다.
+    // 미필요시 삭제 가능합니다. service에서 바로 ReportStatus.READY으로 넣으면 되기에 생략 가능합니다.
     @Test
     @DisplayName("신고가 접수되면 기본 상태인 ReportStatus.READY로 입력되는지 체크")
     void report_Status_READY(){
