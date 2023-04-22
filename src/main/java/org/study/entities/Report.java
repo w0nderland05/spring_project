@@ -1,10 +1,7 @@
 package org.study.entities;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import org.study.commons.constants.ReportStatus;
@@ -21,31 +18,33 @@ import java.time.LocalDateTime;
 @EntityListeners(AuditingEntityListener.class)
 public class Report extends BaseEntity {
 
+    // 신고 유형 ( 스터디 OR 게시판 )
     @Column(length = 20)
-    private String division; // 유입 구분
+    private String division;
 
+    // 회원 번호
     @Id
     @GeneratedValue
     @Column(length = 8)
     private Long code;
 
-    @Column(nullable=false, length=45)
-    private String userNm;
+    // 신고 세부 내용
+    @Column(length = 50, nullable = false)
+    private String detail;
 
-    @Column(nullable=false)
-    private String email; // 이메일은 비밀번호 찾기시 초기화 메일 전송으로 사용되므로 필수
-
-    @Column(length=11)
-    private String cellPhone;
-
+    // 신고 처리 여부
     @Enumerated(EnumType.STRING)
     @Column(length = 20, nullable = false)
     private ReportStatus status = ReportStatus.READY;
 
-    // 신고 사유 관리
-    @Column(nullable=false)
-    private String reason;  // 신고 사유
+    // 신고 처리 내용
+    @Column(length = 50, nullable = false)
+    private String process;
 
-    private boolean useStatus;  // 사용 여부
-
+    //개설회원 정보
+    @ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="user_no")
+    @ToString.Exclude
+    private User user;
 }
+

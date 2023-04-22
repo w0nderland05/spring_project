@@ -14,7 +14,6 @@ import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 @SpringBootTest
 @TestPropertySource(locations = "classpath:application-test.properties")
-@ExtendWith(MockitoExtension.class)
 public class StudyApplyTest {
 
     /**
@@ -37,10 +36,12 @@ public class StudyApplyTest {
      */
     /** */
 
+
     @Autowired
     private StudyApplyService applyService;
 
     /** 단위 테스트 S */
+
 
     // 단위 테스트는 구현된 Service가 정상 동작하는지 단위별로 테스트 합니다.
     // junit5의 단언(assert)와 mockito를 주로 사용하게 됩니다.
