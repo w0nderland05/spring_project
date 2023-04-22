@@ -3,6 +3,7 @@ package org.study.controllers.admin.study;
 import lombok.RequiredArgsConstructor;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
+import org.study.commons.constants.RegionType;
 import org.study.repositories.StudyRepository;
 
 @RequiredArgsConstructor
@@ -22,8 +23,8 @@ public class StudyRegisterValidator implements Validator {
         String studyNm = study.getStudyNm();
         String category = study.getCategory();
         Long maxMember = study.getMaxMember();
-        Long numOfWeek = study.getNumOfWeek();
-        //String regionType=study.getRegionType();
+        String numOfWeek = study.getNumOfWeek();
+       RegionType regionType=study.getRegionType();
         String simpleIntro = study.getSimpleIntro();
         String introduction = study.getIntroduction();
 
