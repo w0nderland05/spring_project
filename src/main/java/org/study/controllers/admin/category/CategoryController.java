@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.study.models.category.CateSaveService;
+import org.study.models.category.DuplicateCateCdException;
 
 @Controller
 @RequestMapping("/admin/category")
@@ -51,12 +52,16 @@ public class CategoryController {
      * @param categoryForm
      * @param errors
      * @return
+     *
      */
     @PostMapping
     public String save(@Valid CategoryForm categoryForm, Errors errors) {
-
-        // 카테고리 저장 처리
-        service.save(categoryForm, errors);
+        try {
+            // 카테고리 저장 처리
+            service.save(categoryForm, errors);
+        } catch (DuplicateCateCdException e) { // 중복된 분류 예외인 경우
+            errors.rejectValue("cateCd", "Duplicate.categoryForm.cateCd");
+        }
 
         if (errors.hasErrors()) {
             return "admin/category/register";
@@ -64,4 +69,5 @@ public class CategoryController {
 
         return "redirect:/admin/category";
     }
+
 }

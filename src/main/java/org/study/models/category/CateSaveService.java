@@ -28,6 +28,10 @@ public class CateSaveService {
     }
 
     public void save(CategoryForm categoryForm, Errors errors) {
+        if (errors != null && errors.hasErrors()) {
+            return;
+        }
+
         validator.check(categoryForm, errors);
 
         /**
@@ -37,7 +41,7 @@ public class CateSaveService {
          */
         String cateCd = categoryForm.getCateCd();
         Category category = null;
-        if (repository.exists(cateCd)) { // 이미 등록된 것이 있다면
+        if (cateCd != null && repository.exists(cateCd)) { // 이미 등록된 것이 있다면
             category = repository.findById(cateCd).orElseGet(() -> CategoryForm.of(categoryForm));
             category.setCateCd(cateCd);
             category.setCateNm(categoryForm.getCateNm());
