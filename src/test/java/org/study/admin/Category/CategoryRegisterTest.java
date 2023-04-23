@@ -4,17 +4,21 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.HttpStatus;
 import org.springframework.test.context.TestPropertySource;
+import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.transaction.annotation.Transactional;
 import org.study.commons.validators.BadRequestException;
 import org.study.controllers.admin.category.CategoryForm;
 import org.study.models.category.CateSaveService;
 
-import java.util.List;
-
 import static org.junit.jupiter.api.Assertions.*;
+import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 /**
  * 단위테스트
@@ -25,8 +29,13 @@ import static org.junit.jupiter.api.Assertions.*;
  */
 @SpringBootTest
 @Transactional // 테스트 후 데이터 비우기
+@AutoConfigureMockMvc
 @TestPropertySource(locations="classpath:application-test.properties")
 public class CategoryRegisterTest {
+
+
+    @Autowired
+    private MockMvc mockMvc;
 
     @Autowired
     private CateSaveService saveService;
@@ -152,11 +161,20 @@ public class CategoryRegisterTest {
         }
         /** NULL 체크 E */
 
-        /**
-         * 통합 테스트
-         */
-
-
-
+    }
+    /**
+     * 통합 테스트
+     */
+    @Test
+    @DisplayName("성공적으로 등록완료되면 /admin/category로 이동")
+    void saveSuccessRedirectTest() throws Exception {
+        mockMvc.perform(post("/admin/category/save")
+                .param("cateCd", categoryForm.getCateCd())
+                .param("cateNm", categoryForm.getCateNm())
+                .param("location", categoryForm.getLocation())
+                .param("use", String.valueOf(categoryForm.isUse()))
+                        .with(csrf().asHeader()))
+                .andDo(print())
+                .andExpect(redirectedUrl("/admin/category"));
     }
 }
