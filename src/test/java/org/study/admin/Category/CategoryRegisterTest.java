@@ -151,10 +151,12 @@ public class CategoryRegisterTest {
 
         }
         /** NULL 체크 E */
+
+        /**
+         * 통합 테스트
+         */
+
+
+
     }
-
-
-
-
-
 }
