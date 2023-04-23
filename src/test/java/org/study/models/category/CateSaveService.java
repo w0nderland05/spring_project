@@ -1,7 +1,9 @@
 package org.study.models.category;
 
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.study.commons.validators.RequiredCheckValidator;
 import org.study.controllers.admin.category.CategoryForm;
 
 /**
@@ -10,8 +12,12 @@ import org.study.controllers.admin.category.CategoryForm;
  *
  */
 @Service
+@RequiredArgsConstructor
 public class CateSaveService {
+    private final CateSaveValidator validator;
+
     public void save(CategoryForm categoryForm) {
+        validator.check(categoryForm);
 
     }
 }

@@ -9,7 +9,6 @@ import org.study.controllers.user.UserJoin;
 import org.study.entities.User;
 import org.study.repositories.UserRepository;
 
-import java.time.LocalDate;
 
 @Service
 @RequiredArgsConstructor
