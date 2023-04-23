@@ -17,7 +17,7 @@ public interface ServiceValidator<T> {
      * @param errors
      */
     default void check(T t, Errors errors) {
-        if (errors == null || errors.hasErrors()) {
+        if (errors != null && errors.hasErrors()) {
             return;
         }
 
