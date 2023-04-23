@@ -17,26 +17,27 @@ public class BoardConfigService {
     @Autowired
     private BoardRepository repository;
 
+    @Autowired
+    private BoardConfigValidator validator;
+
     public void config(BoardConfig config) {
-        Board board = Board.builder()
-                .bId(config.getBId())
-                .boardNm(config.getBoardNm())
-                .isUse(config.isUse())
-                .rowsPerPage(config.getRowsPerPage())
-                .useViewList(config.isUseViewList())
-                .category(config.getCategory())
-                .viewType(ViewType.ADMIN) // 게시판은 관리자만 등록할 수 있게 설정
-                .useEditor(config.isUseEditor())
-               // .useFileAttach(config.getUseFileAttach()) //타입 추후 테스트
-              //  .useImageAttach() //타입 추후 테스트
+        validator.check(config);
 
-                // 체크한 값으로 선택 되도록 설정
-                .afterWriteTarget(AfterWriteTarget.valueOf(config.getAfterWriteTarget()))
-                .useComment(config.isUseComment())
-                .skin(SkinType.DEFAULT) // 스킨은 기본 값으로 초기 설정
-                .isReview(config.isReview())
-                .build();
+        String bId = config.getBId();
+        Board board1 = null;
+        if(repository.exists(bId)) { // 이미 등록된 게시판 ID가 있다면
+            board1 = repository.findById(bId).orElseGet(() -> BoardConfig.of(config));
+            board1.setBId(bId);
+            board1.setBoardNm(config.getBoardNm());
+            board1.setRowsPerPage(config.getRowsPerPage());
+            board1.setSkin(SkinType.DEFAULT);
+            /** 기본 값으로 설정이 맞는지?? */
+        }
 
-        repository.save(board);
+        if(board1 == null) { // 게시판 ID가 없다면 boardConfig -> Board 엔티티로 변환
+            board1 = BoardConfig.of(config);
+        }
+
+        repository.saveAndFlush(board1);
     }
 }

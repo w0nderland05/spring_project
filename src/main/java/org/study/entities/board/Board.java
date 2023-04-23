@@ -30,6 +30,7 @@ public class Board extends BaseEntity {
 
     private boolean isUse; // 사용 여부
 
+    @Column(length = 100, nullable = false)
     private Long rowsPerPage; // 1페이지 게시글 수
 
     private boolean useViewList; // 게시글 하단에 목록 노출
