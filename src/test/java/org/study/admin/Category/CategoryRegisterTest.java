@@ -4,17 +4,22 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.HttpStatus;
 import org.springframework.test.context.TestPropertySource;
+import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.transaction.annotation.Transactional;
 import org.study.commons.validators.BadRequestException;
 import org.study.controllers.admin.category.CategoryForm;
 import org.study.models.category.CateSaveService;
-
-import java.util.List;
+import org.study.models.category.DuplicateCateCdException;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 /**
  * 단위테스트
@@ -25,8 +30,13 @@ import static org.junit.jupiter.api.Assertions.*;
  */
 @SpringBootTest
 @Transactional // 테스트 후 데이터 비우기
+@AutoConfigureMockMvc
 @TestPropertySource(locations="classpath:application-test.properties")
 public class CategoryRegisterTest {
+
+
+    @Autowired
+    private MockMvc mockMvc;
 
     @Autowired
     private CateSaveService saveService;
@@ -151,12 +161,61 @@ public class CategoryRegisterTest {
 
         }
         /** NULL 체크 E */
+    }
 
-        /**
-         * 통합 테스트
-         */
+    @Test
+    @DisplayName("CateCd 중복 등록시 DuplicateCateCdException 발생 여부")
+    void duplicateCateCdTest() {
+        // 테스트 전 분류 등록
+        saveService.save(categoryForm);
 
+        assertThrows(DuplicateCateCdException.class, () -> {
+            // 중복 분류로 등록
+            saveService.save(categoryForm);
+        });
+    }
 
+    /**
+     * 통합 테스트
+     */
+    @Test
+    @DisplayName("성공적으로 등록완료되면 /admin/category로 이동")
+    void saveSuccessRedirectTest() throws Exception {
+        mockMvc.perform(post("/admin/category")
+                .param("cateCd", categoryForm.getCateCd())
+                .param("cateNm", categoryForm.getCateNm())
+                .param("location", categoryForm.getLocation())
+                .param("use", String.valueOf(categoryForm.isUse())).with(csrf()))
+                .andExpect(redirectedUrl("/admin/category"));
+    }
 
+    @Test
+    @DisplayName("필수 항목 누락시(cateCd, cateNm, location) Bean Validation 검증 체크")
+    void requiredCheckResponseTest() throws Exception {
+       String body = mockMvc.perform(post("/admin/category").with(csrf()))
+                        .andReturn().getResponse().getContentAsString();
+
+       // 분류코드 검증(cateCd)
+       assertTrue(body.contains("분류코드"));
+
+       // 분류명 검증(cateNm)
+        assertTrue(body.contains("분류명"));
+
+        // 노출위치 코드(location) 검증
+        assertTrue(body.contains("노출위치 코드"));
+    }
+
+    @Test
+    @DisplayName("분류 코드 중복 등록 Bean Validation 검증 체크")
+    void duplicateCateCdCheckResponseTest() throws Exception {
+        saveService.save(categoryForm);
+
+        String body = mockMvc.perform(post("/admin/category")
+                        .param("cateCd", categoryForm.getCateCd())
+                        .param("cateNm", categoryForm.getCateNm())
+                        .param("location", categoryForm.getLocation())
+                        .param("use", String.valueOf(categoryForm.isUse())).with(csrf()))
+                .andReturn().getResponse().getContentAsString();
+        assertTrue(body.contains("이미 등록된 분류코드"));
     }
 }
