@@ -3,7 +3,7 @@ package org.study.models.category;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import org.study.commons.validators.RequiredCheckValidator;
+import org.springframework.validation.Errors;
 import org.study.controllers.admin.category.CategoryForm;
 import org.study.entities.Category;
 import org.study.repositories.CategoryRepository;
@@ -19,8 +19,16 @@ public class CateSaveService {
     private final CateSaveValidator validator;
     private final CategoryRepository repository;
 
+    /**
+     * 컨트롤러 Bean Validation 대응
+     * @param categoryForm
+     */
     public void save(CategoryForm categoryForm) {
-        validator.check(categoryForm);
+        save(categoryForm, null);
+    }
+
+    public void save(CategoryForm categoryForm, Errors errors) {
+        validator.check(categoryForm, errors);
 
         /**
          * 엔티티가 이미 등록된 분류라면 기존 엔티티 가져오고
@@ -44,4 +52,6 @@ public class CateSaveService {
         // 엔티티 저장 또는 수정 처리
         repository.saveAndFlush(category);
     }
+
+
 }
