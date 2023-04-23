@@ -6,17 +6,17 @@ import org.junit.jupiter.api.Test;
 /**
  * 단위테스트
  * '카테고리를 틍록하는 서비스'에 해당하는 테스트 클래스입니다.
- * 파일명 : 'CateRegisterService'
- * 메서드 : register()
+ * 파일명 : 'CateSaveService'
+ * 메서드 : save()
  *
  */
 public class CategoryRegisterTest {
 
     /**
-     * @Test CateRegisterService::register()
+     * @Test CateSaveService::save()
      */
     @Test
-    @DisplayName("카테고리가 성공적으로 등록 (최종목적)")
+    @DisplayName("카테고리가 성공적으로 등록, 수정 (최종목적)")
     void registerSuccess(){
 
     }
