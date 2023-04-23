@@ -5,6 +5,10 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.modelmapper.ModelMapper;
+import org.study.controllers.admin.category.CategoryForm;
+import org.study.entities.Category;
+import org.study.entities.board.Board;
 
 import java.util.List;
 
@@ -20,11 +24,12 @@ public class BoardConfig {
     @NotBlank(message = "게시판 아이디를 입력하세요")
     private String bId;
 
-    @NotBlank(message="게시판명을 입력하세요")
+    @NotBlank(message="게시판 이름을 입력하세요")
     private String boardNm;
 
     private boolean isUse;
 
+    @NotBlank(message = "페이지 당 게시글 수를 입력하세요.")
     private Long rowsPerPage; // 1페이지에 노출될 게시글 수
     // 숫자를 입력 혹은 선택 안할 시 메세지 출력 ??
 
@@ -45,8 +50,18 @@ public class BoardConfig {
 
     private boolean useComment; // 댓글 사용여부
 
+    @NotBlank(message = "적용시킬 스킨을 선택해주세요.")
     private String skin; // 스킨명
     // 스킨 선택 안할 시 메세지 출력 ??
 
     private boolean isReview; // 후기 게시판 여부
+
+    /**
+     * Board Entity 변환
+     * @param boardConfig
+     * @return
+     */
+    public static Board of (BoardConfig boardConfig) {
+        return new ModelMapper().map(boardConfig, Board.class);
+    }
 }
