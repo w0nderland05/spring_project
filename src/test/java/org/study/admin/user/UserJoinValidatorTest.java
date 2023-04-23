@@ -3,9 +3,12 @@ package org.study.admin.user;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.mockito.ArgumentCaptor;
+import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.validation.Errors;
+<<<<<<< HEAD
 import org.springframework.validation.Validator;
 import org.study.commons.constants.Gender;
 import org.study.commons.validators.PasswordValidator;
@@ -17,6 +20,14 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.*;
 import static org.mockito.Mockito.*;
+=======
+import org.study.controllers.user.UserJoinValidator;
+import org.study.models.user.UserJoinService;
+
+import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.BDDMockito.*;
+
+>>>>>>> 364e5dc25cc12edce9d8d264c69ab529c10d670b
 
 /**
  * UserJoinValidator 파일을 통해서 각 항목에 대한 유효성 검사를 진행할 예정입니다.
@@ -30,6 +41,7 @@ public class UserJoinValidatorTest {
     @Autowired
     private UserJoinService service;
 
+<<<<<<< HEAD
     @BeforeEach
     void join() {
 
@@ -47,7 +59,60 @@ public class UserJoinValidatorTest {
         //service.join(userJoin);
 
     }
+=======
+    @Mock
+    private Errors errors;
+
+
+    /**
+     * Validator Errors::Reject메서드 호출 검증
+     * @param errorCode
+     * @param defaultMessage
+     */
+    private void checkErrorsReject(String errorCode, String defaultMessage) {
+        ArgumentCaptor<String> captureErrorCode = ArgumentCaptor.forClass(String.class);
+        ArgumentCaptor<String> captureDefaultMessage = ArgumentCaptor.forClass(String.class);
+        then(errors).should().reject(captureErrorCode.capture(), captureDefaultMessage.capture());
+
+        /** 캡쳐된 인자 추출 */
+        String realErrorCode = captureErrorCode.getValue();
+        String realDefaultMessage = captureDefaultMessage.getValue();
+
+        /** 실제 메서드 내에서 주입된 인자와 예상 인자와 검증 */
+        assertEquals(realErrorCode, errorCode);
+        assertEquals(realDefaultMessage, defaultMessage);
+
+    }
+
+    /**
+     * Validator Errors::rejectValue메서드 호출 검증
+     * @param errorCode
+     * @param defaultMessage
+     */
+    private void checkErrorsRejectValue(String field, String errorCode, String defaultMessage) {
+        ArgumentCaptor<String> captureField = ArgumentCaptor.forClass(String.class);
+        ArgumentCaptor<String> captureErrorCode = ArgumentCaptor.forClass(String.class);
+        ArgumentCaptor<String> captureDefaultMessage = ArgumentCaptor.forClass(String.class);
+        then(errors).should().rejectValue(field, captureErrorCode.capture(), captureDefaultMessage.capture());
+
+        /** 캡쳐된 인자 추출 */
+        String realField = captureField.getValue();
+        String realErrorCode = captureErrorCode.getValue();
+        String realDefaultMessage = captureDefaultMessage.getValue();
+
+        /** 실제 메서드 내에서 주입된 인자와 예상 인자와 검증 */
+        assertEquals(realField, field);
+        assertEquals(realErrorCode, errorCode);
+        assertEquals(realDefaultMessage, defaultMessage);
+
+    }
+
+>>>>>>> 364e5dc25cc12edce9d8d264c69ab529c10d670b
     /** 유효성 검사 S */
+    @BeforeEach
+    void join_user_data() {
+
+    }
 
     // 필수 항목 체크
     @Test

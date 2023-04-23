@@ -5,7 +5,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
-import org.study.admin.user.BadRequestException;
 import org.study.commons.validators.CellPhoneValidator;
 import org.study.commons.validators.PasswordValidator;
 import org.study.repositories.UserRepository;

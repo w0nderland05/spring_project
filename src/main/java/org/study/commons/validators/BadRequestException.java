@@ -1,7 +1,9 @@
-package org.study.admin.user;
+package org.study.commons.validators;
 
-public class BadRequestException extends RuntimeException{
+import org.springframework.http.HttpStatus;
+
+public class BadRequestException extends CommonException {
     public BadRequestException(String message){
-        super(message);
+        super(message, HttpStatus.BAD_REQUEST);
     }
 }
