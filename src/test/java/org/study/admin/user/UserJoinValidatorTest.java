@@ -8,7 +8,7 @@ import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.validation.Errors;
-<<<<<<< HEAD
+
 import org.springframework.validation.Validator;
 import org.study.commons.constants.Gender;
 import org.study.commons.validators.PasswordValidator;
@@ -16,18 +16,11 @@ import org.study.controllers.user.UserJoin;
 import org.study.controllers.user.UserJoinValidator;
 import org.study.models.user.UserJoinService;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.*;
 import static org.mockito.Mockito.*;
-=======
-import org.study.controllers.user.UserJoinValidator;
-import org.study.models.user.UserJoinService;
-
-import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.BDDMockito.*;
-
->>>>>>> 364e5dc25cc12edce9d8d264c69ab529c10d670b
 
 /**
  * UserJoinValidator 파일을 통해서 각 항목에 대한 유효성 검사를 진행할 예정입니다.
@@ -41,7 +34,6 @@ public class UserJoinValidatorTest {
     @Autowired
     private UserJoinService service;
 
-<<<<<<< HEAD
     @BeforeEach
     void join() {
 
@@ -59,7 +51,6 @@ public class UserJoinValidatorTest {
         //service.join(userJoin);
 
     }
-=======
     @Mock
     private Errors errors;
 
@@ -107,7 +98,6 @@ public class UserJoinValidatorTest {
 
     }
 
->>>>>>> 364e5dc25cc12edce9d8d264c69ab529c10d670b
     /** 유효성 검사 S */
     @BeforeEach
     void join_user_data() {
