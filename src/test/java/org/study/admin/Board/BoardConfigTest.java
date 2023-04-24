@@ -7,10 +7,13 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.http.HttpStatus;
 import org.springframework.test.context.TestPropertySource;
+import org.springframework.transaction.annotation.Transactional;
 import org.study.commons.constants.board.AfterWriteTarget;
 import org.study.commons.constants.board.SkinType;
 import org.study.commons.constants.board.ViewType;
+import org.study.commons.validators.BadRequestException;
 import org.study.controllers.admin.board.BoardConfig;
 import org.study.repositories.board.BoardRepository;
 import static org.junit.jupiter.api.Assertions.*;
@@ -24,6 +27,7 @@ import static org.junit.jupiter.api.Assertions.*;
  *
  */
 @SpringBootTest
+@Transactional
 @TestPropertySource(locations="classpath:application-test.properties")
 public class BoardConfigTest {
 
@@ -36,24 +40,21 @@ public class BoardConfigTest {
     private BoardConfigService service;
 
     @BeforeEach
-    void config(){
-        boardConfig = new BoardConfig();
-        boardConfig.setMode("create");
-        boardConfig.setBId("bId");
-        boardConfig.setBoardNm("게시판명");
-        boardConfig.setUse(true);
-        boardConfig.setRowsPerPage(10L);
-        boardConfig.setUseViewList(true);
-        boardConfig.setCategory("QnA Notice");
-        boardConfig.setViewType(ViewType.ADMIN.toString());
-        boardConfig.setUseEditor(true);
-        boardConfig.setUseFileAttach(null);
-        boardConfig.setUseImageAttach(null);
-        boardConfig.setAfterWriteTarget(AfterWriteTarget.VIEW.toString());
-        boardConfig.setUseComment(true);
-        boardConfig.setSkin(SkinType.DEFAULT.toString());
-        boardConfig.setReview(true);
-
+    void config() {
+        boardConfig = BoardConfig.builder()
+                .bId("create1")
+                .boardNm("게시판1")
+                .isUse(true)
+                .rowsPerPage(10L)
+                .useViewList(true)
+                .category("QnA Notice")
+                .viewType(ViewType.USER.toString())
+                .useEditor(true)
+                .afterWriteTarget(AfterWriteTarget.VIEW.toString())
+                .useComment(true)
+                .skin(SkinType.DEFAULT.toString())
+                .isReview(true)
+                .build();
     }
 
     @Test
@@ -68,7 +69,15 @@ public class BoardConfigTest {
     @Test
     @DisplayName("BoardConfig- 필수입력값 Null값일때 예외메세지발생")
     void boardConfig_Null_Exception(){
-        //assertTh
+        BadRequestException thrown = assertThrows(BadRequestException.class,() -> {
+           service.config(null);
+        });
+
+        /** "잘못된 접근입니다." 문구 포함여부 체크 */
+        assertTrue(thrown.getMessage().contains("잘못된 접근"));
+
+        /** HttpStatus가 400 - BadRequest로 설정되어 있는지 체크 */
+        assertEquals(HttpStatus.BAD_REQUEST, thrown.getStatus());
     }
 
     /** 유효성 검사 S */

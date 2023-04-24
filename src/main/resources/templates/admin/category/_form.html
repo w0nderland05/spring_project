@@ -12,10 +12,10 @@
         <dl>
             <dt>사용여부</dt>
             <dd>
-                <input type="radio" name="use" value="true" id="use_0" th:field="*{use}">
+                <input type="radio" name="use" value="true" id="use_0" th:field="*{use}" class="radio">
                 <label for="use_0">사용</label>
 
-                <input type="radio" name="use" value="false" id="use_1" th:field="*{use}">
+                <input type="radio" name="use" value="false" id="use_1" th:field="*{use}" class="radio">
                 <label for="use_1">미사용</label>
                 <div class="error" th:each="err : ${#fields.errors('use')}" th:text="${err}"></div>
             </dd>
