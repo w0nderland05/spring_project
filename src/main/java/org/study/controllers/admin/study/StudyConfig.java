@@ -27,11 +27,11 @@ public class StudyConfig {
     @NotBlank
     private Long studyCode; //스터디코드
 
-    @NotBlank(message = "스터디명을 입력하세요.")
+    @NotBlank
     private String studyNm; //스터디명
 
 
-    @NotBlank(message ="카테고리를 선택해주세요.")
+    @NotBlank
     private String category; //카테고리
 
     private LocalDateTime requestDt;//개설신청일시
@@ -41,7 +41,7 @@ public class StudyConfig {
 
     private LocalDateTime regStatusDt;//상태처리일시
 
-    @NotBlank(message = "신청최대인원수를 체크해주세요.")
+    @NotBlank
     @Range(min =0, max =1000)
     private Long maxMember; //신청최대인원수
 
@@ -49,16 +49,16 @@ public class StudyConfig {
 
 
     private boolean activeStatus; //모집상태(모집중 - true, 모집마감(자리없음) -false)
-    @NotBlank(message = "스터디 주당횟수를 선택해주세요.")
+    @NotBlank
     private String numOfWeek; //스터디 주당횟수
 
-    @NotBlank(message = "스터디 지역타입을 선택해주세요.")
+    @NotBlank
     private RegionType regionType = RegionType.ONLINE; //지역(온라인/ 오프라인 -추후 프로그램내에서 시/도/군/구 값도 추가되도록 진행예정 )
 
-    @NotBlank(message = "한줄 소개글을 입력해주세요.")
+    @NotBlank
     private String simpleIntro; //한줄 소개글
 
-    @NotBlank(message = "소개글을 작성해주세요.")
+    @NotBlank
     private String Introduction; //소개글
 
     public static Study of (StudyConfig studyConfig) {
