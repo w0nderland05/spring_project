@@ -1,6 +1,7 @@
 package org.study.models.study;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 import org.study.commons.constants.RegionType;
@@ -11,6 +12,7 @@ import org.study.commons.validators.ServiceValidator;
 import org.study.controllers.admin.study.StudyConfig;
 import org.study.repositories.StudyRepository;
 
+@Component
 @RequiredArgsConstructor
 public class StudyRegisterValidator implements ServiceValidator<StudyConfig>, RequiredCheckValidator {
 
