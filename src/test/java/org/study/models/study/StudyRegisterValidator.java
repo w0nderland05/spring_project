@@ -31,6 +31,8 @@ public class StudyRegisterValidator implements ServiceValidator<StudyConfig>, Re
         requiredCheck(config.getIntroduction(), new BadRequestException("소개글을 작성해주세요."));
         nullCheck(config.getMaxMember(), new BadRequestException("신청최대인원수를 체크해주세요."));
         nullCheck(config.getRegionType(), new BadRequestException("스터디 지역타입을 선택해주세요."));
+        nullCheck(config.getStudyCode(), new BadRequestException("스터디 코드 "));
+
 
         /**신청최대 인원수 -0이상 1000이하  (0- 무제한/ 숫자 - 제한 있음 )*/
        Long maxNumber = config.getMaxMember();
