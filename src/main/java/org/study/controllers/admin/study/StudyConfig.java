@@ -6,8 +6,13 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.validator.constraints.Range;
+import org.modelmapper.ModelMapper;
 import org.study.commons.constants.RegionType;
 import org.study.commons.constants.Status;
+import org.study.controllers.admin.category.CategoryForm;
+import org.study.entities.Category;
+import org.study.entities.Study;
 
 import java.time.LocalDateTime;
 
@@ -19,6 +24,7 @@ public class StudyConfig {
 
     private String mode; //update이면 수정모드
 
+    @NotBlank
     private Long studyCode; //스터디코드
 
     @NotBlank(message = "스터디명을 입력하세요.")
@@ -36,6 +42,7 @@ public class StudyConfig {
     private LocalDateTime regStatusDt;//상태처리일시
 
     @NotBlank(message = "신청최대인원수를 체크해주세요.")
+    @Range(min =0, max =1000)
     private Long maxMember; //신청최대인원수
 
     private Long remainSeat; //남은 자리수
@@ -53,4 +60,8 @@ public class StudyConfig {
 
     @NotBlank(message = "소개글을 작성해주세요.")
     private String Introduction; //소개글
+
+    public static Study of (StudyConfig studyConfig) {
+        return new ModelMapper().map(studyConfig, Study.class);
+    }
 }
