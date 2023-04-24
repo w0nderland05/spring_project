@@ -33,6 +33,7 @@ public class BoardConfigTest {
 
     private BoardConfig boardConfig;
 
+
     @Autowired
     private BoardRepository repository;
 

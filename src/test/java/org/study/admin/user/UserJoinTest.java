@@ -37,9 +37,6 @@ public class UserJoinTest {
     @Autowired
     private UserJoinValidator joinValidator;
 
-    ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
-    Validator validator = factory.getValidator();
-
     @BeforeEach
     void join() {
 

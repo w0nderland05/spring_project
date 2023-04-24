@@ -25,12 +25,7 @@ import static org.junit.jupiter.api.Assertions.*;
 @SpringBootTest
 @TestPropertySource(locations = "classpath:application-test.properties")
 public class StudyApplyTest {
-
-    /**
-     @Autowired private StudyRepository studyRepository;
-     @Autowired private StudyCategoryRepository scRepository;
-     // private final StudyApplyService applyService;
-     @Autowired private StudyApplyService applyService;
+    
      /**
       * @Test Case - StudyApplyService::apply
      *
