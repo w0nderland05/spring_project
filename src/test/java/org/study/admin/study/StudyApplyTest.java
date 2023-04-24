@@ -13,6 +13,7 @@ import org.study.commons.constants.Status;
 import org.study.controllers.admin.study.StudyConfig;
 import org.study.entities.Study;
 import org.study.models.study.StudyApplyService;
+import org.study.models.study.StudyRegisterValidator;
 import org.study.repositories.StudyRepository;
 
 import java.time.LocalDateTime;
@@ -23,12 +24,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 @SpringBootTest
 @TestPropertySource(locations = "classpath:application-test.properties")
 public class StudyApplyTest {
-
-    /**
-     @Autowired private StudyRepository studyRepository;
-     @Autowired private StudyCategoryRepository scRepository;
-     // private final StudyApplyService applyService;
-     @Autowired private StudyApplyService applyService;
+    
      /**
       * @Test Case - StudyApplyService::apply
      *
@@ -46,9 +42,6 @@ public class StudyApplyTest {
 
     @Autowired
     private StudyApplyService applyService;
-
-    @Autowired
-    private StudyRepository repository;
 
 
     private StudyConfig studyConfig;
@@ -69,7 +62,7 @@ public class StudyApplyTest {
         studyConfig.setCategory("IT");
         studyConfig.setRequestDt(LocalDateTime.now());
         studyConfig.setApproveStatus(Status.APPLY);
-        studyConfig.setRegStatusDt(null);
+        studyConfig.setRegStatusDt(LocalDateTime.now());
         studyConfig.setMaxMember(Long.valueOf("30"));
         studyConfig.setRemainSeat(Long.valueOf("3"));
         studyConfig.setActiveStatus(true);

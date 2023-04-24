@@ -86,7 +86,7 @@ public class CategoryRegisterTest {
     void cate_Essential(){
         /**
          * 필수 항목
-         *  cateCd : 분류 코드
+         *  cateCd; : 분류 코드
          *  location : 노출 위치
          *  cateNm : 분류 명
          *
