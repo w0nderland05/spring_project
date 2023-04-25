@@ -25,7 +25,7 @@ import static org.junit.jupiter.api.Assertions.*;
 @SpringBootTest
 @TestPropertySource(locations = "classpath:application-test.properties")
 public class StudyApplyTest {
-    
+
      /**
       * @Test Case - StudyApplyService::apply
      *
@@ -36,24 +36,16 @@ public class StudyApplyTest {
      * 1. 등록에서의 최종 목표는 예외 발생 없이 등록이 되는 것
      * 2. 제대로 등록하기 위한 유효성 검사 항목이 다음과 같이 정리됩니다.
      */
-    /**
-     *
-     */
-
-
     @Autowired
     private StudyApplyService applyService;
 
-
     private StudyConfig studyConfig;
 
-    /**
-     * 단위 테스트 S
-     */
-
+    /** 단위 테스트 S*/
 
     // 단위 테스트는 구현된 Service가 정상 동작하는지 단위별로 테스트 합니다.
     // junit5의 단언(assert)와 mockito를 주로 사용하게 됩니다.
+
     @BeforeEach
     public void apply() {
         studyConfig = new StudyConfig();

@@ -68,7 +68,7 @@ public class BoardConfigTest {
     }
 
     @Test
-    @DisplayName("BoardConfig- 필수입력값 Null값일때 예외메세지발생")
+    @DisplayName("BoardConfig- 전체 Null값일때 예외메세지발생")
     void boardConfig_Null_Exception(){
         BadRequestException thrown = assertThrows(BadRequestException.class,() -> {
            service.config(null);
@@ -86,8 +86,19 @@ public class BoardConfigTest {
     @Test
     @DisplayName("필수 입력 값 체크 -예외메세지발생")
     void boardConfig_Essential(){
+        // 발생 경우 수
+        // bId , boardNm, rowsPerPage, skin 에 대한 필수 입력 값 체크
+        // null, isBlank
 
     }
+
+    //validator Test
+    /**
+     * 유효성 검사 추가 (오류메세지가 제대로 나오는지에 대한 체크는 통합테스트에서 진행)
+     * 1. 게시판 아이디가 중복되는지 체크
+     * 2. rowsPerPage : 최소 10개 부터 되는지 체크
+     * 3. category: '\n' 줄바꿈울 기준으로 인식 되는지 
+     */
 
 
 }
