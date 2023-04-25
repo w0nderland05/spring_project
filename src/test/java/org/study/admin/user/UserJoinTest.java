@@ -13,6 +13,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.validation.Errors;
 import org.study.commons.constants.Gender;
+import org.study.commons.validators.BadRequestException;
 import org.study.controllers.user.UserJoin;
 import org.study.controllers.user.UserJoinValidator;
 import org.study.models.user.UserJoinService;
@@ -65,10 +66,23 @@ public class UserJoinTest {
 
     // 필수 항목 체크
     @Test
+    @DisplayName("필수 항목 null값 일때 오류 메세지 반환 ")
+    void join_Essential() {
+        BadRequestException thrown = assertThrows(BadRequestException.class,()->{
+           joinService.join(null);
+
+        });
+
+        assertTrue(thrown.getMessage().contains("잘못된 접근"));
+
+
+
+    }
+    @Test
     @DisplayName("필수항목 체크 - @NotBlank 값의 오류메세지 제대로 나오는지 ")
     void join_User_Null_BadRequest() {
-        userJoin.setUserEmail(null);
 
-        }
+
+    }
 
 }
