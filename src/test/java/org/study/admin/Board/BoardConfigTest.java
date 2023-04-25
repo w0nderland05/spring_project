@@ -90,6 +90,94 @@ public class BoardConfigTest {
         // bId , boardNm, rowsPerPage, skin 에 대한 필수 입력 값 체크
         // null, isBlank
 
+        /** 빈값 체크 S */
+        String[] fields = {"bId", "boardNm" /* "rowsPerPage" */, "skin"};
+        String bId = boardConfig.getBId();
+        String boardNm = boardConfig.getBoardNm();
+        String skin = boardConfig.getSkin();
+
+        for (String field : fields) {
+            String includedWord = null;
+
+            if (field.equals("bId")) {
+                boardConfig.setBId("   ");
+                boardConfig.setBoardNm(boardNm);
+                boardConfig.setSkin(skin);
+                includedWord = "게시판 아이디";
+
+            } else if (field.equals("boardNm")) {
+                boardConfig.setBId(bId);
+                boardConfig.setBoardNm("   ");
+                boardConfig.setSkin(skin);
+                includedWord = "게시판 이름";
+
+            } else if (field.equals("skin")) {
+                boardConfig.setBId(bId);
+                boardConfig.setBoardNm(boardNm);
+                boardConfig.setSkin("   ");
+                includedWord = "스킨";
+            }
+            BadRequestException thrown = assertThrows(BadRequestException.class, () -> {
+                service.config(boardConfig);
+            });
+            System.out.println(field);
+            System.out.println(thrown.getMessage());
+
+            // 예외 메세지에 핵심 키워드가 포함되어 있는지 체크
+            assertTrue(thrown.getMessage().contains(includedWord));
+
+            // 상태 코드 검증(HttpStatus.BAD_REQUEST)
+            assertEquals(HttpStatus.BAD_REQUEST, thrown.getStatus());
+
+        }
+        /** 빈값 체크 E */
+
+        /** NULL 체크 S */
+        String[] fields2 = {"bId", "boardNm", "rowsPerPage", "skin"};
+        Long rowsPerPage = boardConfig.getRowsPerPage();
+
+        for (String field : fields2) {
+            String includedWord = null;
+            if (field.equals("bId")) {
+                boardConfig.setBId(null);
+                boardConfig.setBoardNm(boardNm);
+                boardConfig.setRowsPerPage(rowsPerPage);
+                boardConfig.setSkin(skin);
+                includedWord = "게시판아이디";
+
+            } else if (field.equals("boardNm")) {
+                boardConfig.setBId(bId);
+                boardConfig.setBoardNm(null);
+                boardConfig.setRowsPerPage(rowsPerPage);
+                boardConfig.setSkin(skin);
+                includedWord = "게시판이름";
+
+            } else if (field.equals("rowsPerPage")) {
+                boardConfig.setBId(bId);
+                boardConfig.setBoardNm(boardNm);
+                boardConfig.setRowsPerPage(null);
+                boardConfig.setSkin(skin);
+                includedWord = "1페이지 당 게시글 수";
+
+            } else if (field.equals("skin")) {
+                boardConfig.setBId(bId);
+                boardConfig.setBoardNm(boardNm);
+                boardConfig.setRowsPerPage(rowsPerPage);
+                boardConfig.setSkin(null);
+                includedWord = "스킨명";
+            }
+
+            BadRequestException thrown = assertThrows(BadRequestException.class, () -> {
+                service.config(boardConfig);
+            });
+            System.out.println(thrown.getMessage());
+
+            // 예외 메세지에 핵심 키워드가 포함되어 있는지 체크
+            assertTrue(thrown.getMessage().contains(includedWord));
+            // 상태 코드 검증(HttpStatus.BAD_REQUEST)
+            assertEquals(HttpStatus.BAD_REQUEST, thrown.getStatus());
+        }
+        /** NULL 체크 E */
     }
 
     //validator Test
