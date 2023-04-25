@@ -21,7 +21,7 @@ public class BoardConfigValidator implements ServiceValidator<BoardConfig>, Requ
         /** 필수 항목 체크 */
         requiredCheck(boardConfig.getBId(),new BadRequestException("게시판 아이디를 입력하세요."));
         requiredCheck(boardConfig.getBoardNm(),new BadRequestException("게시판 이름을 입력하세요."));
-        requiredCheck(boardConfig.getRowsPerPage().toString(),new BadRequestException("페이지 당 게시글 수를 입력하세요."));
+        nullCheck(boardConfig.getRowsPerPage(),new BadRequestException("페이지 당 게시글 수를 입력하세요."));
         requiredCheck(boardConfig.getSkin(),new BadRequestException("적용시킬 스킨을 선택해주세요"));
     }
 }

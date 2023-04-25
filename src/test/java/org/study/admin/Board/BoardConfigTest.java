@@ -143,33 +143,34 @@ public class BoardConfigTest {
                 boardConfig.setBoardNm(boardNm);
                 boardConfig.setRowsPerPage(rowsPerPage);
                 boardConfig.setSkin(skin);
-                includedWord = "게시판아이디";
+                includedWord = "게시판 아이디";
 
             } else if (field.equals("boardNm")) {
                 boardConfig.setBId(bId);
                 boardConfig.setBoardNm(null);
                 boardConfig.setRowsPerPage(rowsPerPage);
                 boardConfig.setSkin(skin);
-                includedWord = "게시판이름";
+                includedWord = "게시판 이름";
 
             } else if (field.equals("rowsPerPage")) {
                 boardConfig.setBId(bId);
                 boardConfig.setBoardNm(boardNm);
                 boardConfig.setRowsPerPage(null);
                 boardConfig.setSkin(skin);
-                includedWord = "1페이지 당 게시글 수";
+                includedWord = "페이지 당 게시글 수";
 
             } else if (field.equals("skin")) {
                 boardConfig.setBId(bId);
                 boardConfig.setBoardNm(boardNm);
                 boardConfig.setRowsPerPage(rowsPerPage);
                 boardConfig.setSkin(null);
-                includedWord = "스킨명";
+                includedWord = "스킨";
             }
 
             BadRequestException thrown = assertThrows(BadRequestException.class, () -> {
                 service.config(boardConfig);
             });
+            System.out.println(field);
             System.out.println(thrown.getMessage());
 
             // 예외 메세지에 핵심 키워드가 포함되어 있는지 체크
