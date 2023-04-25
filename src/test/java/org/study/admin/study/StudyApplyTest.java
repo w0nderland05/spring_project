@@ -14,6 +14,7 @@ import org.study.commons.constants.Status;
 import org.study.commons.validators.BadRequestException;
 import org.study.controllers.admin.study.StudyConfig;
 import org.study.entities.Study;
+import org.study.models.study.DuplicationStudyCdException;
 import org.study.models.study.StudyApplyService;
 import org.study.models.study.StudyRegisterValidator;
 import org.study.repositories.StudyRepository;
@@ -162,43 +163,37 @@ public class StudyApplyTest {
             } else if (field.equals("category")) { //카테고리
                 studyConfig = createStudyConfig();
                 studyConfig.setCategory(null);
-                studyConfig.setStudyNm("studyNm");
                 includedWord = "카테고리";
 
             } else if (field.equals("numOfWeek")) { //주당스터디횟수
                 studyConfig = createStudyConfig();
                 studyConfig.setNumOfWeek(null);
-                studyConfig.setCategory("category");
+
                 includedWord = "주당횟수";
 
             } else if (field.equals("simpleIntro")) { //한줄소개글
                 studyConfig = createStudyConfig();
                 studyConfig.setSimpleIntro(null);
-                studyConfig.setNumOfWeek("numOfWeek");
                 includedWord = "한줄 소개글";
 
             } else if (field.equals("Introduction")) { //소개글
                 studyConfig = createStudyConfig();
                 studyConfig.setIntroduction(null);
-                studyConfig.setSimpleIntro("simpleIntro");
                 includedWord = "소개글";
 
             }else if (field.equals("maxMember")) { //최대인원수
                 studyConfig = createStudyConfig();
                 studyConfig.setMaxMember(null);
-                studyConfig.setIntroduction("Introduction");
                 includedWord = "신청최대인원수";
 
             } else if (field.equals("regionType")) { //지역타입
                 studyConfig = createStudyConfig();
                 studyConfig.setRegionType(null);
-                studyConfig.setMaxMember(Long.valueOf("30"));
                 includedWord = "지역타입";
 
             } else if (field.equals("studyCode")) { //스터디코드
                 studyConfig = createStudyConfig();
                 studyConfig.setStudyCode(null);
-                studyConfig.setRegionType(RegionType.OFFLINE);
                 includedWord = "스터디 코드";
 
             }
@@ -218,7 +213,10 @@ public class StudyApplyTest {
     @DisplayName("studyCode 중복 등록시 DuplicateCateCdException 발생 여부")
    void duplicationStudyCodeTest(){
         applyService.apply(studyConfig);
-       // assertTrue(Dupli);
+       assertThrows(DuplicationStudyCdException.class,()->{
+           applyService.apply(studyConfig);
+
+       });
     }
 
 
