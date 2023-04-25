@@ -1,8 +1,18 @@
 package org.study.admin.Cs;
 
+import org.aspectj.lang.annotation.Before;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.study.controllers.user.UserJoin;
+import org.study.entities.Report;
+import org.study.entities.User;
+import org.study.repositories.ReportRepository;
+import org.study.repositories.UserRepository;
+
+import java.util.List;
 
 /**
  * Cs는 가입된 회원을 전제로 신고합니다.
@@ -12,6 +22,24 @@ import org.springframework.boot.test.context.SpringBootTest;
 @SpringBootTest
 public class CsReportTest {
 
+    @Autowired
+    private UserRepository repository;
+
+    @BeforeEach
+    public void insertUser(){
+        User user = User.builder()
+                .userNm("홍다경")
+                .userEmail("test2@naver.com")
+                .userPw("aA!1234567")
+                .cellPhone("010-1234-5678")
+                .userNickNm("밤빵")
+                .birth("10/20")
+                .build();
+
+        repository.save(user);
+
+    }
+
     /**
      * 회원은 회원 이메일로 조회를 합니다.
      * UserRepository.isExists()를 통해 일치하는지 체크할 수 있습니다.
@@ -19,7 +47,8 @@ public class CsReportTest {
     @Test
     @DisplayName("신고한 회원이 가입된 회원인지 체크")
     void report_User_Email_isExists(){
-
+        List<User> list = repository.findAll();
+        System.out.println("list = " + list);
     }
 
     /**
