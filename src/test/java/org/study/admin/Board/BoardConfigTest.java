@@ -68,7 +68,7 @@ public class BoardConfigTest {
     }
 
     @Test
-    @DisplayName("BoardConfig- 필수입력값 Null값일때 예외메세지발생")
+    @DisplayName("BoardConfig- 전체 Null값일때 예외메세지발생")
     void boardConfig_Null_Exception(){
         BadRequestException thrown = assertThrows(BadRequestException.class,() -> {
            service.config(null);
@@ -86,8 +86,107 @@ public class BoardConfigTest {
     @Test
     @DisplayName("필수 입력 값 체크 -예외메세지발생")
     void boardConfig_Essential(){
+        // 발생 경우 수
+        // bId , boardNm, rowsPerPage, skin 에 대한 필수 입력 값 체크
+        // null, isBlank
 
+        /** 빈값 체크 S */
+        String[] fields = {"bId", "boardNm" /* "rowsPerPage" */, "skin"};
+        String bId = boardConfig.getBId();
+        String boardNm = boardConfig.getBoardNm();
+        String skin = boardConfig.getSkin();
+
+        for (String field : fields) {
+            String includedWord = null;
+
+            if (field.equals("bId")) {
+                boardConfig.setBId("   ");
+                boardConfig.setBoardNm(boardNm);
+                boardConfig.setSkin(skin);
+                includedWord = "게시판 아이디";
+
+            } else if (field.equals("boardNm")) {
+                boardConfig.setBId(bId);
+                boardConfig.setBoardNm("   ");
+                boardConfig.setSkin(skin);
+                includedWord = "게시판 이름";
+
+            } else if (field.equals("skin")) {
+                boardConfig.setBId(bId);
+                boardConfig.setBoardNm(boardNm);
+                boardConfig.setSkin("   ");
+                includedWord = "스킨";
+            }
+            BadRequestException thrown = assertThrows(BadRequestException.class, () -> {
+                service.config(boardConfig);
+            });
+            System.out.println(field);
+            System.out.println(thrown.getMessage());
+
+            // 예외 메세지에 핵심 키워드가 포함되어 있는지 체크
+            assertTrue(thrown.getMessage().contains(includedWord));
+
+            // 상태 코드 검증(HttpStatus.BAD_REQUEST)
+            assertEquals(HttpStatus.BAD_REQUEST, thrown.getStatus());
+
+        }
+        /** 빈값 체크 E */
+
+        /** NULL 체크 S */
+        String[] fields2 = {"bId", "boardNm", "rowsPerPage", "skin"};
+        Long rowsPerPage = boardConfig.getRowsPerPage();
+
+        for (String field : fields2) {
+            String includedWord = null;
+            if (field.equals("bId")) {
+                boardConfig.setBId(null);
+                boardConfig.setBoardNm(boardNm);
+                boardConfig.setRowsPerPage(rowsPerPage);
+                boardConfig.setSkin(skin);
+                includedWord = "게시판아이디";
+
+            } else if (field.equals("boardNm")) {
+                boardConfig.setBId(bId);
+                boardConfig.setBoardNm(null);
+                boardConfig.setRowsPerPage(rowsPerPage);
+                boardConfig.setSkin(skin);
+                includedWord = "게시판이름";
+
+            } else if (field.equals("rowsPerPage")) {
+                boardConfig.setBId(bId);
+                boardConfig.setBoardNm(boardNm);
+                boardConfig.setRowsPerPage(null);
+                boardConfig.setSkin(skin);
+                includedWord = "1페이지 당 게시글 수";
+
+            } else if (field.equals("skin")) {
+                boardConfig.setBId(bId);
+                boardConfig.setBoardNm(boardNm);
+                boardConfig.setRowsPerPage(rowsPerPage);
+                boardConfig.setSkin(null);
+                includedWord = "스킨명";
+            }
+
+            BadRequestException thrown = assertThrows(BadRequestException.class, () -> {
+                service.config(boardConfig);
+            });
+            System.out.println(thrown.getMessage());
+
+            // 예외 메세지에 핵심 키워드가 포함되어 있는지 체크
+            assertTrue(thrown.getMessage().contains(includedWord));
+            // 상태 코드 검증(HttpStatus.BAD_REQUEST)
+            assertEquals(HttpStatus.BAD_REQUEST, thrown.getStatus());
+        }
+        /** NULL 체크 E */
     }
+
+    //validator Test
+    /**
+     * 유효성 검사 추가 (오류메세지가 제대로 나오는지에 대한 체크는 통합테스트에서 진행)
+     * 1. 게시판 아이디가 중복되는지 체크
+     * 2. rowsPerPage : 최소 10개 부터 되는지 체크
+     * 3. category: '\n' 줄바꿈울 기준으로 인식 되는지 
+     */
 
 
 }
