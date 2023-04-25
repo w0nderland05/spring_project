@@ -6,9 +6,11 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.HttpStatus;
 import org.springframework.test.context.TestPropertySource;
+import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.transaction.annotation.Transactional;
 import org.study.commons.constants.board.AfterWriteTarget;
 import org.study.commons.constants.board.SkinType;
@@ -28,11 +30,14 @@ import static org.junit.jupiter.api.Assertions.*;
  */
 @SpringBootTest
 @Transactional
+@AutoConfigureMockMvc
 @TestPropertySource(locations="classpath:application-test.properties")
 public class BoardConfigTest {
 
-    private BoardConfig boardConfig;
+    @Autowired
+    private MockMvc mockMvc;
 
+    private BoardConfig boardConfig;
 
     @Autowired
     private BoardRepository repository;
@@ -42,6 +47,7 @@ public class BoardConfigTest {
 
     @BeforeEach
     void config() {
+        // 테스트 양식 데이터 추가
         boardConfig = BoardConfig.builder()
                 .bId("create1")
                 .boardNm("게시판1")
@@ -189,5 +195,17 @@ public class BoardConfigTest {
      * 3. category: '\n' 줄바꿈울 기준으로 인식 되는지 
      */
 
+    /** 1. 게시판 아이디가 중복되는지 체크 */
+    @Test
+    @DisplayName("bId 중복 등록 시 DuplicateCateBIdException 발생 여부")
+    void DuplicateCateBIdTest() {
+        // 테스트 전 분류 등록
+        service.config(boardConfig);
+
+        assertThrows(DuplicateCateBIdException.class, () -> {
+           // 중복 분류로 등록
+           service.config(boardConfig);
+        });
+    }
 
 }
