@@ -14,6 +14,7 @@ import org.study.commons.constants.Status;
 import org.study.commons.validators.BadRequestException;
 import org.study.controllers.admin.study.StudyConfig;
 import org.study.entities.Study;
+import org.study.models.study.DuplicationStudyCdException;
 import org.study.models.study.StudyApplyService;
 import org.study.models.study.StudyRegisterValidator;
 import org.study.repositories.StudyRepository;
@@ -47,7 +48,35 @@ public class StudyApplyTest {
     // junit5의 단언(assert)와 mockito를 주로 사용하게 됩니다.
 
     @BeforeEach
-    public void apply() {
+   void apply() {
+        studyConfig = createStudyConfig();
+    }
+
+    @Test
+    @DisplayName("스터디 개설 신청이 완료되면 예외가 발생하지 않음(최종 목적)")
+   void applySuccess() {
+        assertDoesNotThrow(() -> {
+            applyService.apply(studyConfig);
+        });
+    }
+
+
+    @Test
+    @DisplayName("study Null값이면 예외메세지 발생 - BadRequestException")
+   void study_Null_Exception() {
+        BadRequestException thrown = assertThrows(BadRequestException.class, () -> {
+            applyService.apply(null);
+        });
+        //"잘못된 접근입니다."문구 포함여부 체크
+        assertTrue(thrown.getMessage().contains("잘못된 접근"));
+
+        //HttpStatus가 400-BadRequest로 설정되어 있는지 체크
+        assertEquals(HttpStatus.BAD_REQUEST, thrown.getStatus());
+
+    }
+
+
+    private StudyConfig createStudyConfig() { //
         studyConfig = new StudyConfig();
         studyConfig.setMode("create");
         studyConfig.setStudyCode(Long.valueOf("5245625"));
@@ -64,58 +93,12 @@ public class StudyApplyTest {
         studyConfig.setSimpleIntro("백엔드개발 스터디 입니다.");
         studyConfig.setIntroduction("즐겁게 공부해봅시다.");
 
-    }
-
-    @Test
-    @DisplayName("스터디 개설 신청이 완료되면 예외가 발생하지 않음(최종 목적)")
-    public void applySuccess() {
-        assertDoesNotThrow(() -> {
-            applyService.apply(studyConfig);
-        });
-    }
-
-
-    @Test
-    @DisplayName("study Null값이면 예외메세지 발생 - BadRequestException")
-    public void study_Null_Exception() {
-        BadRequestException thrown = assertThrows(BadRequestException.class, () -> {
-            applyService.apply(null);
-        });
-        //"잘못된 접근입니다."문구 포함여부 체크
-        assertTrue(thrown.getMessage().contains("잘못된 접근"));
-
-        //HttpStatus가 400-BadRequest로 설정되어 있는지 체크
-        assertEquals(HttpStatus.BAD_REQUEST, thrown.getStatus());
-
-    }
-
-
-    private StudyConfig createStudyConfig() {
-        String studyNm = studyConfig.getStudyNm();
-        String category = studyConfig.getCategory();
-        String numOfWeek = studyConfig.getNumOfWeek();
-        String simpleIntro = studyConfig.getSimpleIntro();
-        String Introduction = studyConfig.getIntroduction();
-        Long maxMember = studyConfig.getMaxMember();
-        RegionType regionType = studyConfig.getRegionType();
-        Long studyCode = studyConfig.getStudyCode();
-
-
-        studyConfig.setStudyNm(studyNm);
-        studyConfig.setCategory(category);
-        studyConfig.setNumOfWeek(numOfWeek);
-        studyConfig.setSimpleIntro(simpleIntro);
-        studyConfig.setIntroduction(Introduction);
-        studyConfig.setMaxMember(maxMember);
-        studyConfig.setRegionType(regionType);
-        studyConfig.setStudyCode(studyCode);
-
         return studyConfig;
     }
 
     @Test
     @DisplayName("스터디 신청 필수 입력값 체크 - 예외메세지 발생")
-    public void applyValidationTest() {
+   void applyValidationTest() {
         /**
          * 필수항목
          * 스터디명,카테고리,스터디주당횟수, 한줄소개글,소개글 ,신청최대인원수, 스터디 지역타입, 스터디 코드
@@ -126,6 +109,7 @@ public class StudyApplyTest {
         /** 빈값 체크 S*/
         for (String field : fields) {
             String includedWord = null;
+
             if (field.equals("studyNm")) { //스터디명
                 studyConfig = createStudyConfig();
                 studyConfig.setStudyNm(" ");
@@ -134,30 +118,27 @@ public class StudyApplyTest {
             } else if (field.equals("category")) { //카테고리
                 studyConfig = createStudyConfig();
                 studyConfig.setCategory(" ");
-                studyConfig.setStudyNm("sutdyNm");
                 includedWord = "카테고리";
 
             } else if (field.equals("numOfWeek")) { //주당스터디횟수
                 studyConfig = createStudyConfig();
                 studyConfig.setNumOfWeek(" ");
-                studyConfig.setCategory("category");
                 includedWord = "주당횟수";
 
             } else if (field.equals("simpleIntro")) { //한줄소개글
                 studyConfig = createStudyConfig();
                 studyConfig.setSimpleIntro(" ");
-                studyConfig.setNumOfWeek("numOfWeek ");
                 includedWord = "한줄 소개글";
 
             } else if (field.equals("Introduction")) { //소개글
                 studyConfig = createStudyConfig();
                 studyConfig.setIntroduction(" ");
-                studyConfig.setSimpleIntro("simpleIntro");
                 includedWord = "소개글";
             }
             BadRequestException thrown = assertThrows(BadRequestException.class, () -> {
                 applyService.apply(studyConfig);
             });
+            System.out.println(field);
             System.out.println(thrown.getMessage());
 
             // 예외 메세지에 핵심 키워드가 포함되어 있는지 체크
@@ -182,43 +163,37 @@ public class StudyApplyTest {
             } else if (field.equals("category")) { //카테고리
                 studyConfig = createStudyConfig();
                 studyConfig.setCategory(null);
-                studyConfig.setStudyNm("studyNm");
                 includedWord = "카테고리";
 
             } else if (field.equals("numOfWeek")) { //주당스터디횟수
                 studyConfig = createStudyConfig();
                 studyConfig.setNumOfWeek(null);
-                studyConfig.setCategory("category");
+
                 includedWord = "주당횟수";
 
             } else if (field.equals("simpleIntro")) { //한줄소개글
                 studyConfig = createStudyConfig();
                 studyConfig.setSimpleIntro(null);
-                studyConfig.setNumOfWeek("numOfWeek");
                 includedWord = "한줄 소개글";
 
             } else if (field.equals("Introduction")) { //소개글
                 studyConfig = createStudyConfig();
                 studyConfig.setIntroduction(null);
-                studyConfig.setSimpleIntro("simpleIntro");
                 includedWord = "소개글";
 
             }else if (field.equals("maxMember")) { //최대인원수
                 studyConfig = createStudyConfig();
                 studyConfig.setMaxMember(null);
-                studyConfig.setIntroduction("Introduction");
                 includedWord = "신청최대인원수";
 
             } else if (field.equals("regionType")) { //지역타입
                 studyConfig = createStudyConfig();
                 studyConfig.setRegionType(null);
-                studyConfig.setMaxMember(Long.valueOf("30"));
                 includedWord = "지역타입";
 
             } else if (field.equals("studyCode")) { //스터디코드
                 studyConfig = createStudyConfig();
                 studyConfig.setStudyCode(null);
-                studyConfig.setRegionType(RegionType.OFFLINE);
                 includedWord = "스터디 코드";
 
             }
@@ -233,6 +208,15 @@ public class StudyApplyTest {
 
         }
         /**Null 체크 E*/
+    }
+    @Test
+    @DisplayName("studyCode 중복 등록시 DuplicateCateCdException 발생 여부")
+   void duplicationStudyCodeTest(){
+        applyService.apply(studyConfig);
+       assertThrows(DuplicationStudyCdException.class,()->{
+           applyService.apply(studyConfig);
+
+       });
     }
 
 
