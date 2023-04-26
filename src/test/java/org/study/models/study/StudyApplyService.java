@@ -24,11 +24,15 @@ public class StudyApplyService {
     }
 
     public void apply(StudyConfig config, Errors errors) {
+        if(errors !=null && errors.hasErrors()){
+            return;
+        }
         validator.check(config,errors);
 
        Long studyCd = config.getStudyCode();
        Study study = null;
        if(repository.exists(studyCd)){
+
            study= repository.findById(studyCd).orElseGet(() ->StudyConfig.of(config));
            study.setStudyCode(studyCd);
            study.setStudyNm(config.getStudyNm());
