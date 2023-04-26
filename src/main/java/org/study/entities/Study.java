@@ -19,7 +19,6 @@ import java.util.List;
 public class Study{
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long studyCode; //스터디코드
 
     @Column(nullable = false, length = 150)

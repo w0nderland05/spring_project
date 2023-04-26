@@ -11,7 +11,7 @@ public class DuplicationStudyCdException extends CommonException {
 
     static {
         ResourceBundle rs = ResourceBundle.getBundle("messages.validation");
-        message = rs.getString("Duplicate.studyConfig.cateCd");
+        message = rs.getString("Duplicate.studyConfig.studyCd");
     }
     public DuplicationStudyCdException() {
         super(message, HttpStatus.BAD_REQUEST);
