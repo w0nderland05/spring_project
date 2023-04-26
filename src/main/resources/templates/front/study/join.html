@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{front/layouts/main}">
+<section layout:fragment="content">
+    <aside th:replace="~{front/study/_side::study_menus}"></aside>
+    <div class="search">
+          <span class="search-text">
+              <select name="sub_region">
+                <option value="stRegion">--시/도--</option>
+                <option vlaue="a">a</option>
+              </select>
+            <select name="sub_region">
+                <option value="stRegion">--군/구--</option>
+                <option vlaue="a">a</option>
+            </select>
+              <input type="text" spellcheck="false" placeholder="스터디명 검색" enterkeyhint="search">
+            <button class="btn1">검색</button>
+          </span>
+    </div>
+
+</section>
+</html>
