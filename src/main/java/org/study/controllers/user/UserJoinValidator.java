@@ -5,8 +5,10 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
+import org.study.commons.validators.BadRequestException;
 import org.study.commons.validators.CellPhoneValidator;
 import org.study.commons.validators.PasswordValidator;
+import org.study.commons.validators.RequiredCheckValidator;
 import org.study.repositories.UserRepository;
 
 /**
@@ -15,7 +17,7 @@ import org.study.repositories.UserRepository;
  */
 @Component
 @RequiredArgsConstructor
-public class UserJoinValidator implements Validator, CellPhoneValidator, PasswordValidator {
+public class UserJoinValidator implements Validator, CellPhoneValidator, PasswordValidator, RequiredCheckValidator {
 
     @NonNull
     private UserRepository repository;
@@ -30,11 +32,23 @@ public class UserJoinValidator implements Validator, CellPhoneValidator, Passwor
 
         UserJoin userJoin = (UserJoin)target;
 
+        nullCheck(userJoin,new BadRequestException("잘못된 접근입니다."));
+
         String userEmail = userJoin.getUserEmail();
         String userPw = userJoin.getUserPw();
         String userPwCk = userJoin.getUserPwCk();
+        String userNickNm= userJoin.getUserNickNm();
+        String userNm= userJoin.getUserNm();
+
         String cellPhone = userJoin.getCellphone();
         String birth = userJoin.getBirth();
+
+        /** Null 값 && 빈 값(isBlank) 체크 */
+        requiredCheck(userEmail,new BadRequestException("이메일을 입력하세요."));
+        requiredCheck(userPw,new BadRequestException("비밀번호를 입력하세요"));
+        requiredCheck(userPwCk,new BadRequestException("비밀번호를 확인하세요"));
+        requiredCheck(userNm,new BadRequestException("회원명을 입력하세요"));
+        requiredCheck(userNickNm,new BadRequestException("닉네임을 설정하세요,"));
 
         /** 1. 이메일 중복 여부 S */
         if (userEmail != null && !userEmail.isBlank() && repository.isUserExists(userEmail)) {

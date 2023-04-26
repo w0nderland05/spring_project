@@ -23,6 +23,7 @@ public class StudyApplyService {
         apply(config, null);
     }
 
+
     public void apply(StudyConfig config, Errors errors) {
         if(errors !=null && errors.hasErrors()){
             return;
