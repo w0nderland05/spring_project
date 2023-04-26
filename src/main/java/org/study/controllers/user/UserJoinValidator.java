@@ -37,7 +37,6 @@ public class UserJoinValidator implements Validator, CellPhoneValidator, Passwor
         String userEmail = userJoin.getUserEmail();
         String userPw = userJoin.getUserPw();
         String userPwCk = userJoin.getUserPwCk();
-
         String userNickNm= userJoin.getUserNickNm();
         String userNm= userJoin.getUserNm();
 

@@ -88,6 +88,8 @@ public class UserJoinTest {
      * 필수 입력 값 : userEmail, userPw, userPwCk, userNickNm, userNm
      *
      * Blank or Null 값 입력시 오류 메세지 포함 확인
+     *
+     * 나머지 validator에 관한 오류 확인은 통합테스트를 통해 확인 할 예정
      */
 
     @Test
@@ -207,6 +209,8 @@ public class UserJoinTest {
             i++;
         }
     }
+
+    /** 필수항목 체크 - E */
 
 
 }
