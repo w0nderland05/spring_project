@@ -241,6 +241,11 @@ public class StudyApplyTest {
         /** 단위 테스트 E */
 
         /** 통합테스트 S */
+        @Test
+        @DisplayName("등록성공시 /admin/study/approvals 신청내역 등록  ")
+       void registerSuccessInflowAdmin(){
+
+        }
 
 
 
