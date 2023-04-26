@@ -79,7 +79,7 @@ public class UserJoinTest {
 
     }
     @Test
-    @DisplayName("필수항목 체크 - @NotBlank 값의 오류메세지 제대로 나오는지 ")
+    @DisplayName("필수항목 체크 - @NotBlank 값의 오류메세지 발생/확인 ")
     void join_User_Null_BadRequest() {
 
 
