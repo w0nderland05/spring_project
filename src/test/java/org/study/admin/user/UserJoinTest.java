@@ -139,30 +139,6 @@ public class UserJoinTest {
     }
 
     @Test
-    @DisplayName("필수항목 체크 - userNickNm")
-    void join_User_Null_BadRequest3() {
-
-        String UserNickNm = userJoin.getUserNickNm();
-        for(int i=0;i<2;i++){
-            if(i==0){
-                userJoin.setUserNickNm(" ");
-            }else {
-                userJoin.setUserNickNm(null);
-            }
-
-            BadRequestException thrown = assertThrows(BadRequestException.class,()->{
-
-                joinService.join(userJoin);
-            });
-
-            assertTrue(thrown.getMessage().contains("닉네임"));
-
-            userJoin.setUserpwCk(UserPwCk);
-            i++;
-        }
-    }
-
-    @Test
     @DisplayName("필수항목 체크 - userPwCk")
     void join_User_Null_BadRequest2() {
 
@@ -181,6 +157,29 @@ public class UserJoinTest {
 
             assertTrue(thrown.getMessage().contains("비밀번호를 확인"));
             userJoin.setUserPwCk(UserPwCk);
+            i++;
+        }
+    }
+    @Test
+    @DisplayName("필수항목 체크 - userNickNm")
+    void join_User_Null_BadRequest3() {
+
+        String UserNickNm = userJoin.getUserNickNm();
+        for(int i=0;i<2;i++){
+            if(i==0){
+                userJoin.setUserNickNm(" ");
+            }else {
+                userJoin.setUserNickNm(null);
+            }
+
+            BadRequestException thrown = assertThrows(BadRequestException.class,()->{
+
+                joinService.join(userJoin);
+            });
+
+            assertTrue(thrown.getMessage().contains("닉네임"));
+
+            userJoin.setUserNickNm(UserNickNm);
             i++;
         }
     }
