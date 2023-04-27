@@ -1,14 +1,8 @@
 package org.study.admin.user;
 
-import jakarta.validation.ConstraintViolation;
-import jakarta.validation.Validation;
-import jakarta.validation.Validator;
-import jakarta.validation.ValidatorFactory;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.mockito.ArgumentCaptor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -20,18 +14,14 @@ import org.springframework.validation.Errors;
 import org.study.commons.constants.Gender;
 import org.study.commons.messageBundle.MessageBundle;
 import org.study.commons.validators.BadRequestException;
-import org.study.controllers.user.UserJoin;
-import org.study.controllers.user.UserJoinValidator;
+import org.study.controllers.user.user.UserJoin;
+import org.study.controllers.user.user.UserJoinValidator;
 import org.study.models.user.UserJoinService;
 import org.study.repositories.UserRepository;
-import org.study.admin.user.*;
-
-import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.eq;
-import static org.mockito.BDDMockito.then;
 import static org.mockito.Mockito.mock;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;

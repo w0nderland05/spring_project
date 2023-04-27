@@ -1,15 +1,11 @@
 package org.study.admin.Cs;
 
-import org.aspectj.lang.annotation.Before;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.study.controllers.user.UserJoin;
-import org.study.entities.Report;
 import org.study.entities.User;
-import org.study.repositories.ReportRepository;
 import org.study.repositories.UserRepository;
 
 import java.util.List;

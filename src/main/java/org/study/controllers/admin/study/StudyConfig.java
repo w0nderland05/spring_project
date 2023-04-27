@@ -1,6 +1,7 @@
 package org.study.controllers.admin.study;
 
 import jakarta.persistence.Column;
+import jakarta.persistence.Lob;
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -59,6 +60,7 @@ public class StudyConfig {
     private String simpleIntro; //한줄 소개글
 
     @NotBlank
+    @Lob
     private String Introduction; //소개글
 
     public static Study of (StudyConfig studyConfig) {

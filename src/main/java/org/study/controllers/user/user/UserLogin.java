@@ -1,4 +1,4 @@
-package org.study.controllers.user;
+package org.study.controllers.user.user;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;

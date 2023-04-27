@@ -8,7 +8,7 @@ import org.study.entities.Report;
 import org.study.repositories.ReportRepository;
 
 @Service
-public class CsRegister {
+public class CsSaveService {
 
     @Autowired
     private ReportRepository repository;

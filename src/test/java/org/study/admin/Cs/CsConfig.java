@@ -11,6 +11,7 @@ import org.study.controllers.admin.board.BoardConfig;
 import org.study.entities.Report;
 import org.study.entities.board.Board;
 
+// 테스트 완료후 이동할 파일 경로는 controllers/user/cs 입니다!
 @Data
 @Builder @AllArgsConstructor @NoArgsConstructor
 public class CsConfig {
