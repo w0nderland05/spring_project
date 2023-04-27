@@ -5,6 +5,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.TestPropertySource;
@@ -25,15 +26,18 @@ import static org.junit.jupiter.api.Assertions.*;
  */
 
 @SpringBootTest
-@WebAppConfiguration
+@AutoConfigureMockMvc
 @Transactional
 @TestPropertySource(locations = "classpath:application-test.properties")
 public class CsListTest {
-    @MockBean
+
     private CsConfig csConfig;
+    private CsConfig csConfig2;
 
     @Autowired
     private ReportListService listService;
+    @Autowired
+    private ReportRepository repository;
 
     @BeforeEach
     public void report() {
@@ -41,9 +45,15 @@ public class CsListTest {
         csConfig.setDivision("board");
         csConfig.setCode(Long.valueOf("58670212"));
         csConfig.setDetail("빵꾸똥꾸라고 욕했어요.");
-        csConfig.setStatus(ReportStatus.READY);
+        csConfig.setStatus(ReportStatus.CLEAR);
         csConfig.setProcess("욕설로 5회 신고 확인되어 탈퇴처리되었습니다.");
 
+        csConfig2 = new CsConfig();
+        csConfig2.setDivision("study");
+        csConfig2.setCode(Long.valueOf("12345678"));
+        csConfig2.setDetail("스터디 목적이 부적절해요");
+        csConfig2.setStatus(ReportStatus.CLEAR);
+        csConfig2.setProcess("해당 스터디를 삭제조치하였습니다.");
     }
 
     /**
@@ -55,11 +65,12 @@ public class CsListTest {
     @Test
     @DisplayName("신고목록 조회가능한지 체크-ReportNotFoundException 예외 발생")
     void report_gets(){
-        List<CsConfig> list = listService.gets();
-        System.out.println(list);
-//        ReportNotFoundException thrown = assertThrows(ReportNotFoundException.class, () -> {
-//            listService.reportList(csConfig);
+
+//        assertThrows(ReportNotFoundException.class, () -> {
+//            listService.gets();
 //        });
+//        listService.gets();
+        System.out.println(listService.gets());
     }
 
     /**

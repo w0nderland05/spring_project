@@ -5,7 +5,11 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.modelmapper.ModelMapper;
 import org.study.commons.constants.ReportStatus;
+import org.study.controllers.admin.board.BoardConfig;
+import org.study.entities.Report;
+import org.study.entities.board.Board;
 
 @Data
 @Builder @AllArgsConstructor @NoArgsConstructor
@@ -27,7 +31,9 @@ public class CsConfig {
     @NotBlank(message = "신고 처리 내용을 입력해주세요")
     private String process;
 
-
+    public static Report of (CsConfig csConfig) {
+        return new ModelMapper().map(csConfig, Report.class);
+    }
 
 
 }
