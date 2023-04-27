@@ -264,27 +264,76 @@ public class UserJoinTest {
     @Test
     @DisplayName("유효성 검사 - 비밀번호 암호화 - 오류메세지 반환 확인")
     void errorMessageResponseTest() throws Exception {
-        userJoin.setUserPw("aaabb");
-        userJoin.setUserPwCk("aaabb");
 
-        String body = mockMvc.perform(post("/user/join")
-                .param("userEmail",userJoin.getUserEmail())
-                .param("userPw",userJoin.getUserPw())
-                .param("userPwCk",userJoin.getUserPwCk())
-                .param("userNickNm",userJoin.getUserNickNm())
-                .param("userNm",userJoin.getUserNm())
-                .param("gender",String.valueOf(userJoin.getGender()))
-                .param("termsAgree", String.valueOf(userJoin.isTermsAgree()))
-                .with(csrf()))
-                .andReturn().getResponse().getContentAsString();
+        String[] userPw = {"aaabb","82gus%","82gus&","82gust","82everywin","82gus!"};
 
-        //String message= MessageBundle.getMessage("user.validation.checkPassword");
-       //String message = MessageBundle.getMessage("user.validation.special_character");
-       String message = MessageBundle.getMessage("user.validation.repeat_character");
-        assertTrue(body.contains(message));
+        for(String Pw:userPw) {
+            String msg = null;
 
+            if (Pw.equals("aaabb")) { // 3번 이상 문자 연속 사용
+                userJoin.setUserPw(Pw);
+                userJoin.setUserPwCk(Pw);
+                msg = "user.validation.repeat_character";
+            } else if (Pw.equals("82gus%")) { // 정해진 특수문자 x -%
+                userJoin.setUserPw(Pw);
+                userJoin.setUserPwCk(Pw);
+                msg = "user.validation.special_character";
+            } else if (Pw.equals("82gus&")) { // 정해진 특수문자 x -&
+                userJoin.setUserPw(Pw);
+                userJoin.setUserPwCk(Pw);
+                msg = "user.validation.special_character";
+            } else if (Pw.equals("82gust")) { // 8 자리 이상x , 특수문자 x
+                userJoin.setUserPw(Pw);
+                userJoin.setUserPwCk(Pw);
+                msg = "user.validation.checkPassword";
+            } else if (Pw.equals("82everywin")) { // 8자리 이상 0, 특수문자 사용x
+                userJoin.setUserPw(Pw);
+                userJoin.setUserPwCk(Pw);
+                msg = "user.validation.checkPassword";
+            } else if (Pw.equals("82gus!")) { //8자리 이상x, 특수문자 0
+                userJoin.setUserPw(Pw);
+                userJoin.setUserPwCk(Pw);
+                msg = "user.validation.checkPassword";
+            }
+
+            String body = mockMvc.perform(post("/user/join")
+                            .param("userEmail", userJoin.getUserEmail())
+                            .param("userPw", userJoin.getUserPw())
+                            .param("userPwCk", userJoin.getUserPwCk())
+                            .param("userNickNm", userJoin.getUserNickNm())
+                            .param("userNm", userJoin.getUserNm())
+                            .param("gender", String.valueOf(userJoin.getGender()))
+                            .param("termsAgree", String.valueOf(userJoin.isTermsAgree()))
+                            .with(csrf()))
+                    .andReturn().getResponse().getContentAsString();
+
+
+            String message = MessageBundle.getMessage(msg);
+            assertTrue(body.contains(message));
+        }
 
     }
 
+    @Test
+    @DisplayName("비밀번호 확인 체크 - 일치하지 않을 시 오류메세지 반환")
+    void passwordCkResponseTest() throws Exception {
+        userJoin.setUserPw("82everywin!");
+        userJoin.setUserPwCk("82gustmd!");
 
+        String body = mockMvc.perform(post("/user/join")
+                        .param("userEmail", userJoin.getUserEmail())
+                        .param("userPw", userJoin.getUserPw())
+                        .param("userPwCk", userJoin.getUserPwCk())
+                        .param("userNickNm", userJoin.getUserNickNm())
+                        .param("userNm", userJoin.getUserNm())
+                        .param("gender", String.valueOf(userJoin.getGender()))
+                        .param("termsAgree", String.valueOf(userJoin.isTermsAgree()))
+                        .with(csrf()))
+                .andReturn().getResponse().getContentAsString();
+
+        String message = MessageBundle.getMessage("user.validation.passwordIncorrect");
+        assertTrue(body.contains(message));
+    }
+
+    
 }
