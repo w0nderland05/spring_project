@@ -45,15 +45,17 @@ public class CsListTest {
         csConfig.setDivision("board");
         csConfig.setCode(Long.valueOf("58670212"));
         csConfig.setDetail("빵꾸똥꾸라고 욕했어요.");
-        csConfig.setStatus(ReportStatus.CLEAR);
+        csConfig.setStatus(ReportStatus.CLEAR.toString());
         csConfig.setProcess("욕설로 5회 신고 확인되어 탈퇴처리되었습니다.");
 
         csConfig2 = new CsConfig();
         csConfig2.setDivision("study");
         csConfig2.setCode(Long.valueOf("12345678"));
         csConfig2.setDetail("스터디 목적이 부적절해요");
-        csConfig2.setStatus(ReportStatus.CLEAR);
+        csConfig2.setStatus(ReportStatus.CLEAR.toString());
         csConfig2.setProcess("해당 스터디를 삭제조치하였습니다.");
+
+
     }
 
     /**
@@ -65,7 +67,7 @@ public class CsListTest {
     @Test
     @DisplayName("신고목록 조회가능한지 체크-ReportNotFoundException 예외 발생")
     void report_gets(){
-
+        repository.findAll();
 //        assertThrows(ReportNotFoundException.class, () -> {
 //            listService.gets();
 //        });

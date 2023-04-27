@@ -3,6 +3,7 @@ package org.study.admin.Cs;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.Errors;
+import org.study.commons.constants.ReportStatus;
 import org.study.entities.Report;
 import org.study.repositories.ReportRepository;
 
@@ -32,7 +33,7 @@ public class CsRegister {
             report.setDivision(config.getDivision());
             report.setCode(code);
             report.setDetail(config.getDetail());
-            report.setStatus(config.getStatus());
+            report.setStatus(ReportStatus.valueOf(config.getStatus()));
             report.setProcess(config.getProcess());
             /** 기본 설정이 맞는지? */
         }

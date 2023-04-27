@@ -5,6 +5,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.Errors;
+import org.study.commons.constants.ReportStatus;
 import org.study.commons.validators.ReportNotFoundException;
 import org.study.controllers.admin.board.BoardConfig;
 import org.study.entities.Report;
@@ -48,7 +49,7 @@ public class ReportListService {
                 .division(report.getDivision())
                 .code(report.getCode())
                 .detail(report.getDetail())
-                .status(report.getStatus())
+                .status(report.getStatus().toString())
                 .process(report.getProcess())
                 .build();
 
@@ -61,7 +62,7 @@ public class ReportListService {
                 .division(report.getDivision())
                 .code(report.getCode())
                 .detail(report.getDetail())
-                .status(report.getStatus())
+                .status(report.getStatus().toString())
                 .process(report.getProcess())
                 .build();
 
