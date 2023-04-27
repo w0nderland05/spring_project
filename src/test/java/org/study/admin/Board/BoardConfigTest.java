@@ -1,5 +1,6 @@
 package org.study.admin.Board;
 
+import jakarta.validation.constraints.AssertFalse;
 import jakarta.validation.constraints.AssertTrue;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -10,6 +11,7 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.HttpStatus;
 import org.springframework.test.context.TestPropertySource;
+import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.transaction.annotation.Transactional;
 import org.study.commons.constants.board.AfterWriteTarget;
@@ -17,7 +19,11 @@ import org.study.commons.constants.board.SkinType;
 import org.study.commons.constants.board.ViewType;
 import org.study.commons.validators.BadRequestException;
 import org.study.controllers.admin.board.BoardConfig;
+import org.study.entities.board.Board;
 import org.study.repositories.board.BoardRepository;
+
+import java.util.Scanner;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -30,12 +36,12 @@ import static org.junit.jupiter.api.Assertions.*;
  */
 @SpringBootTest
 @Transactional
-@AutoConfigureMockMvc
+//@AutoConfigureMockMvc
 @TestPropertySource(locations="classpath:application-test.properties")
 public class BoardConfigTest {
 
-    @Autowired
-    private MockMvc mockMvc;
+//    @Autowired
+//    private MockMvc mockMvc;
 
     private BoardConfig boardConfig;
 
@@ -49,7 +55,7 @@ public class BoardConfigTest {
     void config() {
         // 테스트 양식 데이터 추가
         boardConfig = BoardConfig.builder()
-                .bId("create1")
+                .bId("QnA")
                 .boardNm("게시판1")
                 .isUse(true)
                 .rowsPerPage(10L)
@@ -88,7 +94,6 @@ public class BoardConfigTest {
     }
 
     /** 유효성 검사 S */
-
     @Test
     @DisplayName("필수 입력 값 체크 -예외메세지발생")
     void boardConfig_Essential(){
@@ -208,4 +213,33 @@ public class BoardConfigTest {
         });
     }
 
+    /** 2. rowsPerPage : 최소 10부터 되는지 체크 */
+    @Test
+    @DisplayName("rowsPerPage : 최소 10부터 되는지 체크")
+    void rowsPerPageMinTest() {
+        assertThrows(BadRequestException.class, () -> {
+            boardConfig.setRowsPerPage(9L);
+            service.config(boardConfig);
+        });
+        System.out.println(boardConfig);
+    }
+
+    /** 3. category: '\n' 줄바꿈울 기준으로 인식 되는지 */
+    @Test
+    @DisplayName("category: '\n' 줄바꿈울 기준으로 인식 되는지")
+    void categoryEnterTest() {
+        // textarea, split
+        boardConfig.setCategory("분류1\n분류2\n분류3\n");
+        service.config(boardConfig);
+        System.out.println(boardConfig);
+    }
+
+    /** mode가 update면 수정인지 체크 */
+    @Test
+    @DisplayName("mode가 update면 수정인지 체크")
+    void modeUpdateTest() {
+        boardConfig.setMode("update");
+        service.config(boardConfig);
+        System.out.println(boardConfig);
+    }
 }

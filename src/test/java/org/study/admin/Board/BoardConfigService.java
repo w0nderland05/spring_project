@@ -12,6 +12,7 @@ import org.study.entities.board.Board;
 import org.study.repositories.board.BoardRepository;
 
 import java.util.List;
+import java.util.Scanner;
 import java.util.stream.Collectors;
 
 @Service
@@ -38,21 +39,65 @@ public class BoardConfigService {
          * 없다면 새로운 엔티티로 변환 BoardConfig.of(config);(생성)
          *
          */
-        String bId = config.getBId();
-        Board board = null;
+//        String bId = config.getBId();
+//        Board board = null;
+//        if(bId != null && repository.exists(bId)) { // 이미 등록된 게시판 ID가 있다면
+//            board = repository.findById(bId).orElseGet(() -> BoardConfig.of(config));
+//            board.setBId(bId);
+//            board.setBoardNm(config.getBoardNm());
+//            board.setRowsPerPage(config.getRowsPerPage());
+//            board.setSkin(SkinType.DEFAULT);
+//            /** 기본 값으로 설정이 맞는지?? */
+//        }
+//
+//        if(board == null) { // 게시판 ID가 없다면 boardConfig -> Board 엔티티로 변환
+//            board = BoardConfig.of(config);
+//        }
+
+        Board entity = null;
+        String bId = config.getBId(); // 게시판 아이디
+        String mode = config.getMode();
+        if(mode != null && mode.equals("update")) { // mode 값이 수정이면 수정
+            entity = repository.findById(bId).orElseGet(() -> Board.builder().bId(bId).build());
+        } else { // 모드가 수정이 아니면 새로 추가
+            entity = new Board();
+            entity.setBId(bId);
+        }
+
         if(bId != null && repository.exists(bId)) { // 이미 등록된 게시판 ID가 있다면
-            board = repository.findById(bId).orElseGet(() -> BoardConfig.of(config));
-            board.setBId(bId);
-            board.setBoardNm(config.getBoardNm());
-            board.setRowsPerPage(config.getRowsPerPage());
-            board.setSkin(SkinType.DEFAULT);
+            entity = repository.findById(bId).orElseGet(() -> BoardConfig.of(config));
+            entity.setBId(bId);
+            entity.setBoardNm(config.getBoardNm());
+            entity.setRowsPerPage(config.getRowsPerPage());
+            entity.setSkin(SkinType.DEFAULT);
             /** 기본 값으로 설정이 맞는지?? */
         }
 
-        if(board == null) { // 게시판 ID가 없다면 boardConfig -> Board 엔티티로 변환
-            board = BoardConfig.of(config);
+        if(entity == null) { // 게시판 ID가 없다면 boardConfig -> Board 엔티티로 변환
+            entity = BoardConfig.of(config);
         }
 
-        repository.saveAndFlush(board);
+        entity.setBoardNm(config.getBoardNm());
+        entity.setUse(config.isUse());
+        entity.setRowsPerPage(config.getRowsPerPage());
+        entity.setUseViewList(config.isUseViewList());
+        entity.setCategory(config.getCategory());
+        entity.setViewType(ViewType.valueOf(config.getViewType()));
+        entity.setUseEditor(config.isUseEditor());
+        /** 파일, 이미지는 추후 등록 */
+        entity.setAfterWriteTarget(AfterWriteTarget.valueOf(config.getAfterWriteTarget()));
+        entity.setUseComment(config.isUseComment());
+        entity.setSkin(SkinType.valueOf(config.getSkin()));
+        entity.setReview(config.isReview());
+
+        /** category: '\n' 줄바꿈울 기준으로 인식 */
+        String getCate = config.getCategory();
+        String[] categoryArr = getCate.split("\n");
+
+        for (String category : categoryArr) {
+            entity.setCategory(category);
+        }
+
+        repository.saveAndFlush(entity);
     }
 }

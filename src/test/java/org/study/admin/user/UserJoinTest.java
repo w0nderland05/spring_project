@@ -10,11 +10,15 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.HttpStatus;
 import org.springframework.test.context.TestPropertySource;
+import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.Errors;
 import org.study.commons.constants.Gender;
+import org.study.commons.messageBundle.MessageBundle;
 import org.study.commons.validators.BadRequestException;
 import org.study.controllers.user.UserJoin;
 import org.study.controllers.user.UserJoinValidator;
@@ -29,11 +33,19 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.BDDMockito.then;
 import static org.mockito.Mockito.mock;
+import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.redirectedUrl;
+
 
 @SpringBootTest
 @TestPropertySource(locations="classpath:application-test.properties")
+@AutoConfigureMockMvc
+@Transactional // 테스트후 데이터 지우기
 public class UserJoinTest {
 
+    @Autowired
+    private MockMvc mockMvc;
     private UserJoin userJoin;
     @Autowired
     private UserJoinService joinService;
@@ -212,5 +224,116 @@ public class UserJoinTest {
 
     /** 필수항목 체크 - E */
 
+    /** 통합 테스트 S */
+    @Test
+    @DisplayName("성공적으로 회원가입되면 /user/login 으로 이동")
+    void joinSuccessRedirectTest() throws Exception{
+        // mock으로 진행시 필수 항목만 넣기
+        mockMvc.perform(post("/user/join")
+                .param("userEmail",userJoin.getUserEmail())
+                .param("userPw",userJoin.getUserPw())
+                .param("userPwCk",userJoin.getUserPwCk())
+                .param("userNickNm",userJoin.getUserNickNm())
+                .param("userNm",userJoin.getUserNm())
+                .param("gender",String.valueOf(userJoin.getGender()))
+                .param("termsAgree", String.valueOf(userJoin.isTermsAgree()))
+                .with(csrf()))
+                .andExpect(redirectedUrl("/user/login"));
+    }
 
+    @Test
+    @DisplayName("userEmail 중복 확인 체크 - 오류메세지 반환 ")
+    void duplicateUserEmailResponseTest() throws Exception {
+        joinService.join(userJoin);
+
+        String body = mockMvc.perform(post("/user/join")
+                        .param("userEmail",userJoin.getUserEmail())
+                        .param("userPw",userJoin.getUserPw())
+                        .param("userPwCk",userJoin.getUserPwCk())
+                        .param("userNickNm",userJoin.getUserNickNm())
+                        .param("userNm",userJoin.getUserNm())
+                        .param("gender",String.valueOf(userJoin.getGender()))
+                        .param("termsAgree", String.valueOf(userJoin.isTermsAgree()))
+                        .with(csrf()))
+                .andReturn().getResponse().getContentAsString();
+
+        assertTrue(body.contains("이미 등록된 회원입니다."));
+
+    }
+
+    @Test
+    @DisplayName("유효성 검사 - 비밀번호 암호화 - 오류메세지 반환 확인")
+    void errorMessageResponseTest() throws Exception {
+
+        String[] userPw = {"aaabb","82gus%","82gus&","82gust","82everywin","82gus!"};
+
+        for(String Pw:userPw) {
+            String msg = null;
+
+            if (Pw.equals("aaabb")) { // 3번 이상 문자 연속 사용
+                userJoin.setUserPw(Pw);
+                userJoin.setUserPwCk(Pw);
+                msg = "user.validation.repeat_character";
+            } else if (Pw.equals("82gus%")) { // 정해진 특수문자 x -%
+                userJoin.setUserPw(Pw);
+                userJoin.setUserPwCk(Pw);
+                msg = "user.validation.special_character";
+            } else if (Pw.equals("82gus&")) { // 정해진 특수문자 x -&
+                userJoin.setUserPw(Pw);
+                userJoin.setUserPwCk(Pw);
+                msg = "user.validation.special_character";
+            } else if (Pw.equals("82gust")) { // 8 자리 이상x , 특수문자 x
+                userJoin.setUserPw(Pw);
+                userJoin.setUserPwCk(Pw);
+                msg = "user.validation.checkPassword";
+            } else if (Pw.equals("82everywin")) { // 8자리 이상 0, 특수문자 사용x
+                userJoin.setUserPw(Pw);
+                userJoin.setUserPwCk(Pw);
+                msg = "user.validation.checkPassword";
+            } else if (Pw.equals("82gus!")) { //8자리 이상x, 특수문자 0
+                userJoin.setUserPw(Pw);
+                userJoin.setUserPwCk(Pw);
+                msg = "user.validation.checkPassword";
+            }
+
+            String body = mockMvc.perform(post("/user/join")
+                            .param("userEmail", userJoin.getUserEmail())
+                            .param("userPw", userJoin.getUserPw())
+                            .param("userPwCk", userJoin.getUserPwCk())
+                            .param("userNickNm", userJoin.getUserNickNm())
+                            .param("userNm", userJoin.getUserNm())
+                            .param("gender", String.valueOf(userJoin.getGender()))
+                            .param("termsAgree", String.valueOf(userJoin.isTermsAgree()))
+                            .with(csrf()))
+                    .andReturn().getResponse().getContentAsString();
+
+
+            String message = MessageBundle.getMessage(msg);
+            assertTrue(body.contains(message));
+        }
+
+    }
+
+    @Test
+    @DisplayName("비밀번호 확인 체크 - 일치하지 않을 시 오류메세지 반환")
+    void passwordCkResponseTest() throws Exception {
+        userJoin.setUserPw("82everywin!");
+        userJoin.setUserPwCk("82gustmd!");
+
+        String body = mockMvc.perform(post("/user/join")
+                        .param("userEmail", userJoin.getUserEmail())
+                        .param("userPw", userJoin.getUserPw())
+                        .param("userPwCk", userJoin.getUserPwCk())
+                        .param("userNickNm", userJoin.getUserNickNm())
+                        .param("userNm", userJoin.getUserNm())
+                        .param("gender", String.valueOf(userJoin.getGender()))
+                        .param("termsAgree", String.valueOf(userJoin.isTermsAgree()))
+                        .with(csrf()))
+                .andReturn().getResponse().getContentAsString();
+
+        String message = MessageBundle.getMessage("user.validation.passwordIncorrect");
+        assertTrue(body.contains(message));
+    }
+
+    
 }

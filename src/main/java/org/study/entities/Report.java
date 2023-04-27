@@ -19,7 +19,7 @@ import java.time.LocalDateTime;
 public class Report extends BaseEntity {
 
     // 신고 유형 ( 스터디 OR 게시판 )
-    @Column(length = 20)
+    @Column(length = 20, nullable = false)
     private String division;
 
     // 회원 번호

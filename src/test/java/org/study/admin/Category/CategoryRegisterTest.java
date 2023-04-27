@@ -10,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.transaction.annotation.Transactional;
+import org.study.commons.messageBundle.MessageBundle;
 import org.study.commons.validators.BadRequestException;
 import org.study.controllers.admin.category.CategoryForm;
 import org.study.models.category.CateSaveService;
@@ -216,6 +217,8 @@ public class CategoryRegisterTest {
                         .param("location", categoryForm.getLocation())
                         .param("use", String.valueOf(categoryForm.isUse())).with(csrf()))
                 .andReturn().getResponse().getContentAsString();
-        assertTrue(body.contains("이미 등록된 분류코드"));
+
+        String message = MessageBundle.getMessage("Duplicate.categoryForm.cateCd");
+        assertTrue(body.contains(message));
     }
 }

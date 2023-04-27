@@ -7,7 +7,7 @@ public interface PasswordValidator {
 
     // 비밀번호 유효성 검사
     default boolean checkPassword(String userPw ) {
-        // 특수문자 확인 메서드 위치
+
         String passPattern1 = "^(?=.*[a-zA-Z])(?=.*\\d)(?=.*\\W).{8,20}$";
 
         return userPw.matches(passPattern1);

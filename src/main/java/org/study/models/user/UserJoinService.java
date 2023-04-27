@@ -22,17 +22,9 @@ public class UserJoinService {
 
     private final PasswordEncoder passwordEncoder;
 
-    private final UserJoinValidator validator;
 
-    public void join(UserJoin join){ join(join,null);}
+    public void join(UserJoin join){
 
-    public void join(UserJoin join,Errors errors){
-
-        if (errors != null && errors.hasErrors()) {
-            return;
-        }
-
-        validator.validate(join,errors);
 
         String hash = passwordEncoder.encode(join.getUserPw());
 
