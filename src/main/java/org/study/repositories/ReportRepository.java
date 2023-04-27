@@ -6,5 +6,5 @@ import org.study.entities.Report;
 import org.study.entities.User;
 
 public interface ReportRepository extends JpaRepository<Report, Long>, QuerydslPredicateExecutor {
-    Report findByCsCode(Long code);
+    Report findByCode(Long code);
 }
