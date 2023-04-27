@@ -18,6 +18,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.Errors;
 import org.study.commons.constants.Gender;
+import org.study.commons.messageBundle.MessageBundle;
 import org.study.commons.validators.BadRequestException;
 import org.study.controllers.user.UserJoin;
 import org.study.controllers.user.UserJoinValidator;
@@ -235,25 +236,52 @@ public class UserJoinTest {
                 .param("userNickNm",userJoin.getUserNickNm())
                 .param("userNm",userJoin.getUserNm())
                 .param("gender",String.valueOf(userJoin.getGender()))
-                                .param("termsAgree", String.valueOf(userJoin.isTermsAgree()))
-                //.param("birth", userJoin.getBirth())
-            //    .param("cellphone",userJoin.getCellphone())
+                .param("termsAgree", String.valueOf(userJoin.isTermsAgree()))
                 .with(csrf()))
                 .andExpect(redirectedUrl("/user/login"));
     }
 
     @Test
-    @DisplayName("유효성 검사 오류메세지 반환 체크")
-    void errorMessageResponseTest() throws Exception {
+    @DisplayName("userEmail 중복 확인 체크 - 오류메세지 반환 ")
+    void duplicateUserEmailResponseTest() throws Exception {
         joinService.join(userJoin);
 
         String body = mockMvc.perform(post("/user/join")
-                .param("userEmail",userJoin.getUserEmail()).with(csrf()))
+                        .param("userEmail",userJoin.getUserEmail())
+                        .param("userPw",userJoin.getUserPw())
+                        .param("userPwCk",userJoin.getUserPwCk())
+                        .param("userNickNm",userJoin.getUserNickNm())
+                        .param("userNm",userJoin.getUserNm())
+                        .param("gender",String.valueOf(userJoin.getGender()))
+                        .param("termsAgree", String.valueOf(userJoin.isTermsAgree()))
+                        .with(csrf()))
                 .andReturn().getResponse().getContentAsString();
+
         assertTrue(body.contains("이미 등록된 회원입니다."));
-        /**
-         *
-         */
+
+    }
+
+    @Test
+    @DisplayName("유효성 검사 - 비밀번호 암호화 - 오류메세지 반환 확인")
+    void errorMessageResponseTest() throws Exception {
+        userJoin.setUserPw("aaabb");
+        userJoin.setUserPwCk("aaabb");
+
+        String body = mockMvc.perform(post("/user/join")
+                .param("userEmail",userJoin.getUserEmail())
+                .param("userPw",userJoin.getUserPw())
+                .param("userPwCk",userJoin.getUserPwCk())
+                .param("userNickNm",userJoin.getUserNickNm())
+                .param("userNm",userJoin.getUserNm())
+                .param("gender",String.valueOf(userJoin.getGender()))
+                .param("termsAgree", String.valueOf(userJoin.isTermsAgree()))
+                .with(csrf()))
+                .andReturn().getResponse().getContentAsString();
+
+        //String message= MessageBundle.getMessage("user.validation.checkPassword");
+       //String message = MessageBundle.getMessage("user.validation.special_character");
+       String message = MessageBundle.getMessage("user.validation.repeat_character");
+        assertTrue(body.contains(message));
 
 
     }

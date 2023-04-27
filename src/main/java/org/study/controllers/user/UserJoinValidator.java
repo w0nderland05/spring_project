@@ -63,16 +63,20 @@ public class UserJoinValidator implements Validator, CellPhoneValidator, Passwor
         /** 2. 비밀번호 유효성 검사 S*/
         if(userPw != null && !userPw.isBlank()){
             // 일단 비밀번호 입력을 안했을 경우 NotBlank에서 에러 메세지
-            if(!checkPassword(userPw)){
-                // 8자리 이상, 특수문자가 들어가지 않는 경우 에러 메세지
-                errors.rejectValue("userPw", "user.validation.checkPassword");
-            }else if(!special_character(userPw)){
-                // 정해준 특수문자(!?@#$^*+=-)를 기입하지 않는 경우 에러 메세지
-                errors.rejectValue("userPw","user.validation.special_character");
-            }else if(!repeat_character(userPw)){
+            if(!repeat_character(userPw)){
                 // 3번 이상 문자를 연속으로 입력한 경우 에러 메세지
                 errors.rejectValue("userPw","user.validation.repeat_character");
             }
+            if(!special_character(userPw)){
+                // 정해준 특수문자(!?@#$^*+=-)를 기입하지 않는 경우 에러 메세지
+                errors.rejectValue("userPw","user.validation.special_character");
+            }
+            if(!checkPassword(userPw)){
+                // 8자리 이상, 특수문자가 들어가지 않는 경우 에러 메세지
+                errors.rejectValue("userPw", "user.validation.checkPassword");
+            }
+
+
         }
         /** 2. 비밀번호 유효성 검사 E*/
 
