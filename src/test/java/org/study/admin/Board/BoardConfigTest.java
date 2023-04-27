@@ -1,5 +1,6 @@
 package org.study.admin.Board;
 
+import jakarta.validation.constraints.AssertFalse;
 import jakarta.validation.constraints.AssertTrue;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -10,6 +11,7 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.HttpStatus;
 import org.springframework.test.context.TestPropertySource;
+import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.transaction.annotation.Transactional;
 import org.study.commons.constants.board.AfterWriteTarget;
@@ -18,6 +20,9 @@ import org.study.commons.constants.board.ViewType;
 import org.study.commons.validators.BadRequestException;
 import org.study.controllers.admin.board.BoardConfig;
 import org.study.repositories.board.BoardRepository;
+
+import java.util.Scanner;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -30,12 +35,12 @@ import static org.junit.jupiter.api.Assertions.*;
  */
 @SpringBootTest
 @Transactional
-@AutoConfigureMockMvc
+//@AutoConfigureMockMvc
 @TestPropertySource(locations="classpath:application-test.properties")
 public class BoardConfigTest {
 
-    @Autowired
-    private MockMvc mockMvc;
+//    @Autowired
+//    private MockMvc mockMvc;
 
     private BoardConfig boardConfig;
 
@@ -206,6 +211,23 @@ public class BoardConfigTest {
            // 중복 분류로 등록
            service.config(boardConfig);
         });
+    }
+
+    /** 2. rowsPerPage : 최소 10개 부터 되는지 체크 */
+    @Test
+    @DisplayName("rowsPerPage : 최소 10개부터 되는지 체크")
+    void rowsPerPageMinTest() {
+        assertThrows(BadRequestException.class, () -> {
+            service.config(boardConfig);
+            boardConfig.setRowsPerPage(5L);
+        });
+    }
+
+    /** 3. category: '\n' 줄바꿈울 기준으로 인식 되는지 */
+    @Test
+    @DisplayName("category: '\n' 줄바꿈울 기준으로 인식 되는지")
+    void categoryEnterTest() {
+        // textarea, split
     }
 
 }

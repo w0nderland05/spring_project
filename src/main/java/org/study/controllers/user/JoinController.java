@@ -38,7 +38,7 @@ public class JoinController {
     @PostMapping
     public String joinPs(@Valid UserJoin userJoin, Errors errors) {
 
-        joinValidator.validate(userJoin, errors);
+        joinValidator.validate(userJoin,errors);
 
         if (errors.hasErrors()) {
             return "front/user/join";
