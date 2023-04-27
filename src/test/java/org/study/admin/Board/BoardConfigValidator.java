@@ -21,9 +21,6 @@ public class BoardConfigValidator implements ServiceValidator<BoardConfig>, Requ
     @Autowired
     private BoardRepository repository;
 
-    @Autowired
-    private BoardConfig boardConfig;
-
     @Override
     public void check(BoardConfig boardConfig) {
         /** BoardConfig가 null 값일 경우 예외 발생 */
@@ -41,10 +38,10 @@ public class BoardConfigValidator implements ServiceValidator<BoardConfig>, Requ
             throw new DuplicateCateBIdException();
         }
 //
-//        /** rowsPerPage : 최소 10개부터 되는지 체크 */
-//        if (boardConfig.getRowsPerPage() < 10) {
-//            throw new BadRequestException("10보다 큰 값을 입력하세요");
-//        }
+        /** rowsPerPage : 최소 10부터 되는지 체크 */
+        if (boardConfig.getRowsPerPage() < 10) {
+            throw new BadRequestException("10보다 큰 값을 입력하세요");
+        }
 
 
     }

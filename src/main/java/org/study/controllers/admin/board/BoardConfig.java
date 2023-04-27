@@ -31,7 +31,7 @@ public class BoardConfig {
     private boolean isUse;
 
     @NotBlank
-    @Size(min = 6)
+    @Size(min = 10)
     private Long rowsPerPage; // 1페이지에 노출될 게시글 수
 
     private boolean useViewList; // 게시글 하단에 목록 노출
