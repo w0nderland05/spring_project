@@ -5,7 +5,7 @@ import org.springframework.http.HttpStatus;
 
 public class ReportNotFoundException extends CommonException {
 
-    public ReportNotFoundException(String message, HttpStatus status) {
-        super(message, status);
+    public ReportNotFoundException(String message) {
+        super(message, HttpStatus.NOT_FOUND);
     }
 }

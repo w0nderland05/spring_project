@@ -30,6 +30,10 @@ public class UserJoinValidator implements Validator, CellPhoneValidator, Passwor
     @Override
     public void validate(Object target, Errors errors) {
 
+        if (errors != null && errors.hasErrors()) {
+            return;
+        }
+
         UserJoin userJoin = (UserJoin)target;
 
         nullCheck(userJoin,new BadRequestException("잘못된 접근입니다."));
