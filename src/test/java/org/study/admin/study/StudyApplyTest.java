@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.HttpStatus;
 import org.springframework.test.context.TestPropertySource;
+import org.springframework.test.web.servlet.MockMvc;
 import org.study.commons.constants.RegionType;
 import org.study.commons.constants.Status;
 import org.study.commons.validators.BadRequestException;
@@ -22,6 +23,9 @@ import org.study.repositories.StudyRepository;
 import java.time.LocalDateTime;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.redirectedUrl;
 
 @SpringBootTest
 @TestPropertySource(locations = "classpath:application-test.properties")
@@ -37,6 +41,8 @@ public class StudyApplyTest {
      * 1. 등록에서의 최종 목표는 예외 발생 없이 등록이 되는 것
      * 2. 제대로 등록하기 위한 유효성 검사 항목이 다음과 같이 정리됩니다.
      */
+     @Autowired
+     private MockMvc mockMvc;
     @Autowired
     private StudyApplyService applyService;
 
@@ -215,7 +221,6 @@ public class StudyApplyTest {
         applyService.apply(studyConfig);
        assertThrows(DuplicationStudyCdException.class,()->{
            applyService.apply(studyConfig);
-
        });
     }
 
@@ -234,6 +239,13 @@ public class StudyApplyTest {
 
 
         /** 단위 테스트 E */
+
+        /** 통합테스트 S */
+
+
+
+        /** 통합테스트 E */
+
 
 
     }
