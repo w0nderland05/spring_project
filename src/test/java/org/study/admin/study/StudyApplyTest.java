@@ -6,10 +6,12 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.HttpStatus;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.transaction.annotation.Transactional;
 import org.study.commons.constants.RegionType;
 import org.study.commons.constants.Status;
 import org.study.commons.validators.BadRequestException;
@@ -21,13 +23,17 @@ import org.study.models.study.StudyRegisterValidator;
 import org.study.repositories.StudyRepository;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.redirectedUrl;
 
 @SpringBootTest
+@Transactional
+@AutoConfigureMockMvc
 @TestPropertySource(locations = "classpath:application-test.properties")
 public class StudyApplyTest {
 
@@ -241,6 +247,11 @@ public class StudyApplyTest {
         /** 단위 테스트 E */
 
         /** 통합테스트 S */
+        @Test
+        @DisplayName("등록성공시 /admin/study/approvals 신청내역 등록되고, user/study/join페이지로이동  ")
+       void registerSuccessInflowAdmin()throws Exception{
+            mockMvc.perform(get("/user/study/join"));
+        }
 
 
 
