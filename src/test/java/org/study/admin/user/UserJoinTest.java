@@ -10,9 +10,12 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.HttpStatus;
 import org.springframework.test.context.TestPropertySource;
+import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.Errors;
 import org.study.commons.constants.Gender;
 import org.study.commons.validators.BadRequestException;
@@ -29,11 +32,19 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.BDDMockito.then;
 import static org.mockito.Mockito.mock;
+import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.redirectedUrl;
+
 
 @SpringBootTest
 @TestPropertySource(locations="classpath:application-test.properties")
+@AutoConfigureMockMvc
+@Transactional // 테스트후 데이터 지우기
 public class UserJoinTest {
 
+    @Autowired
+    private MockMvc mockMvc;
     private UserJoin userJoin;
     @Autowired
     private UserJoinService joinService;
@@ -211,6 +222,40 @@ public class UserJoinTest {
     }
 
     /** 필수항목 체크 - E */
+
+    /** 통합 테스트 S */
+    @Test
+    @DisplayName("성공적으로 회원가입되면 /user/login 으로 이동")
+    void joinSuccessRedirectTest() throws Exception{
+        // mock으로 진행시 필수 항목만 넣기
+        mockMvc.perform(post("/user/join")
+                .param("userEmail",userJoin.getUserEmail())
+                .param("userPw",userJoin.getUserPw())
+                .param("userPwCk",userJoin.getUserPwCk())
+                .param("userNickNm",userJoin.getUserNickNm())
+                .param("userNm",userJoin.getUserNm())
+                .param("gender",String.valueOf(userJoin.getGender()))
+                //.param("birth", userJoin.getBirth())
+            //    .param("cellphone",userJoin.getCellphone())
+                .with(csrf()))
+                .andExpect(redirectedUrl("/user/login"));
+    }
+
+    @Test
+    @DisplayName("유효성 검사 오류메세지 반환 체크")
+    void errorMessageResponseTest() throws Exception {
+        joinService.join(userJoin);
+
+        String body = mockMvc.perform(post("/user/join")
+                .param("userEmail",userJoin.getUserEmail()).with(csrf()))
+                .andReturn().getResponse().getContentAsString();
+        assertTrue(body.contains("이미 등록된 회원입니다."));
+        /**
+         *
+         */
+
+
+    }
 
 
 }
