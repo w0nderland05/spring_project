@@ -21,8 +21,6 @@ public class BoardConfigValidator implements ServiceValidator<BoardConfig>, Requ
     @Autowired
     private BoardRepository repository;
 
-    @Autowired
-    private BoardConfig boardConfig;
 
     @Override
     public void check(BoardConfig boardConfig) {

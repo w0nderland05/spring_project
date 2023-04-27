@@ -235,6 +235,7 @@ public class UserJoinTest {
                 .param("userNickNm",userJoin.getUserNickNm())
                 .param("userNm",userJoin.getUserNm())
                 .param("gender",String.valueOf(userJoin.getGender()))
+                                .param("termsAgree", String.valueOf(userJoin.isTermsAgree()))
                 //.param("birth", userJoin.getBirth())
             //    .param("cellphone",userJoin.getCellphone())
                 .with(csrf()))
