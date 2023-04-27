@@ -12,6 +12,7 @@ import org.study.entities.board.Board;
 import org.study.repositories.board.BoardRepository;
 
 import java.util.List;
+import java.util.Scanner;
 import java.util.stream.Collectors;
 
 @Service
@@ -52,6 +53,8 @@ public class BoardConfigService {
         if(board == null) { // 게시판 ID가 없다면 boardConfig -> Board 엔티티로 변환
             board = BoardConfig.of(config);
         }
+
+        /** category: '\n' 줄바꿈울 기준으로 인식 */
 
         repository.saveAndFlush(board);
     }
