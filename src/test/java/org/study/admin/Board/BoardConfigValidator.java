@@ -9,6 +9,8 @@ import org.study.commons.validators.ServiceValidator;
 import org.study.controllers.admin.board.BoardConfig;
 import org.study.repositories.board.BoardRepository;
 
+import java.util.Scanner;
+
 /**
  * 게시판 등록 Validator
  *
@@ -18,6 +20,9 @@ public class BoardConfigValidator implements ServiceValidator<BoardConfig>, Requ
 
     @Autowired
     private BoardRepository repository;
+
+    @Autowired
+    private BoardConfig boardConfig;
 
     @Override
     public void check(BoardConfig boardConfig) {
@@ -35,5 +40,12 @@ public class BoardConfigValidator implements ServiceValidator<BoardConfig>, Requ
             // 이미 등록된 게시판 아이디인 경우
             throw new DuplicateCateBIdException();
         }
+//
+//        /** rowsPerPage : 최소 10개부터 되는지 체크 */
+//        if (boardConfig.getRowsPerPage() < 10) {
+//            throw new BadRequestException("10보다 큰 값을 입력하세요");
+//        }
+
+
     }
 }
