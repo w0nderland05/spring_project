@@ -206,7 +206,7 @@ public class StudyApplyTest {
             } else if (field.equals("studyCode")) { //스터디코드
                 studyConfig = createStudyConfig();
                 studyConfig.setStudyCode(null);
-                includedWord = "스터디 코드";
+                includedWord = "스터디코드";
 
             }
             BadRequestException thrown = assertThrows(BadRequestException.class, () -> {
@@ -225,6 +225,7 @@ public class StudyApplyTest {
     @DisplayName("studyCode 중복 등록시 DuplicateCateCdException 발생 여부")
    void duplicationStudyCodeTest(){
         applyService.apply(studyConfig);
+        System.out.println(studyConfig);
        assertThrows(DuplicationStudyCdException.class,()->{
            applyService.apply(studyConfig);
        });
