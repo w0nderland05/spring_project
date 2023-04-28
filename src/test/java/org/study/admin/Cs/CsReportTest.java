@@ -31,9 +31,6 @@ public class CsReportTest {
                 .userNickNm("밤빵")
                 .birth("10/20")
                 .build();
-
-        repository.save(user);
-
     }
 
     /**
