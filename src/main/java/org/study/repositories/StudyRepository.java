@@ -11,7 +11,6 @@ import java.util.List;
 public interface StudyRepository extends JpaRepository<Study, Long>, QuerydslPredicateExecutor {
 
 
-
     default boolean exists(Long studyCode) {
         QStudy study = QStudy.study;
         return exists(study.studyCode.eq(studyCode));

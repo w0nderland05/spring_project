@@ -29,7 +29,6 @@ public class ReportListService {
     }
 
     public void reportList(CsConfig config, Errors errors) {
-
         reportList(config, null);
     }
 

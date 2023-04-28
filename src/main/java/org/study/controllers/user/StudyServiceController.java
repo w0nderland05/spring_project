@@ -3,6 +3,7 @@ package org.study.controllers.user;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -19,7 +20,8 @@ public class StudyServiceController {
     private final StudyApplyService service;
 
     @GetMapping("/register")
-    public String studyReg() {
+    public String studyReg(Model model, StudyConfig studyConfig) {
+        model.addAttribute("studyConfig", studyConfig);
         return "/front/study/register";
     }
 
@@ -28,12 +30,12 @@ public class StudyServiceController {
         return "/front/study/join";
     }
 
-    @PostMapping
+    @PostMapping("/save")
     public String save(@Valid StudyConfig studyConfig, Errors errors){
        try{
            service.apply(studyConfig, errors);
        }catch(DuplicationStudyCdException e){
-           errors.rejectValue("studyCode", "Duplicate.studyConfig.sutdyCode");
+           errors.rejectValue("studyCode", "Duplicate.studyConfig.studyCode");
 
        }
        if(errors.hasErrors()){
