@@ -63,6 +63,7 @@ public class StudyConfig {
     @Lob
     private String Introduction; //소개글
 
+
     public static Study of (StudyConfig studyConfig) {
         return new ModelMapper().map(studyConfig, Study.class);
     }
