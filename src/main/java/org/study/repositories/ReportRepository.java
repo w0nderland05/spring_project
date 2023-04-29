@@ -9,13 +9,15 @@ import org.study.entities.User;
 public interface ReportRepository extends JpaRepository<Report, Long>, QuerydslPredicateExecutor {
 
     //Report findByEmail(String email);
-    default Report findReport(String email) {
-        QReport report = QReport.report;
-        Report rEmail = (Report) findOne(report.user.userEmail.eq(email)).orElse(null);
-        return rEmail;
-    }
 
-     Report findByUser_userId(String userEmail);
+    /** 에러방지로 미구현된 메서드 주석처리 해놨어요~~ - 태인 */
+//    default Report findReport(String email) {
+//        QReport report = QReport.report;
+//        Report rEmail = (Report) findOne(report.user.userEmail.eq(email)).orElse(null);
+//        return rEmail;
+//    }
+
+//     Report findByUser_userId(String userEmail);
 
     /**
      * 신고 등록 여부 체크
