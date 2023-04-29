@@ -68,5 +68,9 @@ public class User extends BaseEntity{
     @OneToMany(mappedBy="user")
     private List<Study> studies = new ArrayList<>();
 
+    @OneToMany(mappedBy="user")
+    private List<Report> reports = new ArrayList<>();
+
+
 
 }

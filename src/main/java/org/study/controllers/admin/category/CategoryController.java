@@ -64,10 +64,10 @@ public class CategoryController {
         }
 
         if (errors.hasErrors()) {
-            return "admin/category/register";
+            return "admin/board/register";
         }
 
-        return "redirect:/admin/category";
+        return "redirect:/admin/board";
     }
 
 }

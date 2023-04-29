@@ -1,15 +1,12 @@
-package org.study.admin.Board;
+package org.study.models.board;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Repository;
 import org.study.commons.validators.BadRequestException;
 import org.study.commons.validators.RequiredCheckValidator;
 import org.study.commons.validators.ServiceValidator;
 import org.study.controllers.admin.board.BoardConfig;
 import org.study.repositories.board.BoardRepository;
-
-import java.util.Scanner;
 
 /**
  * 게시판 등록 Validator

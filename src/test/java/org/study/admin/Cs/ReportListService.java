@@ -64,7 +64,5 @@ public class ReportListService {
                 .status(report.getStatus().toString())
                 .process(report.getProcess())
                 .build();
-
-
     }
 }

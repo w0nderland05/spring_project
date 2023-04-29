@@ -1,8 +1,5 @@
 package org.study.admin.Board;
 
-import jakarta.validation.constraints.AssertFalse;
-import jakarta.validation.constraints.AssertTrue;
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -11,7 +8,6 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.HttpStatus;
 import org.springframework.test.context.TestPropertySource;
-import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.transaction.annotation.Transactional;
 import org.study.commons.constants.board.AfterWriteTarget;
@@ -19,14 +15,13 @@ import org.study.commons.constants.board.SkinType;
 import org.study.commons.constants.board.ViewType;
 import org.study.commons.validators.BadRequestException;
 import org.study.controllers.admin.board.BoardConfig;
-import org.study.entities.board.Board;
+import org.study.models.board.BoardConfigService;
+import org.study.models.board.DuplicateCateBIdException;
 import org.study.repositories.board.BoardRepository;
-
-import java.util.Scanner;
-
 import static org.junit.jupiter.api.Assertions.*;
-
-import static org.junit.jupiter.api.Assertions.*;
+import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.redirectedUrl;
 
 /**
  * '게시판 관리 - 게시판 등록'에 해당하는 테스트 클래스 입니다.
@@ -36,12 +31,12 @@ import static org.junit.jupiter.api.Assertions.*;
  */
 @SpringBootTest
 @Transactional
-//@AutoConfigureMockMvc
+@AutoConfigureMockMvc
 @TestPropertySource(locations="classpath:application-test.properties")
 public class BoardConfigTest {
 
-//    @Autowired
-//    private MockMvc mockMvc;
+    @Autowired
+    private MockMvc mockMvc;
 
     private BoardConfig boardConfig;
 
@@ -234,12 +229,29 @@ public class BoardConfigTest {
         System.out.println(boardConfig);
     }
 
-    /** mode가 update면 수정인지 체크 */
+    /**
+     * 통합 테스트
+     */
     @Test
-    @DisplayName("mode가 update면 수정인지 체크")
-    void modeUpdateTest() {
-        boardConfig.setMode("update");
-        service.config(boardConfig);
-        System.out.println(boardConfig);
+    @DisplayName("성공적으로 등록완료되면 /admin/board 이동")
+    void configSuccessRedirectTest() throws Exception {
+        mockMvc.perform(post("/admin/board")
+                .param("bId", boardConfig.getBId())
+                .param("boardNm", boardConfig.getBoardNm())
+                .param("isUse", String.valueOf(boardConfig.isUse()))
+                .param("rowsPerPage", String.valueOf(boardConfig.getRowsPerPage()))
+                .param("useViewList", String.valueOf(boardConfig.isUseViewList()))
+                .param("category", boardConfig.getCategory())
+                .param("viewType", boardConfig.getViewType())
+                .param("useEditor", String.valueOf(boardConfig.isUseEditor()))
+                .param("afterWriteTarget", boardConfig.getAfterWriteTarget())
+                .param("useComment", String.valueOf(boardConfig.isUseComment()))
+                .param("skin", boardConfig.getSkin())
+                .param("isReview", String.valueOf(boardConfig.isReview())).with(csrf()))
+                .andExpect(redirectedUrl("/admin/board"));
+
     }
+
+//    @Test
+//    @DisplayName("성공적으로 등록완료되면 ")
 }

@@ -22,7 +22,7 @@ public class Report extends BaseEntity {
     @Column(length = 20, nullable = false)
     private String division;
 
-    // 회원 번호
+    // 신고 번호
     @Id
     @GeneratedValue
     @Column(length = 8)
@@ -43,7 +43,7 @@ public class Report extends BaseEntity {
 
     //개설회원 정보
     @ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="user_no")
+    @JoinColumn(name="user_email")
     @ToString.Exclude
     private User user;
 }
