@@ -8,11 +8,7 @@ import org.study.entities.Report;
 import org.study.repositories.ReportRepository;
 
 @Service
-<<<<<<<< HEAD:src/test/java/org/study/admin/Cs/CsRegisterService.java
 public class CsRegisterService {
-========
-public class CsSaveService {
->>>>>>>> 5a488fa91a923940596d832dfb758b830a715c49:src/test/java/org/study/admin/Cs/CsSaveService.java
 
     @Autowired
     private ReportRepository repository;
