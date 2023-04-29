@@ -53,8 +53,16 @@ const commonLib = {
     * 시도 목록
     *
     */
-    getSido() {
+    async getSido() {
+        let result = [];
+        try {
+            const data = await commonLib.ajaxLoad("/ajax/sido");
+            if (data) result = JSON.parse(data);
+        } catch (err) {
+            console.log(err);
+        }
 
+        return result;
     },
     /**
     * 시구군 조회
