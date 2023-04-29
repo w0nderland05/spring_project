@@ -1,4 +1,4 @@
-package org.study.controllers.user;
+package org.study.controllers.user.user;
 
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -9,9 +9,6 @@ import lombok.Data;
 import org.modelmapper.ModelMapper;
 import org.study.commons.constants.Gender;
 import org.study.entities.User;
-
-import java.time.LocalDate;
-import java.util.Calendar;
 
 /**
  * 회원 가입 커맨드 객체 생성 클래스

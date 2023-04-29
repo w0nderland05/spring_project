@@ -20,7 +20,7 @@ public class StudyRegisterValidator implements ServiceValidator<StudyConfig>, Re
 
     @Override
     public void check(StudyConfig config) {
-        /** StudyConfig null일경우 예외발생*/
+        /** StudyConfig null일 경우 예외발생*/
         nullCheck(config, new BadRequestException("잘못된 접근입니다."));
 
         /**필수항목 체크*/
@@ -29,6 +29,8 @@ public class StudyRegisterValidator implements ServiceValidator<StudyConfig>, Re
         requiredCheck(config.getNumOfWeek(), new BadRequestException("스터디 주당횟수를 선택해주세요."));
         requiredCheck(config.getSimpleIntro(), new BadRequestException("한줄 소개글을 입력해주세요."));
         requiredCheck(config.getIntroduction(), new BadRequestException("소개글을 작성해주세요."));
+
+
         nullCheck(config.getMaxMember(), new BadRequestException("신청최대인원수를 체크해주세요."));
         nullCheck(config.getRegionType(), new BadRequestException("스터디 지역타입을 선택해주세요."));
         nullCheck(config.getStudyCode(), new BadRequestException("올바르지 않은 스터디코드 입니다."));

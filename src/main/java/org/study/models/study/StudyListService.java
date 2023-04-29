@@ -37,7 +37,7 @@ public class StudyListService {
                 .numOfWeek(study.getNumOfWeek())
                 .regionType(study.getRegionType())
                 .simpleIntro(study.getSimpleIntro())
-                .introduction(study.getIntroduction())
+                .Introduction(study.getIntroduction())
                 .build();
     }
 

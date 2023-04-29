@@ -1,7 +1,5 @@
-package org.study.controllers.user;
+package org.study.controllers.user.user;
 
-import com.fasterxml.jackson.databind.DatabindContext;
-import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -9,8 +7,6 @@ import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 import org.study.models.user.UserJoinService;
-
-import java.time.LocalDateTime;
 
 // 사용자 관련 컨트롤러
 @Controller
