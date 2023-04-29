@@ -120,7 +120,7 @@ public class StudyApplyTest {
          * 필수항목
          * 스터디명,카테고리,스터디주당횟수, 한줄소개글,소개글 ,신청최대인원수, 스터디 지역타입, 스터디 코드
          */
-        String[] fields = {"studyNm", "category", "numOfWeek", "simpleIntro", "Introduction" /**, "maxMember", "regionType", "studyCode" */};
+        String[] fields = {"studyNm", "category", "numOfWeek", "simpleIntro", "Introduction"};
 
 
         /** 빈값 체크 S*/
@@ -256,10 +256,27 @@ public class StudyApplyTest {
 
         /** 통합테스트 S */
         @Test
-        @DisplayName("등록성공시 /admin/study/approvals 신청내역 등록되고, user/study/join페이지로이동  ")
+        @DisplayName("등록성공시 user/study/join 페이지로이동 ")
        void registerSuccessInflowAdmin()throws Exception{
             mockMvc.perform(get("/user/study/join"));
         }
+
+    @Test
+    @DisplayName("필수 항목 누락시(studyNm, category, numOfWeek,simpleIntro,Introduction ,maxMember,regionType,studyCode) Bean Validation 검증 체크")
+    void requiredCheckResponseTest() throws Exception {
+        String body = mockMvc.perform(post("/admin/study/approvals").with(csrf()))
+                .andReturn().getResponse().getContentAsString();
+
+        assertTrue(body.contains("스터디명"));
+        assertTrue(body.contains("카테코리"));
+        assertTrue(body.contains("주당횟수"));
+        assertTrue(body.contains("한줄 소개글"));
+        assertTrue(body.contains("소개글"));
+        assertTrue(body.contains("신청최대인원수"));
+        assertTrue(body.contains("지역타입"));
+        assertTrue(body.contains("스터디코드"));
+    }
+
 
 
 

@@ -11,12 +11,15 @@ import org.springframework.transaction.annotation.Transactional;
 import org.study.commons.constants.RegionType;
 import org.study.commons.constants.Status;
 import org.study.controllers.admin.study.StudyConfig;
+import org.study.entities.Study;
 import org.study.models.study.StudyApplyService;
 import org.study.models.study.StudyListService;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * '스터디 관리 -> 스터디목록관리/ 개설신청관리 '에 해당하는 테스트 클래스 입니다.
@@ -37,26 +40,71 @@ public class StudyListTest {
 
     private StudyConfig studyConfig;
 
+    private int cnt_Apply = 1; //approveStatus- APPLY 갯수
+    private int cnt_Disapprove=2;//approveStatus- DISAPPROVE 갯수
+    private int cnt_Approve=0;//approveStatus- APPROVE 갯수
+
     @BeforeEach
     public void register() {
-        studyConfig = new StudyConfig();
-        studyConfig.setMode("create");
-        studyConfig.setStudyCode(Long.valueOf("5245625"));
-        studyConfig.setStudyNm("코리아스터디");
-        studyConfig.setCategory("IT");
-        studyConfig.setRequestDt(LocalDateTime.now());
-        studyConfig.setApproveStatus(Status.APPLY);
-        studyConfig.setRegStatusDt(LocalDateTime.now());
-        studyConfig.setMaxMember(Long.valueOf("40"));
-        studyConfig.setRemainSeat(Long.valueOf("3"));
-        studyConfig.setActiveStatus(true);
-        studyConfig.setNumOfWeek("주2-3회");
-        studyConfig.setRegionType(RegionType.OFFLINE);
-        studyConfig.setSimpleIntro("백엔드개발 스터디 입니다.");
-        studyConfig.setIntroduction("즐겁게 공부해봅시다.");
+        StudyConfig studyConfig = StudyConfig.builder()
+                .studyCode(Long.valueOf("5245625"))
+                .studyNm("코리아스터디")
+                .category("IT")
+                .requestDt(LocalDateTime.now())
+                .approveStatus(Status.APPLY)
+                .regStatusDt(LocalDateTime.now())
+                .maxMember(Long.valueOf("40"))
+                .remainSeat(Long.valueOf("3"))
+                .activeStatus(true)
+                .numOfWeek("주2-3회")
+                .regionType(RegionType.OFFLINE)
+                .simpleIntro("백엔드개발 스터디 입니다.")
+                .introduction("즐겁게 공부해봅시다.")
+                .build();
+            applyService.apply(studyConfig);
 
-        applyService.apply(studyConfig);
+        StudyConfig studyConfig2 = StudyConfig.builder()
+                .studyCode(Long.valueOf("12345678"))
+                .studyNm("코리아스터디")
+                .category("IT")
+                .requestDt(LocalDateTime.now())
+                .approveStatus(Status.DISAPPROVE)
+                .regStatusDt(LocalDateTime.now())
+                .maxMember(Long.valueOf("40"))
+                .remainSeat(Long.valueOf("3"))
+                .activeStatus(true)
+                .numOfWeek("주2-3회")
+                .regionType(RegionType.OFFLINE)
+                .simpleIntro("백엔드개발 스터디 입니다.")
+                .introduction("즐겁게 공부해봅시다.")
+                .build();
+        applyService.apply(studyConfig2);
 
+        StudyConfig studyConfig3 = StudyConfig.builder()
+                .studyCode(Long.valueOf("2345678"))
+                .studyNm("코리아스터디")
+                .category("IT")
+                .requestDt(LocalDateTime.now())
+                .approveStatus(Status.DISAPPROVE)
+                .regStatusDt(LocalDateTime.now())
+                .maxMember(Long.valueOf("40"))
+                .remainSeat(Long.valueOf("3"))
+                .activeStatus(true)
+                .numOfWeek("주2-3회")
+                .regionType(RegionType.OFFLINE)
+                .simpleIntro("백엔드개발 스터디 입니다.")
+                .introduction("즐겁게 공부해봅시다.")
+                .build();
+        applyService.apply(studyConfig3);
+
+        }
+
+
+
+    public StudyConfig createStudyConfig() {
+
+
+        return studyConfig;
     }
 
 
@@ -87,6 +135,24 @@ public class StudyListTest {
         assertDoesNotThrow(() -> {
             long studyCode = studyConfig.getStudyCode();
             listService.get(studyCode);
+        });
+
+    }
+
+    @Test
+    @DisplayName("approveStatus(승인상태-APPLY,APPROVE,DISAPPROVE)에 따라 조회된 데이터 갯수와 cnt갯수 맞으면 성공")
+    void study_ApproveStatus_Apply_gets() {
+        assertDoesNotThrow(() -> {
+            List<StudyConfig> applyLists = listService.applyStatusGets(Status.APPLY);
+           assertEquals(cnt_Apply, applyLists.size());
+        });
+        assertDoesNotThrow(() -> {
+            List<StudyConfig> disapproveLists = listService.applyStatusGets(Status.DISAPPROVE);
+            assertEquals(cnt_Disapprove, disapproveLists.size());
+        });
+        assertDoesNotThrow(() -> {
+            List<StudyConfig> approveLists = listService.applyStatusGets(Status.APPROVE);
+            assertEquals(cnt_Approve, approveLists.size());
         });
 
     }

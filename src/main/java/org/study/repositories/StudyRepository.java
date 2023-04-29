@@ -2,6 +2,7 @@ package org.study.repositories;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.querydsl.QuerydslPredicateExecutor;
+import org.study.commons.constants.Status;
 import org.study.entities.QCategory;
 import org.study.entities.QStudy;
 import org.study.entities.Study;
@@ -9,7 +10,7 @@ import org.study.entities.Study;
 import java.util.List;
 
 public interface StudyRepository extends JpaRepository<Study, Long>, QuerydslPredicateExecutor {
-
+   List<Study> findByApproveStatus(Status status);
 
     default boolean exists(Long studyCode) {
         QStudy study = QStudy.study;
