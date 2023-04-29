@@ -13,6 +13,7 @@ import java.util.List;
 @RequestMapping("/admin/study")
 public class StudyController {
 
+
     /**
      * <스터디관리> 클릭시 나오는 페이지
      * ==스터디 목록
@@ -30,8 +31,9 @@ public class StudyController {
      *
      * @return
      */
-    @PostMapping("/approvals")
+    @GetMapping("/approvals")
     public String approvals(){
+
 
         return "admin/study/approvals";
     }
