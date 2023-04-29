@@ -1,6 +1,6 @@
 package org.study.commons;
 
-public class Areas {
+public class            Areas {
     /** 시도 목록 */
     public static final String[] sido = {
             "서울특별시",
