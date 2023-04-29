@@ -33,7 +33,7 @@ public class StudyServiceController {
        try{
            service.apply(studyConfig, errors);
        }catch(DuplicationStudyCdException e){
-           errors.rejectValue("studyCode", "Duplicate.studyConfig.sutdyCode");
+           errors.rejectValue("studyCode", "Duplicate.studyConfig.studyCode");
 
        }
        if(errors.hasErrors()){
