@@ -8,7 +8,7 @@ import org.study.entities.Report;
 import org.study.repositories.ReportRepository;
 
 @Service
-public class CsRegister {
+public class CsRegisterService {
 
     @Autowired
     private ReportRepository repository;
@@ -43,6 +43,14 @@ public class CsRegister {
         }
 
         repository.saveAndFlush(report);
+    }
+
+    /**
+    *신고 세부 유형에따라 신고대상 조회
+    *회원신고일경우 - 회원정보조회/ 게시글신고일 경우 - 게시글 조회
+     */
+    public void reportTarget() {
+
     }
 }
 
