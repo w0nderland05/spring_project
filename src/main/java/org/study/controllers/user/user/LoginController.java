@@ -1,4 +1,4 @@
-package org.study.controllers.user;
+package org.study.controllers.user.user;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
