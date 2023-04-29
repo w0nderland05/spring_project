@@ -3,9 +3,8 @@ package org.study.admin.user;
 import lombok.RequiredArgsConstructor;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.study.controllers.user.UserLogin;
+import org.study.controllers.user.user.UserLogin;
 
 @SpringBootTest
 @RequiredArgsConstructor

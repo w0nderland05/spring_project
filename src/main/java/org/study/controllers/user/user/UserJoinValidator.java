@@ -1,4 +1,4 @@
-package org.study.controllers.user;
+package org.study.controllers.user.user;
 
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
@@ -9,6 +9,7 @@ import org.study.commons.validators.BadRequestException;
 import org.study.commons.validators.CellPhoneValidator;
 import org.study.commons.validators.PasswordValidator;
 import org.study.commons.validators.RequiredCheckValidator;
+import org.study.controllers.user.user.UserJoin;
 import org.study.repositories.UserRepository;
 
 /**

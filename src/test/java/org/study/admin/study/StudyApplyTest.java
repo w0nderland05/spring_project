@@ -19,6 +19,7 @@ import org.study.controllers.admin.study.StudyConfig;
 import org.study.entities.Study;
 import org.study.models.study.DuplicationStudyCdException;
 import org.study.models.study.StudyApplyService;
+import org.study.models.study.StudyListService;
 import org.study.models.study.StudyRegisterValidator;
 import org.study.repositories.StudyRepository;
 
@@ -53,6 +54,9 @@ public class StudyApplyTest {
     private StudyApplyService applyService;
 
     @Autowired
+    private  StudyListService listService;
+
+
     private StudyConfig studyConfig;
 
     /** 단위 테스트 S*/
@@ -241,7 +245,9 @@ public class StudyApplyTest {
         @Test
         @DisplayName("스터디 신청 데이터와 DB 데이터의 일치 여부 체크")
         public void assertApplyToDB () {
-
+            applyService.apply(studyConfig);
+            StudyConfig result = listService.get(studyConfig.getStudyCode());
+            studyConfig = result;
 
         }
 
