@@ -71,10 +71,13 @@
             <input type="radio" name="regionType" value="false" id="offline">
             <label for="offline">
                 오프라인
-                <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-                <select name="addressRegion" id="addressRegion1"></select>
-                <select name="addressDo" id="addressDo1"></select>
-                <select name="addressSiGunGu" id="addressSiGunGu1"></select>
+                <select name="addressDo" class="ajax_sido">
+                    <option value="">- 시도 선택 -</option>
+                    <option th:each="sido : ${sidoList}" th:value="${sido}" th:text="${sido}"></option>
+                </select>
+                <select name="addressSiGunGu" class="ajax_gigugun">
+                    <option value="">- 시구군 선택 -</option>
+                </select>
             </label>
         </dd>
     </dl>
