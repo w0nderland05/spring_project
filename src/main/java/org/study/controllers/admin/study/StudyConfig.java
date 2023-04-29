@@ -61,7 +61,7 @@ public class StudyConfig {
 
     @NotBlank
     @Lob
-    private String Introduction; //소개글
+    private String introduction; //소개글
 
 
     public static Study of (StudyConfig studyConfig) {
