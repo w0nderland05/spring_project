@@ -106,7 +106,7 @@ public class CategoryListServiceTest {
                 fail();
             }
 
-            startNum--;
+            startNum -= 1000;
         }
     }
 }

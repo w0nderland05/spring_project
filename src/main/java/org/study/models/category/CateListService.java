@@ -2,6 +2,8 @@ package org.study.models.category;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Sort;
+import static org.springframework.data.domain.Sort.Order.desc;
+
 import org.springframework.stereotype.Service;
 import org.study.controllers.admin.category.CategorySearch;
 import org.study.entities.Category;
@@ -25,7 +27,7 @@ public class CateListService {
 
     public List<Category> gets(CategorySearch search, int page, int limit) {
 
-        Sort sort = Sort.by(Sort.Order.desc("createdAt")); // 기본 정렬은 최신 등록 순으로
+        Sort sort = Sort.by(desc("listOrder"), desc("createdAt")); // 기본 정렬은 최신 등록 순으로
         List<Category> categories = repository.findAll(sort);
 
         return categories;
