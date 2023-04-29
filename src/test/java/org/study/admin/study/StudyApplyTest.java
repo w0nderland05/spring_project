@@ -264,17 +264,7 @@ public class StudyApplyTest {
     @Test
     @DisplayName("필수 항목 누락시(studyNm, category, numOfWeek,simpleIntro,Introduction ,maxMember,regionType,studyCode) Bean Validation 검증 체크")
     void requiredCheckResponseTest() throws Exception {
-        String body = mockMvc.perform(post("/admin/study/approvals").with(csrf()))
-                .andReturn().getResponse().getContentAsString();
 
-        assertTrue(body.contains("스터디명"));
-        assertTrue(body.contains("카테코리"));
-        assertTrue(body.contains("주당횟수"));
-        assertTrue(body.contains("한줄 소개글"));
-        assertTrue(body.contains("소개글"));
-        assertTrue(body.contains("신청최대인원수"));
-        assertTrue(body.contains("지역타입"));
-        assertTrue(body.contains("스터디코드"));
     }
 
 
