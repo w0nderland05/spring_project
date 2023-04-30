@@ -6,6 +6,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.Errors;
+import org.study.commons.constants.Status;
 import org.study.commons.validators.StudyNotFoundException;
 import org.study.controllers.admin.board.BoardConfig;
 import org.study.controllers.admin.study.StudyConfig;
@@ -37,7 +38,7 @@ public class StudyListService {
                 .numOfWeek(study.getNumOfWeek())
                 .regionType(study.getRegionType())
                 .simpleIntro(study.getSimpleIntro())
-                .Introduction(study.getIntroduction())
+                .introduction(study.getIntroduction())
                 .build();
     }
 
@@ -55,5 +56,11 @@ public class StudyListService {
         }
         Study study = repository.findById(studyCode).orElseThrow();
         return toConfig(study);
+    }
+
+    public List <StudyConfig> applyStatusGets(Status status){
+        List<Study> studies= repository.findByApproveStatus(status);
+        List <StudyConfig> configs = studies.stream().map(this::toConfig).toList();
+        return configs;
     }
 }

@@ -1,14 +1,24 @@
 package org.study.admin.Cs;
 
+
+import jakarta.validation.constraints.AssertTrue;
+import org.aspectj.lang.annotation.Before;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.TestPropertySource;
+import org.study.commons.constants.ReportStatus;
+import org.study.controllers.user.user.UserJoin;
+import org.study.entities.Report;
 import org.study.entities.User;
+import org.study.repositories.ReportRepository;
 import org.study.repositories.UserRepository;
 
 import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * Cs는 가입된 회원을 전제로 신고합니다.
@@ -16,33 +26,40 @@ import java.util.List;
  * 파일명 : "CsReportService"
  */
 @SpringBootTest
+@TestPropertySource(locations="classpath:application-test.properties")
 public class CsReportTest {
 
     @Autowired
-    private UserRepository repository;
+    private UserRepository userRepository;
+
+    @Autowired
+    private ReportRepository repository;
+
+    private UserJoin userJoin;
+    private CsConfig csConfig;
+    private Report report;
 
     @BeforeEach
     public void insertUser(){
-        User user = User.builder()
-                .userNm("홍다경")
-                .userEmail("test2@naver.com")
-                .userPw("aA!1234567")
-                .cellPhone("010-1234-5678")
-                .userNickNm("밤빵")
-                .birth("10/20")
-                .build();
+        userJoin = new UserJoin();
+        userJoin.setUserNm("홍다경");
+        userJoin.setUserEmail("test2@naver.com");
+        userJoin.setUserPw("aA!1234567");
+        userJoin.setCellphone("010-1234-5678");
+        userJoin.setUserNickNm("밤빵");
+        userJoin.setBirth("10/20");
+
+        csConfig = new CsConfig();
+        csConfig.of(csConfig).getUser().setUserEmail("test2@naver.com");
+        csConfig.setDivision("board");
+        csConfig.setCode(Long.valueOf("58670212"));
+        csConfig.setDetail("빵꾸똥꾸라고 욕했어요.");
+        csConfig.setStatus(ReportStatus.CLEAR.toString());
+        csConfig.setProcess("욕설로 5회 신고 확인되어 탈퇴처리되었습니다.");
     }
 
-    /**
-     * 회원은 회원 이메일로 조회를 합니다.
-     * UserRepository.isExists()를 통해 일치하는지 체크할 수 있습니다.
-     */
-    @Test
-    @DisplayName("신고한 회원이 가입된 회원인지 체크")
-    void report_User_Email_isExists(){
-        List<User> list = repository.findAll();
-        System.out.println("list = " + list);
-    }
+
+
 
     /**
      * 회원 조회를 통해 가져올 항목을 결정합니다.
@@ -57,7 +74,7 @@ public class CsReportTest {
     }
     /**
      * 신고 세부 유형에따라 신고대상 조회
-     * 파일명:'ReportRegisterService'의 reportTarget()
+     * 파일명:'CsRegisterService'의 reportTarget()
      * 회원신고일경우 - 회원정보조회/ 게시글신고일 경우 - 게시글 조회
      */
     @Test

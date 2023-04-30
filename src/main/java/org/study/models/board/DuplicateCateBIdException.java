@@ -1,4 +1,4 @@
-package org.study.admin.Board;
+package org.study.models.board;
 
 import org.springframework.http.HttpStatus;
 import org.study.commons.validators.CommonException;

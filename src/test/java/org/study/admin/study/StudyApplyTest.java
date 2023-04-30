@@ -19,6 +19,7 @@ import org.study.controllers.admin.study.StudyConfig;
 import org.study.entities.Study;
 import org.study.models.study.DuplicationStudyCdException;
 import org.study.models.study.StudyApplyService;
+import org.study.models.study.StudyListService;
 import org.study.models.study.StudyRegisterValidator;
 import org.study.repositories.StudyRepository;
 
@@ -52,6 +53,13 @@ public class StudyApplyTest {
     @Autowired
     private StudyApplyService applyService;
 
+<<<<<<< HEAD
+=======
+    @Autowired
+    private  StudyListService listService;
+
+
+>>>>>>> 572acb1217a79527daf9ee00ab88bd490aa87747
     private StudyConfig studyConfig;
 
     /** 단위 테스트 S*/
@@ -115,7 +123,7 @@ public class StudyApplyTest {
          * 필수항목
          * 스터디명,카테고리,스터디주당횟수, 한줄소개글,소개글 ,신청최대인원수, 스터디 지역타입, 스터디 코드
          */
-        String[] fields = {"studyNm", "category", "numOfWeek", "simpleIntro", "Introduction" /**, "maxMember", "regionType", "studyCode" */};
+        String[] fields = {"studyNm", "category", "numOfWeek", "simpleIntro", "Introduction"};
 
 
         /** 빈값 체크 S*/
@@ -240,7 +248,9 @@ public class StudyApplyTest {
         @Test
         @DisplayName("스터디 신청 데이터와 DB 데이터의 일치 여부 체크")
         public void assertApplyToDB () {
-
+            applyService.apply(studyConfig);
+            StudyConfig result = listService.get(studyConfig.getStudyCode());
+            studyConfig = result;
 
         }
 
@@ -249,10 +259,17 @@ public class StudyApplyTest {
 
         /** 통합테스트 S */
         @Test
-        @DisplayName("등록성공시 /admin/study/approvals 신청내역 등록되고, user/study/join페이지로이동  ")
+        @DisplayName("등록성공시 user/study/join 페이지로이동 ")
        void registerSuccessInflowAdmin()throws Exception{
             mockMvc.perform(get("/user/study/join"));
         }
+
+    @Test
+    @DisplayName("필수 항목 누락시(studyNm, category, numOfWeek,simpleIntro,Introduction ,maxMember,regionType,studyCode) Bean Validation 검증 체크")
+    void requiredCheckResponseTest() throws Exception {
+
+    }
+
 
 
 

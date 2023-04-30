@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{front/mypage/main_mp}">
+<section layout:fragment="content">
+    <form method="post" th:action="@{/user/qna}" autocomplete="off">
+        <div>
+            <h1>문의 내역</h1>
+        </div>
+        <!-- 접었다 펼쳤다 하는 형식으로 만들 예정 , 한 페이지에 5개 정도 -->
+        <div>
+            <ul>
+                <li>
+                    <span>제목1</span>
+                    <!-- 제목 자동 입력 -->
+                    <span>2023.4.29</span>
+                    <!-- 문의 일시 자동 입력 -->
+                </li>
+
+                <br>
+
+                <li>
+                    <span>문의 내용</span>
+                    <!-- 문의 내용 자동 입력 -->
+                </li>
+
+                <br>
+
+                <li>
+                    <span>답글</span>
+                    <!-- 답글 내용 자동 입력 -->
+                </li>
+            </ul>
+        </div>
+
+    </form>
+</section>
+</html>
