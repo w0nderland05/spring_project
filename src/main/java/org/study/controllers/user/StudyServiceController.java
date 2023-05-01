@@ -28,7 +28,9 @@ public class StudyServiceController {
     }
 
     @GetMapping("/join")
-    public String studyJoin() {
+    public String studyJoin(Model model, StudyConfig studyConfig) {
+        model.addAttribute("studyConfig", studyConfig);
+        model.addAttribute("sidoList", Areas.sido);
         return "/front/study/join";
     }
 
