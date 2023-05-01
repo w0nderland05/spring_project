@@ -8,6 +8,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.TestPropertySource;
 import org.study.controllers.admin.category.CategoryForm;
 import org.study.entities.Category;
+import org.study.repositories.CategoryRepository;
 
 import java.util.List;
 
@@ -17,17 +18,22 @@ public class CateListTest {
 
     private CateListService service;
 
+    private CategoryRepository repository;
+
+
     @BeforeEach
     void insert(){
 
         for(int i=1;i<=5; i++) {
-            Category.builder()
-                    .cateCd("분류코드"+i)
-                    .use(true)
-                    .location("Study")
-                    .cateNm("분류1\n분류2\n분류3\n")
-                    .listOrder(3L)
-                    .build();
+            Category category = Category.builder()
+                                .cateCd("분류코드"+i)
+                                .use(true)
+                                .location("Study")
+                                .cateNm("분류1\n분류2\n분류3\n")
+                                .listOrder(3L)
+                                .build();
+
+            repository.save(category);
         }
     }
 
