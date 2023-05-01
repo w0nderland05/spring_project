@@ -41,11 +41,11 @@ public class StudyListTest {
     private StudyConfig studyConfig;
 
     private int cnt_Apply = 1; //approveStatus- APPLY 갯수
-    private int cnt_Disapprove=2;//approveStatus- DISAPPROVE 갯수
-    private int cnt_Approve=0;//approveStatus- APPROVE 갯수
+    private int cnt_Disapprove = 2;//approveStatus- DISAPPROVE 갯수
+    private int cnt_Approve = 0;//approveStatus- APPROVE 갯수
 
     @BeforeEach
-    public void register() {
+    public void register() { //테스트를 위한 데이터 등록
         StudyConfig studyConfig = StudyConfig.builder()
                 .studyCode(Long.valueOf("5245625"))
                 .studyNm("코리아스터디")
@@ -61,7 +61,7 @@ public class StudyListTest {
                 .simpleIntro("백엔드개발 스터디 입니다.")
                 .introduction("즐겁게 공부해봅시다.")
                 .build();
-            applyService.apply(studyConfig);
+        applyService.apply(studyConfig);
 
         StudyConfig studyConfig2 = StudyConfig.builder()
                 .studyCode(Long.valueOf("12345678"))
@@ -97,14 +97,6 @@ public class StudyListTest {
                 .build();
         applyService.apply(studyConfig3);
 
-        }
-
-
-
-    public StudyConfig createStudyConfig() {
-
-
-        return studyConfig;
     }
 
 
@@ -142,19 +134,24 @@ public class StudyListTest {
     @Test
     @DisplayName("approveStatus(승인상태-APPLY,APPROVE,DISAPPROVE)에 따라 조회된 데이터 갯수와 cnt갯수 맞으면 성공")
     void study_ApproveStatus_Apply_gets() {
+        //approveStatus- APPLY 경우 스터디 조회
         assertDoesNotThrow(() -> {
             List<StudyConfig> applyLists = listService.applyStatusGets(Status.APPLY);
-           assertEquals(cnt_Apply, applyLists.size());
+            assertEquals(cnt_Apply, applyLists.size());
         });
+        //approveStatus- DISAPPROVE 경우 스터디 조회
         assertDoesNotThrow(() -> {
             List<StudyConfig> disapproveLists = listService.applyStatusGets(Status.DISAPPROVE);
             assertEquals(cnt_Disapprove, disapproveLists.size());
         });
+        //approveStatus- APPROVE 경우 스터디 조회
         assertDoesNotThrow(() -> {
             List<StudyConfig> approveLists = listService.applyStatusGets(Status.APPROVE);
             assertEquals(cnt_Approve, approveLists.size());
         });
 
     }
+
+
 
 }
