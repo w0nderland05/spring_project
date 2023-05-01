@@ -53,13 +53,9 @@ public class StudyApplyTest {
     @Autowired
     private StudyApplyService applyService;
 
-<<<<<<< HEAD
-=======
     @Autowired
     private  StudyListService listService;
 
-
->>>>>>> 572acb1217a79527daf9ee00ab88bd490aa87747
     private StudyConfig studyConfig;
 
     /** 단위 테스트 S*/

@@ -1,7 +1,9 @@
 package org.study.admin.Category;
 
 import com.sun.jdi.IntegerValue;
+import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Sort;
+import org.springframework.stereotype.Service;
 import org.study.controllers.admin.category.CategoryForm;
 import org.study.entities.Category;
 import org.study.repositories.CategoryRepository;
@@ -10,9 +12,11 @@ import java.util.List;
 
 import static org.springframework.data.domain.Sort.Order.desc;
 
+@Service
+@RequiredArgsConstructor
 public class CateListService {
 
-    private CategoryRepository repository;
+    private final CategoryRepository repository;
 
     public List<CategoryForm> gets(){
        List<Category> categories = repository.findAll(Sort.by(desc("regDt")));
