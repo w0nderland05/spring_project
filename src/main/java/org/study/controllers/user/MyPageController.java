@@ -1,14 +1,10 @@
 package org.study.controllers.user;
 
-import lombok.RequiredArgsConstructor;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.study.entities.User;
-
-import java.security.Principal;
 
 /*
 회원정보 수정 (/user/mypage/edit/{userId})
@@ -19,10 +15,7 @@ import java.security.Principal;
 
 @Controller
 @RequestMapping("/user/mypage")
-@RequiredArgsConstructor
 public class MyPageController {
-
-    private final User user;
 
     /**
      * <마이페이지> 클릭하면 나오는 페이지
@@ -32,6 +25,8 @@ public class MyPageController {
 
     @GetMapping("/edit")
     public String myPage() {
+
+
         return "front/mypage/edit";
     }
 
