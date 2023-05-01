@@ -22,7 +22,11 @@ import java.security.Principal;
 @RequiredArgsConstructor
 public class MyPageController {
 
-    private final User user;
+    /**
+     * 의존성 주입은 @Component, @Service, @Controller, @Repository, @Configuration과 같은
+     * 애노테이션과 함께 쓰일때 가능, 엔티티는 repository에서 쿼리를 통해 조회
+     */
+    //private final User user;
 
     /**
      * <마이페이지> 클릭하면 나오는 페이지
