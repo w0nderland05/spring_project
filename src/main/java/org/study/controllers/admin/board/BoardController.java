@@ -52,7 +52,7 @@ public class BoardController {
      *
      * @return
      */
-    @PostMapping("/save")
+    @PostMapping
     public String save(@Valid BoardConfig boardConfig, Errors errors) {
         try {
             // 게시판 저장 처리
@@ -61,7 +61,7 @@ public class BoardController {
             errors.rejectValue("bId", "Duplicate.boardConfig.bId");
         }
         if (errors.hasErrors()) {
-            return "admin/board/register";
+            return "admin/board/config";
         }
 
         return "redirect:/admin/board";
