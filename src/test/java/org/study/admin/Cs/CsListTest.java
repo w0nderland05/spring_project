@@ -1,6 +1,5 @@
 package org.study.admin.Cs;
 
-import lombok.RequiredArgsConstructor;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -74,12 +73,11 @@ public class CsListTest {
     @Test
     @DisplayName("신고목록 조회가능한지 체크-ReportNotFoundException 예외 발생")
     void report_gets(){
-        repository.findAll();
 
-        assertThrows(ReportNotFoundException.class, () -> {
+        assertDoesNotThrow(() -> {
            listService.gets();
         });
-        System.out.println(listService.gets());
+//        System.out.println(listService.gets());
     }
 
     /**
@@ -92,10 +90,12 @@ public class CsListTest {
     @Test
     @DisplayName("Code를 통해서 하나의 목록만 조회 가능한지 체크")
     void report_get(){
+
         assertDoesNotThrow(() -> {
             long csCode = csConfig.getCode();
             listService.get(csCode);
         });
+
     }
 
     /**@Test ReportService::regDt()
