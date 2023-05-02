@@ -45,7 +45,7 @@ public class CsListTest {
 
         CsConfig csConfig = CsConfig.builder()
                 .division("board")
-                .code(Long.valueOf("58670212"))
+                .code(58670212L)
                 .detail("빵꾸똥꾸라고 욕했어요.")
                 .status(ReportStatus.CLEAR.toString())
                 .process("욕설로 5회 신고 확인되어 탈퇴처리되었습니다.")
@@ -55,7 +55,7 @@ public class CsListTest {
 
         CsConfig csConfig2 = CsConfig.builder()
                 .division("board")
-                .code(Long.valueOf("12345678"))
+                .code(12345678L)
                 .detail("스터디 목적이 부적절해요")
                 .status(ReportStatus.CLEAR.toString())
                 .process("해당 스터디를 삭제조치하였습니다.")
