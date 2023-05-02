@@ -22,5 +22,12 @@ public class BoardListTest {
 
     }
 
+    /**
+     * 특정 카테고리를 선택한 후, 해당 카테고리에만 해당되는 게시물 목록이 조회되는지 테스트하는 메서드입니다.
+     */
+    @Test
+    @DisplayName("하나의 카테고리 선택 - 해당 게시물만 조회 가능 ")
+    void get_category_lists(){
 
+    }
 }
