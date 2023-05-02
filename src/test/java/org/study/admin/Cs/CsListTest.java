@@ -39,23 +39,30 @@ public class CsListTest {
     @Autowired
     private ReportRepository repository;
 
+    @Autowired
+    private CsRegisterService registerService;
     @BeforeEach
     public void report() {
-        csConfig = new CsConfig();
-        csConfig.setDivision("board");
-        csConfig.setCode(Long.valueOf("58670212"));
-        csConfig.setDetail("빵꾸똥꾸라고 욕했어요.");
-        csConfig.setStatus(ReportStatus.CLEAR.toString());
-        csConfig.setProcess("욕설로 5회 신고 확인되어 탈퇴처리되었습니다.");
 
-        csConfig2 = new CsConfig();
-        csConfig2.setDivision("study");
-        csConfig2.setCode(Long.valueOf("12345678"));
-        csConfig2.setDetail("스터디 목적이 부적절해요");
-        csConfig2.setStatus(ReportStatus.CLEAR.toString());
-        csConfig2.setProcess("해당 스터디를 삭제조치하였습니다.");
+        CsConfig csConfig = CsConfig.builder()
+                .division("board")
+                .code(Long.valueOf("58670212"))
+                .detail("빵꾸똥꾸라고 욕했어요.")
+                .status(ReportStatus.CLEAR.toString())
+                .process("욕설로 5회 신고 확인되어 탈퇴처리되었습니다.")
+                .build();
 
+        registerService.register(csConfig);
 
+        CsConfig csConfig2 = CsConfig.builder()
+                .division("board")
+                .code(Long.valueOf("12345678"))
+                .detail("스터디 목적이 부적절해요")
+                .status(ReportStatus.CLEAR.toString())
+                .process("해당 스터디를 삭제조치하였습니다.")
+                .build();
+
+        registerService.register(csConfig2);
     }
 
     /**
@@ -68,10 +75,17 @@ public class CsListTest {
     @DisplayName("신고목록 조회가능한지 체크-ReportNotFoundException 예외 발생")
     void report_gets(){
         repository.findAll();
+<<<<<<< HEAD
 //        assertThrows(ReportNotFoundException.class, () -> {
 //            listService.gets();
 //        });
 
+=======
+
+        assertThrows(ReportNotFoundException.class, () -> {
+           listService.gets();
+        });
+>>>>>>> d34f16f7ddc3ae85386f8854e3fda9c43755a70e
         System.out.println(listService.gets());
     }
 
@@ -85,7 +99,10 @@ public class CsListTest {
     @Test
     @DisplayName("Code를 통해서 하나의 목록만 조회 가능한지 체크")
     void report_get(){
-
+        assertDoesNotThrow(() -> {
+            long csCode = csConfig.getCode();
+            listService.get(csCode);
+        });
     }
 
     /**@Test ReportService::createdAt()
