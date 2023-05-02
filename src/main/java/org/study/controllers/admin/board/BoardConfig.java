@@ -50,7 +50,6 @@ public class BoardConfig {
 
     private boolean useComment; // 댓글 사용여부
 
-    @NotBlank
     private String skin; // 스킨명
 
     private boolean isReview; // 후기 게시판 여부

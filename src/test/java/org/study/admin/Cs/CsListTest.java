@@ -95,7 +95,7 @@ public class CsListTest {
     @DisplayName("Code를 통해서 하나의 목록만 조회 가능한지 체크")
     void report_get(){
 
-        CsConfig report = listService.get(config.getCode());
+        CsConfig report = listService.get(58670212L);
 
         System.out.println(report);
 
