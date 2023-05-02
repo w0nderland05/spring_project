@@ -1,11 +1,16 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<th:block th:fragment="form" >
-
+<th:block th:fragment="form" th:object="${studyConfig}" >
+    <div class="error" th:each="err : ${#fields.globalErrors()}" th:text="${err}"></div>
     <dl>
         <dt>스터디코드</dt>
         <dd>
-            <input  type="text" name="studyCode">
+            <th:block th:if="${mode != null && mode == 'update' }">
+                [[*{studyCode}]]
+                <input type="hidden" name="bId" th:field="*{bId}">
+            </th:block>
+            <input th:unless="${mode != null && mode == 'update' }" type="text" name="studyCode" th:field="*{studyCode}">
+            <div class="error" th:each="err :${#fields.errors('studyCode')}" th:text="${err}"></div>
         </dd>
     </dl>
     <dl>
@@ -18,7 +23,8 @@
             </select>
         </dt>
         <dd>
-            <input type="text">
+            <input type="text" name="studyNm" placeholder="스터디명을 입력하세요." th:field="*{studyNm}">
+            <div class="error" th:each="err : ${#fields.errors('studyNm')}" th:text="${err}"></div>
         </dd>
     </dl>
     <dl>
@@ -28,12 +34,12 @@
     <dl>
         <dt>신청최대 인원수</dt>
         <dd>
-            <input type="radio" name="limit" value="true" id="limit_1">
+            <input type="radio" name="limit" value="1" id="limit_1">
             <label for="limit_1">
                 제한있음
-                <input type="text" name="limit">
+                <input type="number" name="limit"  th:fields="*{maxMember}">
             </label>
-            <input type="radio" name="limit" value="false" id="limit_0">
+            <input type="radio" name="limit" value="0" id="limit_0" th:fields="*{maxMember}">
             <label for="limit_0">
                 제한없음
             </label>
@@ -42,19 +48,19 @@
     <dl>
         <dt>스터디 주당횟수</dt>
         <dd>
-            <input type="radio" name="numOfWeek" value="true" id="num_1">
+            <input type="radio" name="numOfWeek" value="once" id="num_1" checked="checked" th:fields="*{numOfWeek}">
             <label for="num_1">
                 주1회
             </label>
-            <input type="radio" name="numOfWeek" value="true" id="num_2">
+            <input type="radio" name="numOfWeek" value="twice" id="num_2" th:fields="*{numOfWeek}">
             <label for="num_2">
                 주2회
             </label>
-            <input type="radio" name="numOfWeek" value="true" id="num_3">
+            <input type="radio" name="numOfWeek" value="three" id="num_3" th:fields="*{numOfWeek}">
             <label for="num_3">
                 주3회
             </label>
-            <input type="radio" name="numOfWeek" value="true" id="num_4">
+            <input type="radio" name="numOfWeek" value="four" id="num_4" th:fields="*{numOfWeek}">
             <label for="num_4">
                 주4회이상
             </label>
