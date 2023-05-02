@@ -1,12 +1,18 @@
 package org.study.controllers.admin.study;
 
+import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.study.commons.Areas;
 import org.study.commons.constants.Status;
+import org.study.commons.validators.CommonException;
+import org.study.commons.validators.StudyNotFoundException;
+import org.study.entities.Study;
 import org.study.models.study.StudyListService;
 
 import java.util.List;
@@ -14,6 +20,8 @@ import java.util.List;
 @Controller
 @RequestMapping("/admin/study")
 public class StudyController {
+
+
 
     @Autowired
     private StudyListService listService;
@@ -26,8 +34,29 @@ public class StudyController {
      * @return
      */
     @GetMapping
-    public String index(){
+    public String index(Model model, StudyConfig studyConfig){
+        model.addAttribute("studyConfig",studyConfig);
         return "admin/study/index";
+    }
+    /**
+     * 스터디 수정
+     */
+    @GetMapping("/update/{studyCode}")
+    public String update(@PathVariable Long studyCode, Model model, HttpServletResponse response){
+        model.addAttribute("mode", "update");
+        try {
+            StudyConfig studyConfig = listService.get(studyCode);
+
+            model.addAttribute("studyConfig", studyConfig);
+        }catch (CommonException e){
+         //   e.getStatus();
+            response.setStatus(e.getStatus().value());
+            model.addAttribute( "script", "alert('" + e.getMessage() + "');history.back();");
+            return "common/execute_script";
+        }
+
+        return "admin/study/index";
+
     }
 
     /**
@@ -51,7 +80,8 @@ public class StudyController {
      * @return
      */
     @GetMapping("/approve")
-    public String approve(){
+    public String approve(Model model){
+        model.addAttribute("sidoList", Areas.sido);
         return "admin/study/approve";
     }
 
