@@ -38,7 +38,6 @@ public class StudyListTest {
     private StudyApplyService applyService;
 
 
-    private StudyConfig studyConfig;
 
     private int cnt_Apply = 1; //approveStatus- APPLY 갯수
     private int cnt_Disapprove = 2;//approveStatus- DISAPPROVE 갯수
@@ -97,6 +96,7 @@ public class StudyListTest {
                 .build();
         applyService.apply(studyConfig3);
 
+
     }
 
 
@@ -125,8 +125,7 @@ public class StudyListTest {
     @DisplayName("스터디 목록 개별 조회")
     void study_get() {
         assertDoesNotThrow(() -> {
-            long studyCode = studyConfig.getStudyCode();
-            listService.get(studyCode);
+            listService.get(5245625L);
         });
 
     }
