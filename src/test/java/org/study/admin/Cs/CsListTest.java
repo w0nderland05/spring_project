@@ -75,17 +75,11 @@ public class CsListTest {
     @DisplayName("신고목록 조회가능한지 체크-ReportNotFoundException 예외 발생")
     void report_gets(){
         repository.findAll();
-<<<<<<< HEAD
-//        assertThrows(ReportNotFoundException.class, () -> {
-//            listService.gets();
-//        });
-
-=======
 
         assertThrows(ReportNotFoundException.class, () -> {
            listService.gets();
         });
->>>>>>> d34f16f7ddc3ae85386f8854e3fda9c43755a70e
+
         System.out.println(listService.gets());
     }
 
