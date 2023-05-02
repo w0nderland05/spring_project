@@ -13,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.study.commons.constants.board.AfterWriteTarget;
 import org.study.commons.constants.board.SkinType;
 import org.study.commons.constants.board.ViewType;
+import org.study.commons.messageBundle.MessageBundle;
 import org.study.commons.validators.BadRequestException;
 import org.study.controllers.admin.board.BoardConfig;
 import org.study.models.board.BoardConfigService;
@@ -269,5 +270,21 @@ public class BoardConfigTest {
 
         // 스킨 검증 (skin)
         assertTrue(body.contains("스킨"));
+    }
+
+    @Test
+    @DisplayName("중복 등록 Bean Validation 검증 체크")
+    void duplicateBIdCheckResponseTest() throws Exception {
+        service.config(boardConfig);
+
+        String body = mockMvc.perform(post("/admin/board")
+                .param("bId", boardConfig.getBId())
+                .param("boardNm", boardConfig.getBoardNm())
+                .param("rowsPerPage", String.valueOf(boardConfig.getRowsPerPage()))
+                .param("skin", boardConfig.getSkin()).with(csrf()))
+                .andReturn().getResponse().getContentAsString();
+
+        String message = MessageBundle.getMessage("Duplicate.boardConfig.bId");
+        assertTrue(body.contains(message));
     }
 }
