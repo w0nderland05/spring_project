@@ -31,13 +31,11 @@ import static org.junit.jupiter.api.Assertions.*;
 @TestPropertySource(locations = "classpath:application-test.properties")
 public class CsListTest {
 
+
     private CsConfig config;
 
     @Autowired
     private ReportListService listService;
-
-    @Autowired
-    private ReportRepository repository;
 
     @Autowired
     private CsRegisterService registerService;
@@ -95,22 +93,22 @@ public class CsListTest {
     @DisplayName("Code를 통해서 하나의 목록만 조회 가능한지 체크")
     void report_get(){
 
-        CsConfig report = listService.get(config.getCode());
+        CsConfig report = listService.get(58670212L);
 
         System.out.println(report);
 
     }
 
-    /**@Test ReportService::createdAt()
-     *
-     * 메서드 createdAt()에 해당하는 테스트 메서드입니다.
-     * 최신 등록순으로 정렬 되는지 체크하는 기능입니다.
-     */
-    @Test
-    @DisplayName("최신 등록순으로 정렬되는지 체크")
-    void report_Lists_By_CreatedDt(){
-
-    }
+//    /**@Test ReportService::createdAt()
+//     *
+//     * 메서드 createdAt()에 해당하는 테스트 메서드입니다.
+//     * 최신 등록순으로 정렬 되는지 체크하는 기능입니다.
+//     */
+//    @Test
+//    @DisplayName("최신 등록순으로 정렬되는지 체크")
+//    void report_Lists_By_CreatedDt(){
+//
+//    }
 
     /**
      * 처리상태(처리완료/처리 대기중) 에 따른 목록만 조회가 되는지 테스트하는 메서드 입니다.
