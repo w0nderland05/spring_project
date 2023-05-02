@@ -1,6 +1,7 @@
 package org.study.controllers.admin.board;
 
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -30,8 +31,7 @@ public class BoardConfig {
 
     private boolean isUse;
 
-    @NotBlank
-    @Size(min = 10)
+    @NotNull
     private Long rowsPerPage; // 1페이지에 노출될 게시글 수
 
     private boolean useViewList; // 게시글 하단에 목록 노출

@@ -1,6 +1,5 @@
 package org.study.admin.Category;
 
-import com.sun.jdi.IntegerValue;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
@@ -14,15 +13,14 @@ import static org.springframework.data.domain.Sort.Order.desc;
 
 @Service
 @RequiredArgsConstructor
-public class CateListService {
+public class CategoryListService {
 
     private final CategoryRepository repository;
 
-    public List<CategoryForm> gets(){
-       List<Category> categories = repository.findAll(Sort.by(desc("regDt")));
-       List<CategoryForm> forms = categories.stream().map(this::toForm).toList();
+    public List<Category> gets(){
+       List<Category> categories = repository.findAll(Sort.by(desc("createdAt")));
 
-       return forms;
+       return categories;
 
     }
 

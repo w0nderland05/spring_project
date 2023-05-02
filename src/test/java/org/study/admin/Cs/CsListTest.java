@@ -77,7 +77,9 @@ public class CsListTest {
         assertDoesNotThrow(() -> {
            listService.gets();
         });
-//        System.out.println(listService.gets());
+
+        System.out.println(listService.gets());
+
     }
 
     /**
@@ -98,14 +100,24 @@ public class CsListTest {
 
     }
 
-    /**@Test ReportService::regDt()
+    /**@Test ReportService::createdAt()
      *
-     * 메서드 regDt()에 해당하는 테스트 메서드입니다.
+     * 메서드 createdAt()에 해당하는 테스트 메서드입니다.
      * 최신 등록순으로 정렬 되는지 체크하는 기능입니다.
      */
     @Test
     @DisplayName("최신 등록순으로 정렬되는지 체크")
     void report_Lists_By_CreatedDt(){
+
+    }
+
+    /**
+     * 처리상태(처리완료/처리 대기중) 에 따른 목록만 조회가 되는지 테스트하는 메서드 입니다.
+     * 문의관리/ 신고관리 모두 해당
+     */
+    @Test
+    @DisplayName("처리상태에 따른 목록 조회 ")
+    void cs_List_By_CsStatus() {
 
     }
 }

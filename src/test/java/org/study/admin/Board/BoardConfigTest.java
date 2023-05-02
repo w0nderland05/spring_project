@@ -252,6 +252,22 @@ public class BoardConfigTest {
 
     }
 
-//    @Test
-//    @DisplayName("성공적으로 등록완료되면 ")
+    @Test
+    @DisplayName("필수항목 누락 시 Bean Validation 검증 체크")
+    void checkResponseTest() throws Exception {
+        String body = mockMvc.perform(post("/admin/board").with(csrf()))
+                .andReturn().getResponse().getContentAsString();
+
+        // 게시판아이디 검증(bId)
+        assertTrue(body.contains("게시판 아이디"));
+
+        // 게시판이름 검증(boardNm)
+        assertTrue(body.contains("게시판 이름"));
+
+        // 페이지 당 게시글 수 검증(rowsPerPage)
+        assertTrue(body.contains("페이지 당 게시글 수"));
+
+        // 스킨 검증 (skin)
+        assertTrue(body.contains("스킨"));
+    }
 }
