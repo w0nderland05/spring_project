@@ -22,7 +22,7 @@ import java.security.Principal;
 @RequiredArgsConstructor
 public class MyPageController {
 
-    private final User user;
+   // private final User user;
 
     /**
      * <마이페이지> 클릭하면 나오는 페이지

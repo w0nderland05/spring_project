@@ -49,7 +49,6 @@ public class StudyController {
 
             model.addAttribute("studyConfig", studyConfig);
         }catch (CommonException e){
-         //   e.getStatus();
             response.setStatus(e.getStatus().value());
             model.addAttribute( "script", "alert('" + e.getMessage() + "');history.back();");
             return "common/execute_script";
