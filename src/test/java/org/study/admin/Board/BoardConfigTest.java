@@ -94,14 +94,13 @@ public class BoardConfigTest {
     @DisplayName("필수 입력 값 체크 -예외메세지발생")
     void boardConfig_Essential(){
         // 발생 경우 수
-        // bId , boardNm, rowsPerPage, skin 에 대한 필수 입력 값 체크
+        // bId , boardNm, rowsPerPage 에 대한 필수 입력 값 체크
         // null, isBlank
 
         /** 빈값 체크 S */
-        String[] fields = {"bId", "boardNm" /* "rowsPerPage" */, "skin"};
+        String[] fields = {"bId", "boardNm" /* "rowsPerPage" */};
         String bId = boardConfig.getBId();
         String boardNm = boardConfig.getBoardNm();
-        String skin = boardConfig.getSkin();
 
         for (String field : fields) {
             String includedWord = null;
@@ -109,20 +108,12 @@ public class BoardConfigTest {
             if (field.equals("bId")) {
                 boardConfig.setBId("   ");
                 boardConfig.setBoardNm(boardNm);
-                boardConfig.setSkin(skin);
                 includedWord = "게시판 아이디";
 
             } else if (field.equals("boardNm")) {
                 boardConfig.setBId(bId);
                 boardConfig.setBoardNm("   ");
-                boardConfig.setSkin(skin);
                 includedWord = "게시판 이름";
-
-            } else if (field.equals("skin")) {
-                boardConfig.setBId(bId);
-                boardConfig.setBoardNm(boardNm);
-                boardConfig.setSkin("   ");
-                includedWord = "스킨";
             }
             BadRequestException thrown = assertThrows(BadRequestException.class, () -> {
                 service.config(boardConfig);
@@ -140,7 +131,7 @@ public class BoardConfigTest {
         /** 빈값 체크 E */
 
         /** NULL 체크 S */
-        String[] fields2 = {"bId", "boardNm", "rowsPerPage", "skin"};
+        String[] fields2 = {"bId", "boardNm", "rowsPerPage"};
         Long rowsPerPage = boardConfig.getRowsPerPage();
 
         for (String field : fields2) {
@@ -149,29 +140,19 @@ public class BoardConfigTest {
                 boardConfig.setBId(null);
                 boardConfig.setBoardNm(boardNm);
                 boardConfig.setRowsPerPage(rowsPerPage);
-                boardConfig.setSkin(skin);
                 includedWord = "게시판 아이디";
 
             } else if (field.equals("boardNm")) {
                 boardConfig.setBId(bId);
                 boardConfig.setBoardNm(null);
                 boardConfig.setRowsPerPage(rowsPerPage);
-                boardConfig.setSkin(skin);
                 includedWord = "게시판 이름";
 
             } else if (field.equals("rowsPerPage")) {
                 boardConfig.setBId(bId);
                 boardConfig.setBoardNm(boardNm);
                 boardConfig.setRowsPerPage(null);
-                boardConfig.setSkin(skin);
                 includedWord = "페이지 당 게시글 수";
-
-            } else if (field.equals("skin")) {
-                boardConfig.setBId(bId);
-                boardConfig.setBoardNm(boardNm);
-                boardConfig.setRowsPerPage(rowsPerPage);
-                boardConfig.setSkin(null);
-                includedWord = "스킨";
             }
 
             BadRequestException thrown = assertThrows(BadRequestException.class, () -> {
@@ -267,9 +248,6 @@ public class BoardConfigTest {
 
         // 페이지 당 게시글 수 검증(rowsPerPage)
         assertTrue(body.contains("페이지 당 게시글 수"));
-
-        // 스킨 검증 (skin)
-        assertTrue(body.contains("스킨"));
     }
 
     @Test
@@ -280,8 +258,7 @@ public class BoardConfigTest {
         String body = mockMvc.perform(post("/admin/board")
                 .param("bId", boardConfig.getBId())
                 .param("boardNm", boardConfig.getBoardNm())
-                .param("rowsPerPage", String.valueOf(boardConfig.getRowsPerPage()))
-                .param("skin", boardConfig.getSkin()).with(csrf()))
+                .param("rowsPerPage", String.valueOf(boardConfig.getRowsPerPage())).with(csrf()))
                 .andReturn().getResponse().getContentAsString();
 
         String message = MessageBundle.getMessage("Duplicate.boardConfig.bId");

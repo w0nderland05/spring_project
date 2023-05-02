@@ -120,11 +120,11 @@
         <tr>
             <th>게시판 스킨</th>
             <td>
-            <select name="skin" th:field="*{skin}">
-                <option value="DEFAULT" >기본 게시판</option>
-                <option value="GALLERY">갤러리 게시판</option>
-                <option value="QNA">질문과 답변</option>
-                <option value="REVIEW">후기 게시판</option>
+            <select name="skin">
+                <option value="DEFAULT" th:field="*{skin}">기본 게시판</option>
+                <option value="GALLERY" th:field="*{skin}">갤러리 게시판</option>
+                <option value="QNA" th:field="*{skin}">질문과 답변</option>
+                <option value="REVIEW" th:field="*{skin}">후기 게시판</option>
             </select>
                 <button type="button" class="btn1"><i class="xi-cog"></i>스킨관리</button>
                 <div class="error" th:each="err : ${#fields.errors('skin')}" th:text="${err}"></div>
