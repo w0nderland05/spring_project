@@ -6,12 +6,17 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.study.commons.constants.Status;
+import org.study.models.study.StudyListService;
 
 import java.util.List;
 
 @Controller
 @RequestMapping("/admin/study")
 public class StudyController {
+
+    @Autowired
+    private StudyListService listService;
 
 
     /**
@@ -22,7 +27,6 @@ public class StudyController {
      */
     @GetMapping
     public String index(){
-
         return "admin/study/index";
     }
 
@@ -32,8 +36,9 @@ public class StudyController {
      * @return
      */
     @GetMapping("/approvals")
-    public String approvals(){
-
+    public String approvals(Model model){
+        List<StudyConfig> applyConfigs = listService.applyStatusGets(Status.APPLY);
+        model.addAttribute("configs", applyConfigs);
 
         return "admin/study/approvals";
     }

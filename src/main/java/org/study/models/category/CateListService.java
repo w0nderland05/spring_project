@@ -15,7 +15,7 @@ import java.util.List;
  * 분류 목록 조회 서비스
  *
  */
-@Service
+@Service("categoryListService")
 @RequiredArgsConstructor
 public class CateListService {
 
