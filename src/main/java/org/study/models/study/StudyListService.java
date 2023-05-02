@@ -54,7 +54,10 @@ public class StudyListService {
         if (studyCode == null) {
             throw new StudyNotFoundException();
         }
-        Study study = repository.findById(studyCode).orElseThrow();
+
+        Study study = repository.findById(studyCode).orElseThrow(StudyNotRegisteredException::new);
+
+
         return toConfig(study);
     }
 
