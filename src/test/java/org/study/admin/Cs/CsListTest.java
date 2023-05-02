@@ -12,6 +12,7 @@ import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 import org.study.commons.constants.ReportStatus;
 import org.study.commons.validators.ReportNotFoundException;
+import org.study.entities.Report;
 import org.study.repositories.ReportRepository;
 
 import java.util.List;
@@ -30,16 +31,17 @@ import static org.junit.jupiter.api.Assertions.*;
 @TestPropertySource(locations = "classpath:application-test.properties")
 public class CsListTest {
 
-    private CsConfig csConfig;
-    private CsConfig csConfig2;
+    private CsConfig config;
 
     @Autowired
     private ReportListService listService;
+
     @Autowired
     private ReportRepository repository;
 
     @Autowired
     private CsRegisterService registerService;
+
     @BeforeEach
     public void report() {
 
@@ -93,10 +95,9 @@ public class CsListTest {
     @DisplayName("Code를 통해서 하나의 목록만 조회 가능한지 체크")
     void report_get(){
 
-        assertDoesNotThrow(() -> {
-            long csCode = csConfig.getCode();
-            listService.get(csCode);
-        });
+        CsConfig report = listService.get(config.getCode());
+
+        System.out.println(report);
 
     }
 

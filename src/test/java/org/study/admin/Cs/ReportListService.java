@@ -46,11 +46,20 @@ public class ReportListService {
     }
 
     public CsConfig get(Long code) { // Code를 통해서 하나의 목록만 조회
-        if (code == null) {
+        if (code == null ) {
             throw new ReportNotFoundException();
         }
-        Report report = repository.findById(code).orElseThrow();
-        return toConfig(report);
+        Report report = repository.findById(code).orElseThrow(ReportNotFoundException::new);
+
+        CsConfig config = CsConfig.builder()
+                .division(report.getDivision())
+                .code(report.getCode())
+                .detail(report.getDetail())
+                .status(report.getStatus().toString())
+                .process(report.getProcess())
+                .build();
+
+        return config;
     }
 
 

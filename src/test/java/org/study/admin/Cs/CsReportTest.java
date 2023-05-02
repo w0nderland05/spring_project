@@ -27,7 +27,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  */
 @SpringBootTest
 @TestPropertySource(locations="classpath:application-test.properties")
-public class CsReportTest {
+public class
+
+CsReportTest {
 
     @Autowired
     private UserRepository userRepository;
