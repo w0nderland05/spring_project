@@ -18,7 +18,6 @@ public class StudyApplyService {
 
     private final StudyRegisterValidator validator;
 
-
     public void apply(StudyConfig config){
         apply(config, null);
     }

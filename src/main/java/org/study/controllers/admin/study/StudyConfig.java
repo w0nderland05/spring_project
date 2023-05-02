@@ -1,7 +1,9 @@
 package org.study.controllers.admin.study;
 
 import jakarta.persistence.Column;
+import jakarta.persistence.Lob;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -41,7 +43,7 @@ public class StudyConfig {
 
     private LocalDateTime regStatusDt;//상태처리일시
 
-    @NotBlank
+    @NotNull
     @Range(min =0, max =1000)
     private Long maxMember; //신청최대인원수
 
@@ -59,7 +61,9 @@ public class StudyConfig {
     private String simpleIntro; //한줄 소개글
 
     @NotBlank
-    private String Introduction; //소개글
+    @Lob
+    private String introduction; //소개글
+
 
     public static Study of (StudyConfig studyConfig) {
         return new ModelMapper().map(studyConfig, Study.class);
