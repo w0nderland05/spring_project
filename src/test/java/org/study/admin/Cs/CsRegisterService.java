@@ -3,6 +3,7 @@ package org.study.admin.Cs;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.Errors;
+import org.springframework.validation.Validator;
 import org.study.commons.constants.ReportStatus;
 import org.study.entities.Report;
 import org.study.repositories.ReportRepository;
@@ -13,14 +14,19 @@ public class CsRegisterService {
     @Autowired
     private ReportRepository repository;
 
-    public void config(CsConfig config) {
-        config(config, null);
+    @Autowired
+    private CsValidator validator;
+
+    public void register(CsConfig config) {
+        register(config, null);
     }
 
-    public void config(CsConfig config, Errors errors) {
+    public void register(CsConfig config, Errors errors) {
         if(errors != null && errors.hasErrors()) {
             return;
         }
+
+        validator.check(config, errors);
 
         /**
          * 엔티티가 이미 등록되어 있으면 기존 엔티티 가져오고(수정)
@@ -30,8 +36,8 @@ public class CsRegisterService {
         Report report = null;
         if(code != null && repository.exists(code)) {
             report = repository.findById(code).orElseGet(() -> CsConfig.of(config));
-            report.setDivision(config.getDivision());
             report.setCode(code);
+            report.setDivision(config.getDivision());
             report.setDetail(config.getDetail());
             report.setStatus(ReportStatus.valueOf(config.getStatus()));
             report.setProcess(config.getProcess());
