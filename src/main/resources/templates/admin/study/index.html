@@ -26,21 +26,22 @@
                 </tr>
             </thead>
             <tbody>
-            <!--th:each="study: ${studies}" 컨트롤러 완성후 추가예정-->
-                <tr>
+                <tr th:each="study: ${studies}" th:object="${studyConfig}" >
                     <td>
-                        <input type="checkbox">
+                        <input type="checkbox" name="studyCode" th:value="*{studyCode}">
                     </td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td th:text="*{studyCode}"></td>
+                    <td th:text="*{category}"></td>
+                    <td ></td>
+                    <td ></td>
+                    <td  th:text="*{requestDt}"></td>
+                    <td th:text="*{approveStatus}"></td>
+                    <td th:text="*{regStatusDt}"></td>
+                    <td th:text="*{remainSeat}"></td>
+                    <td th:if="*{approveStatus == 'APPROVE'}" >
+                        <a th:href="@{admin/study/update/{studyCode}(studyCode=*{studyCode})}" class="btn2">스터디관리</a>
+                        <a th:href="#" class="btn2">회원관리</a>
+                    </td>
                 </tr>
             </tbody>
         </table>
