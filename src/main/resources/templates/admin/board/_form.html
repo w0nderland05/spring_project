@@ -28,10 +28,10 @@
         <tr>
             <th>사용여부</th>
             <td>
-                <input type="radio" name="isUse" value="1" id="isUse1" th:field="*{isUse}" checked>
-                <label for="isUse1">사용</label>
-                <input type="radio" name="isUse" value="0" id="isUse0" th:field="*{isUse}">
-                <label for="isUse0">미사용</label>
+                <input type="radio" name="isUse" value="1" id="isUse_1" th:field="*{Use}" checked>
+                <label for="isUse_1">사용</label>
+                <input type="radio" name="isUse" value="0" id="isUse_0" th:field="*{Use}">
+                <label for="isUse_0">미사용</label>
             </td>
         </tr>
         <tr>
@@ -44,9 +44,9 @@
         <tr>
             <th>게시글 하단에 목록노출</th>
             <td>
-                <input type="radio" name="useViewList" value="1" id="useViewList_1" th:field="*{useViewList}">
+                <input type="radio" name="useViewList" value="1" id="useViewList_1" th:field="*{useViewList}" checked>
                 <label for="useViewList_1">사용</label>
-                <input type="radio" name="useViewList" value="0" id="useViewList_0" th:field="*{useViewList}" checked>
+                <input type="radio" name="useViewList" value="0" id="useViewList_0" th:field="*{useViewList}">
                 <label for="useViewList_1">미사용</label>
             </td>
         </tr>
@@ -75,19 +75,19 @@
         <tr>
             <th>에디터</th>
             <td>
-                <input type="radio" name="useEditor" value="1" id="useEditor1" th:field="*{useEditor}" checked>
-                <label for="useEditor1">사용</label>
-                <input type="radio" name="useEditor" value="0" id="useEditor0" th:field="*{useEditor}">
-                <label for="useEditor0">미사용</label>
+                <input type="radio" name="useEditor" value="1" id="useEditor_1" th:field="*{useEditor}" checked>
+                <label for="useEditor_1">사용</label>
+                <input type="radio" name="useEditor" value="0" id="useEditor_0" th:field="*{useEditor}">
+                <label for="useEditor_0">미사용</label>
             </td>
         </tr>
         <tr>
             <th>파일첨부사용</th>
             <td>
-                <input type="radio" name="useFileAttach" value="1" id="useFileAttach1" checked>
-                <label for="useFileAttach1">사용</label>
-                <input type="radio" name="useFileAttach" value="0" id="useFileAttach0">
-                <label for="useFileAttach0">미사용</label>
+                <input type="radio" name="useFileAttach" value="1" id="useFileAttach_1" checked>
+                <label for="useFileAttach_1">사용</label>
+                <input type="radio" name="useFileAttach" value="0" id="useFileAttach_0">
+                <label for="useFileAttach_0">미사용</label>
             </td>
         </tr>
         <tr>
@@ -102,10 +102,10 @@
         <tr>
             <th>댓글 사용</th>
             <td>
-                <input type="radio" name="useComment" value="1" id="useComment1" th:field="*{useComment}" checked>
-                <label for="useComment1">사용</label>
-                <input type="radio" name="useComment" value="0" id="useComment0" th:field="*{useComment}">
-                <label for="useComment0">미사용</label>
+                <input type="radio" name="useComment" value="1" id="useComment_1" th:field="*{useComment}" checked>
+                <label for="useComment_1">사용</label>
+                <input type="radio" name="useComment" value="0" id="useComment_0" th:field="*{useComment}">
+                <label for="useComment_0">미사용</label>
             </td>
         </tr>
         <tr>
@@ -120,25 +120,25 @@
         <tr>
             <th>게시판 스킨</th>
             <td>
-            <select name="skin" th:field="*{skin}">
-                <option value="DEFAULT" >기본 게시판</option>
-                <option value="GALLERY">갤러리 게시판</option>
-                <option value="QNA">질문과 답변</option>
-                <option value="REVIEW">후기 게시판</option>
+            <select name="skin">
+                <option value="DEFAULT" th:field="*{skin}">기본 게시판</option>
+                <option value="GALLERY" th:field="*{skin}">갤러리 게시판</option>
+                <option value="QNA" th:field="*{skin}">질문과 답변</option>
+                <option value="REVIEW" th:field="*{skin}">후기 게시판</option>
             </select>
                 <button type="button" class="btn1"><i class="xi-cog"></i>스킨관리</button>
                 <div class="error" th:each="err : ${#fields.errors('skin')}" th:text="${err}"></div>
             </td>
         </tr>
-<!--        <tr>-->
-<!--            <th>후기게시판여부</th>-->
-<!--            <td>-->
-<!--                <input type="radio" name="isReview" value="1" id="isReview1" th:field="*{isReview}" checked>-->
-<!--                <label for="isReview1">사용</label>-->
-<!--                <input type="radio" name="isReview" value="0" id="isReview0" th:field="*{isReview}">-->
-<!--                <label for="isReview0">미사용</label>-->
-<!--            </td>-->
-<!--        </tr>-->
+        <tr>
+            <th>후기게시판여부</th>
+            <td>
+                <input type="radio" name="isReview" value="1" id="isReview_1" th:field="*{Review}" checked>
+                <label for="isReview_1">사용</label>
+                <input type="radio" name="isReview" value="0" id="isReview_0" th:field="*{Review}">
+                <label for="isReview_0">미사용</label>
+            </td>
+        </tr>
     </table>
 </th:block>
 </html>

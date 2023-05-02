@@ -24,18 +24,21 @@ public class ReportListService {
     @Autowired
     private ReportRepository repository;
 
-    public void reportList(CsConfig config) {
-        reportList(config, null);
-    }
+    private CsConfig toConfig(Report report) {
 
-    public void reportList(CsConfig config, Errors errors) {
-        reportList(config, null);
+        return CsConfig.builder()
+                .division(report.getDivision())
+                .code(report.getCode())
+                .detail(report.getDetail())
+                .status(report.getStatus().toString())
+                .process(report.getProcess())
+                .build();
     }
 
     public List<CsConfig> gets() { // 신고 목록 전체를 조회
         List<Report> reports = repository.findAll(Sort.by(desc("createdAt")));
-        if(reports ==null && reports.isEmpty()){
-            throw new ReportNotFoundException("신고 목록을 찾지 못했습니다.");
+        if(reports == null && reports.isEmpty()){
+            throw new ReportNotFoundException();
         }
         List<CsConfig> csConfigList = reports.stream().map(this::toConfig).toList();
         return csConfigList;
@@ -43,7 +46,11 @@ public class ReportListService {
     }
 
     public CsConfig get(Long code) { // Code를 통해서 하나의 목록만 조회
-        Report report = repository.findById(code).get();
+        if (code == null ) {
+            throw new ReportNotFoundException();
+        }
+        Report report = repository.findById(code).orElseThrow(ReportNotFoundException::new);
+
         CsConfig config = CsConfig.builder()
                 .division(report.getDivision())
                 .code(report.getCode())
@@ -55,14 +62,5 @@ public class ReportListService {
         return config;
     }
 
-    private CsConfig toConfig(Report report) {
 
-        return CsConfig.builder()
-                .division(report.getDivision())
-                .code(report.getCode())
-                .detail(report.getDetail())
-                .status(report.getStatus().toString())
-                .process(report.getProcess())
-                .build();
-    }
 }

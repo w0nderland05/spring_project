@@ -1,6 +1,7 @@
 package org.study.admin.Cs;
 
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -21,6 +22,7 @@ public class CsConfig {
     private String division;
 
     // 회원 번호
+    @NotNull
     private Long code;
 
     // 신고 세부 내용

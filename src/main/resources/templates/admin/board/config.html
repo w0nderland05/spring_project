@@ -5,7 +5,7 @@
 <section layout:fragment="content">
     <nav th:replace="~{admin/board/_submenu::menus}"></nav>
 
-    <form class="form" method="post" th:action="@{/admin/board/save}" autocomplete="off">
+    <form class="form" method="post" th:action="@{/admin/board}" autocomplete="off">
         <th:block th:replace="~{admin/board/_form::form}"></th:block>
         <div class="btn">
         <button type="submit" class="submit_btn">등록하기</button>

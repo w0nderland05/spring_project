@@ -24,8 +24,7 @@ public class Report extends BaseEntity {
 
     // 신고 번호
     @Id
-    @GeneratedValue
-    @Column(length = 8)
+    @Column(length = 8, nullable = false)
     private Long code;
 
     // 신고 세부 내용

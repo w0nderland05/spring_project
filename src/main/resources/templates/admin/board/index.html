@@ -23,16 +23,15 @@
                 </tr>
                 </thead>
                 <tbody>
-                <!-- <tr th:each="config : ${configs}"> -->
-                <!-- 등록 시 행이 자동 생성하기 위해 추후 구현 -->
+<!--                 <tr th:each="config : ${configs}" th:object="${config}">-->
                     <td>
-                        <input type="checkbox">
+                        <input type="checkbox" name="bId" th:value="*{bId}">
                     </td>
-                    <td><!-- DB에서 자동입력 --></td>
-                    <td><!-- DB에서 자동입력 --></td>
-                    <td><!-- DB에서 자동입력 --></td>
-                    <td><!-- DB에서 자동입력 --></td>
-                    <td><!-- DB에서 자동입력 --></td>
+                    <td><a th:href="@{/admin/board/update/{id}(id=*{bId})}" th:text="*{bId}"></a></td>
+                    <td th:text="*{boardNm}"></td>
+                     <td></td>
+                     <td></td>
+                     <td th:text="*{Use}"></td>
                     <td>
                         <button class="btn1">
                             <a href="#">미리보기</a> <!-- 사용자 페이지 해당 카테고리로 이동 -->
