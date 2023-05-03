@@ -11,6 +11,7 @@ import org.study.controllers.admin.category.CategoryForm;
 import org.study.entities.board.Board;
 import org.study.repositories.board.BoardRepository;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Collectors;
@@ -57,7 +58,6 @@ public class BoardConfigService {
             entity.setBId(bId);
             entity.setBoardNm(config.getBoardNm());
             entity.setRowsPerPage(config.getRowsPerPage());
-            /** 기본 값으로 설정이 맞는지?? */
         }
 
         if(entity == null) { // 게시판 ID가 없다면 boardConfig -> Board 엔티티로 변환
