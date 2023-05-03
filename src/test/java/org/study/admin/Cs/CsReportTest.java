@@ -1,8 +1,6 @@
 package org.study.admin.Cs;
 
 
-import jakarta.validation.constraints.AssertTrue;
-import org.aspectj.lang.annotation.Before;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -10,13 +8,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.TestPropertySource;
 import org.study.commons.constants.ReportStatus;
+import org.study.controllers.admin.cs.CsConfig;
 import org.study.controllers.user.user.UserJoin;
-import org.study.entities.Report;
-import org.study.entities.User;
+import org.study.models.cs.CsRegisterService;
+import org.study.models.cs.ReportListService;
 import org.study.repositories.ReportRepository;
 import org.study.repositories.UserRepository;
-
-import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -35,11 +32,15 @@ CsReportTest {
     private UserRepository userRepository;
 
     @Autowired
-    private ReportRepository repository;
+    private ReportRepository reportRepository;
+
+    @Autowired
+    private ReportListService listService;
+    @Autowired
+    private CsRegisterService registerService;
 
     private UserJoin userJoin;
     private CsConfig csConfig;
-    private Report report;
 
     @BeforeEach
     public void insertUser(){
@@ -54,10 +55,12 @@ CsReportTest {
         csConfig = new CsConfig();
         csConfig.of(csConfig).getUser().setUserEmail("test2@naver.com");
         csConfig.setDivision("board");
-        csConfig.setCode(Long.valueOf("58670212"));
+        csConfig.setCode(58670212L);
         csConfig.setDetail("빵꾸똥꾸라고 욕했어요.");
         csConfig.setStatus(ReportStatus.CLEAR.toString());
         csConfig.setProcess("욕설로 5회 신고 확인되어 탈퇴처리되었습니다.");
+
+        registerService.register(csConfig);
     }
 
 
@@ -72,6 +75,9 @@ CsReportTest {
     @Test
     @DisplayName("가입회원이면 회원 목록 가져오는데 성공하는지 체크")
     void report_User_List(){
+
+        
+
 
     }
     /**

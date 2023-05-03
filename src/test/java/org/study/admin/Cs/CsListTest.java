@@ -6,16 +6,12 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.TestPropertySource;
-import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 import org.study.commons.constants.ReportStatus;
-import org.study.commons.validators.ReportNotFoundException;
-import org.study.entities.Report;
-import org.study.repositories.ReportRepository;
-
-import java.util.List;
+import org.study.controllers.admin.cs.CsConfig;
+import org.study.models.cs.CsRegisterService;
+import org.study.models.cs.ReportListService;
 
 import static org.junit.jupiter.api.Assertions.*;
 

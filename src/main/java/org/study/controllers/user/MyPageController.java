@@ -5,6 +5,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.study.controllers.user.user.UserJoin;
 
 /*
 회원정보 수정 (/user/mypage/edit/{userId})
@@ -25,8 +26,9 @@ public class MyPageController {
      */
 
     @GetMapping("/edit")
-    public String myPage() {
-
+    public String myPage(Model model) {
+        UserJoin userJoin = new UserJoin();
+        model.addAttribute("userJoin",userJoin);
 
         return "front/mypage/edit";
     }

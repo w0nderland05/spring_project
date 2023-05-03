@@ -1,4 +1,4 @@
-package org.study.admin.Cs;
+package org.study.controllers.admin.cs;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -7,10 +7,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.modelmapper.ModelMapper;
-import org.study.commons.constants.ReportStatus;
-import org.study.controllers.admin.board.BoardConfig;
 import org.study.entities.Report;
-import org.study.entities.board.Board;
 
 // 테스트 완료후 이동할 파일 경로는 controllers/user/cs 입니다!
 @Data

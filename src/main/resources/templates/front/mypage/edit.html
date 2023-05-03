@@ -2,11 +2,17 @@
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{front/mypage/main_mp}">
+<th:block th:object="${userJoin}">
 <div class="error" th:each="err : ${#fields.globalErrors()}" th:text="${err}"></div>
 <section layout:fragment="content">
-    <form method="post" th:action="@{/user/edit}" autocomplete="off">
+    <form method="post" th:action="@{/user/mypage/edit}" autocomplete="off">
         <div>
-            <h1>내 정보 관리</h1>
+            <dl>
+                <dt>내 정보 관리</dt>
+                <dd>
+                    <input type="hidden" name="userNm" th:field="*{userNm}">
+                </dd>
+            </dl>
             <!-- 내 정보 관리 ( 이름 - 닉네임 ) 형태로 출력해야되니까 수정 필요 -->
         </div>
 
@@ -14,7 +20,7 @@
             <dl>
                 <dt>닉네임 변경</dt>
                 <dd>
-                    <input type="text" placeholder="특수문자를 제외하고 입력해주세요.">
+                    <input type="text" name="userNickNm" th:field="*{userNickNm}" placeholder="특수문자를 제외하고 입력해주세요.">
                 </dd>
             </dl>
 
@@ -23,7 +29,7 @@
             <dl>
                 <dt>비밀번호 변경</dt>
                 <dd>
-                    <input type="text" placeholder="8~16자, 알파벳, 숫자, 특수문자 포함해주세요.">
+                    <input type="text" name="userPw" th:field="*{userPw}" placeholder="8~16자, 알파벳, 숫자, 특수문자 포함해주세요.">
                 </dd>
             </dl>
 
@@ -32,7 +38,7 @@
             <dl>
                 <dt>비밀번호 변경 확인</dt>
                 <dd>
-                    <input type="text" placeholder="위의 비밀번호를 동일하게 입력해주세요.">
+                    <input type="text" name="userPwCk" th:field="*{userPwCk}" placeholder="위의 비밀번호를 동일하게 입력해주세요.">
                 </dd>
             </dl>
 
@@ -41,7 +47,7 @@
             <dl>
                 <dt>핸드폰 번호 변경</dt>
                 <dd>
-                    <input type="text" placeholder=" ' - ' 를 제외하고 입력해주세요.">
+                    <input type="text" name="cellphone" th:field="*{cellphone}" placeholder=" ' - ' 를 제외하고 입력해주세요.">
                 </dd>
             </dl>
         </div>
@@ -56,4 +62,5 @@
 
     </form>
 </section>
+</th:block>
 </html>

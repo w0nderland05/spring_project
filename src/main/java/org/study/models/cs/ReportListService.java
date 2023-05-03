@@ -1,19 +1,13 @@
-package org.study.admin.Cs;
+package org.study.models.cs;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-import org.springframework.validation.Errors;
-import org.study.commons.constants.ReportStatus;
 import org.study.commons.validators.ReportNotFoundException;
-import org.study.controllers.admin.board.BoardConfig;
+import org.study.controllers.admin.cs.CsConfig;
 import org.study.entities.Report;
-import org.study.entities.board.Board;
 import org.study.repositories.ReportRepository;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import static org.springframework.data.domain.Sort.Order.desc;
