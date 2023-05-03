@@ -23,7 +23,7 @@
                 </tr>
                 </thead>
                 <tbody>
-<!--                 <tr th:each="config : ${configs}" th:object="${config}">-->
+                 <tr th:each="config : ${configs}" th:object="${config}">
                     <td>
                         <input type="checkbox" name="bId" th:value="*{bId}">
                     </td>
@@ -34,7 +34,10 @@
                      <td th:text="*{Use}"></td>
                     <td>
                         <button class="btn1">
-                            <a href="#">미리보기</a> <!-- 사용자 페이지 해당 카테고리로 이동 -->
+                            <a th:href="@{/admin/board/update/{id}(id=*{bId})}">설정 수정</a>
+                        </button>
+                        <button class="btn1">
+                        <a href="#">미리보기</a> <!-- 사용자 페이지 해당 카테고리로 이동 -->
                         </button>
                     </td>
                 </tbody>
