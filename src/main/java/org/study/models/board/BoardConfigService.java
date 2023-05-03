@@ -57,7 +57,6 @@ public class BoardConfigService {
             entity.setBId(bId);
             entity.setBoardNm(config.getBoardNm());
             entity.setRowsPerPage(config.getRowsPerPage());
-            entity.setSkin(SkinType.DEFAULT);
             /** 기본 값으로 설정이 맞는지?? */
         }
 
