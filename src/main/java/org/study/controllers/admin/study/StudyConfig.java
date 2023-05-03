@@ -64,6 +64,8 @@ public class StudyConfig {
     @Lob
     private String introduction; //소개글
 
+    private int page = 1; // 페이지 번호
+    private int limit = 20; // 1페이지당 출력 갯수
 
     public static Study of (StudyConfig studyConfig) {
         return new ModelMapper().map(studyConfig, Study.class);
