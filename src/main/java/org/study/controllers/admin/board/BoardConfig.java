@@ -23,15 +23,15 @@ public class BoardConfig {
 
     private String mode; // mode가 update면 수정
 
-    @NotBlank
+    @NotBlank(message = "게시판 아이디를 입력하세요.")
     private String bId;
 
-    @NotBlank
+    @NotBlank(message = "게시판 이름을 입력하세요.")
     private String boardNm;
 
     private boolean isUse;
 
-    @NotNull
+    @NotNull(message = "페이지 당 게시글 수를 입력하세요.")
     private Long rowsPerPage; // 1페이지에 노출될 게시글 수
 
     private boolean useViewList; // 게시글 하단에 목록 노출

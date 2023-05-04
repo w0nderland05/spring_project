@@ -35,8 +35,8 @@ public class BoardConfigValidator implements ServiceValidator<BoardConfig>, Requ
         }
 
         /** rowsPerPage : 최소 10부터 되는지 체크 */
-        if (boardConfig.getRowsPerPage() < 10) {
-            throw new BadRequestException("10이상 값을 입력하세요");
+        if (boardConfig.getRowsPerPage() < 10L) {
+            throw new BadRequestException("10이상 값을 입력하세요.");
         }
     }
 }
