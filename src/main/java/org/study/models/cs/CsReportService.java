@@ -1,4 +1,4 @@
-package org.study.admin.Cs;
+package org.study.models.cs;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

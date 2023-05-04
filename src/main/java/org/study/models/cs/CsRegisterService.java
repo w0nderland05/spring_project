@@ -3,6 +3,7 @@ package org.study.models.cs;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.Errors;
+import org.study.commons.constants.ReportDivision;
 import org.study.commons.constants.ReportStatus;
 import org.study.controllers.admin.cs.CsConfig;
 import org.study.entities.Report;
@@ -37,7 +38,7 @@ public class CsRegisterService {
         if(code != null && repository.exists(code)) {
             report = repository.findById(code).orElseGet(() -> CsConfig.of(config));
             report.setCode(code);
-            report.setDivision(config.getDivision());
+            report.setDivision(ReportDivision.valueOf(config.getDivision()));
             report.setDetail(config.getDetail());
             report.setStatus(ReportStatus.valueOf(config.getStatus()));
             report.setProcess(config.getProcess());
