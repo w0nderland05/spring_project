@@ -38,7 +38,6 @@ public class CsController {
      */
     @GetMapping("/qna")
     public String qna(Model model){
-        CsConfig cs
 
         return "admin/cs/qna";
     }

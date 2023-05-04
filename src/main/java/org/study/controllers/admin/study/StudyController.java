@@ -1,7 +1,9 @@
 package org.study.controllers.admin.study;
 
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -9,11 +11,13 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.study.commons.Areas;
+import org.study.commons.Pagination;
 import org.study.commons.constants.Status;
 import org.study.commons.validators.CommonException;
 import org.study.commons.validators.StudyNotFoundException;
 import org.study.entities.Study;
 import org.study.models.study.StudyListService;
+import org.study.repositories.StudyRepository;
 
 import java.util.List;
 
@@ -26,6 +30,11 @@ public class StudyController {
     @Autowired
     private StudyListService listService;
 
+    @Autowired
+    private StudyRepository studyRepository;
+
+    @Autowired
+    private HttpServletRequest request;
 
     /**
      * <스터디관리> 클릭시 나오는 페이지
@@ -34,8 +43,13 @@ public class StudyController {
      * @return
      */
     @GetMapping
-    public String index(Model model, StudyConfig studyConfig){
-        model.addAttribute("studyConfig",studyConfig);
+    public String index(Model model, StudySearch studySearch){
+        String url = request.getContextPath() + "/admin/study";
+        Page<Study> data = studyRepository.getStudyAdminP(studySearch);
+        Pagination<Study> pagination = new Pagination<>(data, url);
+        model.addAttribute("studies", data.getContent());
+        model.addAttribute("pagination", pagination);
+
         return "admin/study/index";
     }
     /**

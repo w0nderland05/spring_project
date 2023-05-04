@@ -49,7 +49,7 @@ public class Board extends BaseEntity {
     private AfterWriteTarget afterWriteTarget = AfterWriteTarget.VIEW; // 글 작성 후 이동 경로
 
     private boolean useComment; // 댓글 사용여부
-    @Column(length=60, nullable = false)
-    private SkinType skin; // 스킨명
+    @Column(length=60)
+    private SkinType skin = SkinType.DEFAULT; // 스킨명
     private boolean isReview; // 후기 게시판 여부
 }

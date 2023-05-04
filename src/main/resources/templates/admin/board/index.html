@@ -29,7 +29,8 @@
                     </td>
                     <td><a th:href="@{/admin/board/update/{id}(id=*{bId})}" th:text="*{bId}"></a></td>
                     <td th:text="*{boardNm}"></td>
-                     <td></td>
+                     <td th:text="${createdAt}"></td>
+<!--                     베이스엔티티에 있는 생성일시를 넣으려면 어떻게 해야하는지?-->
                      <td></td>
                      <td th:text="*{Use}"></td>
                     <td>
