@@ -25,7 +25,7 @@ public class Question extends BaseEntity {
     private Long qsCode; // 문의 코드
 
     @Column(length = 100)
-    private String subject;
+    private String subject; // 문의 제목
 
     @Column(length = 300)
     private String content; // 문의 내용

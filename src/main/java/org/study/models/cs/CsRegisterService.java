@@ -7,7 +7,7 @@ import org.study.commons.constants.ReportDivision;
 import org.study.commons.constants.ReportStatus;
 import org.study.controllers.admin.cs.CsConfig;
 import org.study.entities.Report;
-import org.study.repositories.ReportRepository;
+import org.study.repositories.cs.ReportRepository;
 
 @Service
 public class CsRegisterService {
@@ -42,7 +42,7 @@ public class CsRegisterService {
             report.setDetail(config.getDetail());
             report.setStatus(ReportStatus.valueOf(config.getStatus()));
             report.setProcess(config.getProcess());
-            /** 기본 설정이 맞는지? */
+
         }
 
         if(report == null) {
