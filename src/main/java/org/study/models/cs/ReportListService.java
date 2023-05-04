@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 import org.study.commons.validators.ReportNotFoundException;
 import org.study.controllers.admin.cs.CsConfig;
 import org.study.entities.Report;
-import org.study.repositories.ReportRepository;
+import org.study.repositories.cs.ReportRepository;
 
 import java.util.List;
 
@@ -21,7 +21,7 @@ public class ReportListService {
     private CsConfig toConfig(Report report) {
 
         return CsConfig.builder()
-                .division(report.getDivision())
+                .division(report.getDivision().toString())
                 .code(report.getCode())
                 .detail(report.getDetail())
                 .status(report.getStatus().toString())
@@ -46,7 +46,7 @@ public class ReportListService {
         Report report = repository.findById(code).orElseThrow(ReportNotFoundException::new);
 
         CsConfig config = CsConfig.builder()
-                .division(report.getDivision())
+                .division(report.getDivision().toString())
                 .code(report.getCode())
                 .detail(report.getDetail())
                 .status(report.getStatus().toString())

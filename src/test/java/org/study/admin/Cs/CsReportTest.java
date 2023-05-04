@@ -12,7 +12,7 @@ import org.study.controllers.admin.cs.CsConfig;
 import org.study.controllers.user.user.UserJoin;
 import org.study.models.cs.CsRegisterService;
 import org.study.models.cs.ReportListService;
-import org.study.repositories.ReportRepository;
+import org.study.repositories.cs.ReportRepository;
 import org.study.repositories.UserRepository;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;

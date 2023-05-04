@@ -4,8 +4,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.study.entities.Report;
+import org.study.entities.Question;
+import org.study.models.cs.CsReportService;
 import org.study.models.cs.ReportListService;
 
 import java.util.List;
@@ -16,6 +18,8 @@ public class CsController {
 
     @Autowired
     private ReportListService listService;
+
+    private CsReportService reportService;
     /**
      * <CS 관리> 클릭시 나오는 페이지
      * == 신고 목록
@@ -38,7 +42,8 @@ public class CsController {
      */
     @GetMapping("/qna")
     public String qna(Model model){
-
+        List<Question> questionList = reportService.getList();
+        model.addAttribute("questionList",questionList);
         return "admin/cs/qna";
     }
 
@@ -48,8 +53,10 @@ public class CsController {
      *
      * @return
      */
-    @GetMapping("/view")
-    public String view(){
+    @GetMapping("/view/{qsCode}")
+    public String view(Model model, @PathVariable("{qsCode}")Long qsCode){
+        Question question = reportService.getQuestion(qsCode);
+        model.addAttribute("question", question);
         return "admin/cs/view";
     }
 

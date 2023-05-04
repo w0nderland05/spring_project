@@ -37,9 +37,9 @@
             <input type="radio" name="limit" value="1" id="limit_1">
             <label for="limit_1">
                 제한있음
-                <input type="number" name="limit"  th:fields="*{maxMember}">
+                <input type="number" name="limit"  th:field="*{maxMember}">
             </label>
-            <input type="radio" name="limit" value="0" id="limit_0" th:fields="*{maxMember}">
+            <input type="radio" name="limit" value="0" id="limit_0" th:field="*{maxMember}">
             <label for="limit_0">
                 제한없음
             </label>
@@ -48,19 +48,19 @@
     <dl>
         <dt>스터디 주당횟수</dt>
         <dd>
-            <input type="radio" name="numOfWeek" value="once" id="num_1" checked="checked" th:fields="*{numOfWeek}">
+            <input type="radio" name="numOfWeek" value="once" id="num_1" checked="checked" th:field="*{numOfWeek}">
             <label for="num_1">
                 주1회
             </label>
-            <input type="radio" name="numOfWeek" value="twice" id="num_2" th:fields="*{numOfWeek}">
+            <input type="radio" name="numOfWeek" value="twice" id="num_2" th:field="*{numOfWeek}">
             <label for="num_2">
                 주2회
             </label>
-            <input type="radio" name="numOfWeek" value="three" id="num_3" th:fields="*{numOfWeek}">
+            <input type="radio" name="numOfWeek" value="three" id="num_3" th:field="*{numOfWeek}">
             <label for="num_3">
                 주3회
             </label>
-            <input type="radio" name="numOfWeek" value="four" id="num_4" th:fields="*{numOfWeek}">
+            <input type="radio" name="numOfWeek" value="four" id="num_4" th:field="*{numOfWeek}">
             <label for="num_4">
                 주4회이상
             </label>

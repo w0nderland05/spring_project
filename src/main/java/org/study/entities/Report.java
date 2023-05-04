@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+import org.study.commons.constants.ReportDivision;
 import org.study.commons.constants.ReportStatus;
 
 import java.time.LocalDateTime;
@@ -19,8 +20,9 @@ import java.time.LocalDateTime;
 public class Report extends BaseEntity {
 
     // 신고 유형 ( 스터디 OR 게시판 )
+    @Enumerated(EnumType.STRING)
     @Column(length = 20, nullable = false)
-    private String division;
+    private ReportDivision division;
 
     // 신고 번호
     @Id
