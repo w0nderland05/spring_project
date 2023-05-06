@@ -27,19 +27,16 @@ public class BoardConfigValidator implements ServiceValidator<BoardConfig>, Requ
         requiredCheck(boardConfig.getBId(),new BadRequestException("게시판 아이디를 입력하세요."));
         requiredCheck(boardConfig.getBoardNm(),new BadRequestException("게시판 이름을 입력하세요."));
         nullCheck(boardConfig.getRowsPerPage(),new BadRequestException("페이지 당 게시글 수를 입력하세요."));
-        requiredCheck(boardConfig.getSkin(),new BadRequestException("적용시킬 스킨을 선택해주세요"));
 
         /** bId 중복 여부 체크 */
         if (repository.exists(boardConfig.getBId())) {
             // 이미 등록된 게시판 아이디인 경우
             throw new DuplicateCateBIdException();
         }
-//
+
         /** rowsPerPage : 최소 10부터 되는지 체크 */
         if (boardConfig.getRowsPerPage() < 10) {
-            throw new BadRequestException("10보다 큰 값을 입력하세요");
+            throw new BadRequestException("10이상 값을 입력하세요");
         }
-
-
     }
 }

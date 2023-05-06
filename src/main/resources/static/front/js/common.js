@@ -111,3 +111,26 @@ window.addEventListener("DOMContentLoaded", function() {
     }
     /** 시도 변경시 시구군 데이터 조회 및 반영 처리 E */
 });
+
+
+/** mypage - qna 접었다 펼치는 js  -> 자꾸 다시 혼자 접혀요.. */   
+/*
+window.addEventListener("DOMContentLoaded", function() {
+    const items = document.querySelectorAll('.question');
+
+  function openCloseAnswer() {
+    const answerId = this.id.replace('que', 'ans');
+
+    if(document.getElementById(answerId).style.display === 'block') {
+      document.getElementById(answerId).style.display = 'none';
+      document.getElementById(this.id + '-toggle').textContent = '+';
+    } else {
+      document.getElementById(answerId).style.display = 'block';
+      document.getElementById(this.id + '-toggle').textContent = '-';
+    }
+  }
+
+  items.forEach(item => item.addEventListener('click', openCloseAnswer));
+
+ });
+*/

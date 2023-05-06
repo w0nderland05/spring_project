@@ -1,11 +1,11 @@
-package org.study.admin.Cs;
+package org.study.models.cs;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.study.commons.validators.BadRequestException;
-import org.study.commons.validators.ReportNotFoundException;
 import org.study.commons.validators.RequiredCheckValidator;
 import org.study.commons.validators.ServiceValidator;
+import org.study.controllers.admin.cs.CsConfig;
 import org.study.repositories.ReportRepository;
 
 @Component

@@ -18,14 +18,13 @@
     </tr>
     </thead>
     <tbody>
-        <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
+        <tr th:each="study,studyStat: ${studies}" th:object="${studyConfig}">
+            <td th:text="${studyStat.count}"></td>
+            <td th:fields="*{studyCode}"></td>
+            <td th:fields="*{studyNm}"></td>
+            <td ></td>
+            <td ></td>
+            <td th:fields="*{requestDt}"></td>
             <td>
                 <button type="button">
                     <a th:href="@{/admin/study/approve}">처리하기</a>

@@ -3,6 +3,7 @@ package org.study.controllers.admin.study;
 import jakarta.persistence.Column;
 import jakarta.persistence.Lob;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -25,7 +26,7 @@ public class StudyConfig {
 
     private String mode; //update이면 수정모드
 
-    @NotBlank
+    @NotNull
     private Long studyCode; //스터디코드
 
     @NotBlank
@@ -42,7 +43,7 @@ public class StudyConfig {
 
     private LocalDateTime regStatusDt;//상태처리일시
 
-    @NotBlank
+    @NotNull
     @Range(min =0, max =1000)
     private Long maxMember; //신청최대인원수
 
@@ -53,7 +54,7 @@ public class StudyConfig {
     @NotBlank
     private String numOfWeek; //스터디 주당횟수
 
-    @NotBlank
+    @NotNull
     private RegionType regionType = RegionType.ONLINE; //지역(온라인/ 오프라인 -추후 프로그램내에서 시/도/군/구 값도 추가되도록 진행예정 )
 
     @NotBlank
@@ -63,6 +64,12 @@ public class StudyConfig {
     @Lob
     private String introduction; //소개글
 
+    private String addressDo;
+
+    private String addressSiGunGu;
+
+    private int page = 1; // 페이지 번호
+    private int limit = 20; // 1페이지당 출력 갯수
 
     public static Study of (StudyConfig studyConfig) {
         return new ModelMapper().map(studyConfig, Study.class);

@@ -4,9 +4,9 @@
       layout:decorate="~{front/layouts/main}">
 <section layout:fragment="content">
     <h1>스터디 개설신청</h1>
-    <form class='form' method="post">
+    <form class='form' method="post" th:action="@{/user/study/save}">
         <th:block th:replace="~{front/study/_form::form}"></th:block>
-        <button type="submit" class="submit_btn"><a th:href="@{/user/study/save}"></a>신청하기</button>
+        <button type="submit" class="submit_btn">신청하기</button>
     </form>
 </section>
 </html>

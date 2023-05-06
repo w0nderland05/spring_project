@@ -2,13 +2,14 @@
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{admin/layouts/main}">
+
 <section layout:fragment="content">
     <nav th:replace="~{admin/cs/_submenu::menus}"></nav>
     <form method="post" th:action="@{/admin/cs}">
         <div role="region" aria-label="data table" tabindex="0" class="primary">
             <table id = "list">
                 <thead>
-                    <tr>
+                    <tr >
                         <th>
                             <input type="checkbox">
                         </th>

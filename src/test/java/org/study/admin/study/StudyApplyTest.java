@@ -38,40 +38,40 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @TestPropertySource(locations = "classpath:application-test.properties")
 public class StudyApplyTest {
 
-     /**
-      * @Test Case - StudyApplyService::apply
-     *
+    /**
+     * @Test Case - StudyApplyService::apply
+     * <p>
      * 스터디 신청이 되면 관리자페이지의 승인을 거치게 되며
      * 승인이라는 상태 값을 통해서 신청 상태가 관리가 됩니다.
-     *
+     * <p>
      * 테스트는 등록과 승인이라는 측면에서 진행되며 기능이 구현됩니다.
      * 1. 등록에서의 최종 목표는 예외 발생 없이 등록이 되는 것
      * 2. 제대로 등록하기 위한 유효성 검사 항목이 다음과 같이 정리됩니다.
      */
-     @Autowired
-     private MockMvc mockMvc;
+    @Autowired
+    private MockMvc mockMvc;
     @Autowired
     private StudyApplyService applyService;
 
     @Autowired
-    private  StudyListService listService;
-
+    private StudyListService listService;
 
     private StudyConfig studyConfig;
 
-    /** 단위 테스트 S*/
+    /**
+     * 단위 테스트 S
+     */
 
     // 단위 테스트는 구현된 Service가 정상 동작하는지 단위별로 테스트 합니다.
     // junit5의 단언(assert)와 mockito를 주로 사용하게 됩니다.
-
     @BeforeEach
-   void apply() {
+    void apply() {
         studyConfig = createStudyConfig();
     }
 
     @Test
     @DisplayName("스터디 개설 신청이 완료되면 예외가 발생하지 않음(최종 목적)")
-   void applySuccess() {
+    void applySuccess() {
         assertDoesNotThrow(() -> {
             applyService.apply(studyConfig);
         });
@@ -80,7 +80,7 @@ public class StudyApplyTest {
 
     @Test
     @DisplayName("study Null값이면 예외메세지 발생 - BadRequestException")
-   void study_Null_Exception() {
+    void study_Null_Exception() {
         BadRequestException thrown = assertThrows(BadRequestException.class, () -> {
             applyService.apply(null);
         });
@@ -115,12 +115,12 @@ public class StudyApplyTest {
 
     @Test
     @DisplayName("스터디 신청 필수 입력값 체크 - 예외메세지 발생")
-   void applyValidationTest() {
+    void applyValidationTest() {
         /**
          * 필수항목
          * 스터디명,카테고리,스터디주당횟수, 한줄소개글,소개글 ,신청최대인원수, 스터디 지역타입, 스터디 코드
          */
-        String[] fields = {"studyNm", "category", "numOfWeek", "simpleIntro", "Introduction" /**, "maxMember", "regionType", "studyCode" */};
+        String[] fields = {"studyNm", "category", "numOfWeek", "simpleIntro", "Introduction"};
 
 
         /** 빈값 체크 S*/
@@ -167,7 +167,7 @@ public class StudyApplyTest {
         /** 빈값 체크 E*/
 
         /** NULL 체크 S*/
-        String[] fields2 = {"studyNm", "category", "numOfWeek", "simpleIntro", "Introduction" , "maxMember", "regionType", "studyCode" };
+        String[] fields2 = {"studyNm", "category", "numOfWeek", "simpleIntro", "Introduction", "maxMember", "regionType", "studyCode"};
 
         for (String field : fields2) {
             String includedWord = null;
@@ -198,7 +198,7 @@ public class StudyApplyTest {
                 studyConfig.setIntroduction(null);
                 includedWord = "소개글";
 
-            }else if (field.equals("maxMember")) { //최대인원수
+            } else if (field.equals("maxMember")) { //최대인원수
                 studyConfig = createStudyConfig();
                 studyConfig.setMaxMember(null);
                 includedWord = "신청최대인원수";
@@ -226,46 +226,52 @@ public class StudyApplyTest {
         }
         /**Null 체크 E*/
     }
+
     @Test
     @DisplayName("studyCode 중복 등록시 DuplicateCateCdException 발생 여부")
-   void duplicationStudyCodeTest(){
+    void duplicationStudyCodeTest() {
         applyService.apply(studyConfig);
         System.out.println(studyConfig);
-       assertThrows(DuplicationStudyCdException.class,()->{
-           applyService.apply(studyConfig);
-       });
-    }
-
-
-        /**
-         * 신청 데이터 항목을 커맨드 객체에 담아 두고 그 데이터를 가지고
-         * apply() 함수를 호출해서 최종 처리 결과를 보고
-         * H2 데이터베이스에 추가된 내용과 비교하여 각 항목의 일치여부를 검증한다.
-         */
-        @Test
-        @DisplayName("스터디 신청 데이터와 DB 데이터의 일치 여부 체크")
-        public void assertApplyToDB () {
+        assertThrows(DuplicationStudyCdException.class, () -> {
             applyService.apply(studyConfig);
-            StudyConfig result = listService.get(studyConfig.getStudyCode());
-            studyConfig = result;
-
-        }
+        });
+    }
 
 
-        /** 단위 테스트 E */
-
-        /** 통합테스트 S */
-        @Test
-        @DisplayName("등록성공시 /admin/study/approvals 신청내역 등록되고, user/study/join페이지로이동  ")
-       void registerSuccessInflowAdmin()throws Exception{
-            mockMvc.perform(get("/user/study/join"));
-        }
-
-
-
-        /** 통합테스트 E */
-
-
+    /**
+     * 신청 데이터 항목을 커맨드 객체에 담아 두고 그 데이터를 가지고
+     * apply() 함수를 호출해서 최종 처리 결과를 보고
+     * H2 데이터베이스에 추가된 내용과 비교하여 각 항목의 일치여부를 검증한다.
+     */
+    @Test
+    @DisplayName("스터디 신청 데이터와 DB 데이터의 일치 여부 체크")
+    public void assertApplyToDB() {
+        applyService.apply(studyConfig);
+        StudyConfig result = listService.get(studyConfig.getStudyCode());
+        studyConfig = result;
 
     }
+
+
+    /** 단위 테스트 E */
+
+    /**
+     * 통합테스트 S
+     */
+    @Test
+    @DisplayName("등록성공시 user/study/join 페이지로이동 ")
+    void registerSuccessInflowAdmin() throws Exception {
+        mockMvc.perform(get("/user/study/join"));
+    }
+
+    @Test
+    @DisplayName("필수 항목 누락시(studyNm, category, numOfWeek,simpleIntro,Introduction ,maxMember,regionType,studyCode) Bean Validation 검증 체크")
+    void requiredCheckResponseTest() throws Exception {
+    }
+
+
+    /** 통합테스트 E */
+
+
+}
 

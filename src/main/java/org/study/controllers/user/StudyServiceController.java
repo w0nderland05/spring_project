@@ -21,32 +21,38 @@ public class StudyServiceController {
     private final StudyApplyService service;
 
     @GetMapping("/register")
-    public String studyReg(Model model, StudyConfig studyConfig) {
+    public String studyReg(Model model) {
+        StudyConfig studyConfig = new StudyConfig();
         model.addAttribute("studyConfig", studyConfig);
         model.addAttribute("sidoList", Areas.sido);
         return "/front/study/register";
     }
 
     @GetMapping("/join")
-    public String studyJoin() {
+    public String studyJoin(Model model, StudyConfig studyConfig) {
+        model.addAttribute("studyConfig", studyConfig);
+        model.addAttribute("sidoList", Areas.sido);
         return "/front/study/join";
     }
 
     @PostMapping("/save")
-    public String save(@Valid StudyConfig studyConfig, Errors errors, Model model){
-
+    public String studySave(@Valid StudyConfig studyConfig, Errors errors, Model model) {
         model.addAttribute("sidoList", Areas.sido);
-       try{
-           service.apply(studyConfig, errors);
-       }catch(DuplicationStudyCdException e){
-           errors.rejectValue("studyCode", "Duplicate.studyConfig.studyCode");
+        String mode = studyConfig.getMode();
+        if (errors.hasErrors()) {
+            System.out.println(errors);
+            String tpl = "front/study/";
+            if (mode != null && mode.equals("update")) {
+                tpl += "update";
+            } else {
+                tpl += "register";
+            }
+            return tpl;
+        }
 
-       }
-       if(errors.hasErrors()){
-           return"/user/study/register";
-       }
+        service.apply(studyConfig);
 
-       return"redirect:/user/study/join";
+        return "redirect:/user/study/join";// 게시판 등록 후 스터디함께해요 페이지로 이동
     }
 }
 
