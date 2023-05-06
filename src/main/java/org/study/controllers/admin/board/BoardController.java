@@ -5,11 +5,13 @@ import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.study.commons.validators.BadRequestException;
 import org.study.commons.validators.CommonException;
 import org.study.models.board.BoardConfigService;
 import org.study.models.board.BoardInfoService;
@@ -72,11 +74,8 @@ public class BoardController {
         try {
             // 게시판 저장 처리
             service.config(boardConfig, errors);
-        } catch (DuplicateCateBIdException e) { // 중복된 분류 예외인 경우
+        } catch (DuplicateCateBIdException e) { // 중복된 bId 예외인 경우
             errors.rejectValue("bId", "Duplicate.boardConfig.bId");
-        }
-        if (errors.hasErrors()) {
-            return "admin/board/config";
         }
 
         String mode = boardConfig.getMode();
@@ -85,9 +84,9 @@ public class BoardController {
             if (mode != null && mode.equals("update")) { // mode가 업데이트면
                 tpl += "update"; // admin/board/update
             } else {
-                tpl += "register"; // admin/board/register
+                tpl += "config"; // admin/board/config
             }
-            return  tpl;
+            return tpl;
         }
         service.config(boardConfig);
 
