@@ -40,7 +40,8 @@ public class StudyServiceController {
         model.addAttribute("sidoList", Areas.sido);
         String mode = studyConfig.getMode();
         if (errors.hasErrors()) {
-            String tpl = "user/study/";
+            System.out.println(errors);
+            String tpl = "front/study/";
             if (mode != null && mode.equals("update")) {
                 tpl += "update";
             } else {
@@ -49,7 +50,7 @@ public class StudyServiceController {
             return tpl;
         }
 
-        service.apply((studyConfig));
+        service.apply(studyConfig);
 
         return "redirect:/user/study/join";// 게시판 등록 후 스터디함께해요 페이지로 이동
     }

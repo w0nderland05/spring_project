@@ -15,11 +15,11 @@
     </dl>
     <dl>
         <dt>
-            <select name="stCategory">
-                <option value="scNm">---카테고리---</option>
-                <option value="a">a</option>
-                <option value="b">b</option>
-                <option value="c">c</option>
+            <select name="stCategory" th:field="*{stCategory}">
+                <option value="">-카테고리-</option>
+                <option value="a" th:*{category}>a</option>
+                <option value="b" th:*{category}>b</option>
+                <option value="c" th:*{category}>c</option>
             </select>
         </dt>
         <dd>
@@ -34,10 +34,10 @@
     <dl>
         <dt>신청최대 인원수</dt>
         <dd>
-            <input type="radio" name="limit" value="1" id="limit_1">
+            <input type="radio" name="limit" value="1" id="limit_1" th:field="*{maxMember}">
             <label for="limit_1">
                 제한있음
-                <input type="number" name="limit"  th:field="*{maxMember}">
+                <input type="number" name="limit"  >
             </label>
             <input type="radio" name="limit" value="0" id="limit_0" th:field="*{maxMember}">
             <label for="limit_0">
@@ -48,19 +48,19 @@
     <dl>
         <dt>스터디 주당횟수</dt>
         <dd>
-            <input type="radio" name="numOfWeek" value="once" id="num_1" checked="checked" th:field="*{numOfWeek}">
+            <input type="radio" name="numOfWeek" value="1" id="num_1" th:field="*{numOfWeek}">
             <label for="num_1">
                 주1회
             </label>
-            <input type="radio" name="numOfWeek" value="twice" id="num_2" th:field="*{numOfWeek}">
+            <input type="radio" name="numOfWeek" value="2" id="num_2" th:field="*{numOfWeek}">
             <label for="num_2">
                 주2회
             </label>
-            <input type="radio" name="numOfWeek" value="three" id="num_3" th:field="*{numOfWeek}">
+            <input type="radio" name="numOfWeek" value="3" id="num_3" th:field="*{numOfWeek}">
             <label for="num_3">
                 주3회
             </label>
-            <input type="radio" name="numOfWeek" value="four" id="num_4" th:field="*{numOfWeek}">
+            <input type="radio" name="numOfWeek" value="4" id="num_4" th:field="*{numOfWeek}">
             <label for="num_4">
                 주4회이상
             </label>
@@ -70,18 +70,18 @@
         <dt>지역</dt>
 
         <dd>
-            <input type="radio" name="regionType" value="true" id="online">
+            <input type="radio" name="regionType" value="true" id="online" th:field="*{regionType}">
             <label for="online">
                 온라인
             </label>
-            <input type="radio" name="regionType" value="false" id="offline">
+            <input type="radio" name="regionType" value="false" id="offline" th:field="*{regionType}">
             <label for="offline">
                 오프라인
-                <select name="addressDo" class="ajax_sido">
+                <select name="addressDo" class="ajax_sido" th:field="*{addressDo}">
                     <option value="">- 시도 선택 -</option>
                     <option th:each="sido : ${sidoList}" th:value="${sido}" th:text="${sido}"></option>
                 </select>
-                <select name="addressSiGunGu" class="ajax_gigugun">
+                <select name="addressSiGunGu" class="ajax_gigugun" th:field="*{addressSiGunGu}">
                     <option value="">- 시구군 선택 -</option>
                 </select>
             </label>
@@ -96,14 +96,14 @@
     <dl>
         <dt>한줄소개글</dt>
         <dd>
-            <input type="text">
+            <input type="text" name="simpleIntro" th:field="*{simpleIntro}">
         </dd>
     </dl>
     <dl>
         <dt>소개글</dt>
         <dd>
             <!--에디터 추가 -->
-            <textarea name="introduction"></textarea>
+            <textarea name="introduction" th:field="*{introduction}"></textarea>
             <button type="button"> 파일 업로드</button>
         </dd>
     </dl>

@@ -26,7 +26,7 @@ public class StudyConfig {
 
     private String mode; //update이면 수정모드
 
-    @NotBlank
+    @NotNull
     private Long studyCode; //스터디코드
 
     @NotBlank
@@ -54,7 +54,7 @@ public class StudyConfig {
     @NotBlank
     private String numOfWeek; //스터디 주당횟수
 
-    @NotBlank
+    @NotNull
     private RegionType regionType = RegionType.ONLINE; //지역(온라인/ 오프라인 -추후 프로그램내에서 시/도/군/구 값도 추가되도록 진행예정 )
 
     @NotBlank
@@ -63,6 +63,10 @@ public class StudyConfig {
     @NotBlank
     @Lob
     private String introduction; //소개글
+
+    private String addressDo;
+
+    private String addressSiGunGu;
 
     private int page = 1; // 페이지 번호
     private int limit = 20; // 1페이지당 출력 갯수

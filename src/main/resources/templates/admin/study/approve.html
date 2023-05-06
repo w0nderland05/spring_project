@@ -7,9 +7,11 @@
     <h1>관리자 승인상태처리</h1>
     <form class='form' method="post" th:action="@{/admin/board/save}" autocomplete="off">
         <th:block th:replace="~{admin/study/_form::form}"></th:block>
-        <button type="button" class="btn1">수정</button>
-        <button type="button" class="btn1">승인</button>
-        <button type="button" class="btn1">미승인</button>
+        <th:block th:object="${studyConfig}">
+        <input type="radio" name="submit" class="btn1">수정</input>
+        <input type="radio" name="submit" value="APPROVE" class="btn1" >승인</input>
+        <input type="radio" name="submit" value="DISAPPROVE" class="btn1">미승인</input>
+        </th:block>
     </form>
 </section>
 </html>
