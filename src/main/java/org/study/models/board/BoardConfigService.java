@@ -46,24 +46,12 @@ public class BoardConfigService {
         Board entity = null;
         String bId = config.getBId(); // 게시판 아이디
         String mode = config.getMode();
-        if(mode != null && mode.equals("update")) { // mode 값이 수정이면 수정
+        if(mode != null && mode.equals("update") && repository.exists(bId)) { // mode값이 수정, 중복bId 경우 수정
             entity = repository.findById(bId).orElseGet(() -> Board.builder().bId(bId).build());
         } else { // 모드가 수정이 아니면 새로 추가
             entity = new Board();
             entity.setBId(bId);
         }
-
-        if(bId != null && repository.exists(bId)) { // 이미 등록된 게시판 ID가 있다면
-            entity = repository.findById(bId).orElseGet(() -> BoardConfig.of(config));
-            entity.setBId(bId);
-            entity.setBoardNm(config.getBoardNm());
-            entity.setRowsPerPage(config.getRowsPerPage());
-        }
-
-        if(entity == null) { // 게시판 ID가 없다면 boardConfig -> Board 엔티티로 변환
-            entity = BoardConfig.of(config);
-        }
-
         entity.setBoardNm(config.getBoardNm());
         entity.setUse(config.isUse());
         entity.setRowsPerPage(config.getRowsPerPage());

@@ -29,10 +29,10 @@ public class BoardConfigValidator implements ServiceValidator<BoardConfig>, Requ
         nullCheck(boardConfig.getRowsPerPage(),new BadRequestException("페이지 당 게시글 수를 입력하세요."));
 
         /** bId 중복 여부 체크 */
-        if (repository.exists(boardConfig.getBId())) {
-            // 이미 등록된 게시판 아이디인 경우
-            throw new DuplicateCateBIdException();
-        }
+//        if (repository.exists(boardConfig.getBId())) {
+//            // 이미 등록된 게시판 아이디인 경우
+//            throw new DuplicateCateBIdException();
+//        }
 
         /** rowsPerPage : 최소 10부터 되는지 체크 */
         if (boardConfig.getRowsPerPage() < 10L) {
