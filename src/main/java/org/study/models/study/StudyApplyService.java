@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.Errors;
+import org.study.commons.constants.RegionType;
 import org.study.commons.constants.Status;
 import org.study.controllers.admin.study.StudyConfig;
 import org.study.entities.Study;
@@ -34,19 +35,21 @@ public class StudyApplyService {
        if(repository.exists(studyCd)){
 
            study= repository.findById(studyCd).orElseGet(() ->StudyConfig.of(config));
-           study.setStudyCode(studyCd);
-           study.setStudyNm(config.getStudyNm());
-           study.setCategory(config.getCategory());
-           study.setMaxMember(config.getMaxMember());
-           study.setNumOfWeek(config.getNumOfWeek());
-           study.setRegionType(config.getRegionType());
-           study.setSimpleIntro(config.getSimpleIntro());
-           study.setIntroduction(config.getIntroduction());
-
        }
        if(study == null){
            study = StudyConfig.of(config);
        }
+
+        study.setStudyCode(studyCd);
+        study.setStudyNm(config.getStudyNm());
+        study.setCategory(config.getCategory());
+        study.setMaxMember(config.getMaxMember());
+        study.setNumOfWeek(config.getNumOfWeek());
+        study.setRegionType(RegionType.valueOf(config.getRegionType()));
+        study.setSimpleIntro(config.getSimpleIntro());
+        study.setIntroduction(config.getIntroduction());
+        study.setApproveStatus(Status.valueOf(config.getApproveStatus()));
+
        repository.saveAndFlush(study);
 
     }

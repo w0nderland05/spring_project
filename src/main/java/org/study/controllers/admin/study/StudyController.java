@@ -45,6 +45,7 @@ public class StudyController {
     @GetMapping
     public String index(Model model, StudySearch studySearch){
         String url = request.getContextPath() + "/admin/study";
+        studySearch.setApproveStatus(new String[] {"APPROVE","DISAPPROVE"});
         Page<Study> data = studyRepository.getStudyAdminP(studySearch);
         Pagination<Study> pagination = new Pagination<>(data, url);
         model.addAttribute("studies", data.getContent());
@@ -78,9 +79,13 @@ public class StudyController {
      * @return
      */
     @GetMapping("/approvals")
-    public String approvals(Model model){
-        List<StudyConfig> applyConfigs = listService.applyStatusGets(Status.APPLY);
-        model.addAttribute("configs", applyConfigs);
+    public String approvals(Model model, StudySearch studySearch){
+        String url = request.getContextPath() + "/admin/study";
+        studySearch.setApproveStatus(new String[] {"APPLY"});
+        Page<Study> data = studyRepository.getStudyAdminP(studySearch);
+        Pagination<Study> pagination = new Pagination<>(data, url);
+        model.addAttribute("studies", data.getContent());
+        model.addAttribute("pagination", pagination);
 
         return "admin/study/approvals";
     }

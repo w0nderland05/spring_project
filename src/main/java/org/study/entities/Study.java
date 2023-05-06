@@ -33,7 +33,7 @@ public class Study{
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private Status approveStatus =Status.APPLY ; //승인상태 (기본은 승인대기==신청)
+    private Status approveStatus = Status.APPLY ; //승인상태 (기본은 승인대기==신청)
 
     @Column(insertable = false)
     @LastModifiedDate
@@ -41,8 +41,7 @@ public class Study{
 
     private Long maxMember; //신청최대인원수 // 0 - 무제한, 숫자 - 제한
 
-    @Column(nullable = false)
-    private Long remainSeat; //남은 자리수
+    private Long remainSeat = 0L; //남은 자리수
 
     private boolean activeStatus; //모집상태(모집중 - true, 모집마감(자리없음) -false)
 

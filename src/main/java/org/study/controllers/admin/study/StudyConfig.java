@@ -26,7 +26,7 @@ public class StudyConfig {
 
     private String mode; //update이면 수정모드
 
-    @NotBlank
+    @NotNull
     private Long studyCode; //스터디코드
 
     @NotBlank
@@ -39,7 +39,7 @@ public class StudyConfig {
     private LocalDateTime requestDt;//개설신청일시
 
 
-    private Status approveStatus; //승인상태
+    private String approveStatus = Status.APPLY.toString(); //승인상태
 
     private LocalDateTime regStatusDt;//상태처리일시
 
@@ -47,15 +47,15 @@ public class StudyConfig {
     @Range(min =0, max =1000)
     private Long maxMember; //신청최대인원수
 
-    private Long remainSeat; //남은 자리수
+    private Long remainSeat = 0L; //남은 자리수
 
 
     private boolean activeStatus; //모집상태(모집중 - true, 모집마감(자리없음) -false)
     @NotBlank
     private String numOfWeek; //스터디 주당횟수
 
-    @NotBlank
-    private RegionType regionType = RegionType.ONLINE; //지역(온라인/ 오프라인 -추후 프로그램내에서 시/도/군/구 값도 추가되도록 진행예정 )
+    @NotNull
+    private String regionType = RegionType.ONLINE.toString(); //지역(온라인/ 오프라인 -추후 프로그램내에서 시/도/군/구 값도 추가되도록 진행예정 )
 
     @NotBlank
     private String simpleIntro; //한줄 소개글
@@ -63,6 +63,10 @@ public class StudyConfig {
     @NotBlank
     @Lob
     private String introduction; //소개글
+
+    private String addressDo;
+
+    private String addressSiGunGu;
 
     private int page = 1; // 페이지 번호
     private int limit = 20; // 1페이지당 출력 갯수
