@@ -25,7 +25,8 @@ public class CsReportService {
 
     // 질문 목록 조회
     public List<Question> getList() {
-        return this.questionRepository.findAll();
+
+        return questionRepository.findAll();
     }
 
     public Question getQuestion(Long qsCode) {

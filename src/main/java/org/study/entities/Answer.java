@@ -1,8 +1,13 @@
 package org.study.entities;
 
 import jakarta.persistence.*;
-import lombok.ToString;
+import lombok.*;
 
+@Entity
+@Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class Answer extends BaseEntity {
 
 //    @GeneratedValue

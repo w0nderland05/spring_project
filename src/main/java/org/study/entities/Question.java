@@ -15,7 +15,6 @@ import java.util.List;
 @Table(indexes={
         @Index(name="idx_user_createdAt", columnList = "createdAt DESC")
 })
-@EntityListeners(AuditingEntityListener.class)
 public class Question extends BaseEntity {
 
 
