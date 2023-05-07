@@ -30,6 +30,8 @@ public class CateListService {
         Sort sort = Sort.by(desc("listOrder"), desc("createdAt")); // 기본 정렬은 최신 등록 순으로
         List<Category> categories = repository.findAll(sort);
 
+
+
         return categories;
     }
 }

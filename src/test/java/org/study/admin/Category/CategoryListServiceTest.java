@@ -12,7 +12,6 @@ import org.study.entities.Category;
 import org.study.models.category.CateListService;
 import org.study.models.category.CateSaveService;
 
-import java.time.LocalDateTime;
 import java.time.ZoneOffset;
 import java.util.Arrays;
 import java.util.Comparator;
@@ -108,5 +107,11 @@ public class CategoryListServiceTest {
 
             startNum -= 1000;
         }
+    }
+
+    @Test
+    @DisplayName("조회된 페이징 동작 여부 체크")
+    void getListPagingTest() {
+        
     }
 }

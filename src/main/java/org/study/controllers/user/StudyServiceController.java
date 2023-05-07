@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.study.commons.Areas;
 import org.study.controllers.admin.study.StudyConfig;
-import org.study.models.study.DuplicationStudyCdException;
 import org.study.models.study.StudyApplyService;
 
 @Controller
@@ -32,15 +31,35 @@ public class StudyServiceController {
     public String studyJoin(Model model, StudyConfig studyConfig) {
         model.addAttribute("studyConfig", studyConfig);
         model.addAttribute("sidoList", Areas.sido);
+        String addressDo = studyConfig.getAddressDo();
+        if (addressDo != null) {
+            String[] siguguns = Areas.getSigugun(addressDo);
+            model.addAttribute("siguguns", siguguns);
+        }
+
         return "/front/study/join";
     }
 
     @PostMapping("/save")
     public String studySave(@Valid StudyConfig studyConfig, Errors errors, Model model) {
+
         model.addAttribute("sidoList", Areas.sido);
+        String addressDo = studyConfig.getAddressDo();
+        if (addressDo != null) {
+            String[] siguguns = Areas.getSigugun(addressDo);
+            model.addAttribute("siguguns", siguguns);
+        }
+        try {
+            service.apply(studyConfig);
+        } catch (RuntimeException e) {
+            errors.reject("studySaveError", e.getMessage());
+        }
+        
         String mode = studyConfig.getMode();
+
         if (errors.hasErrors()) {
-            String tpl = "user/study/";
+            System.out.println(errors);
+            String tpl = "front/study/";
             if (mode != null && mode.equals("update")) {
                 tpl += "update";
             } else {
@@ -49,7 +68,7 @@ public class StudyServiceController {
             return tpl;
         }
 
-        service.apply((studyConfig));
+
 
         return "redirect:/user/study/join";// 게시판 등록 후 스터디함께해요 페이지로 이동
     }

@@ -19,7 +19,7 @@
             </td>
         </tr>
         <tr>
-            <th>게시판명</th>
+            <th>게시판 이름</th>
             <td>
                 <input type="text" name="boardNm" th:field="*{boardNm}">
                 <div class="error" th:each="err : ${#fields.errors('boardNm')}" th:text="${err}"></div>
@@ -93,9 +93,9 @@
         <tr>
             <th>이미지첨부</th>
             <td>
-                <input type="radio" name="useImageAttach" value="1" id="useImageAttach_1" th:field="*{useImageAttach}" checked>
+                <input type="radio" name="useImageAttach" value="1" id="useImageAttach_1" checked>
                 <label for="useImageAttach_1">사용</label>
-                <input type="radio" name="useImageAttach" value="0" id="useImageAttach_0" th:field="*{useImageAttach}">
+                <input type="radio" name="useImageAttach" value="0" id="useImageAttach_0">
                 <label for="useImageAttach_0">미사용</label>
             </td>
         </tr>

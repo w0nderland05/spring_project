@@ -8,12 +8,12 @@ import java.util.ResourceBundle;
 /**
  * 게시판 아이디 중복 등록 시 발생 예외
  */
-public class DuplicateCateBIdException extends CommonException {
+public class DuplicateBIdException extends CommonException {
     private static String message;
     static {
         ResourceBundle rs = ResourceBundle.getBundle("messages.validation");
         message = rs.getString("Duplicate.boardConfig.bId");
     }
-    public DuplicateCateBIdException() {super(message, HttpStatus.BAD_REQUEST);}
+    public DuplicateBIdException() {super(message, HttpStatus.BAD_REQUEST);}
 
 }
