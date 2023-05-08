@@ -1,4 +1,4 @@
-package org.study.controllers.user;
+package org.study.controllers.user.study;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;

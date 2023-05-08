@@ -14,7 +14,7 @@ import java.util.Random;
 public class EmailServiceImpl implements EmailService{
 
     @Autowired
-    JavaMailSender emailSender;
+    private JavaMailSender emailSender;
 
     public static final String ePw = createKey();
 
@@ -23,7 +23,8 @@ public class EmailServiceImpl implements EmailService{
         System.out.println("인증 번호 : " + ePw);
         MimeMessage message = emailSender.createMimeMessage();
 
-        message.addRecipients(MimeMessage.RecipientType.TO, to);    // 보내는 대상
+        message.setFrom(new InternetAddress("studySite@study.com")); //발신자 이메일 주소 (사이트에서 보냄)
+        message.addRecipient(MimeMessage.RecipientType.TO, new InternetAddress("82everywin@gmail.com")); // 받는 대상 (수신자이메일 주소)
         // 여기다가도 사이트 이름 적으면 됨
         message.setSubject("스터디 사이트 회원가입 이메일 인증");            // 제목
 

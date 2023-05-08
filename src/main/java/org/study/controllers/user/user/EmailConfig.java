@@ -1,4 +1,4 @@
-package org.study.configs;
+package org.study.controllers.user.user;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -37,10 +37,16 @@ public class EmailConfig {
     @Value("${AdminMail.password}")
     private String password;
 
+    /**
+     * 기본 속성 설정(초기화 )
+     * SMTP : Simple Mail Transfer Protocol
+     * SMTP 서버의 포트번호 , SMTP인증 사용 여부 , STARTTLS 암호화 사용 여부
+     * @return
+     */
     @Bean
     public JavaMailSender javaMailService(){
         JavaMailSenderImpl javaMailSender = new JavaMailSenderImpl();
-        javaMailSender.setHost("smtp.gamil.com");
+        javaMailSender.setHost("smtp.gmail.com");
         javaMailSender.setUsername(id);
         javaMailSender.setPassword(password);
         javaMailSender.setPort(port);
