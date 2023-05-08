@@ -43,7 +43,7 @@ public class EmailServiceImpl implements EmailService{
         msgg+= "<h3 style='color:blue;'>회원가입 인증 코드입니다.</h3>";
         msgg+= "<div style='font-size:130%'>";
         msgg+= "CODE : <strong>";
-        msgg+= ePw+"</strong><div><br/> ";
+        msgg+= ePw+"</strong></div><br> ";
         msgg+= "</div>";
         message.setText(msgg, "utf-8", "html");                                //내용
         // 여기다 이메일 쓰고 보내는 사이트 이름 적으면 됨
