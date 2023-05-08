@@ -29,7 +29,7 @@ public class CsController {
     @GetMapping
     public String index(Model model){
         List<CsConfig> configs = listService.gets();
-        model.addAttribute("configs",configs);
+        model.addAttribute("csConfig",configs);
 
         return "admin/cs/index";
     }
@@ -42,7 +42,7 @@ public class CsController {
      */
     @GetMapping("/qna")
     public String qna(Model model){
-        List<Question> questionList = reportService.getList();
+        List<Question> questionList = this.reportService.getList();
         model.addAttribute("questionList",questionList);
         return "admin/cs/qna";
     }
@@ -54,7 +54,7 @@ public class CsController {
      * @return
      */
     @GetMapping("/view/{qsCode}")
-    public String view(Model model, @PathVariable("{qsCode}")Long qsCode){
+    public String view(Model model, @PathVariable("qsCode") Long qsCode){
         Question question = reportService.getQuestion(qsCode);
         model.addAttribute("question", question);
         return "admin/cs/view";

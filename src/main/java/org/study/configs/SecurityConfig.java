@@ -57,7 +57,7 @@ public class SecurityConfig {
 
     @Bean
     public WebSecurityCustomizer webSecurityCustomizer() {
-        return w -> w.ignoring()
+        return w -> w.ignoring() // 시큐리티가 무시할 정적 경로 설정
                 .requestMatchers(
                         "/front/images/**",
                             "/mobile/images/**",
@@ -67,7 +67,8 @@ public class SecurityConfig {
                             "/admin/js/**",
                             "/front/css/**",
                             "/mobile/css/**",
-                            "/admin/css/**");
+                            "/admin/css/**",
+                            "/uploads/**");
     }
 
     @Bean
