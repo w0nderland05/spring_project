@@ -3,6 +3,7 @@ package org.study.models.user;
 import jakarta.mail.Message;
 import jakarta.mail.internet.InternetAddress;
 import jakarta.mail.internet.MimeMessage;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.MailException;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -11,10 +12,11 @@ import org.springframework.stereotype.Service;
 import java.util.Random;
 
 @Service
+@RequiredArgsConstructor
 public class EmailServiceImpl implements EmailService{
 
-    @Autowired
-    private JavaMailSender emailSender;
+
+    private final JavaMailSender emailSender;
 
     public static final String ePw = createKey();
 
@@ -24,7 +26,7 @@ public class EmailServiceImpl implements EmailService{
         MimeMessage message = emailSender.createMimeMessage();
 
         message.setFrom(new InternetAddress("studySite@study.com")); //발신자 이메일 주소 (사이트에서 보냄)
-        message.addRecipient(MimeMessage.RecipientType.TO, new InternetAddress("82everywin@gmail.com")); // 받는 대상 (수신자이메일 주소)
+        message.addRecipient(MimeMessage.RecipientType.TO, new InternetAddress(to)); // 받는 대상 (수신자이메일 주소)
         // 여기다가도 사이트 이름 적으면 됨
         message.setSubject("스터디 사이트 회원가입 이메일 인증");            // 제목
 
@@ -50,7 +52,7 @@ public class EmailServiceImpl implements EmailService{
         return message;
     }
 
-    private static String createKey() {
+    public static String createKey() {
         StringBuffer key = new StringBuffer();
         Random rnd = new Random();
 
