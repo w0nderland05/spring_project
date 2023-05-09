@@ -43,12 +43,13 @@ public class StudyController {
      * @return
      */
     @GetMapping
-    public String index(Model model, StudySearch studySearch){
+    public String index(Model model,StudyConfig studyConfig,StudySearch studySearch){
         String url = request.getContextPath() + "/admin/study";
         studySearch.setApproveStatus(new String[] {"APPROVE","DISAPPROVE"});
-        Page<Study> data = studyRepository.getStudyAdminP(studySearch);
+        Page<Study> data = listService.gets(studySearch); // 조회
         Pagination<Study> pagination = new Pagination<>(data, url);
-        model.addAttribute("studies", data.getContent());
+        model.addAttribute("studies", data.getContent()); //조회된 엔티티 클래스를 직접 커맨드로 사용
+        model.addAttribute("studySearch",studySearch);
         model.addAttribute("pagination", pagination);
 
         return "admin/study/index";
@@ -80,7 +81,7 @@ public class StudyController {
      */
     @GetMapping("/approvals")
     public String approvals(Model model, StudySearch studySearch){
-        String url = request.getContextPath() + "/admin/study";
+        String url = request.getContextPath() + "/admin/study/approvals";
         studySearch.setApproveStatus(new String[] {"APPLY"});
         Page<Study> data = studyRepository.getStudyAdminP(studySearch);
         Pagination<Study> pagination = new Pagination<>(data, url);
@@ -98,7 +99,7 @@ public class StudyController {
      * @return
      */
     @GetMapping("/approve")
-    public String approve(Model model){
+    public String approve(Model model, StudySearch studySearch){
         model.addAttribute("sidoList", Areas.sido);
         return "admin/study/approve";
     }

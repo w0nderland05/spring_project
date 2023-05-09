@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.study.commons.constants.RegionType;
 import org.study.commons.constants.Status;
 import org.study.controllers.admin.study.StudyConfig;
+import org.study.controllers.admin.study.StudySearch;
 import org.study.entities.Study;
 import org.study.models.study.StudyApplyService;
 import org.study.models.study.StudyListService;
@@ -38,6 +39,9 @@ public class StudyListTest {
     private StudyApplyService applyService;
 
 
+    private StudySearch studySearch;
+
+
 
     private int cnt_Apply = 1; //approveStatus- APPLY 갯수
     private int cnt_Disapprove = 2;//approveStatus- DISAPPROVE 갯수
@@ -50,13 +54,21 @@ public class StudyListTest {
                 .studyNm("코리아스터디")
                 .category("IT")
                 .requestDt(LocalDateTime.now())
+<<<<<<< HEAD
                 .approveStatus(Status.APPLY.toString())
+=======
+                .approveStatus("APPLY")
+>>>>>>> 9f3d9962ec414cbf0d52f364e3464a5a85e3a573
                 .regStatusDt(LocalDateTime.now())
                 .maxMember(Long.valueOf("40"))
                 .remainSeat(Long.valueOf("3"))
                 .activeStatus(true)
                 .numOfWeek("주2-3회")
+<<<<<<< HEAD
                 .regionType(RegionType.OFFLINE.toString())
+=======
+                .regionType("OFFLINE")
+>>>>>>> 9f3d9962ec414cbf0d52f364e3464a5a85e3a573
                 .simpleIntro("백엔드개발 스터디 입니다.")
                 .introduction("즐겁게 공부해봅시다.")
                 .build();
@@ -67,13 +79,21 @@ public class StudyListTest {
                 .studyNm("코리아스터디")
                 .category("IT")
                 .requestDt(LocalDateTime.now())
+<<<<<<< HEAD
                 .approveStatus(Status.DISAPPROVE.toString())
+=======
+                .approveStatus("DISAPPROVE")
+>>>>>>> 9f3d9962ec414cbf0d52f364e3464a5a85e3a573
                 .regStatusDt(LocalDateTime.now())
                 .maxMember(Long.valueOf("40"))
                 .remainSeat(Long.valueOf("3"))
                 .activeStatus(true)
                 .numOfWeek("주2-3회")
+<<<<<<< HEAD
                 .regionType(RegionType.OFFLINE.toString())
+=======
+                .regionType("OFFLINE")
+>>>>>>> 9f3d9962ec414cbf0d52f364e3464a5a85e3a573
                 .simpleIntro("백엔드개발 스터디 입니다.")
                 .introduction("즐겁게 공부해봅시다.")
                 .build();
@@ -84,13 +104,21 @@ public class StudyListTest {
                 .studyNm("코리아스터디")
                 .category("IT")
                 .requestDt(LocalDateTime.now())
+<<<<<<< HEAD
                 .approveStatus(Status.DISAPPROVE.toString())
+=======
+                .approveStatus("DISAPPROVE")
+>>>>>>> 9f3d9962ec414cbf0d52f364e3464a5a85e3a573
                 .regStatusDt(LocalDateTime.now())
                 .maxMember(Long.valueOf("40"))
                 .remainSeat(Long.valueOf("3"))
                 .activeStatus(true)
                 .numOfWeek("주2-3회")
+<<<<<<< HEAD
                 .regionType(RegionType.OFFLINE.toString())
+=======
+                .regionType("OFFLINE")
+>>>>>>> 9f3d9962ec414cbf0d52f364e3464a5a85e3a573
                 .simpleIntro("백엔드개발 스터디 입니다.")
                 .introduction("즐겁게 공부해봅시다.")
                 .build();
@@ -111,6 +139,7 @@ public class StudyListTest {
     void study_gets() {
         assertDoesNotThrow(() -> {
             listService.gets();
+            System.out.println(listService.gets());
         });
 
 
@@ -126,6 +155,7 @@ public class StudyListTest {
     void study_get() {
         assertDoesNotThrow(() -> {
             listService.get(5245625L);
+
         });
 
     }

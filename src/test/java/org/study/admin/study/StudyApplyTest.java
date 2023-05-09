@@ -100,13 +100,21 @@ public class StudyApplyTest {
         studyConfig.setStudyNm("코리아스터디");
         studyConfig.setCategory("IT");
         studyConfig.setRequestDt(LocalDateTime.now());
+<<<<<<< HEAD
         studyConfig.setApproveStatus(Status.APPLY.toString());
+=======
+        studyConfig.setApproveStatus("APPLY");
+>>>>>>> 9f3d9962ec414cbf0d52f364e3464a5a85e3a573
         studyConfig.setRegStatusDt(LocalDateTime.now());
         studyConfig.setMaxMember(Long.valueOf("40"));
         studyConfig.setRemainSeat(Long.valueOf("3"));
         studyConfig.setActiveStatus(true);
         studyConfig.setNumOfWeek("주2-3회");
+<<<<<<< HEAD
         studyConfig.setRegionType(RegionType.OFFLINE.toString());
+=======
+        studyConfig.setRegionType("OFFLINE");
+>>>>>>> 9f3d9962ec414cbf0d52f364e3464a5a85e3a573
         studyConfig.setSimpleIntro("백엔드개발 스터디 입니다.");
         studyConfig.setIntroduction("즐겁게 공부해봅시다.");
 
