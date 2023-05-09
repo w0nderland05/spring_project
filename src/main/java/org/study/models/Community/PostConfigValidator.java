@@ -30,7 +30,7 @@ public class PostConfigValidator implements ServiceValidator<PostConfig>, Requir
         /** gid 중복 여부 체크 */
         if (repository.exists(postConfig.getGid())) {
             // 이미 등록된 gid인 경우
-            throw new BadRequestException()
+            throw new DuplicatePostGidException();
         }
 
     }

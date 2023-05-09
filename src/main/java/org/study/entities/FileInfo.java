@@ -8,43 +8,30 @@ import lombok.NoArgsConstructor;
 
 @Entity @Data @Builder
 @NoArgsConstructor @AllArgsConstructor
-@Table(indexes = {
-        @Index(name = "idx_fileInfo_gid", columnList = "gid, createdAt"), // 방향성 createdAt
-        @Index(name = "idx_fileInfo_gid_location", columnList = "gid, location, createdAt")  // 방향성 createdAt
-})
-public class FileInfo extends BaseEntity{
-
+public class FileInfo extends BaseUserEntity {
     @Id @GeneratedValue
-    private Long fileNo; // 실제 서버 fileNo.확장자
+    private Long fileNo; // 파일 번호.확장자
 
-    @Column(length = 60, nullable = false)
-    private String gid; // 그룹 id - location과 함께 조회 용도
+    @Column(length=40, nullable = false)
+    private String gid; // 그룹 ID
 
-    @Column(length = 60)
-    private String location; // 그룹내 위치
+    @Column(length=60)
+    private String location; // 파일 사용 위치
 
-    @Column(length = 100,nullable = false)
-    private String fileName; // 원본 파일 이름
+    @Column(length=100, nullable = false)
+    private String originalFilename; //원래 파일명
 
-    @Column(length = 60, nullable = false)
-    private String contentType; // 파일 형식
+    @Column(length=20)
+    private String extension; // 파일 확장자
 
-    private boolean success; // 그룹 작업 완료 여부
+    @Column(length=65, nullable = false)
+    private String contentType; // 파일 종류 MIME
 
-    @ManyToOne(fetch = FetchType.LAZY) // 지연 로딩
-    @JoinColumn(name="userNo")
-    private User user; // 파일을 올린 사용자
+    private boolean success; // 그룹작업 완료 여부
 
-/** 나중에 다시 설정 ? 없어도 될지도 몰라용
+    @Transient
+    private String fileURL; // 파일 접속 URL
 
-    // 서버에서 바로 확인할 수 있는 URL ( 파일을 웹페이지에서 확인할 수 있는 URL )
-    public String getFileURL() {
-
-    }
-
-    // 실제 파일 업로드 경로
-    public String getFilePath() {
-
-    }
-*/
+    @Transient
+    private String filePath; // 파일 업로드 경로
 }
