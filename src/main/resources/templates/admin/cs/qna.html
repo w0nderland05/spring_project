@@ -14,6 +14,7 @@
                         </th>
                         <th>문의 번호</th>
                         <th>문의 유형</th>
+                        <th>문의 제목</th>
                         <th>회원명</th>
                         <th>이메일</th>
                         <th>처리 상태</th>
@@ -27,14 +28,15 @@
                         <td>
                             <input type="checkbox">
                         </td>
-                        <td></td>   <!-- 문의 번호 -->
-                        <td></td>   <!-- 문의 유형 -->
-                        <td></td>   <!-- 회원명 -->
-                        <td></td>   <!-- 이메일 -->
+                        <td th:fields="*{qsCode}"></td>   <!-- 문의 코드 -->
+                        <td th:fields="*{category}"></td>   <!-- 문의 유형 -->
+                        <td th:fields="*{subject}"></td>   <!-- 문의 제목 -->
+                        <td th:text="${userJoin.userNm}"></td>   <!-- 회원명 -->
+                        <td th:text="${userJoin.userEmail}"></td>   <!-- 이메일 -->
                         <td>
-                            <select>
-                                <option value="clear">답변 완료</option>
-                                <option value="ready" selected>미완료</option>
+                            <select th:fields="*{csProcess}">
+                                <option th:value="CLEAR">답변 완료</option>
+                                <option th:value="READY" selected>처리 대기중</option>
                             </select>
                         </td>   <!-- 처리 상태 -->
                         <td></td>   <!-- 문의 일시 -->

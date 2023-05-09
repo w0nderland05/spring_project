@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import org.study.commons.constants.QnaCategory;
+import org.study.commons.constants.ReportStatus;
 
 import java.util.List;
 
@@ -29,7 +30,7 @@ public class Question extends BaseEntity {
     @Column(length = 300)
     private String content; // 문의 내용
     
-    private boolean csProcess; // 문의 처리 상태
+    private ReportStatus csProcess; // 문의 처리 상태
 
     @Enumerated(EnumType.STRING)
     @Column(length = 20, nullable = false)
