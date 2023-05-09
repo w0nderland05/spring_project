@@ -101,7 +101,6 @@ public interface StudyRepository extends JpaRepository<Study, Long>, QuerydslPre
         }
 
 
-
         /*검색조건 처리 E*/
 
         Page<Study> data = findAll(builder, pageable);
