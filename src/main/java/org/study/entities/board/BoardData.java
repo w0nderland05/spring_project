@@ -34,6 +34,7 @@ public class BoardData extends BaseEntity {
 
     @Column(length=60)
     private String category; // 게시글 분류
+
     @Column(nullable = false)
     private String subject; // 게시글 제목
 

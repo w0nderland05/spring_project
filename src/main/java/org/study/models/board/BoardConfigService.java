@@ -36,11 +36,8 @@ public class BoardConfigService {
         validator.check(config, errors);
 
         /**
-         * mode가 update면
-         *
-         * 엔티티가 이미 등록되어 있으면 기존 엔티티 가져오고(수정)
-         * 없다면 새로운 엔티티로 변환 BoardConfig.of(config);(생성)
-         *
+         * mode가 null이 아니고, update고, 중복 bId일 경우 (수정)
+         * 아니라면 (생성)
          */
 
         Board entity = null;
