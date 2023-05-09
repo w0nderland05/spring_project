@@ -25,5 +25,6 @@ public class StudySearch {
 
     private String[] regionType;
 
+    private String email; // 회원 이메일
 
 }
