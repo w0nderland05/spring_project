@@ -58,7 +58,11 @@ public class StudyListTest {
                 .approveStatus(Status.APPLY.toString())
 =======
                 .approveStatus("APPLY")
+<<<<<<< HEAD
 >>>>>>> 9f3d9962ec414cbf0d52f364e3464a5a85e3a573
+=======
+>>>>>>> 42d00699eec0907bd5909aa38d2b22dff29f0bbc
+>>>>>>> a9199954f98a74fe086bb5786c91e646e0fc303a
                 .regStatusDt(LocalDateTime.now())
                 .maxMember(Long.valueOf("40"))
                 .remainSeat(Long.valueOf("3"))
@@ -68,7 +72,11 @@ public class StudyListTest {
                 .regionType(RegionType.OFFLINE.toString())
 =======
                 .regionType("OFFLINE")
+<<<<<<< HEAD
 >>>>>>> 9f3d9962ec414cbf0d52f364e3464a5a85e3a573
+=======
+>>>>>>> 42d00699eec0907bd5909aa38d2b22dff29f0bbc
+>>>>>>> a9199954f98a74fe086bb5786c91e646e0fc303a
                 .simpleIntro("백엔드개발 스터디 입니다.")
                 .introduction("즐겁게 공부해봅시다.")
                 .build();
@@ -83,7 +91,11 @@ public class StudyListTest {
                 .approveStatus(Status.DISAPPROVE.toString())
 =======
                 .approveStatus("DISAPPROVE")
+<<<<<<< HEAD
 >>>>>>> 9f3d9962ec414cbf0d52f364e3464a5a85e3a573
+=======
+>>>>>>> 42d00699eec0907bd5909aa38d2b22dff29f0bbc
+>>>>>>> a9199954f98a74fe086bb5786c91e646e0fc303a
                 .regStatusDt(LocalDateTime.now())
                 .maxMember(Long.valueOf("40"))
                 .remainSeat(Long.valueOf("3"))
@@ -93,7 +105,11 @@ public class StudyListTest {
                 .regionType(RegionType.OFFLINE.toString())
 =======
                 .regionType("OFFLINE")
+<<<<<<< HEAD
 >>>>>>> 9f3d9962ec414cbf0d52f364e3464a5a85e3a573
+=======
+>>>>>>> 42d00699eec0907bd5909aa38d2b22dff29f0bbc
+>>>>>>> a9199954f98a74fe086bb5786c91e646e0fc303a
                 .simpleIntro("백엔드개발 스터디 입니다.")
                 .introduction("즐겁게 공부해봅시다.")
                 .build();
@@ -108,7 +124,11 @@ public class StudyListTest {
                 .approveStatus(Status.DISAPPROVE.toString())
 =======
                 .approveStatus("DISAPPROVE")
+<<<<<<< HEAD
 >>>>>>> 9f3d9962ec414cbf0d52f364e3464a5a85e3a573
+=======
+>>>>>>> 42d00699eec0907bd5909aa38d2b22dff29f0bbc
+>>>>>>> a9199954f98a74fe086bb5786c91e646e0fc303a
                 .regStatusDt(LocalDateTime.now())
                 .maxMember(Long.valueOf("40"))
                 .remainSeat(Long.valueOf("3"))
@@ -118,7 +138,11 @@ public class StudyListTest {
                 .regionType(RegionType.OFFLINE.toString())
 =======
                 .regionType("OFFLINE")
+<<<<<<< HEAD
 >>>>>>> 9f3d9962ec414cbf0d52f364e3464a5a85e3a573
+=======
+>>>>>>> 42d00699eec0907bd5909aa38d2b22dff29f0bbc
+>>>>>>> a9199954f98a74fe086bb5786c91e646e0fc303a
                 .simpleIntro("백엔드개발 스터디 입니다.")
                 .introduction("즐겁게 공부해봅시다.")
                 .build();

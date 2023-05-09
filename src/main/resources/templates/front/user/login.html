@@ -5,9 +5,12 @@
 
     <main layout:fragment="content">
         <form id="frmLogin" name="frmLogin" method="post" th:action="@{/user/login}" autocomplete="off" th:object="${userLogin}">
-            <div class="error global" th:if="*{success == 'false'}" th:text="#{user.login.fail}"></div>
+            <div class="error global" th:if="${session.loginFail != null}" th:text="${session.loginFail}"></div>
+
             <input type="text" name="userEmail" th:placeholder="#{userEmail}" th:field="*{userEmail}">
+            <div class="error" th:if="${session.requiredUserEmail != null}" th:text="${session.requiredUserEmail}"></div>
             <input type="password" name="userPw" th:placeholder="#{userPw}" th:field="*{userPw}">
+            <div class="error" th:if="${session.requiredUserPw != null}" th:text="${session.requiredUserPw}"></div>
             <button type="submit" th:text="#{user.login.action}"></button>
             <div class="links">
                 <a th:href="@{/user/find_id}"><i class="xi-lock"></i>[[#{user.login.findId}]]</a>
