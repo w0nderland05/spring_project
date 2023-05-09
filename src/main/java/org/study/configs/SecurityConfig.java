@@ -9,6 +9,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+import org.study.models.user.LoginFailureHandler;
+import org.study.models.user.LoginSuccessHandler;
 
 @Configuration
 public class SecurityConfig {
@@ -18,10 +20,10 @@ public class SecurityConfig {
 
         http.formLogin()
                 .loginPage("/user/login")
-                .defaultSuccessUrl("/")
+                .successHandler(new LoginSuccessHandler())
                 .usernameParameter("userEmail")
                 .passwordParameter("userPw")
-                .failureUrl("/user/login?success=false")
+                .failureHandler(new LoginFailureHandler())
                 .and()
                 .logout()
                 .logoutRequestMatcher(new AntPathRequestMatcher("/user/logout"))
@@ -51,6 +53,8 @@ public class SecurityConfig {
 
                     res.sendRedirect(req.getContextPath() + redirectUrl);
                 });
+
+        http.headers().frameOptions().sameOrigin();
 
         return http.build();
     }
