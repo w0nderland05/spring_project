@@ -11,7 +11,7 @@ import org.springframework.mail.javamail.JavaMailSenderImpl;
 import java.util.Properties;
 
 
-@Data
+@Configuration
 @PropertySource("classpath:email.properties")
 public class EmailConfig {
 
