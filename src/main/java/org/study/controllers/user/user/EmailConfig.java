@@ -7,12 +7,14 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
+import org.springframework.stereotype.Component;
 
 import java.util.Properties;
 
 
 @Configuration
 @PropertySource("classpath:email.properties")
+@Component
 public class EmailConfig {
 
     @Value("${mail.smtp.port}")
@@ -45,6 +47,7 @@ public class EmailConfig {
      * SMTP 서버의 포트번호 , SMTP인증 사용 여부 , STARTTLS 암호화 사용 여부
      * @return
      */
+
     @Bean
     public JavaMailSender javaMailService(){
         JavaMailSenderImpl javaMailSender = new JavaMailSenderImpl();
