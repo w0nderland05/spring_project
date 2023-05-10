@@ -3,7 +3,7 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{front/layouts/main}">
 <section layout:fragment="content">
-    <form method="post" th:action="@{/user/community}" autocomplete="off">
+    <form method="post" th:action="@{/user/community/community}" autocomplete="off">
         <th:block th:replace="~{front/community/_form::form}"></th:block>
     </form>
 </section>

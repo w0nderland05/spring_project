@@ -17,6 +17,7 @@ import org.study.entities.board.BoardData;
 @Builder @NoArgsConstructor @AllArgsConstructor
 public class PostConfig {
 
+    private String mode;
     @NotNull
     private Long id; // 게시글 번호
 
