@@ -19,6 +19,7 @@ public class CsController {
     @Autowired
     private ReportListService listService;
 
+    @Autowired
     private CsReportService reportService;
     /**
      * <CS 관리> 클릭시 나오는 페이지
@@ -42,7 +43,7 @@ public class CsController {
      */
     @GetMapping("/qna")
     public String qna(Model model){
-        List<Question> questionList = this.reportService.getList();
+        List<QuestionConfig> questionList = reportService.getList();
         model.addAttribute("questionList",questionList);
         return "admin/cs/qna";
     }
@@ -55,7 +56,7 @@ public class CsController {
      */
     @GetMapping("/view/{qsCode}")
     public String view(Model model, @PathVariable("qsCode") Long qsCode){
-        Question question = reportService.getQuestion(qsCode);
+        QuestionConfig question = reportService.getQuestion(qsCode);
         model.addAttribute("question", question);
         return "admin/cs/view";
     }
