@@ -103,7 +103,7 @@ public class StudyListService {
         page = page < 1 ? 1 : page;
         limit = limit < 1 ? 20 : limit;
 
-        Pageable pageable = PageRequest.of(page, limit, Sort.by(desc("requestDt")));
+        Pageable pageable = PageRequest.of(page -1, limit, Sort.by(desc("requestDt")));
         Page<Study> pageData = repository.findAll(builder, pageable);
 
         /**페이지 정렬 처리 E*/
