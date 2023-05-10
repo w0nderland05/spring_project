@@ -92,13 +92,7 @@ public class StudyListTest {
                 .studyNm("코리아스터디")
                 .category("IT")
                 .requestDt(LocalDateTime.now())
-<<<<<<< HEAD
                 .approveStatus("APPROVE")
-=======
-                .approveStatus(Status.DISAPPROVE.toString())
-                .approveStatus("DISAPPROVE")
-
->>>>>>> 3c72bb428a5819f5642d10e98090c123bf525ce4
                 .regStatusDt(LocalDateTime.now())
                 .maxMember(Long.valueOf("40"))
                 .remainSeat(Long.valueOf("3"))
@@ -123,9 +117,6 @@ public class StudyListTest {
     @DisplayName("스터디 목록 전체 조회")
     void study_gets() {
         assertDoesNotThrow(() -> {
-
-            listService.gets(studySearch); // 수정필요!
-            System.out.println(listService.gets(studySearch)); // 수정필요!
             StudySearch studySearch = new StudySearch();
             listService.gets(studySearch);
         });
