@@ -102,14 +102,6 @@ public class StudyApplyTest {
         studyConfig.setRequestDt(LocalDateTime.now());
         studyConfig.setApproveStatus(Status.APPLY.toString());
         studyConfig.setApproveStatus("APPLY");
-<<<<<<< HEAD
-<<<<<<< HEAD
->>>>>>> 9f3d9962ec414cbf0d52f364e3464a5a85e3a573
-=======
->>>>>>> 42d00699eec0907bd5909aa38d2b22dff29f0bbc
->>>>>>> a9199954f98a74fe086bb5786c91e646e0fc303a
-=======
->>>>>>> 0031be34e4b7403ae683a38487294a8770e172bd
         studyConfig.setRegStatusDt(LocalDateTime.now());
         studyConfig.setMaxMember(Long.valueOf("40"));
         studyConfig.setRemainSeat(Long.valueOf("3"));
@@ -117,14 +109,6 @@ public class StudyApplyTest {
         studyConfig.setNumOfWeek("주2-3회");
         studyConfig.setRegionType(RegionType.OFFLINE.toString());
         studyConfig.setRegionType("OFFLINE");
-<<<<<<< HEAD
-<<<<<<< HEAD
->>>>>>> 9f3d9962ec414cbf0d52f364e3464a5a85e3a573
-=======
->>>>>>> 42d00699eec0907bd5909aa38d2b22dff29f0bbc
->>>>>>> a9199954f98a74fe086bb5786c91e646e0fc303a
-=======
->>>>>>> 0031be34e4b7403ae683a38487294a8770e172bd
         studyConfig.setSimpleIntro("백엔드개발 스터디 입니다.");
         studyConfig.setIntroduction("즐겁게 공부해봅시다.");
 
