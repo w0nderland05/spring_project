@@ -39,19 +39,37 @@ public class UserCommunityController {
      * @return
      */
     @GetMapping
-    public String community(Model model, PostConfig postConfig, BoardConfig boardConfig) {
+    public String community(Model model) {
         List<PostConfig> configs = listService.gets();
         model.addAttribute("configs", configs);
 
-        //if (게시판 분류에 qna가 포함되어 있다면) {
-            // 질문과 답변 게시판으로 이동
-        // }
-
-        //if (게시판 분류에 free가 포함되어 있다면) {
-            // 질문과 답변 게시판으로 이동
-        // }
+//        String category = boardConfig.getCategory();
+//        String tpl = "user/community/";
+//        if (category.equals("qna")) {
+//            tpl += "qna";
+//            return tpl;
+//        } else if (category.equals("free")) {
+//            tpl += "free";
+//            return tpl;
+//        }
 
         return "front/community/community";
+    }
+
+    @GetMapping("/qna")
+    public String qna(Model model) {
+        List<PostConfig> configs = listService.gets();
+        model.addAttribute("configs", configs);
+
+        return "front/community/qna";
+    }
+
+    @GetMapping("/free")
+    public String free(Model model) {
+        List<PostConfig> configs = listService.gets();
+        model.addAttribute("configs", configs);
+
+        return "front/community/free";
     }
 
     @GetMapping("/register")
@@ -87,6 +105,7 @@ public class UserCommunityController {
 
     /**
      * 게시판 상세 -> 게시판 수정 & 삭제 가능
+     *
      * @return
      */
     @GetMapping("/update/{gid}")

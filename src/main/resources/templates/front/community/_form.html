@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<th:block th:fragment="form"> <!-- config 생성 후 th:object -->
+<th:block th:fragment="form" th:object="${configs}">
     <div class="error" th:each="err : ${#fields.globalErrors()}" th:text="${err}"></div>
     <div class="search">
         <span class="search-text">
@@ -11,9 +11,15 @@
             <input type="text" spellcheck="false" placeholder="태그 검색" enterkeyhint="search">
         </span>
         <nav class="tabs">
-            <button class="btn1" th:href="@{front/community}">전체</button>
-            <button class="btn1" th:href="@{front/community/free}">자유게시판</button>
-            <button class="btn1" th:href="@{front/community/qna}">질문과답변</button>
+            <button class="btn1">
+                <a th:href="@{/user/community}">전체</a>
+            </button>
+            <button class="btn1">
+                <a th:href="@{/user/community/free}">자유게시판</a>
+            </button>
+            <button class="btn1">
+                <a th:href="@{/user/community/qna}">질문과답변</a>
+            </button>
             <button class="btn1">
                 <a th:href="@{/user/community/register}">글쓰기</a>
             </button>
