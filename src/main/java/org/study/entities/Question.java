@@ -29,11 +29,13 @@ public class Question extends BaseEntity {
 
     @Column(length = 300)
     private String content; // 문의 내용
-    
+
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
     private ReportStatus csProcess; // 문의 처리 상태
 
     @Enumerated(EnumType.STRING)
-    @Column(length = 20, nullable = false)
+    @Column(length = 30, nullable = false)
     private QnaCategory category; // 문의 종류
 
     //개설회원 정보
@@ -44,10 +46,4 @@ public class Question extends BaseEntity {
 
     @OneToMany(mappedBy = "question", cascade = CascadeType.REMOVE)
     private List<Answer> answerList; // 질문 엔티티에 답변 엔티티 참조
-
-
-
-
-
-
 }

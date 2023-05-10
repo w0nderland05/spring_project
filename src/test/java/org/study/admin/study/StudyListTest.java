@@ -123,6 +123,9 @@ public class StudyListTest {
     @DisplayName("스터디 목록 전체 조회")
     void study_gets() {
         assertDoesNotThrow(() -> {
+
+            listService.gets(studySearch); // 수정필요!
+            System.out.println(listService.gets(studySearch)); // 수정필요!
             StudySearch studySearch = new StudySearch();
             listService.gets(studySearch);
         });

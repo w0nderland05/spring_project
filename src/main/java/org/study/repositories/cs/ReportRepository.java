@@ -28,6 +28,6 @@ public interface ReportRepository extends JpaRepository<Report, Long>, QuerydslP
     default boolean exists(Long code) {
         QReport report = QReport.report;
         return exists(report.code.eq(code));
-    };
-//    Report findByCsCode(Long code);
+    }
+
 }
