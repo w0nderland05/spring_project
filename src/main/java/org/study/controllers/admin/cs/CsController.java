@@ -19,6 +19,7 @@ public class CsController {
     @Autowired
     private ReportListService listService;
 
+    @Autowired
     private CsReportService reportService;
     /**
      * <CS 관리> 클릭시 나오는 페이지
