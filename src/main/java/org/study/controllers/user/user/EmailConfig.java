@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
 import java.util.Properties;
 
 
-@Data
+@Configuration
 @PropertySource("classpath:email.properties")
 @Component
 public class EmailConfig {
