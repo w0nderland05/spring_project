@@ -119,7 +119,6 @@ public class StudyListTest {
         assertDoesNotThrow(() -> {
             StudySearch studySearch = new StudySearch();
             listService.gets(studySearch);
-            System.out.println(listService.gets(studySearch));
         });
     }
 
