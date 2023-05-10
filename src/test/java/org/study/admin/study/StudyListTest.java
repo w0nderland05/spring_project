@@ -42,7 +42,6 @@ public class StudyListTest {
     private StudySearch studySearch;
 
 
-
     private int cnt_Apply = 1; //approveStatus- APPLY 갯수
     private int cnt_Disapprove = 2;//approveStatus- DISAPPROVE 갯수
     private int cnt_Approve = 0;//approveStatus- APPROVE 갯수
@@ -141,15 +140,20 @@ public class StudyListTest {
     @DisplayName("approveStatus(승인상태-APPLY,APPROVE,DISAPPROVE)에 따라 조회된 데이터 갯수와 cnt갯수 맞으면 성공")
     void study_ApproveStatus_Apply_gets() {
         //approveStatus- APPLY 경우 스터디 조회
+        StudySearch studySearch = new StudySearch();
         assertDoesNotThrow(() -> {
-
+            studySearch.setApproveStatus(new String[]{"APPLY"});
+            listService.gets(studySearch);
         });
         //approveStatus- DISAPPROVE 경우 스터디 조회
         assertDoesNotThrow(() -> {
-
+            studySearch.setApproveStatus(new String[]{"DISAPPROVE"});
+            listService.gets(studySearch);
         });
         //approveStatus- APPROVE 경우 스터디 조회
         assertDoesNotThrow(() -> {
+            studySearch.setApproveStatus(new String[]{"APPROVE"});
+            listService.gets(studySearch);
 
         });
 
