@@ -1,6 +1,5 @@
-package org.study.controllers.user.board;
+package org.study.controllers.admin.community;
 
-import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -8,17 +7,12 @@ import lombok.NoArgsConstructor;
 
 @Data
 @Builder @NoArgsConstructor @AllArgsConstructor
-public class BoardData {
+public class CommunitySearch {
 
-    @NotBlank
-    private String bId;
-
-    @NotBlank
+    private int page = 1;
+    private int limit = 20;
+    private Long gid;
     private String poster;
-
-    @NotBlank
     private String subject;
-
-    @NotBlank
     private String content;
 }

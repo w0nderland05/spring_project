@@ -54,12 +54,14 @@ public class StudyListTest {
                 .studyNm("코리아스터디")
                 .category("IT")
                 .requestDt(LocalDateTime.now())
+                .approveStatus(Status.APPLY.toString())
                 .approveStatus("APPLY")
                 .regStatusDt(LocalDateTime.now())
                 .maxMember(Long.valueOf("40"))
                 .remainSeat(Long.valueOf("3"))
                 .activeStatus(true)
                 .numOfWeek("주2-3회")
+                .regionType(RegionType.OFFLINE.toString())
                 .regionType("OFFLINE")
                 .simpleIntro("백엔드개발 스터디 입니다.")
                 .introduction("즐겁게 공부해봅시다.")
@@ -71,12 +73,14 @@ public class StudyListTest {
                 .studyNm("코리아스터디")
                 .category("IT")
                 .requestDt(LocalDateTime.now())
+                .approveStatus(Status.DISAPPROVE.toString())
                 .approveStatus("DISAPPROVE")
                 .regStatusDt(LocalDateTime.now())
                 .maxMember(Long.valueOf("40"))
                 .remainSeat(Long.valueOf("3"))
                 .activeStatus(true)
                 .numOfWeek("주2-3회")
+                .regionType(RegionType.OFFLINE.toString())
                 .regionType("OFFLINE")
                 .simpleIntro("백엔드개발 스터디 입니다.")
                 .introduction("즐겁게 공부해봅시다.")
@@ -94,13 +98,12 @@ public class StudyListTest {
                 .remainSeat(Long.valueOf("3"))
                 .activeStatus(true)
                 .numOfWeek("주2-3회")
+                .regionType(RegionType.OFFLINE.toString())
                 .regionType("OFFLINE")
                 .simpleIntro("백엔드개발 스터디 입니다.")
                 .introduction("즐겁게 공부해봅시다.")
                 .build();
         applyService.apply(studyConfig3);
-
-
     }
 
 
@@ -118,8 +121,6 @@ public class StudyListTest {
             listService.gets(studySearch);
             System.out.println(listService.gets(studySearch));
         });
-
-
     }
 
     /**
@@ -154,7 +155,4 @@ public class StudyListTest {
         });
 
     }
-
-
-
 }
