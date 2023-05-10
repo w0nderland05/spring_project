@@ -3,7 +3,8 @@ package org.study.models.Community;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
-import org.study.controllers.admin.community.CommunitySearch;
+import org.study.controllers.user.Community.PostConfig;
+import org.study.entities.User;
 import org.study.entities.board.BoardData;
 import org.study.repositories.board.BoardDataRepository;
 
@@ -21,12 +22,19 @@ public class PostListService {
     @Autowired
     private BoardDataRepository boardDataRepository;
 
-    public List<BoardData> getAll() { return gets(null, 0, 0); }
+    public List<PostConfig> gets() {
+        List<BoardData> datas = boardDataRepository.findAll(Sort.by(Sort.Order.desc("createdAt")));
+        List<PostConfig> postConfigs = datas.stream().map(this::toConfig).toList();
 
-    public List<BoardData> gets(CommunitySearch search, int page, int limit) {
-        Sort sort = Sort.by(desc("listOrder"), desc("createdAt")); // 기본 정렬은 최신순으로
-        List<BoardData> datas = boardDataRepository.findAll(sort);
+        return postConfigs;
+    }
 
-        return datas;
+    private PostConfig toConfig(BoardData boardData) {
+        return PostConfig.builder()
+                .gid(boardData.getGid())
+                .category(boardData.getCategory())
+                .subject(boardData.getSubject())
+                .poster(boardData.getPoster())
+                .build();
     }
 }

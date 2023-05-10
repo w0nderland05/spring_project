@@ -28,8 +28,6 @@ public class CommunityController {
     private PostListService listService;
     @Autowired
     private BoardDataRepository boardDataRepository;
-    @Autowired
-    private HttpServletRequest request;
 
     /**
      * 커뮤니티 게시글 목록
@@ -37,9 +35,10 @@ public class CommunityController {
      * @return
      */
     @GetMapping
-    public String lists(Model model, PostConfig postConfig, CommunitySearch communitySearch) {
-        String url = request.getContextPath() + "/admin/community";
-        List<BoardData> datas = listService.gets(communitySearch, 1, 20);
+    public String lists(Model model) {
+        List<PostConfig> configs = listService.gets();
+        model.addAttribute("configs", configs);
+
         return "admin/community/lists";
     }
 

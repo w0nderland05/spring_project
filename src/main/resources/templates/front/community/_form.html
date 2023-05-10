@@ -11,11 +11,11 @@
             <input type="text" spellcheck="false" placeholder="태그 검색" enterkeyhint="search">
         </span>
         <nav class="tabs">
-            <button class="btn1">전체</button>
-            <button class="btn1"><!-- 분류에 따른 자동 추가 -->자유게시판</button>
-            <button class="btn1"><!-- 분류에 따른 자동 추가 -->질문과답변</button>
+            <button class="btn1" th:href="@{front/community}">전체</button>
+            <button class="btn1" th:href="@{front/community/free}">자유게시판</button>
+            <button class="btn1" th:href="@{front/community/qna}">질문과답변</button>
             <button class="btn1">
-                <a href="/user/community/register">글쓰기</a>
+                <a th:href="@{/user/community/register}">글쓰기</a>
             </button>
         </nav>
         <div class="userLists">

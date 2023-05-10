@@ -99,7 +99,7 @@ public class BoardController {
      * 게시판 상세 -> 게시판 수정 & 삭제 가능
      * @return
      */
-    @GetMapping("/update/{bId}")
+    @GetMapping("/update/{gid}")
     public String update(@PathVariable String bId, Model model, HttpServletResponse response) {
         model.addAttribute("mode", "update");
 
