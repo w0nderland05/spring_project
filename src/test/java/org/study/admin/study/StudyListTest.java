@@ -92,7 +92,13 @@ public class StudyListTest {
                 .studyNm("코리아스터디")
                 .category("IT")
                 .requestDt(LocalDateTime.now())
+<<<<<<< HEAD
                 .approveStatus("APPROVE")
+=======
+                .approveStatus(Status.DISAPPROVE.toString())
+                .approveStatus("DISAPPROVE")
+
+>>>>>>> 3c72bb428a5819f5642d10e98090c123bf525ce4
                 .regStatusDt(LocalDateTime.now())
                 .maxMember(Long.valueOf("40"))
                 .remainSeat(Long.valueOf("3"))
