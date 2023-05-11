@@ -18,7 +18,7 @@ import java.time.LocalDateTime;
 })
 public class Report extends BaseEntity {
 
-    // 신고 유형 ( 스터디 OR 게시판 )
+    // 신고 유형 ( 스터디 OR 게시판 OR 회원 )
     @Enumerated(EnumType.STRING)
     @Column(length = 20, nullable = false)
     private ReportDivision division;

@@ -22,7 +22,6 @@ public class QuestionValidator implements ServiceValidator<QuestionConfig>, Requ
         /** 필수 항목 체크 */
         requiredCheck(config.getSubject(), new BadRequestException("문의 제목을 입력해주세요."));
         requiredCheck(config.getContent(), new BadRequestException("문의 내용을 입력해주세요."));
-        requiredCheck(config.getCsProcess(), new BadRequestException("문의 처리 상태를 선택해주세요."));
-        requiredCheck(config.getCategory(), new BadRequestException("문의 종류를 선택해주세요."));
+
     }
 }
