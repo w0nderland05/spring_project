@@ -5,7 +5,7 @@
 <section layout:fragment="content">
     <nav th:replace="~{admin/cs/_submenu::menus}"></nav>
     <form method="post" th:action="@{/admin/cs/qna}">
-        <div role="region" aria-label="data table" tabindex="0" class="primary">
+        <div>
             <table id = "list">
                 <thead>
                     <tr>
@@ -28,13 +28,13 @@
                         <td>
                             <input type="checkbox">
                         </td>
-                        <td th:fields="*{qsCode}"></td>   <!-- 문의 코드 -->
-                        <td th:fields="*{category}"></td>   <!-- 문의 유형 -->
-                        <td th:fields="*{subject}"></td>   <!-- 문의 제목 -->
+                        <td th:field="*{qsCode}"></td>   <!-- 문의 코드 -->
+                        <td th:field="*{category}"></td>   <!-- 문의 유형 -->
+                        <td th:field="*{subject}"></td>   <!-- 문의 제목 -->
                         <td th:text="${userJoin.userNm}"></td>   <!-- 회원명 -->
                         <td th:text="${userJoin.userEmail}"></td>   <!-- 이메일 -->
                         <td>
-                            <select th:fields="*{csProcess}">
+                            <select th:field="*{csProcess}">
                                 <option th:value="CLEAR">답변 완료</option>
                                 <option th:value="READY" selected>처리 대기중</option>
                             </select>
@@ -42,7 +42,10 @@
                         <td></td>   <!-- 문의 일시 -->
                         <td></td>   <!-- 답변 일시 -->
                         <td>  <!-- 비고 -->
-                            <a class="btn2">상세보기</a>
+                            <button class="btn2">
+                                <a th:href="@{/admin/cs/view/{code}(code=*{qsCode})}" th:text="*{qsCode}">상세보기</a>
+                            </button>
+
                             <!-- 문의 내역 페이지로 이동 -->
                         </td>
                     </tr>

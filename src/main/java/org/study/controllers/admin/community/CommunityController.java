@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.study.commons.Pagination;
 import org.study.controllers.user.Community.PostConfig;
 import org.study.entities.board.BoardData;
 import org.study.models.Community.PostListService;
@@ -28,6 +29,8 @@ public class CommunityController {
     private PostListService listService;
     @Autowired
     private BoardDataRepository boardDataRepository;
+    @Autowired
+    private HttpServletRequest request;
 
     /**
      * 커뮤니티 게시글 목록
@@ -35,9 +38,11 @@ public class CommunityController {
      * @return
      */
     @GetMapping
-    public String lists(Model model) {
-        List<PostConfig> configs = listService.gets();
-        model.addAttribute("configs", configs);
+    public String lists(Model model, CommunitySearch communitySearch) {
+        String url = request.getContextPath() + "/admin/community";
+        Page<BoardData> data = listService.gets(communitySearch);
+        Pagination<BoardData> pagination = new Pagination<>(data, url);
+        model.addAttribute("datas", data.getContent());
 
         return "admin/community/lists";
     }

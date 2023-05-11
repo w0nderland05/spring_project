@@ -1,8 +1,10 @@
 package org.study.controllers.user.Community;
 
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -10,8 +12,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.study.commons.Pagination;
 import org.study.commons.validators.CommonException;
-import org.study.controllers.admin.board.BoardConfig;
+import org.study.controllers.admin.community.CommunitySearch;
+import org.study.entities.board.BoardData;
 import org.study.models.Community.DuplicatePostGidException;
 import org.study.models.Community.PostConfigService;
 import org.study.models.Community.PostInfoService;
@@ -32,6 +36,8 @@ public class UserCommunityController {
     private PostConfigService postConfigService;
     @Autowired
     private PostInfoService postInfoService;
+    @Autowired
+    private HttpServletRequest request;
 
     /**
      * <커뮤니티> 클릭하면 나오는 페이지
@@ -39,9 +45,11 @@ public class UserCommunityController {
      * @return
      */
     @GetMapping
-    public String community(Model model) {
-        List<PostConfig> configs = listService.gets();
-        model.addAttribute("configs", configs);
+    public String community(Model model, CommunitySearch communitySearch) {
+        String url = request.getContextPath() + "/user/community";
+        Page<BoardData> data = listService.gets(communitySearch);
+        Pagination<BoardData> pagination = new Pagination<>(data, url);
+        model.addAttribute("datas", data.getContent());
 
 //        String category = boardConfig.getCategory();
 //        String tpl = "user/community/";
@@ -57,17 +65,21 @@ public class UserCommunityController {
     }
 
     @GetMapping("/qna")
-    public String qna(Model model) {
-        List<PostConfig> configs = listService.gets();
-        model.addAttribute("configs", configs);
+    public String qna(Model model, CommunitySearch communitySearch) {
+        String url = request.getContextPath() + "/user/community/qna";
+        Page<BoardData> data = listService.gets(communitySearch);
+        Pagination<BoardData> pagination = new Pagination<>(data, url);
+        model.addAttribute("datas", data.getContent());
 
         return "front/community/qna";
     }
 
     @GetMapping("/free")
-    public String free(Model model) {
-        List<PostConfig> configs = listService.gets();
-        model.addAttribute("configs", configs);
+    public String free(Model model, CommunitySearch communitySearch) {
+        String url = request.getContextPath() + "/user/community/free";
+        Page<BoardData> data = listService.gets(communitySearch);
+        Pagination<BoardData> pagination = new Pagination<>(data, url);
+        model.addAttribute("datas", data.getContent());
 
         return "front/community/free";
     }

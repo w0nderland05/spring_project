@@ -15,4 +15,7 @@ public class CommunitySearch {
     private String poster;
     private String subject;
     private String content;
+    private String sopt; // 선택옵션
+    private String skey; // 키워드
+
 }

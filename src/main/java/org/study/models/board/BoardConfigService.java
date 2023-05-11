@@ -1,5 +1,6 @@
 package org.study.models.board;
 
+import org.aspectj.weaver.MemberUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.Errors;
@@ -20,9 +21,10 @@ import java.util.stream.Collectors;
 public class BoardConfigService {
     @Autowired
     private BoardRepository repository;
-
     @Autowired
     private BoardConfigValidator validator;
+//    @Autowired
+//    private MemberUtils memberUtils;
 
     public void config(BoardConfig config) {
         config(config, null);
@@ -45,10 +47,11 @@ public class BoardConfigService {
         String mode = config.getMode();
         if(mode != null && mode.equals("update") && repository.exists(bId)) { // mode값이 수정, 중복bId 경우 수정
             entity = repository.findById(bId).orElseGet(() -> Board.builder().bId(bId).build());
-        } else { // 모드가 수정이 아니면 새로 추가
+        } else { // 모드가 수정이 아니면 새로 추가 ( 비 영속 상태 )
             entity = new Board();
             entity.setBId(bId);
         }
+        entity.getCreatedAt();
         entity.setBoardNm(config.getBoardNm());
         entity.setUse(config.isUse());
         entity.setRowsPerPage(config.getRowsPerPage());

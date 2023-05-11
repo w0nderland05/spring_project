@@ -59,7 +59,6 @@ main{
 }
 main > aside{
     width: 200px;
-    background: #e0e0e0;
     border-right: 2px solid #000;
 }
 main > aside a{
