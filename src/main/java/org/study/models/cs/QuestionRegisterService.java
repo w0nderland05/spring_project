@@ -35,15 +35,24 @@ public class QuestionRegisterService {
         Long code = config.getQsCode();
         Question question = null;
         if(code != null && repository.exists(code)) {
-            question = repository.findById(code).orElseGet(() -> QuestionConfig.of(config));
-            question.setQsCode(code);
-            question.setSubject(config.getSubject());
-            question.setContent(config.getContent());
-            question.setCsProcess(ReportStatus.valueOf(config.getCsProcess()));
-            question.setCategory(QnaCategory.valueOf(config.getCategory()));
+//            question = repository.findById(code).orElseGet(() -> QuestionConfig.of(config));
+            question = repository.findById(code).orElse(null); // 코드가 없으니까 생성
+            // 조회된 데이터 -> 영속상태 Question 엔티티 -> 수정
+
+//            question.setQsCode(code);
+//            question.setSubject(config.getSubject());
+//            question.setContent(config.getContent());
+//            question.setCsProcess(ReportStatus.valueOf(config.getCsProcess()));
+//            question.setCategory(QnaCategory.valueOf(config.getCategory()));
         }
         if(question == null) {
-            question = QuestionConfig.of(config);
+//            question = QuestionConfig.of(config);
+            question = new Question(); // 비 영속상태 -> 추가
+
+            question.setSubject(config.getSubject());
+            question.setContent(config.getContent());
+
+            repository.saveAndFlush(question);
         }
         repository.saveAndFlush(question);
     }

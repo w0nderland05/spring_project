@@ -29,21 +29,23 @@
                         <td>
                             <input type="checkbox">
                         </td>
-                        <td th:fields="*{division}"></td>  <!-- 유입구분 -->
-                        <td th:fields="*{code}"></td>  <!-- 코드번호 -->
+                        <td th:field="*{division}"></td>  <!-- 유입구분 -->
+                        <td th:field="*{code}"></td>  <!-- 코드번호 -->
                         <td th:text="${userJoin.userNm}"></td>  <!-- 신고자명 -->
                         <td th:text="${userJoin.userEmail}"></td>  <!-- 이메일 -->
                         <td th:text="${userJoin.cellphone}"></td>  <!-- 전화번호 -->
                         <td></td>  <!-- 신고일시 -->
                         <td>
-                            <select th:fields="*{status}">
+                            <select th:field="*{status}">
                                 <option th:value="CLEAR">처리 완료</option>
                                 <option th:value="READY" selected>처리 대기중</option>
                             </select>
                         </td>  <!-- 처리상태 -->
-                        <td th:fields="*{detail}"></td>  <!-- 신고사유 -->
+                        <td th:field="*{detail}"></td>  <!-- 신고사유 -->
                         <td>  <!-- 비고 -->
-                            <a class="btn2">상세보기</a>
+                            <button class="btn2">
+                                <a th:href="@{/user/study}">상세보기</a>
+                            </button>
                             <!--유입 구분이 스터디면 스터디 소개 페이지 이동, 커뮤니티면 게시글 상세 ( 수정, 삭제 가능 )페이지 이동-->
                         </td>
                     </tr>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{front/mypage/main_mp}">
+<th:block> <!--th:object="${questionConfig}"-->
+    <div class="error" th:each="err : ${#fields.globalErrors()}" th:text="${err}"></div>
+    <section layout:fragment="content">
+        <form method="post" th:action="@{/user/mypage/save}" autocomplete="off">
+            <div role="region" aria-label="data table" tabindex="0" class="primary">>
+                <dl>
+                    <dt>문의 유형</dt>
+                    <dd>
+                       <select>
+                           <option value=""></option>
+                           <option value=""></option>
+                       </select>
+                    </dd>
+                </dl>
+
+                <dl>
+                    <dt>문의 유형</dt>
+                    <dd>
+                        <select>
+                            <option value=""></option>
+                            <option value=""></option>
+                        </select>
+                    </dd>
+                </dl>
+
+            </div>
+
+
+        </form>
+    </section>
+</th:block>
+</html>
