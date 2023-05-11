@@ -3,6 +3,7 @@ package org.study.controllers.admin.study;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Valid;
+import org.aspectj.weaver.MemberUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
@@ -12,8 +13,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.server.adapter.HttpWebHandlerAdapter;
 import org.study.commons.Areas;
 import org.study.commons.Pagination;
+import org.study.commons.UserUtils;
 import org.study.commons.constants.Status;
 import org.study.commons.validators.CommonException;
 import org.study.commons.validators.StudyNotFoundException;
@@ -28,7 +31,6 @@ import java.util.List;
 public class StudyController {
 
 
-
     @Autowired
     private StudyListService listService;
 
@@ -37,6 +39,8 @@ public class StudyController {
 
     @Autowired
     private HttpServletRequest request;
+    @Autowired
+    private UserUtils userUtils;
 
     /**
      * <스터디관리> 클릭시 나오는 페이지
@@ -45,14 +49,17 @@ public class StudyController {
      * @return
      */
     @GetMapping
-    public String index(Model model,StudyConfig studyConfig,StudySearch studySearch){
+    public String index(Model model, StudyConfig studyConfig, StudySearch studySearch) {
         String url = request.getContextPath() + "/admin/study";
-        studySearch.setApproveStatus(new String[] {"APPROVE","DISAPPROVE"});
+        studySearch.setApproveStatus(new String[]{"APPROVE", "DISAPPROVE"});
+        Study study = new Study();
+        study.setUser(userUtils.getEntity());
         Page<Study> data = listService.gets(studySearch); // 조회
         Pagination<Study> pagination = new Pagination<>(data, url);
         model.addAttribute("studies", data.getContent()); //조회된 엔티티 클래스를 직접 커맨드로 사용
-        model.addAttribute("studySearch",studySearch);
+        model.addAttribute("studySearch", studySearch);
         model.addAttribute("pagination", pagination);
+
 
         return "admin/study/index";
     }
@@ -64,11 +71,14 @@ public class StudyController {
      * @return
      */
     @GetMapping("/approvals")
-    public String approvals(Model model, StudySearch studySearch){
+    public String approvals(Model model, StudySearch studySearch) {
         String url = request.getContextPath() + "/admin/study/approvals";
-        studySearch.setApproveStatus(new String[] {"APPLY"});
+        studySearch.setApproveStatus(new String[]{"APPLY"});
+        Study study = new Study();
+        study.setUser(userUtils.getEntity());
         Page<Study> data = listService.gets(studySearch);
-        Pagination<Study> pagination = new Pagination<>(data, url);
+        Pagination<Study> pagination = new Pagination<>(data,url);
+        data.getContent().stream().forEach(System.out::println);
         model.addAttribute("studies", data.getContent());
         model.addAttribute("pagination", pagination);
 
@@ -83,16 +93,16 @@ public class StudyController {
      * @return
      */
     @GetMapping("/approve/update/{studyCode}")
-    public String approve(@PathVariable Long studyCode, Model model, HttpServletResponse response){
+    public String approve(@PathVariable Long studyCode, Model model, HttpServletResponse response) {
         model.addAttribute("sidoList", Areas.sido);
         model.addAttribute("mode", "update");
         try {
             StudyConfig studyConfig = listService.get(studyCode);
 
             model.addAttribute("studyConfig", studyConfig);
-        }catch (CommonException e){
+        } catch (CommonException e) {
             response.setStatus(e.getStatus().value());
-            model.addAttribute( "script", "alert('" + e.getMessage() + "');history.back();");
+            model.addAttribute("script", "alert('" + e.getMessage() + "');history.back();");
             return "common/execute_script";
         }
         return "admin/study/approve";
@@ -117,10 +127,10 @@ public class StudyController {
 
         if (errors.hasErrors()) {
             System.out.println(errors);
-            String tpl = "admin/study/approve";
+            String tpl = "admin/study/approve/";
             if (mode != null && mode.equals("update")) {
                 tpl += "update";
-            }else{
+            } else {
                 throw new StudyNotFoundException(); //관리자에서는 스터디등록 불가하여 수정만 되도록
             }
 
@@ -130,8 +140,6 @@ public class StudyController {
 
         return "redirect:/admin/study/approve/update/{studyCode}";// 수정등록후, 승인 미승인 처리하도록 동일 페이지로 이동
     }
-
-
 
 
 }

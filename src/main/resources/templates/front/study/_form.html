@@ -30,7 +30,10 @@
     </dl>
     <dl>
         <dt>회원정보</dt>
-        <dd></dd>
+        <dd>
+            <input type="text" name="userEmail" th:text="*{user.userEmail == null ? '':user.userEmail}">
+            <input type="text" naem="userNm" th:text="*{user.userNm == null ? '' : user.userNm}">
+        </dd>
     </dl>
     <dl>
         <dt>신청최대 인원수</dt>

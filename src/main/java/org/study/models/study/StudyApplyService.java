@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.Errors;
+import org.study.commons.UserUtils;
 import org.study.commons.constants.RegionType;
 import org.study.commons.constants.Status;
 import org.study.controllers.admin.study.StudyConfig;
@@ -19,13 +20,17 @@ public class StudyApplyService {
 
     private final StudyRegisterValidator validator;
 
+    private final UserUtils userUtils;
+
     public void apply(StudyConfig config){
         apply(config, null);
     }
 
 
     public void apply(StudyConfig config, Errors errors) {
-        if(errors !=null && errors.hasErrors()){
+
+        // 로그인 하지 않은 경우 작성 불가 처리
+        if(!userUtils.isLogin() || (errors !=null && errors.hasErrors())){
             return;
         }
         validator.check(config,errors);
@@ -49,6 +54,7 @@ public class StudyApplyService {
         study.setSimpleIntro(config.getSimpleIntro());
         study.setIntroduction(config.getIntroduction());
         study.setApproveStatus(Status.valueOf(config.getApproveStatus()));
+        study.setUser(userUtils.getEntity());
 
        repository.saveAndFlush(study);
 
