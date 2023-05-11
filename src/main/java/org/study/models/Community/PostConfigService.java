@@ -34,17 +34,17 @@ public class PostConfigService {
          * 없다면 새로운 엔티티로 변환 PostConfig.if(postConfig)
          */
 
-        Long gid = postConfig.getGid();
         BoardData boardData = null;
-        if (gid != null && dataRepository.exists(gid)) {
+        Long gid = postConfig.getGid();
+        String mode = postConfig.getMode();
+        if (mode != null && mode.equals("update") && dataRepository.exists(gid)) {
             boardData = dataRepository.findById(gid).orElseGet(() -> postConfig.of(postConfig));
+        } else {
+            boardData = new BoardData();
             boardData.setGid(postConfig.getGid());
             boardData.setSubject(postConfig.getSubject());
             boardData.setContent(postConfig.getContent());
-        }
-        if (boardData == null) {
-            // PostConfig -> boardData 엔티티로 변환
-            boardData = postConfig.of(postConfig);
+            boardData.setCategory(postConfig.getCategory());
         }
 
         // 엔티티 저장 또는 수정 처리

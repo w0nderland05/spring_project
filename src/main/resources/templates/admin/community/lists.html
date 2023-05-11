@@ -26,7 +26,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr th:each="config : ${postConfigs}">
+                <tr th:each="data : ${datas}" th:object="${data}">
                     <td>
                         <input type="checkbox" name="gid" th:value="*{gid}">
                     </td>

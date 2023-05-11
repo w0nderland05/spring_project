@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<th:block th:fragment="form" th:object="${configs}">
+<th:block th:fragment="form">
     <div class="error" th:each="err : ${#fields.globalErrors()}" th:text="${err}"></div>
     <div class="search">
         <span class="search-text">
@@ -26,9 +26,9 @@
         </nav>
         <div class="userLists">
             <ul>
-                <li>
+                <li th:each="data : ${datas}" th:object="${data}">
                     <div class="list-top">
-                        <span><!-- DB에서 사용자 닉네임 자동추가 -->티안</span>
+                        <span th:text="*{user.userNm}"></span>
                         <span>·</span>
                         <span><!-- DB에서 생성일자 자동 추가 -->2023-04-19</span>
                     </div>

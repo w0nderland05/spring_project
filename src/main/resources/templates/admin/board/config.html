@@ -9,7 +9,9 @@
         <th:block th:replace="~{admin/board/_form::form}"></th:block>
         <div class="btn">
         <button type="submit" class="submit_btn">등록하기</button>
-        <button type="button" class="submit_btn" th:href="@{admin/board}">취소하기</button>
+        <button type="button" class="submit_btn">
+            <a th:href="@{admin/board}">취소하기</a>
+        </button>
         </div>
     </form>
 </section>

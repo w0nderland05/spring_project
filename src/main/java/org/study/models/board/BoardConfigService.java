@@ -1,5 +1,6 @@
 package org.study.models.board;
 
+import org.aspectj.weaver.MemberUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.Errors;
@@ -20,9 +21,10 @@ import java.util.stream.Collectors;
 public class BoardConfigService {
     @Autowired
     private BoardRepository repository;
-
     @Autowired
     private BoardConfigValidator validator;
+//    @Autowired
+//    private MemberUtils memberUtils;
 
     public void config(BoardConfig config) {
         config(config, null);
@@ -49,6 +51,7 @@ public class BoardConfigService {
             entity = new Board();
             entity.setBId(bId);
         }
+        entity.getCreatedAt();
         entity.setBoardNm(config.getBoardNm());
         entity.setUse(config.isUse());
         entity.setRowsPerPage(config.getRowsPerPage());

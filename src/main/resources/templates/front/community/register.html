@@ -6,8 +6,10 @@
     <form class="form" method="post" th:action="@{/user/community/save}" autocomplete="off">
         <th:block th:replace="~{front/community/_configForm::form}"></th:block>
         <div class="btn">
-            <button type="button" class="btn1" th:href="@{user/community}">취소</button>
-            <button type="submit" class="btn1">등록</button>
+            <button type="button" class="btn1">
+                <a th:href="@{user/community}">취소하기</a>
+            </button>
+            <button type="submit" class="submit_btn">등록하기</button>
         </div>
     </form>
 </section>

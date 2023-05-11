@@ -26,6 +26,7 @@ public class PostConfigValidator implements ServiceValidator<PostConfig>, Requir
         nullCheck(postConfig.getGid(), new BadRequestException("그룹 아이디를 입력하세요."));
         requiredCheck(postConfig.getSubject(), new BadRequestException("제목을 입력하세요."));
         requiredCheck(postConfig.getContent(), new BadRequestException("내용을 입력하세요."));
+        requiredCheck(postConfig.getCategory(), new BadRequestException("카테고리를 선택하세요"));
 
         /** gid 중복 여부 체크 */
         if (repository.exists(postConfig.getGid())) {
