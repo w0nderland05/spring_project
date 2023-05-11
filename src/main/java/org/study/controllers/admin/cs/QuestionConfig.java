@@ -15,20 +15,19 @@ import org.study.entities.Question;
 @NoArgsConstructor
 public class QuestionConfig {
 
-    @NotNull
-    private Long qsCode; // 문의 코드
+//    private Long qsCode; // 문의 코드
 
-    @NotBlank
+    @NotBlank(message = "제목을 입력하세요.")
     private String subject; // 문의 제목
 
-    @NotBlank
+    @NotBlank(message = "내용을 입력하세요.")
     private String content; // 문의 내용
 
-    @NotBlank
-    private String csProcess; // 문의 처리 상태
 
-    @NotBlank
-    private String category; // 문의 종류
+//    private String csProcess; // 문의 처리 상태
+
+
+    private String category; // 문의 유형
 
     public static Question of (QuestionConfig questionConfig) {
         return new ModelMapper().map(questionConfig, Question.class);

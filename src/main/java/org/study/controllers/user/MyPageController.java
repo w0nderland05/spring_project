@@ -53,17 +53,12 @@ public class MyPageController {
         UserJoin userJoin = new UserJoin();
         model.addAttribute("userJoin",userJoin);
 
-        return "front/mypage/edit";
-    }
+        String userNm = userUtils.getUser().getUserNm();
+        model.addAttribute("myNm", userNm);
 
 
-    /*
-    @GetMapping("/edit")
-    public String myPage(@AuthenticationPrincipal Principal principal, Model model) {
-        model.addAttribute("userNo", principal.getName());
         return "front/mypage/edit";
     }
-    */
 
     /**
      * <스터디 관리> 클릭하면 나오는 페이지
@@ -75,7 +70,7 @@ public class MyPageController {
     }
 
     /**
-     * <문의 내역> 클릭하면 나오는 페이지
+     * <문의 관리> 클릭하면 나오는 페이지
      * @return
      */
     @GetMapping("/qna")
@@ -91,14 +86,29 @@ public class MyPageController {
     }
 
     @PostMapping("/save")
-    public String save(@Valid QuestionConfig qsConfig, Errors errors) {
-        Long qsCode = qsConfig.getQsCode();
-        try {
-            service.qsRegister(qsConfig, errors);
-        } catch (DuplicateQsCodeException e) {
-            errors.rejectValue("qsCode", "Duplicate.question.qsCode");
+    public String save(/*@Valid */QuestionConfig qsConfig, Errors errors, Model model) {
+        System.out.println("save post????");
+//        Long qsCode = qsConfig.getQsCode();
+        model.addAttribute("qsConfig",qsConfig);
+
+        System.out.println("qsConcf = " + qsConfig);
+
+        service.qsRegister(qsConfig, errors);
+        if (errors.hasErrors()){
+            return "front/mypage/register";
         }
-        service.qsRegister(qsConfig);
+
         return "redirect:/user/mypage/qna";
+
+//        try {
+//            service.qsRegister(qsConfig, errors);
+//            if (errors.hasErrors()){
+//                return "front/mypage/register";
+//            }
+//        } catch (DuplicateQsCodeException e) {
+//            errors.rejectValue("qsCode", "Duplicate.question.qsCode");
+//        }
+//
+//        service.qsRegister(qsConfig);
     }
 }

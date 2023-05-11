@@ -2,35 +2,48 @@
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{front/mypage/main_mp}">
-<th:block> <!--th:object="${questionConfig}"-->
-    <div class="error" th:each="err : ${#fields.globalErrors()}" th:text="${err}"></div>
-    <section layout:fragment="content">
-        <form method="post" th:action="@{/user/mypage/save}" autocomplete="off">
-            <div role="region" aria-label="data table" tabindex="0" class="primary">>
-                <dl>
-                    <dt>문의 유형</dt>
-                    <dd>
-                       <select>
-                           <option value=""></option>
-                           <option value=""></option>
-                       </select>
-                    </dd>
-                </dl>
+<div class="error" th:each="err : ${#fields.globalErrors()}" th:text="${err}"></div>
+<section layout:fragment="content">
+    <form method="post" th:action="@{/user/mypage/save}" th:object="${qsConfig}" autocomplete="off">
+        <div>
+            <dl>
+                <dt>문의 유형</dt>
+                <dd>
+                   <select th:field="*{category}">
+                       <option th:value="'APPROVALS'" th:selected>개설 문의</option>
+                       <option th:value="'SECESSION'">탈퇴 문의</option>
+                       <option th:value="'ACCOUNT'">계정 문의</option>
+                       <option th:value="'STUDY'">스터디 문의</option>
+                       <option th:value="'COMMUNITY'">커뮤니티 문의</option>
+                       <option th:value="'SERVICE'">서비스 오류 문의</option>
+                   </select>
+                </dd>
+            </dl>
 
-                <dl>
-                    <dt>문의 유형</dt>
-                    <dd>
-                        <select>
-                            <option value=""></option>
-                            <option value=""></option>
-                        </select>
-                    </dd>
-                </dl>
+            <br>
 
-            </div>
+            <dl>
+                <dt>문의 제목</dt>
+                <dd>
+                    <input type="text" name="subject" th:field="*{subject}" placeholder="문의 제목을 입력해주세요.">
+                    <div class="error" th:each="err : ${#fields.errors('subject')}" th:text="${err}"></div>
+                </dd>
+            </dl>
 
+            <br>
 
-        </form>
-    </section>
-</th:block>
+            <dl>
+                <dt>문의 내용</dt>
+                <dd>
+                    <textarea name="content" th:field="*{content}" placeholder="문의 내용을 입력해주세요."></textarea>
+                    <div class="error" th:each="err : ${#fields.errors('content')}" th:text="${err}"></div>
+                </dd>
+            </dl>
+        </div>
+        <div>
+            <button type="submit" class="btn1">문의하기</button>
+        </div>
+    </form>
+</section>
+
 </html>

@@ -19,24 +19,24 @@ import java.util.List;
 public class Question extends BaseEntity {
 
 
-//    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Id
-    @Column(length = 8, nullable = false)
+    @Column(length = 8)
     private Long qsCode; // 문의 코드
 
-    @Column(length = 100)
+    @Column(length = 100, nullable = false)
     private String subject; // 문의 제목
 
-    @Column(length = 300)
+    @Column(length = 300, nullable = false)
     private String content; // 문의 내용
 
     @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
-    private ReportStatus csProcess; // 문의 처리 상태
+    @Column(length = 30)
+    private ReportStatus csProcess = ReportStatus.READY; // 문의 처리 상태
 
     @Enumerated(EnumType.STRING)
-    @Column(length = 30, nullable = false)
-    private QnaCategory category; // 문의 종류
+    @Column(length = 30)
+    private QnaCategory category; // 문의 유형
 
     //개설회원 정보
     @ManyToOne(fetch=FetchType.LAZY)
