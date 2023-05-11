@@ -55,7 +55,7 @@ public class CsController {
      * @return
      */
     @GetMapping("/view/{qsCode}")
-    public String view(Model model, @PathVariable("qsCode") Long qsCode){
+    public String view(@PathVariable Long qsCode, Model model){
         QuestionConfig question = reportService.getQuestion(qsCode);
         model.addAttribute("question", question);
         return "admin/cs/view";
