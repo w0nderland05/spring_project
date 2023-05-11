@@ -45,7 +45,7 @@ public class BoardConfigService {
         String mode = config.getMode();
         if(mode != null && mode.equals("update") && repository.exists(bId)) { // mode값이 수정, 중복bId 경우 수정
             entity = repository.findById(bId).orElseGet(() -> Board.builder().bId(bId).build());
-        } else { // 모드가 수정이 아니면 새로 추가
+        } else { // 모드가 수정이 아니면 새로 추가 ( 비 영속 상태 )
             entity = new Board();
             entity.setBId(bId);
         }
