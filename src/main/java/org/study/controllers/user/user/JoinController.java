@@ -52,21 +52,26 @@ public class JoinController {
         return "redirect:/user/login"; // 회원가입 성공시 -> 로그인 페이지 이동
     }
 
-    // 이메일 인증 처리
-    @PostMapping("/email")
-    public String emailAuthentication(@ModelAttribute UserJoin userJoin, Model model) {
-        // 이메일 전송
-        String authCode = null;
-        try {
-            authCode = emailService.sendSimpleMessage(userJoin.getUserEmail());
-            model.addAttribute("authCode", authCode);
-            return "front/user/join";
-        } catch (Exception e) {
-            // 이메일 보내기에 실패한 경우
-            model.addAttribute("errorMessage", "이메일 보내기에 실패했습니다.");
-            return "front/user/join";
-        }
-    }
+    /**
+     * // 이메일 인증 처리
+     * @PostMapping("/email")
+     *     public String emailAuthentication(@ModelAttribute UserJoin userJoin, Model model) {
+     *         // 이메일 전송
+     *         String authCode = null;
+     *         try {
+     *             authCode = emailService.sendSimpleMessage(userJoin.getUserEmail());
+     *             model.addAttribute("authCode", authCode);
+     *             return "front/user/join";
+     *         } catch (Exception e) {
+     *             // 이메일 보내기에 실패한 경우
+     *             model.addAttribute("errorMessage", "이메일 보내기에 실패했습니다.");
+     *             return "front/user/join";
+     *         }
+     *     }
+     *
+     */
+
+
 
     // 회원정보 수정 - GET /user/사용자 ID
     @GetMapping("/{userId}/edit")
