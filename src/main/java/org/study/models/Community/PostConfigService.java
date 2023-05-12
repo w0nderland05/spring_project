@@ -50,7 +50,6 @@ public class PostConfigService {
             boardData.setPoster(userUtils.getEntity().getUserNm());
             boardData.setSubject(postConfig.getSubject());
             boardData.setContent(postConfig.getContent());
-            boardData.setCategory(postConfig.getCategory());
         }
 
         // 엔티티 저장 또는 수정 처리
