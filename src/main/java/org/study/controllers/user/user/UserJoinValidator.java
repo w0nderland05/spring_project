@@ -36,10 +36,6 @@ public class UserJoinValidator implements Validator, CellPhoneValidator, Passwor
     @Override
     public void validate(Object target, Errors errors) {
 
-        if (errors != null && errors.hasErrors()) {
-            return;
-        }
-
         UserJoin userJoin = (UserJoin)target;
 
         nullCheck(userJoin,new BadRequestException("잘못된 접근입니다."));
@@ -61,17 +57,21 @@ public class UserJoinValidator implements Validator, CellPhoneValidator, Passwor
         requiredCheck(userNickNm,new BadRequestException("닉네임을 설정하세요,"));
 
         /** 1. 이메일 중복 여부 S */
+        /**
         if (userEmail != null && !userEmail.isBlank() && repository.isUserExists(userEmail)) {
             errors.rejectValue("userEmail", "user.validation.exists");
         }
+         */
         /** 1. 이메일 중복 여부 E */
 
         /** 1-2 이메일 인증 여부 S */
+        /**
         String authCode = (String) httpSession.getAttribute("authCode");
         if(authCode == null || !authCode.equals(httpSession.getAttribute("authCode"))){
             // 인증 코드가 일치하지 않으면 오류 메세지를 출력하고 다시 인증 페이지로 이동
             errors.rejectValue("authCode","invalid.authCode","올바른 인증 코드를 입력하세요.");
         }
+         */
         /** 1-2 이메일 인증 여부 E */
 
         /** 2. 비밀번호 유효성 검사 S*/
