@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-    <th:block th:fragment="user_form">
-        <ul class="user_form" th:object="${userJoin}">
+    <th:block th:fragment="user_form" th:object="${userJoin}">
+        <ul class="user_form" >
             <!-- 이메일 -->
             <li class="rows">
                 <input type="text" name="userId" th:field="*{userEmail}" th:placeholder="#{userEmail}">

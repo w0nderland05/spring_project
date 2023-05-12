@@ -65,6 +65,7 @@ public class UserJoinValidator implements Validator, CellPhoneValidator, Passwor
             errors.rejectValue("userEmail", "user.validation.exists");
         }
         /** 1. 이메일 중복 여부 E */
+
         /** 1-2 이메일 인증 여부 S */
         String authCode = (String) httpSession.getAttribute("authCode");
         if(authCode == null || !authCode.equals(httpSession.getAttribute("authCode"))){
