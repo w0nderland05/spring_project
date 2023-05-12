@@ -2,15 +2,16 @@
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{front/mypage/main_mp}">
-<th:block th:object="${userJoin}">
+
 <div class="error" th:each="err : ${#fields.globalErrors()}" th:text="${err}"></div>
 <section layout:fragment="content">
-    <form method="post" th:action="@{/user/mypage/edit}" autocomplete="off">
+    <form method="post" th:action="@{/user/mypage/edit}" th:object="${userJoin}" autocomplete="off">
         <div>
             <dl>
                 <dt>내 정보 관리</dt>
                 <dd>
-                    <input type="hidden" name="userNm" th:field="*{userNm}">
+                    <p th:text="${myNm}"></p>
+<!--                    <input type="hidden" name="userNm" th:field="*{userNm}">-->
                 </dd>
             </dl>
             <!-- 내 정보 관리 ( 이름 - 닉네임 ) 형태로 출력해야되니까 수정 필요 -->
@@ -62,5 +63,4 @@
 
     </form>
 </section>
-</th:block>
 </html>

@@ -16,10 +16,9 @@ import java.time.LocalDateTime;
 @Table(indexes={
         @Index(name="idx_user_createdAt", columnList = "createdAt DESC")
 })
-@EntityListeners(AuditingEntityListener.class)
 public class Report extends BaseEntity {
 
-    // 신고 유형 ( 스터디 OR 게시판 )
+    // 신고 유형 ( 스터디 OR 게시판 OR 회원 )
     @Enumerated(EnumType.STRING)
     @Column(length = 20, nullable = false)
     private ReportDivision division;

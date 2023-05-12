@@ -22,7 +22,7 @@ public class BoardData extends BaseEntity {
     private Long id; // 게시글 번호
 
     @Column(length=45, nullable = false)
-    private String gid; // 그룹 아이디
+    private Long gid; // 그룹 아이디
 
     @Column(length=45, nullable = false)
     private String poster; // 작성자
@@ -34,6 +34,7 @@ public class BoardData extends BaseEntity {
 
     @Column(length=60)
     private String category; // 게시글 분류
+
     @Column(nullable = false)
     private String subject; // 게시글 제목
 

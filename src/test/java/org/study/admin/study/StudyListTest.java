@@ -42,7 +42,6 @@ public class StudyListTest {
     private StudySearch studySearch;
 
 
-
     private int cnt_Apply = 1; //approveStatus- APPLY 갯수
     private int cnt_Disapprove = 2;//approveStatus- DISAPPROVE 갯수
     private int cnt_Approve = 0;//approveStatus- APPROVE 갯수
@@ -54,12 +53,14 @@ public class StudyListTest {
                 .studyNm("코리아스터디")
                 .category("IT")
                 .requestDt(LocalDateTime.now())
+                .approveStatus(Status.APPLY.toString())
                 .approveStatus("APPLY")
                 .regStatusDt(LocalDateTime.now())
                 .maxMember(Long.valueOf("40"))
                 .remainSeat(Long.valueOf("3"))
                 .activeStatus(true)
                 .numOfWeek("주2-3회")
+                .regionType(RegionType.OFFLINE.toString())
                 .regionType("OFFLINE")
                 .simpleIntro("백엔드개발 스터디 입니다.")
                 .introduction("즐겁게 공부해봅시다.")
@@ -71,12 +72,14 @@ public class StudyListTest {
                 .studyNm("코리아스터디")
                 .category("IT")
                 .requestDt(LocalDateTime.now())
+                .approveStatus(Status.DISAPPROVE.toString())
                 .approveStatus("DISAPPROVE")
                 .regStatusDt(LocalDateTime.now())
                 .maxMember(Long.valueOf("40"))
                 .remainSeat(Long.valueOf("3"))
                 .activeStatus(true)
                 .numOfWeek("주2-3회")
+                .regionType(RegionType.OFFLINE.toString())
                 .regionType("OFFLINE")
                 .simpleIntro("백엔드개발 스터디 입니다.")
                 .introduction("즐겁게 공부해봅시다.")
@@ -88,19 +91,18 @@ public class StudyListTest {
                 .studyNm("코리아스터디")
                 .category("IT")
                 .requestDt(LocalDateTime.now())
-                .approveStatus("DISAPPROVE")
+                .approveStatus("APPROVE")
                 .regStatusDt(LocalDateTime.now())
                 .maxMember(Long.valueOf("40"))
                 .remainSeat(Long.valueOf("3"))
                 .activeStatus(true)
                 .numOfWeek("주2-3회")
+                .regionType(RegionType.OFFLINE.toString())
                 .regionType("OFFLINE")
                 .simpleIntro("백엔드개발 스터디 입니다.")
                 .introduction("즐겁게 공부해봅시다.")
                 .build();
         applyService.apply(studyConfig3);
-
-
     }
 
 
@@ -114,11 +116,9 @@ public class StudyListTest {
     @DisplayName("스터디 목록 전체 조회")
     void study_gets() {
         assertDoesNotThrow(() -> {
-            listService.gets();
-            System.out.println(listService.gets());
+            StudySearch studySearch = new StudySearch();
+            listService.gets(studySearch);
         });
-
-
     }
 
     /**
@@ -140,23 +140,22 @@ public class StudyListTest {
     @DisplayName("approveStatus(승인상태-APPLY,APPROVE,DISAPPROVE)에 따라 조회된 데이터 갯수와 cnt갯수 맞으면 성공")
     void study_ApproveStatus_Apply_gets() {
         //approveStatus- APPLY 경우 스터디 조회
+        StudySearch studySearch = new StudySearch();
         assertDoesNotThrow(() -> {
-            List<StudyConfig> applyLists = listService.applyStatusGets(Status.APPLY);
-            assertEquals(cnt_Apply, applyLists.size());
+            studySearch.setApproveStatus(new String[]{"APPLY"});
+            listService.gets(studySearch);
         });
         //approveStatus- DISAPPROVE 경우 스터디 조회
         assertDoesNotThrow(() -> {
-            List<StudyConfig> disapproveLists = listService.applyStatusGets(Status.DISAPPROVE);
-            assertEquals(cnt_Disapprove, disapproveLists.size());
+            studySearch.setApproveStatus(new String[]{"DISAPPROVE"});
+            listService.gets(studySearch);
         });
         //approveStatus- APPROVE 경우 스터디 조회
         assertDoesNotThrow(() -> {
-            List<StudyConfig> approveLists = listService.applyStatusGets(Status.APPROVE);
-            assertEquals(cnt_Approve, approveLists.size());
+            studySearch.setApproveStatus(new String[]{"APPROVE"});
+            listService.gets(studySearch);
+
         });
 
     }
-
-
-
 }

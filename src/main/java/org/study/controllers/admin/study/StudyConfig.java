@@ -15,6 +15,7 @@ import org.study.commons.constants.Status;
 import org.study.controllers.admin.category.CategoryForm;
 import org.study.entities.Category;
 import org.study.entities.Study;
+import org.study.entities.User;
 
 import java.time.LocalDateTime;
 
@@ -70,6 +71,8 @@ public class StudyConfig {
 
     private int page = 1; // 페이지 번호
     private int limit = 20; // 1페이지당 출력 갯수
+
+    private User user;
 
     public static Study of (StudyConfig studyConfig) {
         return new ModelMapper().map(studyConfig, Study.class);

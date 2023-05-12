@@ -6,10 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.study.commons.validators.CommonException;
 import org.study.models.board.BoardConfigService;
 import org.study.models.board.BoardInfoService;
@@ -102,7 +99,6 @@ public class BoardController {
     @GetMapping("/update/{bId}")
     public String update(@PathVariable String bId, Model model, HttpServletResponse response) {
         model.addAttribute("mode", "update");
-
         try {
             BoardConfig boardConfig = infoService.get(bId);
             model.addAttribute("boardConfig", boardConfig);
@@ -113,5 +109,4 @@ public class BoardController {
         }
         return "admin/board/update";
     }
-
 }

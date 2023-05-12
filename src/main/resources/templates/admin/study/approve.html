@@ -5,13 +5,13 @@
 <section layout:fragment="content">
     <nav th:replace="~{admin/study/_submenu::menus}"></nav>
     <h1>관리자 승인상태처리</h1>
-    <form class='form' method="post" th:action="@{/admin/board/save}" autocomplete="off">
+    <form class='form' method="post" th:action="@{/admin/study/save}">
+        <input type="hidden" name="mode" value="update">
         <th:block th:replace="~{admin/study/_form::form}"></th:block>
-        <th:block th:object="${studyConfig}">
         <input type="radio" name="submit" class="btn1">수정</input>
-        <input type="radio" name="submit" value="APPROVE" class="btn1" >승인</input>
-        <input type="radio" name="submit" value="DISAPPROVE" class="btn1">미승인</input>
-        </th:block>
+        <input type="radio" name="submit" value="APPROVE" class="btn1" th:field="${studyConfig.approveStatus}">승인</input>
+        <input type="radio" name="submit" value="DISAPPROVE" class="btn1" th:field="${studyConfig.approveStatus}">미승인</input>
+        <button type="submit" class="btn1">제출하기</button>
     </form>
 </section>
 </html>

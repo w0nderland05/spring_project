@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<th:block th:fragment="form" th:object="${postConfig}">
+    <div class="error" th:each="err : ${#fields.globalErrors()}" th:text="${err}"></div>
+    <div class="category">
+        <label for="category">카테고리</label>
+        <div>
+            <input type="hidden" name="gid" th:field="*{gid}">
+            <select id="category" autocomplete="category" name="category" th:field="*{category}">
+                <option value="">카테고리를 선택해주세요.</option>
+                <option value="qna">질문과답변</option>
+                <option value="free">자유게시판</option>
+            </select>
+            <div class="error" th:each="err : ${#fields.errors('category')}" th:text="${err}"></div>
+        </div>
+    </div>
+    <div class="title">
+        <label for="subject">제목</label>
+        <input type="text" id="subject" name="subject" placeholder="제목을 입력하세요." th:field="*{subject}">
+        <div class="error" th:each="err : ${#fields.errors('subject')}" th:text="${err}"></div>
+    </div>
+    <div class="tags">
+        태그 -
+        <span>내용을 대표하는 태그를 입력해주세요.</span>
+        <div>
+            <input type="text" name="tags" id="tags" placeholder="태그를 입력해주세요.">
+        </div>
+    </div>
+    <div class="content">
+        <label>내용</label>
+    </div>
+    <div aria-placeholder="내용을 입력해주세요.">
+        <textarea name="content" id="content" th:field="*{content}"></textarea>
+        <div class="error" th:each="err : ${#fields.errors('content')}" th:text="${err}"></div>
+        <!-- 에디터 추가 -->
+    </div>
+</th:block>
+</html>

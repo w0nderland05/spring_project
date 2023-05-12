@@ -7,5 +7,4 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/user/community")
 public class UserBoardController {
 
-
 }
