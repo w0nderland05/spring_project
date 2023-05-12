@@ -29,7 +29,6 @@ public class PostListService {
                 .gid(boardData.getGid())
                 .category(boardData.getCategory())
                 .subject(boardData.getSubject())
-                .poster(boardData.getPoster())
                 .build();
     }
 

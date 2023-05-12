@@ -65,6 +65,7 @@ public class UserJoinValidator implements Validator, CellPhoneValidator, Passwor
         /** 1. 이메일 중복 여부 E */
 
         /** 1-2 이메일 인증 여부 S */
+<<<<<<< HEAD
         /**
         String authCode = (String) httpSession.getAttribute("authCode");
         if(authCode == null || !authCode.equals(httpSession.getAttribute("authCode"))){
@@ -72,6 +73,13 @@ public class UserJoinValidator implements Validator, CellPhoneValidator, Passwor
             errors.rejectValue("authCode","invalid.authCode","올바른 인증 코드를 입력하세요.");
         }
          */
+=======
+//        String authCode = (String) httpSession.getAttribute("authCode");
+//        if(authCode == null || !authCode.equals(httpSession.getAttribute("authCode"))){
+//            // 인증 코드가 일치하지 않으면 오류 메세지를 출력하고 다시 인증 페이지로 이동
+//            errors.rejectValue("authCode","invalid.authCode","올바른 인증 코드를 입력하세요.");
+//        }
+>>>>>>> b428f6d408b12c14c3180936688191ed2e2cb580
         /** 1-2 이메일 인증 여부 E */
 
         /** 2. 비밀번호 유효성 검사 S*/

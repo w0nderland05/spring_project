@@ -26,6 +26,8 @@ public class BoardConfig {
     @NotBlank
     private String boardNm;
 
+    private String createdAt, modifiedAt;
+
     private boolean isUse;
 
     @NotNull
