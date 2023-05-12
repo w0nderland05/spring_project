@@ -15,8 +15,9 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 public class MvcConfig implements WebMvcConfigurer {
 
     // 파일 업로드 경로
-    @Value("${fileupload.path}")
+    @Value("${file.upload.path}")
     private String fileUploadPath;
+
 
     /**
      * 정적 경로 설정

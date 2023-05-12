@@ -17,7 +17,7 @@ import org.study.commons.messageBundle.MessageBundle;
 import org.study.commons.validators.BadRequestException;
 import org.study.controllers.admin.board.BoardConfig;
 import org.study.models.board.BoardConfigService;
-import org.study.models.board.DuplicateCateBIdException;
+import org.study.models.board.DuplicateBIdException;
 import org.study.repositories.board.BoardRepository;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
@@ -184,7 +184,7 @@ public class BoardConfigTest {
         // 테스트 전 분류 등록
         service.config(boardConfig);
 
-        assertThrows(DuplicateCateBIdException.class, () -> {
+        assertThrows(DuplicateBIdException.class, () -> {
            // 중복 분류로 등록
            service.config(boardConfig);
         });

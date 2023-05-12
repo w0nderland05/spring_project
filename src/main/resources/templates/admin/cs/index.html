@@ -9,7 +9,7 @@
         <div role="region" aria-label="data table" tabindex="0" class="primary">
             <table id = "list">
                 <thead>
-                    <tr >
+                    <tr>
                         <th>
                             <input type="checkbox">
                         </th>
@@ -25,24 +25,24 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
+                    <tr th:each="csCon : ${csConfig}" th:object="${csCon}">
                         <td>
                             <input type="checkbox">
                         </td>
-                        <td></td>  <!-- 유입구분 -->
-                        <td></td>  <!-- 코드번호 -->
-                        <td></td>  <!-- 신고자명 -->
-                        <td></td>  <!-- 이메일 -->
-                        <td></td>  <!-- 전화번호 -->
+                        <td th:fields="*{division}"></td>  <!-- 유입구분 -->
+                        <td th:fields="*{code}"></td>  <!-- 코드번호 -->
+                        <td th:text="${userJoin.userNm}"></td>  <!-- 신고자명 -->
+                        <td th:text="${userJoin.userEmail}"></td>  <!-- 이메일 -->
+                        <td th:text="${userJoin.cellphone}"></td>  <!-- 전화번호 -->
                         <td></td>  <!-- 신고일시 -->
                         <td>
-                            <select>  <!-- db로 바로 저장 될 수 있도록 연결 필요 -->
+                            <select th:fields="*{status}">  <!-- db로 바로 저장 될 수 있도록 연결 필요 -->
                                 <option value="clear">처리 완료</option>
                                 <option value="ready" selected>처리 대기중</option>
                                 <option value="hold">처리 보류</option>
                             </select>
                         </td>  <!-- 처리상태 -->
-                        <td></td>  <!-- 신고사유 -->
+                        <td th:fields="*{detail}"></td>  <!-- 신고사유 -->
                         <td>  <!-- 비고 -->
                             <a class="btn2">상세보기</a>
                             <!--유입 구분이 스터디면 스터디 소개 페이지 이동, 커뮤니티면 게시글 상세 ( 수정, 삭제 가능 )페이지 이동-->

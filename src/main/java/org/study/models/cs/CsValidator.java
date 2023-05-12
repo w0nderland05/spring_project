@@ -6,7 +6,7 @@ import org.study.commons.validators.BadRequestException;
 import org.study.commons.validators.RequiredCheckValidator;
 import org.study.commons.validators.ServiceValidator;
 import org.study.controllers.admin.cs.CsConfig;
-import org.study.repositories.ReportRepository;
+import org.study.repositories.cs.ReportRepository;
 
 @Component
 public class CsValidator implements ServiceValidator<CsConfig>, RequiredCheckValidator {

@@ -14,7 +14,6 @@ import org.study.commons.validators.CommonException;
 import org.study.models.board.BoardConfigService;
 import org.study.models.board.BoardInfoService;
 import org.study.models.board.BoardListService;
-import org.study.models.board.DuplicateCateBIdException;
 
 import java.util.List;
 
@@ -69,15 +68,17 @@ public class BoardController {
      */
     @PostMapping("/save")
     public String save(@Valid BoardConfig boardConfig, Errors errors) {
-        try {
+//        try {
             // 게시판 저장 처리
             service.config(boardConfig, errors);
-        } catch (DuplicateCateBIdException e) { // 중복된 분류 예외인 경우
-            errors.rejectValue("bId", "Duplicate.boardConfig.bId");
-        }
-        if (errors.hasErrors()) {
-            return "admin/board/config";
-        }
+            if (errors.hasErrors()) {
+                errors.rejectValue("bId", "NotBlank.config.bId");
+                errors.rejectValue("boardNm", "NotBlank.config.boardNm");
+                errors.rejectValue("rowsPerPage", "NotBlank.config.rowsPerPage");
+            }
+//        } catch (DuplicateCateBIdException e) { // 중복된 bId 예외인 경우
+//            errors.rejectValue("bId", "Duplicate.boardConfig.bId");
+//        }
 
         String mode = boardConfig.getMode();
         if (errors.hasErrors()) {
@@ -85,9 +86,9 @@ public class BoardController {
             if (mode != null && mode.equals("update")) { // mode가 업데이트면
                 tpl += "update"; // admin/board/update
             } else {
-                tpl += "register"; // admin/board/register
+                tpl += "config"; // admin/board/config
             }
-            return  tpl;
+            return tpl;
         }
         service.config(boardConfig);
 

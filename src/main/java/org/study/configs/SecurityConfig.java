@@ -9,6 +9,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+import org.study.models.user.LoginFailureHandler;
+import org.study.models.user.LoginSuccessHandler;
 
 @Configuration
 public class SecurityConfig {
@@ -18,10 +20,10 @@ public class SecurityConfig {
 
         http.formLogin()
                 .loginPage("/user/login")
-                .defaultSuccessUrl("/")
+                .successHandler(new LoginSuccessHandler())
                 .usernameParameter("userEmail")
                 .passwordParameter("userPw")
-                .failureUrl("/user/login?success=false")
+                .failureHandler(new LoginFailureHandler())
                 .and()
                 .logout()
                 .logoutRequestMatcher(new AntPathRequestMatcher("/user/logout"))
@@ -52,12 +54,14 @@ public class SecurityConfig {
                     res.sendRedirect(req.getContextPath() + redirectUrl);
                 });
 
+        http.headers().frameOptions().sameOrigin();
+
         return http.build();
     }
 
     @Bean
     public WebSecurityCustomizer webSecurityCustomizer() {
-        return w -> w.ignoring()
+        return w -> w.ignoring() // 시큐리티가 무시할 정적 경로 설정
                 .requestMatchers(
                         "/front/images/**",
                             "/mobile/images/**",
@@ -67,7 +71,8 @@ public class SecurityConfig {
                             "/admin/js/**",
                             "/front/css/**",
                             "/mobile/css/**",
-                            "/admin/css/**");
+                            "/admin/css/**",
+                            "/uploads/**");
     }
 
     @Bean

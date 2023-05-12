@@ -19,7 +19,7 @@
             </td>
         </tr>
         <tr>
-            <th>게시판명</th>
+            <th>게시판 이름</th>
             <td>
                 <input type="text" name="boardNm" th:field="*{boardNm}">
                 <div class="error" th:each="err : ${#fields.errors('boardNm')}" th:text="${err}"></div>
@@ -93,9 +93,9 @@
         <tr>
             <th>이미지첨부</th>
             <td>
-                <input type="radio" name="useImageAttach" value="1" id="useImageAttach_1" th:field="*{useImageAttach}" checked>
+                <input type="radio" name="useImageAttach" value="1" id="useImageAttach_1" checked>
                 <label for="useImageAttach_1">사용</label>
-                <input type="radio" name="useImageAttach" value="0" id="useImageAttach_0" th:field="*{useImageAttach}">
+                <input type="radio" name="useImageAttach" value="0" id="useImageAttach_0">
                 <label for="useImageAttach_0">미사용</label>
             </td>
         </tr>
@@ -121,10 +121,10 @@
             <th>게시판 스킨</th>
             <td>
             <select name="skin" th:field="*{skin}">
-                <option value="DEFAULT">기본 게시판</option>
-                <option value="GALLERY">갤러리 게시판</option>
-                <option value="QNA">질문과 답변</option>
-                <option value="REVIEW">후기 게시판</option>
+                <option th:value="DEFAULT">기본 게시판</option>
+                <option th:value="GALLERY">갤러리 게시판</option>
+                <option th:value="QNA">질문과 답변</option>
+                <option th:value="REVIEW">후기 게시판</option>
             </select>
                 <button type="button" class="btn1"><i class="xi-cog"></i>스킨관리</button>
                 <div class="error" th:each="err : ${#fields.errors('skin')}" th:text="${err}"></div>
