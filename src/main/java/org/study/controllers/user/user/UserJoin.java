@@ -32,8 +32,7 @@ public class UserJoin {
     @NotBlank
     private String userNm; // 회원명
 
-    @Enumerated(EnumType.STRING)
-    private Gender gender = Gender.MAN; // 성별
+    private String gender;
 
     private String birth; //생년월일
 
