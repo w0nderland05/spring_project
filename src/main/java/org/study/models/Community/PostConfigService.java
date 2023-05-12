@@ -3,6 +3,7 @@ package org.study.models.Community;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.Errors;
+import org.study.commons.UserUtils;
 import org.study.controllers.user.Community.PostConfig;
 import org.study.entities.board.BoardData;
 import org.study.repositories.board.BoardDataRepository;
@@ -14,6 +15,9 @@ public class PostConfigService {
 
     @Autowired
     private PostConfigValidator postConfigValidator;
+
+    @Autowired
+    private UserUtils userUtils;
 
     /**
      * 컨트롤러 Bean Validation 대응
@@ -38,10 +42,12 @@ public class PostConfigService {
         Long gid = postConfig.getGid();
         String mode = postConfig.getMode();
         if (mode != null && mode.equals("update") && dataRepository.exists(gid)) {
+            boardData.setPoster(userUtils.getEntity().getUserNm());
             boardData = dataRepository.findById(gid).orElseGet(() -> postConfig.of(postConfig));
         } else {
             boardData = new BoardData();
             boardData.setGid(postConfig.getGid());
+            boardData.setPoster(userUtils.getEntity().getUserNm());
             boardData.setSubject(postConfig.getSubject());
             boardData.setContent(postConfig.getContent());
             boardData.setCategory(postConfig.getCategory());

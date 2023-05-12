@@ -8,6 +8,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.modelmapper.ModelMapper;
+import org.study.entities.User;
 import org.study.entities.board.BoardData;
 
 /**
@@ -23,8 +24,7 @@ public class PostConfig {
 
     @NotNull
     private Long gid; // 그룹 아이디
-
-    @NotBlank
+    
     private String poster; // 작성자
 
     private String guestPw; // 비회원 비밀번호
@@ -60,6 +60,8 @@ public class PostConfig {
     private int page = 1; // 페이지 번호
 
     private int limit = 20; // 1페이지당 출력 갯수
+
+    private User user;
 
     public static BoardData of (PostConfig postConfig) { return new ModelMapper().map(postConfig, BoardData.class); }
 }
