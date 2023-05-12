@@ -54,7 +54,7 @@ public class StudyServiceController {
         } catch (RuntimeException e) {
             errors.reject("studySaveError", e.getMessage());
         }
-        
+
         String mode = studyConfig.getMode();
 
         if (errors.hasErrors()) {
