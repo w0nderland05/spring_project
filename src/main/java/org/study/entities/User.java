@@ -50,8 +50,9 @@ public class User extends BaseEntity{
     @Column(length=13)
     private String birth;
 
-    @Column(length=30)
+    @Column(length=20)
     private String gender ;
+
 
     @Enumerated(EnumType.STRING)
     @Column(length=30, nullable = false)
