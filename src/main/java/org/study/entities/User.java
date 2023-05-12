@@ -51,7 +51,7 @@ public class User extends BaseEntity{
     private String birth;
 
     @Column(length=20)
-    private String gender ;
+    private String gender;
 
 
     @Enumerated(EnumType.STRING)
