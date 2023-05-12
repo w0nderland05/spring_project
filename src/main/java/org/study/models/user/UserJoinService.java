@@ -31,7 +31,7 @@ public class UserJoinService {
                 .userNm(join.getUserNm())
                 .userNickNm(join.getUserNickNm())
                 .cellPhone(join.getCellphone())
-                .gender(Gender.MAN) //기본
+                .gender(join.getGender()) //기본
                 .role(UserRole.USER) //기본
                 .birth(join.getBirth())
                 .build();
