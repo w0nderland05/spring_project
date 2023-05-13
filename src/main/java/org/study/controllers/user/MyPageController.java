@@ -15,6 +15,7 @@ import org.study.controllers.admin.cs.QuestionConfig;
 import org.study.controllers.admin.study.StudyConfig;
 import org.study.controllers.user.user.UserJoin;
 import org.study.entities.Question;
+import org.study.entities.User;
 import org.study.models.cs.DuplicateQsCodeException;
 import org.study.models.cs.QuestionListService;
 import org.study.models.cs.QuestionRegisterService;
@@ -44,7 +45,8 @@ public class MyPageController {
     @Autowired
     private UserUtils userUtils;
 
-
+    @Autowired
+    private User user;
 
     /**
      * <마이페이지> 클릭하면 나오는 페이지
@@ -58,7 +60,10 @@ public class MyPageController {
         model.addAttribute("userJoin",userJoin);
 
         String userNm = userUtils.getUser().getUserNm();
-        model.addAttribute("myNm", userNm);
+        model.addAttribute("userNm", userNm);
+
+        String userEmail = userUtils.getUser().getUserEmail();
+        model.addAttribute("userEmail", userEmail);
 
 
         return "front/mypage/edit";
@@ -81,6 +86,8 @@ public class MyPageController {
     public String qna(Model model) {
 
         QuestionConfig qsCon = new QuestionConfig();
+
+
         qsCon.setUser(userUtils.getEntity());
 
         System.out.println("제목 = " + qsCon.getSubject());

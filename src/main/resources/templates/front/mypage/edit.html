@@ -7,15 +7,30 @@
 <section layout:fragment="content">
     <form method="post" th:action="@{/user/mypage/edit}" th:object="${userJoin}" autocomplete="off">
         <div>
+            <h1>내 정보 관리</h1>
+        </div>
+        <div>
             <dl>
-                <dt>내 정보 관리</dt>
+                <dt>사용자 이름</dt>
                 <dd>
-                    <p th:text="${myNm}"></p>
-<!--                    <input type="hidden" name="userNm" th:field="*{userNm}">-->
+                    <p th:text="${userNm}"></p>
+
                 </dd>
             </dl>
-            <!-- 내 정보 관리 ( 이름 - 닉네임 ) 형태로 출력해야되니까 수정 필요 -->
         </div>
+
+        <br>
+
+        <div>
+            <dl>
+                <dt>아이디 ( 이메일 )</dt>
+                <dd>
+                    <p th:text="${userEmail}"></p>
+                </dd>
+            </dl>
+        </div>
+
+        <br>
 
         <div>
             <dl>
