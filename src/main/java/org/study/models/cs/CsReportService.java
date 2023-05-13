@@ -58,10 +58,10 @@ public class CsReportService {
         Question question = questionRepository.findById(qsCode).orElseThrow(QuestionNotFoundException::new);
 
         QuestionConfig config = QuestionConfig.builder()
-//                .qsCode(question.getQsCode())
+                .qsCode(question.getQsCode())
                 .subject(question.getSubject())
                 .content(question.getContent())
-//                .csProcess(question.getCsProcess().toString())
+                .csProcess(question.getCsProcess().toString())
                 .category(question.getCategory().toString())
                 .build();
 
