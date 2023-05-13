@@ -5,7 +5,7 @@ import jakarta.persistence.Enumerated;
 import jakarta.validation.constraints.AssertTrue;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
-import lombok.Data;
+import lombok.*;
 import org.modelmapper.ModelMapper;
 import org.study.commons.constants.Gender;
 import org.study.entities.User;
@@ -32,8 +32,7 @@ public class UserJoin {
     @NotBlank
     private String userNm; // 회원명
 
-    @Enumerated(EnumType.STRING)
-    private Gender gender ; // 성별
+    private String gender;
 
     private String birth; //생년월일
 
@@ -46,5 +45,15 @@ public class UserJoin {
     public static User of(UserJoin userJoin) {
 
         return new ModelMapper().map(userJoin, User.class);
+    }
+
+    private String authCode;
+
+    public String getAuthCode() {
+        return authCode;
+    }
+
+    public void setAuthCode(String authCode) {
+        this.authCode = authCode;
     }
 }
