@@ -16,7 +16,6 @@ public class PostConfigValidator implements ServiceValidator<PostConfig>, Requir
     @Autowired
     private BoardDataRepository repository;
 
-
     @Override
     public void check(PostConfig postConfig) {
         /** PostConfig가 null 값일 경우 예외 발생 */

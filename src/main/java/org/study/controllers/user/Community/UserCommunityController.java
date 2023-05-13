@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.study.commons.Pagination;
 import org.study.commons.validators.CommonException;
+import org.study.controllers.admin.board.BoardConfig;
 import org.study.controllers.admin.community.CommunitySearch;
 import org.study.entities.board.BoardData;
 import org.study.models.Community.DuplicatePostGidException;
@@ -93,13 +94,16 @@ public class UserCommunityController {
     }
 
     @PostMapping("/save")
-    public String save(@Valid PostConfig postConfig, Errors errors) {
+    public String save(@Valid PostConfig postConfig, Errors errors, Model model) {
+        model.addAttribute("postConfig", postConfig);
+
         try {
             postConfigService.postConfig(postConfig, errors);
         } catch (DuplicatePostGidException e) {
             errors.rejectValue("gid", "Duplicate.postConfig.gid");
         }
 
+        postConfigService.postConfig(postConfig);
         String mode = postConfig.getMode();
         if (errors.hasErrors()) {
             String tpl = "front/community/";
@@ -110,7 +114,6 @@ public class UserCommunityController {
             }
             return tpl;
         }
-        postConfigService.postConfig(postConfig);
 
         return "redirect:/user/community";
     }

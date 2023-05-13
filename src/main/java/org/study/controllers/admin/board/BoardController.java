@@ -68,11 +68,6 @@ public class BoardController {
 //        try {
             // 게시판 저장 처리
             service.config(boardConfig, errors);
-            if (errors.hasErrors()) {
-                errors.rejectValue("bId", "NotBlank.config.bId");
-                errors.rejectValue("boardNm", "NotBlank.config.boardNm");
-                errors.rejectValue("rowsPerPage", "NotBlank.config.rowsPerPage");
-            }
 //        } catch (DuplicateCateBIdException e) { // 중복된 bId 예외인 경우
 //            errors.rejectValue("bId", "Duplicate.boardConfig.bId");
 //        }

@@ -26,7 +26,7 @@ public class UserInfo implements UserDetails {
     private String userNickNm;
     private String email;
     private String cellPhone;
-    private Gender gender;
+    private String gender;
 
     // 탈퇴일자에 필요한 맴버 변수
     // private LocalDateTime exitDate;
