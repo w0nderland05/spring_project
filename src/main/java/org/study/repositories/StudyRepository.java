@@ -24,6 +24,7 @@ public interface StudyRepository extends JpaRepository<Study, Long>, QuerydslPre
     }
 
 
+
     //  UserNm 만 가져오려면
     // List<UserMapping> findByEmail();
 

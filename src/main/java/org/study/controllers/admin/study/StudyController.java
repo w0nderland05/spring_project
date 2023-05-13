@@ -22,6 +22,7 @@ import org.study.commons.validators.CommonException;
 import org.study.commons.validators.StudyNotFoundException;
 import org.study.entities.Study;
 import org.study.models.study.StudyListService;
+import org.study.models.study.StudySaveService;
 import org.study.repositories.StudyRepository;
 
 import java.util.List;
@@ -41,6 +42,9 @@ public class StudyController {
     private HttpServletRequest request;
     @Autowired
     private UserUtils userUtils;
+
+    @Autowired
+    private StudySaveService saveService;
 
     /**
      * <스터디관리> 클릭시 나오는 페이지
@@ -136,8 +140,7 @@ public class StudyController {
 
             return tpl;
         }
-
-
+        saveService.save(studyConfig);
         return "redirect:/admin/study/approve/update/{studyCode}";// 수정등록후, 승인 미승인 처리하도록 동일 페이지로 이동
     }
 
