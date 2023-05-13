@@ -33,25 +33,25 @@ public class SecurityConfig {
         http.authorizeHttpRequests()
                 .requestMatchers("/", "/user/**", "/error/**").permitAll()
                 .requestMatchers("/user/mypage/**").hasAuthority("USER")
-                .requestMatchers("/admin/**").hasAuthority("ADMIN")
+//              .requestMatchers("/admin/**").hasAuthority("ADMIN")
                 .anyRequest().authenticated();
 
         /**
          *  관리자 페이지에 권한없는 요청 URL 접속시 401 코드 및 오류 페이지 이동
          *  그 외에는 로그인 페이지로 이동
          */
-        http.exceptionHandling()
-                .authenticationEntryPoint((req, res, e) -> {
-
-                    String redirectUrl = "/user/login";
-                    String URI = req.getRequestURI();
-                    if (URI.indexOf("/admin") != -1) {
-                        res.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
-                        redirectUrl = "/error/401";
-                    }
-
-                    res.sendRedirect(req.getContextPath() + redirectUrl);
-                });
+//        http.exceptionHandling()
+//                .authenticationEntryPoint((req, res, e) -> {
+//
+//                    String redirectUrl = "/user/login";
+//                    String URI = req.getRequestURI();
+//                    if (URI.indexOf("/admin") != -1) {
+//                        res.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+//                        redirectUrl = "/error/401";
+//                    }
+//
+//                    res.sendRedirect(req.getContextPath() + redirectUrl);
+//                });
 
         http.headers().frameOptions().sameOrigin();
 
