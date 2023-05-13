@@ -3,6 +3,7 @@ package org.study.controllers.user;
 import jakarta.validation.Valid;
 import org.aspectj.weaver.MemberUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -11,11 +12,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.study.commons.UserUtils;
 import org.study.controllers.admin.cs.QuestionConfig;
+import org.study.controllers.admin.study.StudyConfig;
 import org.study.controllers.user.user.UserJoin;
+import org.study.entities.Question;
 import org.study.models.cs.DuplicateQsCodeException;
 import org.study.models.cs.QuestionListService;
 import org.study.models.cs.QuestionRegisterService;
 import org.study.models.cs.QuestionValidator;
+import org.study.models.user.UserInfo;
 
 /*
 회원정보 수정 (/user/mypage/edit/{userId})
@@ -74,7 +78,15 @@ public class MyPageController {
      * @return
      */
     @GetMapping("/qna")
-    public String qna() {
+    public String qna(Model model) {
+
+        QuestionConfig qsCon = new QuestionConfig();
+        qsCon.setUser(userUtils.getEntity());
+
+        System.out.println("제목 = " + qsCon.getSubject());
+
+        model.addAttribute("qsCon", qsCon);
+
         return "front/mypage/qna";
     }
 
@@ -85,13 +97,16 @@ public class MyPageController {
         return "front/mypage/register";
     }
 
-    @PostMapping("/save")
-    public String save(/*@Valid */QuestionConfig qsConfig, Errors errors, Model model) {
-        System.out.println("save post????");
-//        Long qsCode = qsConfig.getQsCode();
+    @GetMapping("/report_register")
+    public String rpRegister(Model model) {
+        QuestionConfig qsConfig = new QuestionConfig();
         model.addAttribute("qsConfig",qsConfig);
+        return "front/mypage/report_register";
+    }
 
-        System.out.println("qsConcf = " + qsConfig);
+    @PostMapping("/save")
+    public String save(@Valid QuestionConfig qsConfig, Errors errors, Model model) {
+        model.addAttribute("qsConfig",qsConfig);
 
         service.qsRegister(qsConfig, errors);
         if (errors.hasErrors()){
