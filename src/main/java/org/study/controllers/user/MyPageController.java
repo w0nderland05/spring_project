@@ -11,15 +11,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.study.commons.UserUtils;
+import org.study.controllers.admin.cs.CsConfig;
 import org.study.controllers.admin.cs.QuestionConfig;
 import org.study.controllers.admin.study.StudyConfig;
 import org.study.controllers.user.user.UserJoin;
 import org.study.entities.Question;
 import org.study.entities.User;
-import org.study.models.cs.DuplicateQsCodeException;
-import org.study.models.cs.QuestionListService;
-import org.study.models.cs.QuestionRegisterService;
-import org.study.models.cs.QuestionValidator;
+import org.study.models.cs.*;
 import org.study.models.user.UserInfo;
 
 /*
@@ -40,13 +38,11 @@ public class MyPageController {
     private QuestionRegisterService service;
 
     @Autowired
-    private QuestionListService listService;
+    private CsRegisterService csService;
 
     @Autowired
     private UserUtils userUtils;
 
-    @Autowired
-    private User user;
 
     /**
      * <마이페이지> 클릭하면 나오는 페이지
@@ -106,9 +102,21 @@ public class MyPageController {
 
     @GetMapping("/report_register")
     public String rpRegister(Model model) {
-        QuestionConfig qsConfig = new QuestionConfig();
-        model.addAttribute("qsConfig",qsConfig);
+        CsConfig csConfig = new CsConfig();
+        model.addAttribute("csConfig",csConfig);
         return "front/mypage/report_register";
+    }
+
+    @PostMapping("/saves")
+    public String save(@Valid CsConfig csConfig, Errors errors, Model model) {
+        model.addAttribute("csConfig",csConfig);
+
+        csService.register(csConfig, errors);
+        if(errors.hasErrors()) {
+            return "front/mypage/report_register";
+        }
+
+        return "redirect:/user/mypage/qna";
     }
 
     @PostMapping("/save")
