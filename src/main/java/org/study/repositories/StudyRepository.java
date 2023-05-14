@@ -16,8 +16,8 @@ import org.study.entities.Study;
 import java.util.Arrays;
 import java.util.List;
 
-public interface StudyRepository extends JpaRepository<Study, Long>, QuerydslPredicateExecutor {
-
+public interface StudyRepository /** extends JpaRepository<Study, Long>, QuerydslPredicateExecutor */ {
+/**
     default boolean exists(Long studyCode) {
         QStudy study = QStudy.study;
         return exists(study.studyCode.eq(studyCode));
@@ -27,6 +27,6 @@ public interface StudyRepository extends JpaRepository<Study, Long>, QuerydslPre
 
     //  UserNm 만 가져오려면
     // List<UserMapping> findByEmail();
-
+*/
 
 }
