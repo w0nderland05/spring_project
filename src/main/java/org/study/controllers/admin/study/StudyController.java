@@ -102,7 +102,7 @@ public class StudyController {
         model.addAttribute("mode", "update");
         try {
             StudyConfig studyConfig = listService.get(studyCode);
-
+            studyConfig.setUser(userUtils.getEntity());
             model.addAttribute("studyConfig", studyConfig);
         } catch (CommonException e) {
             response.setStatus(e.getStatus().value());
@@ -133,7 +133,7 @@ public class StudyController {
             System.out.println(errors);
             String tpl = "admin/study/approve/";
             if (mode != null && mode.equals("update")) {
-                tpl += "update";
+                tpl += "update/"+"{"+studyConfig.getStudyCode() +"}";
             } else {
                 throw new StudyNotFoundException(); //관리자에서는 스터디등록 불가하여 수정만 되도록
             }
