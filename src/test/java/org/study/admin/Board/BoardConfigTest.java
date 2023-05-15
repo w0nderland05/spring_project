@@ -16,7 +16,7 @@ import org.study.commons.constants.board.ViewType;
 import org.study.commons.messageBundle.MessageBundle;
 import org.study.commons.validators.BadRequestException;
 import org.study.controllers.admin.board.BoardConfig;
-import org.study.models.board.BoardConfigService;
+import org.study.models.board.BoardSaveService;
 import org.study.models.board.DuplicateBIdException;
 import org.study.repositories.board.BoardRepository;
 import static org.junit.jupiter.api.Assertions.*;
@@ -45,7 +45,7 @@ public class BoardConfigTest {
     private BoardRepository repository;
 
     @Autowired
-    private BoardConfigService service;
+    private BoardSaveService service;
 
     @BeforeEach
     void config() {

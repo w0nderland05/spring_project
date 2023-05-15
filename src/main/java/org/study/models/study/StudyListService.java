@@ -21,7 +21,6 @@ import org.study.controllers.admin.study.StudyConfig;
 import org.study.controllers.admin.study.StudySearch;
 import org.study.entities.QStudy;
 import org.study.entities.Study;
-import org.study.repositories.StudyRepository;
 
 import java.util.Arrays;
 import java.util.List;

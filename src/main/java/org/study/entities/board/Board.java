@@ -8,6 +8,7 @@ import org.study.commons.constants.board.AfterWriteTarget;
 import org.study.commons.constants.board.SkinType;
 import org.study.commons.constants.board.ViewType;
 import org.study.entities.BaseEntity;
+import org.study.entities.User;
 
 /**
  * 게시판 설정
@@ -53,4 +54,8 @@ public class Board extends BaseEntity {
     @Column(length=60)
     private SkinType skin = SkinType.DEFAULT; // 스킨명
     private boolean isReview; // 후기 게시판 여부
+
+    @ManyToOne
+    @JoinColumn(name="userNo")
+    private User user;
 }
