@@ -51,9 +51,9 @@ public class StudyRegisterValidator implements ServiceValidator<StudyConfig>, Re
 //        }
 
         /**sutdyCode 중복 여부 체크*/
-        if(studyRepository.exists(config.getStudyCode())){
-            throw new DuplicationStudyCdException();
-        }
+      //  if(studyRepository.exists(config.getStudyCode())){
+       //     throw new DuplicationStudyCdException();
+       // }
 
     }
 

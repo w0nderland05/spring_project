@@ -14,6 +14,7 @@ import org.study.repositories.StudyRepository;
 @Service
 @RequiredArgsConstructor
 public class StudyApplyService {
+    /**
 
 
     private final StudyRepository repository;
@@ -59,5 +60,6 @@ public class StudyApplyService {
        repository.saveAndFlush(study);
 
     }
+     */
     }
 

@@ -14,7 +14,7 @@ import org.study.controllers.admin.study.StudyConfig;
 import org.study.entities.Study;
 import org.study.models.study.StudyApplyService;
 
-@Controller
+//@Controller
 @RequestMapping("user/study")
 @RequiredArgsConstructor
 public class StudyServiceController {
@@ -61,7 +61,7 @@ public class StudyServiceController {
             model.addAttribute("siguguns", siguguns);
         }
         try {
-            service.apply(studyConfig);
+            //service.apply(studyConfig);
         } catch (RuntimeException e) {
             errors.reject("studySaveError", e.getMessage());
         }

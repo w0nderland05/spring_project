@@ -11,11 +11,11 @@ import org.study.commons.constants.Status;
 import java.time.LocalDateTime;
 import java.util.List;
 
-@Entity
+//@Entity
 @Data @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@EntityListeners(AuditingEntityListener.class)
+//@EntityListeners(AuditingEntityListener.class)
 public class Study{
 
     @Id

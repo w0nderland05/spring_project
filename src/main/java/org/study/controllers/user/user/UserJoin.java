@@ -20,6 +20,8 @@ public class UserJoin {
     @NotBlank @Email
     private String userEmail; // 이메일
 
+    private String nowPw; // 마이페이지 비밀번호 체크용
+
     @NotBlank
     private String userPw; // 비밀번호
 
