@@ -40,7 +40,7 @@ public class Question extends BaseEntity {
 
     //개설회원 정보
     @ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="user_email")
+    @JoinColumn(name="userEmail")
     @ToString.Exclude
     private User user;
 

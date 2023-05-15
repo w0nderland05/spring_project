@@ -3,6 +3,7 @@ package org.study.controllers.user;
 import jakarta.validation.Valid;
 import org.aspectj.weaver.MemberUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,14 +12,15 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.study.commons.UserUtils;
+import org.study.controllers.admin.cs.CsConfig;
 import org.study.controllers.admin.cs.QuestionConfig;
 import org.study.controllers.admin.study.StudyConfig;
+import org.study.controllers.user.user.UserEditValidator;
 import org.study.controllers.user.user.UserJoin;
 import org.study.entities.Question;
-import org.study.models.cs.DuplicateQsCodeException;
-import org.study.models.cs.QuestionListService;
-import org.study.models.cs.QuestionRegisterService;
-import org.study.models.cs.QuestionValidator;
+import org.study.entities.User;
+import org.study.models.cs.*;
+import org.study.models.user.UserEditService;
 import org.study.models.user.UserInfo;
 
 /*
@@ -39,11 +41,16 @@ public class MyPageController {
     private QuestionRegisterService service;
 
     @Autowired
-    private QuestionListService listService;
+    private CsRegisterService csService;
 
     @Autowired
     private UserUtils userUtils;
 
+    @Autowired
+    private UserEditService editService;
+
+    @Autowired
+    private UserEditValidator editValidator;
 
 
     /**
@@ -58,8 +65,22 @@ public class MyPageController {
         model.addAttribute("userJoin",userJoin);
 
         String userNm = userUtils.getUser().getUserNm();
-        model.addAttribute("myNm", userNm);
+        model.addAttribute("userNm", userNm);
 
+        String userEmail = userUtils.getUser().getUserEmail();
+        model.addAttribute("userEmail", userEmail);
+
+
+        return "front/mypage/edit";
+    }
+
+    @PostMapping("/edit")
+    public String editPs(Model model, UserJoin userJoin,Errors errors) {
+        model.addAttribute("userJoin", userJoin);
+
+        editValidator.validate(userJoin, errors);
+
+        editService.userEdit(userJoin, errors);
 
         return "front/mypage/edit";
     }
@@ -83,12 +104,12 @@ public class MyPageController {
         QuestionConfig qsCon = new QuestionConfig();
         qsCon.setUser(userUtils.getEntity());
 
-        System.out.println("제목 = " + qsCon.getSubject());
-
         model.addAttribute("qsCon", qsCon);
 
         return "front/mypage/qna";
     }
+
+
 
     @GetMapping("/register")
     public String register(Model model) {
@@ -99,9 +120,21 @@ public class MyPageController {
 
     @GetMapping("/report_register")
     public String rpRegister(Model model) {
-        QuestionConfig qsConfig = new QuestionConfig();
-        model.addAttribute("qsConfig",qsConfig);
+        CsConfig csConfig = new CsConfig();
+        model.addAttribute("csConfig",csConfig);
         return "front/mypage/report_register";
+    }
+
+    @PostMapping("/saves")
+    public String save(@Valid CsConfig csConfig, Errors errors, Model model) {
+        model.addAttribute("csConfig",csConfig);
+
+        csService.register(csConfig, errors);
+        if(errors.hasErrors()) {
+            return "front/mypage/report_register";
+        }
+
+        return "redirect:/user/mypage/qna";
     }
 
     @PostMapping("/save")
