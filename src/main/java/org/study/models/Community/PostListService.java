@@ -7,6 +7,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import org.study.commons.UserUtils;
 import org.study.controllers.admin.community.CommunitySearch;
 import org.study.controllers.user.Community.PostConfig;
 import org.study.entities.board.BoardData;
@@ -24,6 +25,9 @@ public class PostListService {
     @Autowired
     private BoardDataRepository boardDataRepository;
 
+    @Autowired
+    private UserUtils userUtils;
+
     private PostConfig toConfig(BoardData boardData) {
         return PostConfig.builder()
                 .gid(boardData.getGid())
@@ -37,7 +41,6 @@ public class PostListService {
      */
 
     public Page<BoardData> gets(CommunitySearch communitySearch) {
-
         BooleanBuilder builder = new BooleanBuilder();
         QBoardData boardData = QBoardData.boardData;
 

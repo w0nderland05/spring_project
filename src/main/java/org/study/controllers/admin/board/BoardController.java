@@ -67,10 +67,11 @@ public class BoardController {
     public String save(@Valid BoardConfig boardConfig, Errors errors) {
 //        try {
             // 게시판 저장 처리
-            service.config(boardConfig, errors);
+//            service.config(boardConfig, errors);
 //        } catch (DuplicateCateBIdException e) { // 중복된 bId 예외인 경우
 //            errors.rejectValue("bId", "Duplicate.boardConfig.bId");
 //        }
+        service.config(boardConfig);
 
         String mode = boardConfig.getMode();
         if (errors.hasErrors()) {
@@ -82,7 +83,6 @@ public class BoardController {
             }
             return tpl;
         }
-        service.config(boardConfig);
 
         return "redirect:/admin/board"; // 게시판 등록&수정 후 목록으로 이동
     }
