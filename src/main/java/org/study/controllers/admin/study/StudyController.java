@@ -31,7 +31,7 @@ import java.util.List;
 @RequestMapping("/admin/study")
 public class StudyController {
 
-
+    /**
     @Autowired
     private StudyListService listService;
 
@@ -52,13 +52,14 @@ public class StudyController {
      *
      * @return
      */
+    /*
     @GetMapping
     public String index(Model model, StudyConfig studyConfig, StudySearch studySearch) {
         String url = request.getContextPath() + "/admin/study";
         studySearch.setApproveStatus(new String[]{"APPROVE", "DISAPPROVE"});
         Study study = new Study();
         study.setUser(userUtils.getEntity());
-        Page<Study> data = listService.gets(studySearch); // 조회
+        //Page<Study> data = listService.gets(studySearch); // 조회
         Pagination<Study> pagination = new Pagination<>(data, url);
         model.addAttribute("studies", data.getContent()); //조회된 엔티티 클래스를 직접 커맨드로 사용
         model.addAttribute("studySearch", studySearch);
@@ -74,6 +75,7 @@ public class StudyController {
      *
      * @return
      */
+    /**
     @GetMapping("/approvals")
     public String approvals(Model model, StudySearch studySearch) {
         String url = request.getContextPath() + "/admin/study/approvals";
@@ -96,6 +98,7 @@ public class StudyController {
      *
      * @return
      */
+    /**
     @GetMapping("/approve/update/{studyCode}")
     public String approve(@PathVariable Long studyCode, Model model, HttpServletResponse response) {
         model.addAttribute("sidoList", Areas.sido);
@@ -144,5 +147,5 @@ public class StudyController {
         return "redirect:/admin/study/approve/update/{studyCode}";// 수정등록후, 승인 미승인 처리하도록 동일 페이지로 이동
     }
 
-
+    */
 }
