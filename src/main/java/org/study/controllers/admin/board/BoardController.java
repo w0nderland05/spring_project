@@ -65,7 +65,7 @@ public class BoardController {
      */
     @PostMapping("/save")
     public String save(@Valid BoardConfig boardConfig, Errors errors) {
-
+        
         String mode = boardConfig.getMode();
         if (errors.hasErrors()) {
             String tpl = mode == null ? "register" : "update";

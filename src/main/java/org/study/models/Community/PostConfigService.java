@@ -5,19 +5,21 @@ import org.springframework.stereotype.Service;
 import org.springframework.validation.Errors;
 import org.study.commons.UserUtils;
 import org.study.controllers.user.Community.PostConfig;
+import org.study.entities.User;
 import org.study.entities.board.BoardData;
+import org.study.repositories.UserRepository;
 import org.study.repositories.board.BoardDataRepository;
 
 @Service
 public class PostConfigService {
     @Autowired
     private BoardDataRepository dataRepository;
-
     @Autowired
     private PostConfigValidator postConfigValidator;
-
     @Autowired
     private UserUtils userUtils;
+    @Autowired
+    private UserRepository userRepository;
 
     /**
      * 컨트롤러 Bean Validation 대응
@@ -28,7 +30,8 @@ public class PostConfigService {
     }
 
     public void postConfig(PostConfig postConfig, Errors errors) {
-        if (errors != null && errors.hasErrors()) {
+        /** 로그인 하지 않은 경우 작성 불가 처리 */
+        if (!userUtils.isLogin() || errors != null && errors.hasErrors()) {
             return;
         }
         postConfigValidator.check(postConfig, errors);
@@ -42,14 +45,14 @@ public class PostConfigService {
         Long gid = postConfig.getGid();
         String mode = postConfig.getMode();
         if (mode != null && mode.equals("update") && dataRepository.exists(gid)) {
-            boardData.setPoster(userUtils.getEntity().getUserNm());
             boardData = dataRepository.findById(gid).orElseGet(() -> postConfig.of(postConfig));
         } else {
-            boardData = new BoardData();
-            boardData.setGid(postConfig.getGid());
-            boardData.setPoster(userUtils.getEntity().getUserNm());
-            boardData.setSubject(postConfig.getSubject());
-            boardData.setContent(postConfig.getContent());
+            boardData.setUser(userUtils.getEntity());
+            boardData = PostConfig.of(postConfig);
+//            boardData = new BoardData();
+//            boardData.setGid(postConfig.getGid());
+//            boardData.setSubject(postConfig.getSubject());
+//            boardData.setContent(postConfig.getContent());
         }
 
         // 엔티티 저장 또는 수정 처리
