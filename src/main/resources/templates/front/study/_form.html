@@ -5,7 +5,7 @@
     <dl>
         <dt>스터디코드</dt>
         <dd>
-            <th:block th:if="${mode != null && mode == 'update' }">
+            <th:block th:if="*{mode != null && mode == 'update' }">
                 [[*{studyCode}]]
                 <input type="hidden" name="studyCode" th:field="*{studyCode}">
             </th:block>

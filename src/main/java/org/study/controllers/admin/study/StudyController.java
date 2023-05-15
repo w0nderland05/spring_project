@@ -53,7 +53,7 @@ public class StudyController {
      * @return
      */
     @GetMapping
-    public String index(Model model, StudyConfig studyConfig, StudySearch studySearch) {
+    public String index(Model model, StudySearch studySearch) {
         String url = request.getContextPath() + "/admin/study";
         studySearch.setApproveStatus(new String[]{"APPROVE", "DISAPPROVE"});
         Study study = new Study();
