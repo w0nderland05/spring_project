@@ -3,6 +3,7 @@ package org.study.controllers.user;
 import jakarta.validation.Valid;
 import org.aspectj.weaver.MemberUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,10 +15,12 @@ import org.study.commons.UserUtils;
 import org.study.controllers.admin.cs.CsConfig;
 import org.study.controllers.admin.cs.QuestionConfig;
 import org.study.controllers.admin.study.StudyConfig;
+import org.study.controllers.user.user.UserEditValidator;
 import org.study.controllers.user.user.UserJoin;
 import org.study.entities.Question;
 import org.study.entities.User;
 import org.study.models.cs.*;
+import org.study.models.user.UserEditService;
 import org.study.models.user.UserInfo;
 
 /*
@@ -43,6 +46,12 @@ public class MyPageController {
     @Autowired
     private UserUtils userUtils;
 
+    @Autowired
+    private UserEditService editService;
+
+    @Autowired
+    private UserEditValidator editValidator;
+
 
     /**
      * <마이페이지> 클릭하면 나오는 페이지
@@ -65,6 +74,17 @@ public class MyPageController {
         return "front/mypage/edit";
     }
 
+    @PostMapping("/edit")
+    public String editPs(Model model, UserJoin userJoin,Errors errors) {
+        model.addAttribute("userJoin", userJoin);
+
+        editValidator.validate(userJoin, errors);
+
+        editService.userEdit(userJoin, errors);
+
+        return "front/mypage/edit";
+    }
+
     /**
      * <스터디 관리> 클릭하면 나오는 페이지
      * @return
@@ -82,16 +102,14 @@ public class MyPageController {
     public String qna(Model model) {
 
         QuestionConfig qsCon = new QuestionConfig();
-
-
         qsCon.setUser(userUtils.getEntity());
-
-        System.out.println("제목 = " + qsCon.getSubject());
 
         model.addAttribute("qsCon", qsCon);
 
         return "front/mypage/qna";
     }
+
+
 
     @GetMapping("/register")
     public String register(Model model) {
