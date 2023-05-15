@@ -53,7 +53,7 @@ public class BoardListTest {
                     .skin(SkinType.DEFAULT.toString())
                     .isReview(true)
                     .build();
-            service.config(boardConfig);
+            service.save(boardConfig);
         }
     }
     /**

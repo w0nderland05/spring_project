@@ -65,13 +65,13 @@ public class BoardController {
      */
     @PostMapping("/save")
     public String save(@Valid BoardConfig boardConfig, Errors errors) {
-        
+
         String mode = boardConfig.getMode();
         if (errors.hasErrors()) {
             String tpl = mode == null ? "register" : "update";
             return "admin/board/" + tpl;
         }
-        service.config(boardConfig);
+        service.save(boardConfig);
 
         return "redirect:/admin/board"; // 게시판 등록&수정 후 목록으로 이동
     }

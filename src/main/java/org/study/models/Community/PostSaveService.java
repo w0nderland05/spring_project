@@ -5,17 +5,16 @@ import org.springframework.stereotype.Service;
 import org.springframework.validation.Errors;
 import org.study.commons.UserUtils;
 import org.study.controllers.user.Community.PostConfig;
-import org.study.entities.User;
 import org.study.entities.board.BoardData;
 import org.study.repositories.UserRepository;
 import org.study.repositories.board.BoardDataRepository;
 
 @Service
-public class PostConfigService {
+public class PostSaveService {
     @Autowired
     private BoardDataRepository dataRepository;
     @Autowired
-    private PostConfigValidator postConfigValidator;
+    private PostSaveValidator postSaveValidator;
     @Autowired
     private UserUtils userUtils;
     @Autowired
@@ -34,7 +33,7 @@ public class PostConfigService {
         if (!userUtils.isLogin() || errors != null && errors.hasErrors()) {
             return;
         }
-        postConfigValidator.check(postConfig, errors);
+        postSaveValidator.check(postConfig, errors);
 
         /**
          * 엔티티가 이미 등록된 gid라면 기본 엔티티를 가져오고 ( 수정 )

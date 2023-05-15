@@ -18,15 +18,15 @@ public class BoardSaveService {
     @Autowired
     private BoardRepository repository;
     @Autowired
-    private BoardConfigValidator validator;
+    private BoardSaveValidator validator;
     @Autowired
     private UserUtils userUtils;
 
-    public void config(BoardConfig config) {
-        config(config, null);
+    public void save(BoardConfig config) {
+        save(config, null);
     }
 
-    public void config(BoardConfig boardConfig, Errors errors) {
+    public void save(BoardConfig boardConfig, Errors errors) {
         if (errors != null && errors.hasErrors()) {
             return;
         }
@@ -42,8 +42,10 @@ public class BoardSaveService {
         String bId = boardConfig.getBId(); // 게시판 아이디
         String mode = boardConfig.getMode();
         if(mode != null && mode.equals("update") && repository.exists(bId)) { // mode값이 수정, 중복bId 경우 수정
-            board = repository.findById(bId).orElseGet(() -> Board.builder().bId(bId).build());
+            board = repository.findById(bId).orElse(null);
+//                    orElseGet(() -> Board.builder().bId(bId).build());
         }
+
         if (board == null) {
             board = new Board();
             board.setBId(bId);
