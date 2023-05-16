@@ -1,12 +1,17 @@
 package org.study.models.cs;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.Errors;
+import org.study.commons.UserUtils;
 import org.study.commons.constants.QnaCategory;
 import org.study.commons.constants.ReportStatus;
 import org.study.controllers.admin.cs.QuestionConfig;
 import org.study.entities.Question;
+import org.study.entities.User;
+import org.study.models.user.UserInfo;
+import org.study.models.user.UserInfoService;
 import org.study.repositories.cs.QuestionRepository;
 
 @Service
@@ -17,6 +22,9 @@ public class QuestionRegisterService {
 
     @Autowired
     private QuestionValidator validator;
+
+    @Autowired
+    private UserUtils userUtils;
 
 
     public void qsRegister(QuestionConfig config) {
@@ -48,8 +56,18 @@ public class QuestionRegisterService {
         question.setQsCode(code);
         question.setSubject(config.getSubject());
         question.setContent(config.getContent());
-        question.setCsProcess(ReportStatus.valueOf(config.getCsProcess()));
         question.setCategory(QnaCategory.valueOf(config.getCategory()));
+
+//        UserInfo user = userUtils.getUser();
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        UserInfo userInfo = (UserInfo) principal;
+        System.out.println("이메일?????? = " + userInfo.getUserEmail());
+
+        User user = userUtils.getEntity();
+        System.out.println("Util???? = " + user.getUserEmail());
+
+        question.setUser(user);
+        question.getUser().setUserEmail(user.getUserEmail());
 
         repository.saveAndFlush(question);
     }

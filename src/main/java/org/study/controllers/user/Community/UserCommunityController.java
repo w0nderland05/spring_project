@@ -8,22 +8,17 @@ import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.study.commons.Pagination;
+import org.study.commons.UserUtils;
 import org.study.commons.validators.CommonException;
-import org.study.controllers.admin.board.BoardConfig;
 import org.study.controllers.admin.community.CommunitySearch;
 import org.study.entities.board.BoardData;
 import org.study.models.Community.DuplicatePostGidException;
-import org.study.models.Community.PostConfigService;
+import org.study.models.Community.PostSaveService;
 import org.study.models.Community.PostInfoService;
 import org.study.models.Community.PostListService;
 import org.study.repositories.board.BoardDataRepository;
-
-import java.util.List;
 
 @Controller
 @RequestMapping("/user/community")
@@ -34,11 +29,13 @@ public class UserCommunityController {
     @Autowired
     private BoardDataRepository boardDataRepository;
     @Autowired
-    private PostConfigService postConfigService;
+    private PostSaveService postSaveService;
     @Autowired
     private PostInfoService postInfoService;
     @Autowired
     private HttpServletRequest request;
+    @Autowired
+    private UserUtils userUtils;
 
     /**
      * <커뮤니티> 클릭하면 나오는 페이지
@@ -46,10 +43,12 @@ public class UserCommunityController {
      * @return
      */
     @GetMapping
-    public String community(Model model, CommunitySearch communitySearch) {
+    public String community(Model model, PostConfig postConfig, CommunitySearch communitySearch) {
         String url = request.getContextPath() + "/user/community";
+        postConfig.setUser(userUtils.getEntity());
         Page<BoardData> data = listService.gets(communitySearch);
         Pagination<BoardData> pagination = new Pagination<>(data, url);
+
         model.addAttribute("datas", data.getContent());
 
 //        String category = boardConfig.getCategory();
@@ -66,8 +65,9 @@ public class UserCommunityController {
     }
 
     @GetMapping("/qna")
-    public String qna(Model model, CommunitySearch communitySearch) {
+    public String qna(Model model, PostConfig postConfig, CommunitySearch communitySearch) {
         String url = request.getContextPath() + "/user/community/qna";
+        postConfig.setUser(userUtils.getEntity());
         Page<BoardData> data = listService.gets(communitySearch);
         Pagination<BoardData> pagination = new Pagination<>(data, url);
         model.addAttribute("datas", data.getContent());
@@ -76,8 +76,9 @@ public class UserCommunityController {
     }
 
     @GetMapping("/free")
-    public String free(Model model, CommunitySearch communitySearch) {
+    public String free(Model model, PostConfig postConfig, CommunitySearch communitySearch) {
         String url = request.getContextPath() + "/user/community/free";
+        postConfig.setUser(userUtils.getEntity());
         Page<BoardData> data = listService.gets(communitySearch);
         Pagination<BoardData> pagination = new Pagination<>(data, url);
         model.addAttribute("datas", data.getContent());
@@ -86,9 +87,7 @@ public class UserCommunityController {
     }
 
     @GetMapping("/register")
-    public String register(Model model) {
-        PostConfig postConfig = new PostConfig();
-        model.addAttribute("postConfig", postConfig);
+    public String register(@ModelAttribute PostConfig postConfig) {
 
         return "front/community/register";
     }
@@ -96,14 +95,13 @@ public class UserCommunityController {
     @PostMapping("/save")
     public String save(@Valid PostConfig postConfig, Errors errors, Model model) {
         model.addAttribute("postConfig", postConfig);
-
         try {
-            postConfigService.postConfig(postConfig, errors);
+            postSaveService.postConfig(postConfig, errors);
         } catch (DuplicatePostGidException e) {
             errors.rejectValue("gid", "Duplicate.postConfig.gid");
         }
 
-        postConfigService.postConfig(postConfig);
+        postSaveService.postConfig(postConfig);
         String mode = postConfig.getMode();
         if (errors.hasErrors()) {
             String tpl = "front/community/";

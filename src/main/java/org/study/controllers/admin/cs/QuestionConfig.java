@@ -10,6 +10,7 @@ import org.modelmapper.ModelMapper;
 import org.study.commons.constants.ReportStatus;
 import org.study.entities.Question;
 import org.study.entities.User;
+import org.study.models.user.UserInfo;
 
 @Data @Builder
 @AllArgsConstructor

@@ -28,7 +28,7 @@
             <ul>
                 <li th:each="data : ${datas}" th:object="${data}">
                     <div class="list-top">
-                        <span th:text="*{user.userNm}"></span>
+                        <span th:text="*{userNm}"></span>
                         <span>·</span>
                         <span><!-- DB에서 생성일자 자동 추가 -->2023-04-19</span>
                     </div>

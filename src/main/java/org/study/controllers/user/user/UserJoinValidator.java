@@ -76,7 +76,7 @@ public class UserJoinValidator implements Validator, CellPhoneValidator, Passwor
             errors.rejectValue("authCode","invalid.authCode","올바른 인증 코드를 입력하세요.");
         }
          */
-        
+
         /** 1-2 이메일 인증 여부 E */
 
         /** 2. 비밀번호 유효성 검사 S*/

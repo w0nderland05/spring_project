@@ -24,7 +24,6 @@ public class UserInfo implements UserDetails {
     private String userPw;
     private String userNm;
     private String userNickNm;
-    private String email;
     private String cellPhone;
     private String gender;
 

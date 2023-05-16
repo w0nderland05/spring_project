@@ -1,5 +1,7 @@
 package org.study.controllers.admin.board;
 
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
@@ -7,6 +9,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.modelmapper.ModelMapper;
+import org.study.entities.User;
 import org.study.entities.board.Board;
 
 import java.util.List;
@@ -52,6 +55,10 @@ public class BoardConfig {
     private String skin; // 스킨명
 
     private boolean isReview; // 후기 게시판 여부
+
+    @ManyToOne
+    @JoinColumn(name="userNo")
+    private User user;
 
     /**
      * Board Entity 변환

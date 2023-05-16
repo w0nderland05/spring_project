@@ -21,7 +21,6 @@ import org.study.controllers.admin.study.StudyConfig;
 import org.study.controllers.admin.study.StudySearch;
 import org.study.entities.QStudy;
 import org.study.entities.Study;
-import org.study.repositories.StudyRepository;
 
 import java.util.Arrays;
 import java.util.List;
@@ -31,7 +30,7 @@ import static org.springframework.data.domain.Sort.Order.desc;
 @Service
 @RequiredArgsConstructor
 public class StudyListService {
-
+    /**
     private final StudyRepository repository;
 
     private StudyConfig toConfig(Study study) {
@@ -57,7 +56,7 @@ public class StudyListService {
         BooleanBuilder builder = new BooleanBuilder();
         QStudy study = QStudy.study;
         /** 검색 조건 처리 S */
-
+        /**
         Long studyCode = studySearch.getStudyCode();
         String sopt = studySearch.getSopt();
         String skey = studySearch.getSkey();
@@ -98,6 +97,7 @@ public class StudyListService {
         /** 검색 조건 처리 E */
 
         /**페이지 정렬 처리 S*/
+    /*
         int page = studySearch.getPage();
         int limit = studySearch.getLimit();
         page = page < 1 ? 1 : page;
@@ -107,6 +107,7 @@ public class StudyListService {
         Page<Study> pageData = repository.findAll(builder, pageable);
 
         /**페이지 정렬 처리 E*/
+    /*
         return pageData;
     }
 
@@ -121,5 +122,5 @@ public class StudyListService {
 
         return toConfig(study);
     }
-
+    */
 }
