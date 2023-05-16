@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 import org.study.commons.validators.CommonException;
+import org.study.entities.board.Board;
 import org.study.models.board.BoardSaveService;
 import org.study.models.board.BoardInfoService;
 import org.study.models.board.BoardListService;
@@ -84,8 +85,8 @@ public class BoardController {
     public String update(@PathVariable String bId, Model model, HttpServletResponse response) {
         model.addAttribute("mode", "update");
         try {
-            BoardConfig boardConfig = infoService.get(bId);
-            model.addAttribute("boardConfig", boardConfig);
+            Board board = infoService.get(bId);
+            model.addAttribute("boardConfig", board);
         } catch (CommonException e) {
             response.setStatus(e.getStatus().value());
             model.addAttribute("script", "alert('" + e.getMessage() + "');history.back();");
