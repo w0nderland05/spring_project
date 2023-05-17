@@ -64,10 +64,10 @@ public class MyPageController {
         UserJoin userJoin = new UserJoin();
         model.addAttribute("userJoin",userJoin);
 
-        String userNm = userUtils.getUser().getUserNm();
+        String userNm = userJoin.getUserNm();
         model.addAttribute("userNm", userNm);
 
-        String userEmail = userUtils.getUser().getUserEmail();
+        String userEmail = userJoin.getUserEmail();
         model.addAttribute("userEmail", userEmail);
 
 
@@ -75,7 +75,7 @@ public class MyPageController {
     }
 
     @PostMapping("/edit")
-    public String editPs(Model model, UserJoin userJoin,Errors errors) {
+    public String editPs(Model model, UserJoin userJoin, Errors errors) {
         model.addAttribute("userJoin", userJoin);
 
         editValidator.validate(userJoin, errors);
@@ -90,7 +90,9 @@ public class MyPageController {
      * @return
      */
     @GetMapping("/mystudy")
-    public String myStudy() {
+    public String myStudy(UserJoin userJoin, Model model) {
+
+
         return "front/mypage/mystudy";
     }
 

@@ -24,7 +24,7 @@
             <dl>
                 <dt>아이디 ( 이메일 )</dt>
                 <dd>
-                    <p th:text="${userEmail}"></p>
+                    <p th:field="*{userEmail}" th:text="${userEmail}"></p>
                 </dd>
             </dl>
         </div>
