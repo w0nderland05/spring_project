@@ -14,12 +14,8 @@ public class BoardInfoService { // 조회
     private BoardRepository repository;
 
     public Board get(String bId) {
-        // 게시판이 없으면 예외 발생
-//        if (bId == null || bId.isBlank()) {
-//            throw new BoardNotFoundException();
-//        }
-
         Board board = repository.findById(bId).orElseThrow(BoardNotFoundException::new);
+        return board;
 
 //        BoardConfig config = BoardConfig.builder()
 //                .bId(board.getBId())
@@ -36,7 +32,5 @@ public class BoardInfoService { // 조회
 //                .skin(board.getSkin().toString())
 //                .isReview(board.isReview())
 //                .build();
-
-                return board;
     }
 }
