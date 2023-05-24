@@ -27,7 +27,7 @@ import java.util.List;
 
 import static org.springframework.data.domain.Sort.Order.desc;
 
-@Service
+@Service("StudyListsService")
 @RequiredArgsConstructor
 public class StudyListService {
     /**

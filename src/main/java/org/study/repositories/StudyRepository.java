@@ -16,7 +16,7 @@ import org.study.entities.Study;
 import java.util.Arrays;
 import java.util.List;
 
-public interface StudyRepository /** extends JpaRepository<Study, Long>, QuerydslPredicateExecutor */ {
+public interface StudyRepository extends JpaRepository<Study, Long>, QuerydslPredicateExecutor {
 /**
     default boolean exists(Long studyCode) {
         QStudy study = QStudy.study;

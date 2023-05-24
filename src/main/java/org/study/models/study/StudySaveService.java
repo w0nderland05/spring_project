@@ -10,7 +10,7 @@ import org.study.controllers.admin.study.StudyConfig;
 import org.study.entities.Study;
 import org.study.repositories.StudyRepository;
 
-@Service
+@Service("StudySavesService")
 @RequiredArgsConstructor
 public class StudySaveService {
     /**
