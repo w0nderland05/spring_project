@@ -8,7 +8,8 @@ import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 import org.study.commons.validators.CommonException;
-import org.study.models.board.BoardConfigService;
+import org.study.entities.board.Board;
+import org.study.models.board.BoardSaveService;
 import org.study.models.board.BoardInfoService;
 import org.study.models.board.BoardListService;
 
@@ -19,7 +20,7 @@ import java.util.List;
 public class BoardController {
 
     @Autowired
-    private BoardConfigService service;
+    private BoardSaveService service;
 
     @Autowired
     private BoardInfoService infoService;
@@ -65,24 +66,13 @@ public class BoardController {
      */
     @PostMapping("/save")
     public String save(@Valid BoardConfig boardConfig, Errors errors) {
-//        try {
-            // 게시판 저장 처리
-            service.config(boardConfig, errors);
-//        } catch (DuplicateCateBIdException e) { // 중복된 bId 예외인 경우
-//            errors.rejectValue("bId", "Duplicate.boardConfig.bId");
-//        }
 
         String mode = boardConfig.getMode();
         if (errors.hasErrors()) {
-            String tpl = "admin/board/";
-            if (mode != null && mode.equals("update")) { // mode가 업데이트면
-                tpl += "update"; // admin/board/update
-            } else {
-                tpl += "config"; // admin/board/config
-            }
-            return tpl;
+            String tpl = mode == null ? "register" : "update";
+            return "admin/board/" + tpl;
         }
-        service.config(boardConfig);
+        service.save(boardConfig);
 
         return "redirect:/admin/board"; // 게시판 등록&수정 후 목록으로 이동
     }
@@ -95,8 +85,8 @@ public class BoardController {
     public String update(@PathVariable String bId, Model model, HttpServletResponse response) {
         model.addAttribute("mode", "update");
         try {
-            BoardConfig boardConfig = infoService.get(bId);
-            model.addAttribute("boardConfig", boardConfig);
+            Board board = infoService.get(bId);
+            model.addAttribute("boardConfig", board);
         } catch (CommonException e) {
             response.setStatus(e.getStatus().value());
             model.addAttribute("script", "alert('" + e.getMessage() + "');history.back();");

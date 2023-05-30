@@ -12,7 +12,7 @@ import org.study.repositories.board.BoardDataRepository;
  * 게시글 등록 Validator
  */
 @Component
-public class PostConfigValidator implements ServiceValidator<PostConfig>, RequiredCheckValidator {
+public class PostSaveValidator implements ServiceValidator<PostConfig>, RequiredCheckValidator {
     @Autowired
     private BoardDataRepository repository;
 
@@ -27,11 +27,11 @@ public class PostConfigValidator implements ServiceValidator<PostConfig>, Requir
         requiredCheck(postConfig.getContent(), new BadRequestException("내용을 입력하세요."));
         requiredCheck(postConfig.getCategory(), new BadRequestException("카테고리를 선택하세요"));
 
-        /** gid 중복 여부 체크 */
-        if (repository.exists(postConfig.getGid())) {
-            // 이미 등록된 gid인 경우
-            throw new DuplicatePostGidException();
-        }
+//        /** gid 중복 여부 체크 */
+//        if (repository.exists(postConfig.getGid())) {
+//            // 이미 등록된 gid인 경우
+//            throw new DuplicatePostGidException();
+//        }
 
     }
 }

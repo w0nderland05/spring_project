@@ -14,7 +14,7 @@ import org.study.repositories.board.BoardRepository;
  *
  */
 @Component
-public class BoardConfigValidator implements ServiceValidator<BoardConfig>, RequiredCheckValidator {
+public class BoardSaveValidator implements ServiceValidator<BoardConfig>, RequiredCheckValidator {
 
     @Autowired
     private BoardRepository repository;

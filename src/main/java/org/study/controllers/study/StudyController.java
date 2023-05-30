@@ -7,7 +7,6 @@ import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 import org.study.models.studies.StudySaveService;
-import org.study.repositories.StudiesRepository;
 
 
 @Controller("frontStudyController")

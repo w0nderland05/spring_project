@@ -11,8 +11,7 @@ import org.study.commons.constants.board.AfterWriteTarget;
 import org.study.commons.constants.board.SkinType;
 import org.study.commons.constants.board.ViewType;
 import org.study.controllers.admin.board.BoardConfig;
-import org.study.entities.board.Board;
-import org.study.models.board.BoardConfigService;
+import org.study.models.board.BoardSaveService;
 import org.study.models.board.BoardInfoService;
 import org.study.models.board.BoardListService;
 import org.study.repositories.board.BoardRepository;
@@ -30,7 +29,7 @@ public class BoardListTest {
     @Autowired
     private BoardRepository repository;
     @Autowired
-    private BoardConfigService service;
+    private BoardSaveService service;
     @Autowired
     private BoardInfoService infoService;
     @Autowired
@@ -54,7 +53,7 @@ public class BoardListTest {
                     .skin(SkinType.DEFAULT.toString())
                     .isReview(true)
                     .build();
-            service.config(boardConfig);
+            service.save(boardConfig);
         }
     }
     /**
