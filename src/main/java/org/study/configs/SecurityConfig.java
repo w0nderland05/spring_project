@@ -30,11 +30,11 @@ public class SecurityConfig {
                 .logoutSuccessUrl("/");
 
 
-//        http.authorizeHttpRequests()
-//                .requestMatchers("/", "/user/**", "/error/**").permitAll()
-//                .requestMatchers("/user/mypage/**").hasAuthority("USER")
-//                .requestMatchers("/admin/**").hasAuthority("ADMIN")
-//                .anyRequest().authenticated();
+        http.authorizeHttpRequests()
+                .requestMatchers("/mypage/**", "/study").authenticated()
+                //.requestMatchers("/admin/**").hasAuthority("ADMIN")
+                .anyRequest().permitAll();
+
 
         /**
          *  관리자 페이지에 권한없는 요청 URL 접속시 401 코드 및 오류 페이지 이동

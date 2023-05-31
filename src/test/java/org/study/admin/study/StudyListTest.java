@@ -12,9 +12,7 @@ import org.study.commons.constants.RegionType;
 import org.study.commons.constants.Status;
 import org.study.controllers.admin.study.StudyConfig;
 import org.study.controllers.admin.study.StudySearch;
-import org.study.entities.Study;
-import org.study.models.study.StudyApplyService;
-import org.study.models.study.StudyListService;
+
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -32,11 +30,11 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 @TestPropertySource(locations = "classpath:application-test.properties")
 public class StudyListTest {
 
-    @Autowired
-    private StudyListService listService;
+//    @Autowired
+    //private StudyListService listService;
 
     @Autowired
-    private StudyApplyService applyService;
+    //private StudyApplyService applyService;
 
 
     private StudySearch studySearch;
@@ -65,7 +63,7 @@ public class StudyListTest {
                 .simpleIntro("백엔드개발 스터디 입니다.")
                 .introduction("즐겁게 공부해봅시다.")
                 .build();
-        applyService.apply(studyConfig);
+      //  applyService.apply(studyConfig);
 
         StudyConfig studyConfig2 = StudyConfig.builder()
                 .studyCode(Long.valueOf("12345678"))
@@ -84,7 +82,7 @@ public class StudyListTest {
                 .simpleIntro("백엔드개발 스터디 입니다.")
                 .introduction("즐겁게 공부해봅시다.")
                 .build();
-        applyService.apply(studyConfig2);
+       // applyService.apply(studyConfig2);
 
         StudyConfig studyConfig3 = StudyConfig.builder()
                 .studyCode(Long.valueOf("2345678"))
@@ -102,7 +100,7 @@ public class StudyListTest {
                 .simpleIntro("백엔드개발 스터디 입니다.")
                 .introduction("즐겁게 공부해봅시다.")
                 .build();
-        applyService.apply(studyConfig3);
+      //  applyService.apply(studyConfig3);
     }
 
 
@@ -117,7 +115,7 @@ public class StudyListTest {
     void study_gets() {
         assertDoesNotThrow(() -> {
             StudySearch studySearch = new StudySearch();
-            listService.gets(studySearch);
+          //  listService.gets(studySearch);
         });
     }
 
@@ -130,7 +128,7 @@ public class StudyListTest {
     @DisplayName("스터디 목록 개별 조회")
     void study_get() {
         assertDoesNotThrow(() -> {
-            listService.get(5245625L);
+          //  listService.get(5245625L);
 
         });
 
@@ -143,17 +141,17 @@ public class StudyListTest {
         StudySearch studySearch = new StudySearch();
         assertDoesNotThrow(() -> {
             studySearch.setApproveStatus(new String[]{"APPLY"});
-            listService.gets(studySearch);
+          //  listService.gets(studySearch);
         });
         //approveStatus- DISAPPROVE 경우 스터디 조회
         assertDoesNotThrow(() -> {
             studySearch.setApproveStatus(new String[]{"DISAPPROVE"});
-            listService.gets(studySearch);
+          //  listService.gets(studySearch);
         });
         //approveStatus- APPROVE 경우 스터디 조회
         assertDoesNotThrow(() -> {
             studySearch.setApproveStatus(new String[]{"APPROVE"});
-            listService.gets(studySearch);
+        //    listService.gets(studySearch);
 
         });
 

@@ -9,8 +9,6 @@ import org.springframework.data.querydsl.QuerydslPredicateExecutor;
 import org.study.commons.constants.RegionType;
 import org.study.controllers.admin.community.CommunitySearch;
 import org.study.controllers.admin.study.StudySearch;
-import org.study.entities.QStudy;
-import org.study.entities.Study;
 import org.study.entities.board.BoardData;
 import org.study.entities.board.QBoardData;
 
