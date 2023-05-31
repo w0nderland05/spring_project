@@ -21,11 +21,11 @@ public class QsValidator implements Validator {
         String content = qsConfig.getContent();
 
         if (subject == null || subject.isBlank()){
-            errors.rejectValue("subject",  "제목을 입력하세요.");
+            errors.rejectValue("subject", "subjectt", "제목을 입력하세요.");
         }
 
         if (content == null || content.isBlank()){
-            errors.reject("content","내용을 입력하세요.");
+            errors.rejectValue("content","contentt","내용을 입력하세요.");
         }
 
     }

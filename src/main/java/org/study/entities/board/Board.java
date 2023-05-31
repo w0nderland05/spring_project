@@ -58,4 +58,18 @@ public class Board extends BaseEntity {
     @ManyToOne
     @JoinColumn(name="userNo")
     private User user;
+
+    /**
+     * 게시판 분류 목록 ( category )
+     * @return
+     */
+    public String[] getCategories() {
+
+        if (category == null) {
+            return null;
+        }
+
+        String[] categories = category.replaceAll("\\r","").trim().split("\\n"); // 리눅스 사용 시 \\r로 제거 후 \\n기준으로 나눔
+        return categories;
+    }
 }
