@@ -1,0 +1,10 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<script type="text/html" id="file_tpl" th:fragment="tpl">
+    <li class="file_<%=fileNo%>">
+        <a href="/file/download/<%=fileNo%>"><%=fileName%></a>
+        <span class="xi-arrow-up insert_editor" data-url="<%=fileURL%>"></span>
+        <a class='xi-close remove' href="/file/delete/<%=fileNo%>" onclick="return confirm('정말 삭제하시겠습니까?');" target="ifrmProcess"></a>
+    </li>
+</script>
+</html>
