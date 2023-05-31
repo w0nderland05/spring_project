@@ -11,7 +11,6 @@ import org.study.commons.validators.BadRequestException;
 import org.study.commons.validators.CellPhoneValidator;
 import org.study.commons.validators.PasswordValidator;
 import org.study.commons.validators.RequiredCheckValidator;
-import org.study.controllers.user.user.UserJoin;
 import org.study.repositories.UserRepository;
 
 /**
@@ -60,7 +59,6 @@ public class UserJoinValidator implements Validator, CellPhoneValidator, Passwor
         requiredCheck(userNm,new BadRequestException("회원명을 입력하세요"));
         requiredCheck(userNickNm,new BadRequestException("닉네임을 설정하세요,"));
 
-
         /** 1. 이메일 중복 여부 S */
         if (userEmail != null && !userEmail.isBlank() && repository.isUserExists(userEmail)) {
             errors.rejectValue("userEmail", "user.validation.exists");
@@ -68,7 +66,6 @@ public class UserJoinValidator implements Validator, CellPhoneValidator, Passwor
         /** 1. 이메일 중복 여부 E */
 
         /** 1-2 이메일 인증 여부 S */
-
         /**
         String authCode = (String) httpSession.getAttribute("authCode");
         if(authCode == null || !authCode.equals(httpSession.getAttribute("authCode"))){
@@ -76,7 +73,6 @@ public class UserJoinValidator implements Validator, CellPhoneValidator, Passwor
             errors.rejectValue("authCode","invalid.authCode","올바른 인증 코드를 입력하세요.");
         }
          */
-
         /** 1-2 이메일 인증 여부 E */
 
         /** 2. 비밀번호 유효성 검사 S*/

@@ -11,15 +11,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.study.commons.Areas;
 import org.study.commons.UserUtils;
 import org.study.controllers.admin.study.StudyConfig;
-import org.study.entities.Study;
-import org.study.models.study.StudyApplyService;
 
 //@Controller
 @RequestMapping("user/study")
 @RequiredArgsConstructor
 public class StudyServiceController {
-
-    private final StudyApplyService service;
 
     private final UserUtils userUtils;
 
@@ -78,7 +74,6 @@ public class StudyServiceController {
             }
             return tpl;
         }
-
 
 
         return "redirect:/user/study/join";// 게시판 등록 후 스터디함께해요 페이지로 이동

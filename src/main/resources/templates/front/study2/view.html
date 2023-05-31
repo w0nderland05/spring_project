@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{front/layouts/main}">
+<th:block layout:fragment="addCss">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
+</th:block>
+<th:block layout:fragment="addScript">
+    <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+</th:block>
+<main layout:fragment="content" th:object="${study}">
+    <section class="main_intro">
+        <div class="inner layout_width">
+
+            <div class="swiper banner" th:if="*{mainImages != null}">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide" th:each="file : *{mainImages}" th:style="${'background:url(' + file.fileURL + '); background-size:cover;'}">
+
+                    </div>
+                </div>
+            </div>
+            <!--// banner -->
+            <div class="desc">
+                <div class="category" th:if="*{category != null}" th:text="*{category.cateNm}"></div>
+                <h1 th:text="*{simpleIntro}"></h1>
+
+                <div class="info_txt">
+                    <i class="xi-maker"></i>
+                    <th:block th:if="*{regionType.toString() == 'OFFLINE'}">
+                        [[*{sido}]] [[*{sigugun}]]
+                    </th:block>
+                    <th:block th:if="*{regionType.toString() == 'ONLINE'}">
+                        온라인
+                    </th:block>
+                </div>
+                <div class="info_txt">
+                    <i class="xi-group"></i>
+                    <th:block th:if="*{maxMember == 0}">무제한</th:block>
+                    <th:block th:if="*{maxMember > 0}">
+                        <span class="current">1</span> /
+                        <span class="maxMember">[[*{maxMember}]]</span>
+                    </th:block>
+                </div>
+                <div class="info_txt">
+                    <i class="xi-calendar-list"></i>
+                    주 [[*{numOfWeek}]]회
+                </div>
+                <div class="info_txt">
+                    <i class="xi-speech"></i>
+                    <th:block th:if="*{user != null}">
+                        [[*{user.userNm}]]([[*{user.userEmail}]]
+                    </th:block>
+                </div>
+
+
+                <div class="apply_btn">스터디 신청하기</div>
+
+            </div>
+            <!--// desc -->
+        </div>
+        <!--// inner -->
+    </section>
+    <section class="tabs-wrap">
+        <ul class="tabs layout_width">
+            <li class="tab on" data-tab="intro">스터디소개</li>
+            <li class="tab" data-tab="review">스터디 후기</li>
+            <li class="tab" data-tab="community">커뮤니티</li>
+        </ul>
+    </section>
+    <section class="layout_width tab_content">
+        <article class="intro">
+            <h2 th:text="*{simpleIntro}"></h2>
+            <div th:utext="*{introduction}"></div>
+
+        </article>
+        <article class="review dn">
+            <h2>스터디 후기</h2>
+
+        </article>
+        <article class="community dn">
+            <h2>커뮤니티 후기</h2>
+        </article>
+    </section>
+</main>
+</html>
