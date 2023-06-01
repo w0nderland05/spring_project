@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{front/layouts/main}">
+    <main layout:fragment="content" class="layout_width">
+        <h1 th:text="${pageTitle}"></h1>
+        <form name="frmSave" method="post" th:action="@{/study}" autocomplete="off" th:object="${studyForm}" class="form_style1">
+            <input type="hidden" name="id" th:field="*{studyNo}">
+            <th:block th:replace="~{front/study2/_form::form}"></th:block>
+            <div class="btns">
+                <button type="reset">다시입력</button>
+                <button type="submit">수정하기</button>
+            </div>
+        </form>
+    </main>
+</html>

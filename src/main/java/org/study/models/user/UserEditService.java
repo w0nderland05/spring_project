@@ -5,7 +5,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.Errors;
 import org.study.commons.UserUtils;
-import org.study.controllers.user.user.UserEditValidator;
 import org.study.controllers.user.user.UserJoin;
 import org.study.entities.User;
 import org.study.repositories.UserRepository;
@@ -20,7 +19,7 @@ public class UserEditService {
 
     private final UserUtils userUtils;
 
-    private final UserEditValidator editValidator;
+ //   private final UserEditValidator editValidator;
 
     public void userEdit(UserJoin join, Errors errors) {
 

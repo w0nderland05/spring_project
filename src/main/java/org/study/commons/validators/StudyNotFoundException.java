@@ -7,14 +7,8 @@ import java.util.ResourceBundle;
 
 public class StudyNotFoundException extends CommonException{
 
-    private static String message;
-    static {
-        ResourceBundle bundle = ResourceBundle.getBundle("messages.validation");
-        message = bundle.getString("NotFound.study.studyCode");
-    }
-
     public StudyNotFoundException() {
-        super(message, HttpStatus.NOT_FOUND);
+        super(bundleValidation.getString("NotRegister.study"), HttpStatus.NOT_FOUND);
     }
 
 }

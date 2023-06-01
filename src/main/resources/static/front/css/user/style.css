@@ -1,0 +1,16 @@
+.body-user h1 { text-align: center; }
+.body-user form { width: 350px; margin: 0 auto; }
+.body-user .user_form .rows { margin-bottom: 10px; }
+.body-user .user_form input[type='text'],
+.body-user .user_form input[type='password'],
+.body-user .user_form input[type='date'] { height: 45px; border-radius: 5px; }
+.body-user .rows.flex { display: flex; }
+.body-user .rows.flex .tit { width: 80px; }
+.body-user .rows.flex > div, .body-user .rows.flex > input { flex-grow: 1; }
+.body-user button { border: 0; background: #00c471; color: #fff; padding: 0 16px; height: 48px; line-height: 1.47; font-size: 17px; letter-spacing: -.3px; line-height: 48px; font-weight: bold; width: 100%; border-radius: 5px; cursor: pointer; margin-top: 30px; text-align: center; }
+.body-user-login main { min-height: 600px }
+.body-user-login button[type='submit'] { margin-top: 5px; }
+.body-user-login .links { display: flex; padding: 15px 0; border-top: 1px solid #d5d5d5; border-bottom: 1px solid #d5d5d5; margin-top: 10px; }
+.body-user-login .links a { width: 0; flex-grow: 1; text-align: center; }
+.body-user-login .links a i { margin-right: 3px; }
+.body-user-login .links a:hover { text-decoration: underline; }

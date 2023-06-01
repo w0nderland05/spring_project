@@ -5,9 +5,9 @@
     <dl>
         <dt>스터디코드</dt>
         <dd>
-            <th:block th:if="*{mode != null && mode == 'update' }">
+            <th:block th:if="${mode != null && mode == 'update' }">
                 [[*{studyCode}]]
-                <input type="hidden" name="studyCode" th:field="*{studyCode}">
+                <input type="hidden" name="bId" th:field="*{bId}">
             </th:block>
             <input th:unless="${mode != null && mode == 'update' }" type="text" name="studyCode" th:field="*{studyCode}">
             <div class="error" th:each="err :${#fields.errors('studyCode')}" th:text="${err}"></div>
@@ -31,9 +31,8 @@
     <dl>
         <dt>회원정보</dt>
         <dd>
-            <span name="userEmail" th:text="*{user.userEmail == null ? '':user.userEmail}"/>
-            /
-            <span name="userNm" th:text="*{user.userNm == null ? '' : user.userNm}"/>
+            <input type="text" name="userEmail" th:text="*{user.userEmail == null ? '':user.userEmail}">
+            <input type="text" naem="userNm" th:text="*{user.userNm == null ? '' : user.userNm}">
         </dd>
     </dl>
     <dl>

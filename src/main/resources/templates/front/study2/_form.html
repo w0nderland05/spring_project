@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<th:block th:fragment="form" th:object="${studyForm}">
+    <div class="error" th:each="err : ${#fields.globalErrors()}" th:text="${err}"></div>
+    <input type="hidden" name="gid" th:field="*{gid}">
+    <dl>
+        <dt>스터디코드</dt>
+        <dd>
+            <th:block th:if="*{#strings.isEmpty(studyCd)}">
+                <input type="text" name="studyCd" th:field="*{studyCd}">
+                <div class="error" th:each="err : ${#fields.errors('studyCd')}" th:text="${err}"></div>
+            </th:block>
+            <th:block th:unless="*{#strings.isEmpty(studyCd)}">
+                <input type="hidden" name="studyCd" th:field="*{studyCd}">
+                [[*{studyCd}]]
+            </th:block>
+
+        </dd>
+    </dl>
+    <dl>
+        <dt>카테고리</dt>
+        <dd>
+            <th:block th:each="category, status : ${categories}">
+                <input type="radio" name="cateCd" th:id="${'cateCd_' + status.index}" th:value="${category.cateCd}" th:field="*{cateCd}">
+                <label th:for="${'cateCd_' + status.index}" th:text="${category.cateNm}"></label>
+            </th:block>
+            <div class="error" th:each="err : ${#fields.errors('cateCd')}" th:text="${err}"></div>
+        </dd>
+    </dl>
+    <dl>
+        <dt>신청회원</dt>
+        <dd>
+            <th:block th:if="${session.userInfo != null}">
+                [[${session.userInfo.userNm}]]([[${session.userInfo.userEmail}]])
+            </th:block>
+        </dd>
+    </dl>
+    <dl>
+        <dt>신청최대 인원수</dt>
+        <dd>
+            <input type="radio" name="selMaxMember" class='selMaxMember' id="selMaxMember_all" value="all" th:field="*{selMaxMember}">
+            <label for="selMaxMember_all">무제한</label>
+            <input type="radio" name="selMaxMember" class='selMaxMember' id="selMaxMember_each" value="each" th:field="*{selMaxMember}">
+            <label for="selMaxMember_each">개별입력</label>
+
+            <div class="max_member" th:classappend="*{maxMember == 0} ? 'dn' : ''">
+                <input type="number" name="maxMember" th:field="*{maxMember}" class="ar w150">명
+            </div>
+            <div class="error" th:each="err : ${#fields.errors('maxMember')}" th:text="${err}"></div>
+        </dd>
+    </dl>
+    <dl>
+        <dt>스터디 주당횟수</dt>
+        <dd>
+            <input type="radio" name="numOfWeek" value="1" id="numOfWeek_1" th:field="*{numOfWeek}">
+            <label for="numOfWeek_1">주1회</label>
+            <input type="radio" name="numOfWeek" value="2" id="numOfWeek_2" th:field="*{numOfWeek}">
+            <label for="numOfWeek_2">주2회</label>
+            <input type="radio" name="numOfWeek" value="3" id="numOfWeek_3" th:field="*{numOfWeek}">
+            <label for="numOfWeek_3">주3회</label>
+            <input type="radio" name="numOfWeek" value="4" id="numOfWeek_4">
+            <label for="numOfWeek_4" th:fied="*{numOfWeek}">주4회 이상</label>
+
+            <div class="error" th:each="err : ${#fields.errors('numOfWeek')}" th:text="${err}"></div>
+        </dd>
+    </dl>
+    <dl>
+        <dt>스터디 구분</dt>
+        <dd>
+            <input type="radio" name="regionType" class='regionType' value="ONLINE" id="regionType_ONLINE" th:field="*{regionType}">
+            <label for="regionType_ONLINE">온라인</label>
+            <input type="radio" name="regionType" class='regionType' value="OFFLINE" id="regionType_OFFLINE" th:field="*{regionType}">
+            <label for="regionType_OFFLINE">오프라인</label>
+            <div class="error" th:each="err : ${#fields.errors('regionType')}" th:text="${err}"></div>
+        </dd>
+    </dl>
+    <dl class="address_wrap" th:classappend="*{regionType} == 'ONLINE' ? 'dn' : ''">
+        <dt>지역</dt>
+        <dd>
+            <select name="sido" class="ajax_sido" th:field="*{sido}">
+                <option value="">- 시도 선택 -</option>
+                <option th:each="sido : ${sidos}" th:value="${sido}" th:text="${sido}"></option>
+            </select>
+            <select name="sigugun" class="ajax_gigugun" th:field="*{sigugun}">
+                <option value="">- 시구군 선택 -</option>
+                <option th:if="${siguguns != null}" th:each="sigugun : ${siguguns}" th:value="${sigugun}" th:text="${sigugun}"></option>
+            </select>
+        </dd>
+    </dl>
+    <dl>
+        <dt>메인사진</dt>
+        <dd>
+            <div class="uploadedImages">
+                <div th:if="*{mainImages != null}" th:each="image : *{mainImages}" th:object="${image}" th:class="*{'images file_' + fileNo}">
+                    <a class='xi-close remove' th:href="@{/file/delete/{no}(no=*{fileNo})}" onclick="return confirm('정말 삭제하시겠습니까?');" target="ifrmProcess"></a>
+                    <div class='inner' th:style="*{'background:url(' + fileURL + ') no-repeat center center; background-size: cover;'}">
+                    </div>
+                </div>
+            </div>
+            <input type="file" id="file1" class="files dn" th:data-gid="*{gid}" th:data-location="main" data-image-only="true">
+            <button type="button" class="fileUpload btn1" data-target-id="file1">이미지 업로드</button>
+
+        </dd>
+    </dl>
+    <dl>
+        <dt>한줄 소개글</dt>
+        <dd>
+            <input type="text" name="simpleIntro" th:field="*{simpleIntro}">
+            <div class="error" th:each="err : ${#fields.errors('simpleIntro')}" th:text="${err}"></div>
+        </dd>
+    </dl>
+    <dl>
+        <dt>소개글</dt>
+        <dd>
+            <textarea name="introduction" id="introduction" th:field="*{introduction}"></textarea>
+            <div class="error" th:each="err : ${#fields.errors('introduction')}" th:text="${err}"></div>
+            <input type="file" id="file2" class="files dn" th:data-gid="*{gid}" th:data-location="editor" data-image-only="true">
+            <button type="button" class="fileUpload btn1 mt10" data-target-id="file2">이미지 첨부</button>
+            <div class="attachFiles">
+                <li th:if="*{editorFiles != null}" th:each="file : *{editorFiles}" th:object="${file}" th:class="*{'file_' + fileNo}">
+                    <a th:href="@{/file/download/{no}(no=*{fileNo})}" th:text="*{originalFilename}"></a>
+                    <span class="xi-arrow-up insert_editor" th:data-url="*{fileURL}"></span>
+                    <a class='xi-close remove' th:href="@{/file/delete/{no}(no=*{fileNo})}" onclick="return confirm('정말 삭제하시겠습니까?');" target="ifrmProcess"></a>
+                </li>
+            </div>
+        </dd>
+    </dl>
+    <script th:replace="~{front/commons/_image_file_tpl::tpl}"></script>
+    <script th:replace="~{front/commons/_file_tpl::tpl}"></script>
+</th:block>
+</html>

@@ -15,11 +15,12 @@
     <script th:each="jsFile : ${addScript}" th:src="@{/front/js/{file}.js(file=${jsFile})}"></script>
     <th:block layout:fragment="addScript"></th:block>
 </head>
-<body>
+<body th:class="${bodyClass}">
 <header th:replace="~{front/outlines/header::common}"></header>
 
 <main layout:fragment="content"></main>
 
 <footer th:replace="~{front/outlines/footer::common}"></footer>
+<iframe name="ifrmProcess" class="dn"></iframe>
 </body>
 </html>

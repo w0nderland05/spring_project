@@ -1,0 +1,108 @@
+const fileManager = {
+	/*
+	* 파일 업로드 처리
+	*
+	*
+	*/
+	uploads(files, gid, location, imageOnly, fileEl) {
+		try {
+			if(!files || files.length == 0){
+				throw new Error("업로드할 파일을 선택하세요.");
+			}
+
+            const { header, token } = commonLib.getCsrfToken();
+            const formData = new FormData();
+
+            /** 업로드 파일 이미지 형식 체크 S */
+            if (imageOnly) { // 이미지가 아닌 파일이 섞여 있으면 X
+                formData.append("image", true);
+
+                for (const file of files) {
+                    if (file.type.indexOf("image") == -1) { // 이미지가 아닌 형식
+                       throw new Error("이미지 형식의 파일만 업로드 하세요.");
+                    }
+                }
+            }
+            /** 업로드 파일 이미지 형식 체크 E */
+
+
+            for (const file of files) {
+                formData.append("files", file);
+            }
+
+            // gid(그룹 ID)가 있으면 추가
+            if (gid) {
+                formData.append("gid", gid);
+            }
+
+            // location이 있으면 추가
+            if (location) {
+                formData.append("location", location);
+            }
+
+            const xhr = new XMLHttpRequest();
+            xhr.open("POST", "/file/upload");
+            xhr.setRequestHeader(header, token);
+            xhr.send(formData);
+            xhr.responseType="json";
+            xhr.onreadystatechange = function() {
+                if (xhr.status == 200 && xhr.readyState == XMLHttpRequest.DONE) {
+                    if (typeof parent.fileUploadCallback == 'function') {
+                        parent.fileUploadCallback(xhr.response);
+                        fileEl.value = "";
+                    }
+
+                }
+            };
+
+		} catch (err) {
+			alert(err.message);
+			fileEl.value = "";
+		}
+	},
+	/**
+	* 그룹 ID로 삭제
+	*
+	*/
+    delete(gid) {
+        if (!gid) {
+	        throw new Error("gid 누락");
+	    }
+
+	    const url = `/file/delete/gid/${gid}`;
+        return commonLib.ajaxLoad(url);
+
+	},
+};
+
+
+
+window.addEventListener("DOMContentLoaded", function() {
+    //파일 선택 이벤트 처리 S
+	const fileUploadEls = document.getElementsByClassName("fileUpload");
+
+	for(const el of fileUploadEls){
+		el.addEventListener("click", function() {
+			const dataset = this.dataset;
+            const fileId = dataset.targetId;
+            const fileEl = document.getElementById(fileId);
+            if(fileEl) {
+                fileEl.click();
+            }
+		});
+	}
+    //파일 선택 이벤트 처리 E
+    const fileEls = document.getElementsByClassName("files");
+    for (const el of fileEls) {
+        el.addEventListener("change", function() {
+            const gid = this.dataset.gid;
+            const location = this.dataset.location;
+            const imageOnly = this.dataset.imageOnly;
+
+            const files = this.files;
+            if (files.length > 0) {
+                fileManager.uploads(files, gid, location, imageOnly == 'true', this);
+            }
+        });
+    }
+})
