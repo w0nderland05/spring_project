@@ -2,6 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{front/layouts/main}">
+<<<<<<< HEAD
     <main layout:fragment="content" class="layout_width">
         <form id="frmList" name="frmList" method="get" th:action="@{/study/list}" autocomplete="off" th:object="${studySearch}">
             <th:block th:replace="~{front/study2/_category::category}"></th:block>
@@ -21,4 +22,25 @@
             </section>
         </form>
     </main>
+=======
+<main layout:fragment="content" class="layout_width">
+    <form id="frmList" name="frmList" method="get" th:action="@{/study/list}" autocomplete="off" th:object="${studySearch}">
+        <th:block th:replace="~{front/study2/_category::category}"></th:block>
+        <section class="list_contents">
+            <div class="top_search">
+                <h1>
+                    <a th:href="@{/study/list}">전체 스터디</a>
+                </h1>
+                <div class="search_box">
+                    <input type="text" name="skey" placeholder="스터디 검색" th:field="*{skey}">
+                    <button type="submit">검색</button>
+                </div>
+            </div> <!-- top_search -->
+
+            <th:block th:replace="~{front/study2/_list::lists}"></th:block>
+            <th:block th:replace="~{commons/pagination::pagination}"></th:block>
+        </section>
+    </form>
+</main>
+>>>>>>> 8599cd278c32cbb189dc5157662e7182b7915bbe
 </html>

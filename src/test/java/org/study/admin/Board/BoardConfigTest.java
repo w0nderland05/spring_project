@@ -16,7 +16,7 @@ import org.study.commons.constants.board.ViewType;
 import org.study.commons.messageBundle.MessageBundle;
 import org.study.commons.validators.BadRequestException;
 import org.study.controllers.admin.board.BoardConfig;
-import org.study.models.board.BoardConfigService;
+import org.study.models.board.BoardSaveService;
 import org.study.models.board.DuplicateBIdException;
 import org.study.repositories.board.BoardRepository;
 import static org.junit.jupiter.api.Assertions.*;
@@ -45,7 +45,7 @@ public class BoardConfigTest {
     private BoardRepository repository;
 
     @Autowired
-    private BoardConfigService service;
+    private BoardSaveService service;
 
     @BeforeEach
     void config() {
@@ -70,7 +70,7 @@ public class BoardConfigTest {
     @DisplayName("예외 없이 게시판이 성공적으로 등록 (최종목적) ")
     void configSuccess(){
         assertDoesNotThrow(()->{
-            service.config(boardConfig);
+            service.save(boardConfig);
         });
         System.out.println(boardConfig);
     }
@@ -79,7 +79,7 @@ public class BoardConfigTest {
     @DisplayName("BoardConfig- 전체 Null값일때 예외메세지발생")
     void boardConfig_Null_Exception(){
         BadRequestException thrown = assertThrows(BadRequestException.class,() -> {
-           service.config(null);
+           service.save(null);
         });
 
         /** "잘못된 접근입니다." 문구 포함여부 체크 */
@@ -116,7 +116,7 @@ public class BoardConfigTest {
                 includedWord = "게시판 이름";
             }
             BadRequestException thrown = assertThrows(BadRequestException.class, () -> {
-                service.config(boardConfig);
+                service.save(boardConfig);
             });
             System.out.println(field);
             System.out.println(thrown.getMessage());
@@ -156,7 +156,7 @@ public class BoardConfigTest {
             }
 
             BadRequestException thrown = assertThrows(BadRequestException.class, () -> {
-                service.config(boardConfig);
+                service.save(boardConfig);
             });
             System.out.println(field);
             System.out.println(thrown.getMessage());
@@ -182,11 +182,11 @@ public class BoardConfigTest {
     @DisplayName("bId 중복 등록 시 DuplicateCateBIdException 발생 여부")
     void DuplicateCateBIdTest() {
         // 테스트 전 분류 등록
-        service.config(boardConfig);
+        service.save(boardConfig);
 
         assertThrows(DuplicateBIdException.class, () -> {
            // 중복 분류로 등록
-           service.config(boardConfig);
+           service.save(boardConfig);
         });
     }
 
@@ -196,7 +196,7 @@ public class BoardConfigTest {
     void rowsPerPageMinTest() {
         assertThrows(BadRequestException.class, () -> {
             boardConfig.setRowsPerPage(9L);
-            service.config(boardConfig);
+            service.save(boardConfig);
         });
         System.out.println(boardConfig);
     }
@@ -207,7 +207,7 @@ public class BoardConfigTest {
     void categoryEnterTest() {
         // textarea, split
         boardConfig.setCategory("분류1\n분류2\n분류3\n");
-        service.config(boardConfig);
+        service.save(boardConfig);
         System.out.println(boardConfig);
     }
 
@@ -253,7 +253,7 @@ public class BoardConfigTest {
     @Test
     @DisplayName("중복 등록 Bean Validation 검증 체크")
     void duplicateBIdCheckResponseTest() throws Exception {
-        service.config(boardConfig);
+        service.save(boardConfig);
 
         String body = mockMvc.perform(post("/admin/board")
                 .param("bId", boardConfig.getBId())

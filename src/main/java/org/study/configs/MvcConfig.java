@@ -24,6 +24,12 @@ public class MvcConfig implements WebMvcConfigurer {
 
     @Autowired
     private CommonInterceptor commonInterceptor;
+<<<<<<< HEAD
+=======
+
+
+
+>>>>>>> 8599cd278c32cbb189dc5157662e7182b7915bbe
 
     /**
      * 정적 경로 설정
@@ -71,4 +77,8 @@ public class MvcConfig implements WebMvcConfigurer {
         registry.addInterceptor(commonInterceptor)
                 .addPathPatterns("/**");
     }
+<<<<<<< HEAD
+=======
+
+>>>>>>> 8599cd278c32cbb189dc5157662e7182b7915bbe
 }

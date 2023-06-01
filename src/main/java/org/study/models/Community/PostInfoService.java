@@ -22,18 +22,9 @@ public class PostInfoService {
         PostConfig postConfig = PostConfig.builder()
                 .id(boardData.getId())
                 .gid(boardData.getGid())
-                .poster(boardData.getPoster())
-                .guestPw(boardData.getGuestPw())
-                .isNotice(boardData.isNotice())
                 .category(boardData.getCategory())
                 .subject(boardData.getSubject())
                 .content(boardData.getContent())
-                .idParent(boardData.getIdParent())
-                .ipAddr(boardData.getIpAddr())
-                .userAgent(boardData.getUserAgent())
-                .useEditor(boardData.isUseEditor())
-                .totalComments(boardData.getTotalComments())
-                .reviewPt(boardData.getReviewPt())
                 .build();
 
         return postConfig;

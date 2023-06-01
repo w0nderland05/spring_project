@@ -75,7 +75,6 @@ public class StudyServiceController {
         }
 
 
-
         return "redirect:/user/study/join";// 게시판 등록 후 스터디함께해요 페이지로 이동
     }
 }

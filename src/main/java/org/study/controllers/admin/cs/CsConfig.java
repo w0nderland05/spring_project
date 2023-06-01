@@ -14,7 +14,7 @@ import org.study.entities.Report;
 @Builder @AllArgsConstructor @NoArgsConstructor
 public class CsConfig {
 
-    // 신고 유형 ( 스터디 OR 게시판 OR 회원 )
+    // 신고 유형 ( 스터디 OR 커뮤니티 OR 회원 )
     @NotBlank
     private String division;
 

@@ -61,6 +61,19 @@ public class Studies extends BaseEntity {
     @ManyToOne
     @JoinColumn(name="userNo")
     private User user;
+<<<<<<< HEAD
+=======
+
+    @Transient
+    private List<FileInfo> mainImages;
+
+    @Transient
+    private List<FileInfo> editorFiles;
+
+    @Transient
+    private Category category;
+}
+>>>>>>> 8599cd278c32cbb189dc5157662e7182b7915bbe
 
     @Transient
     private List<FileInfo> mainImages;

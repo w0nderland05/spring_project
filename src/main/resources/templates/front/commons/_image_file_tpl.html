@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+<<<<<<< HEAD
     <script type="text/html" th:fragment="tpl" id="image_file_tpl">
         <div class='images file_<%=fileNo%>'>
             <a class='xi-close remove' href="/file/delete/<%=fileNo%>" onclick="return confirm('정말 삭제하시겠습니까?');" target="ifrmProcess"></a>
@@ -8,4 +9,14 @@
             </div>
         </div>
     </script>
+=======
+<script type="text/html" th:fragment="tpl" id="image_file_tpl">
+    <div class='images file_<%=fileNo%>'>
+        <a class='xi-close remove' href="/file/delete/<%=fileNo%>" onclick="return confirm('정말 삭제하시겠습니까?');" target="ifrmProcess"></a>
+        <div class='inner' style="background:url('<%=imageURL%>') no-repeat center center; background-size: cover;">
+
+        </div>
+    </div>
+</script>
+>>>>>>> 8599cd278c32cbb189dc5157662e7182b7915bbe
 </html>

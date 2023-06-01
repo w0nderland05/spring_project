@@ -19,7 +19,6 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 public class StudyConfig {
-
     private String mode; //update이면 수정모드
 
     @NotNull

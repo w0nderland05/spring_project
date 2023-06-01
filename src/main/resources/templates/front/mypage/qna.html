@@ -8,30 +8,6 @@
             <h1>문의 내역</h1>
         </div>
         <!-- 접었다 펼쳤다 하는 형식으로 만들 예정 , 한 페이지에 5개 정도 -->
-<!--        <div>-->
-<!--            <ul>-->
-<!--                <li>-->
-<!--                    <span>제목1</span>-->
-<!--                    &lt;!&ndash; 제목 자동 입력 &ndash;&gt;-->
-<!--                    <span>2023.4.29</span>-->
-<!--                    &lt;!&ndash; 문의 일시 자동 입력 &ndash;&gt;-->
-<!--                </li>-->
-
-<!--                <br>-->
-
-<!--                <li>-->
-<!--                    <span>문의 내용</span>-->
-<!--                    &lt;!&ndash; 문의 내용 자동 입력 &ndash;&gt;-->
-<!--                </li>-->
-
-<!--                <br>-->
-
-<!--                <li>-->
-<!--                    <span>답글</span>-->
-<!--                    &lt;!&ndash; 답글 내용 자동 입력 &ndash;&gt;-->
-<!--                </li>-->
-<!--            </ul>-->
-<!--        </div>-->
 
         <div class="faq-content">
             <button class="question" id="que-1"><span id="que-1-toggle">+</span>
@@ -51,6 +27,10 @@
         <div>
             <button type="button" class="btn1">
                 <a th:href="@{register}">문의하기</a>
+            </button>
+
+            <button type="button" class="btn1">
+                <a th:href="@{report_register}">신고하기</a>
             </button>
         </div>
     </form>

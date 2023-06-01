@@ -15,8 +15,15 @@ import org.study.commons.validators.CommonException;
 import org.study.commons.validators.NotAllowedException;
 import org.study.entities.Category;
 import org.study.entities.Studies;
+<<<<<<< HEAD
 import org.study.models.studies.StudyInfoService;
 import org.study.models.studies.StudySaveService;
+=======
+import org.study.models.studies.InfoService;
+import org.study.models.studies.SaveService;
+import org.study.models.studies.InfoService;
+import org.study.models.studies.SaveService;
+>>>>>>> 8599cd278c32cbb189dc5157662e7182b7915bbe
 import org.study.repositories.CategoryRepository;
 
 import java.util.List;
@@ -27,8 +34,13 @@ import java.util.List;
 @RequiredArgsConstructor
 public class StudyController {
 
+<<<<<<< HEAD
     private final StudySaveService saveService;
     private final StudyInfoService infoService;
+=======
+    private final SaveService saveService;
+    private final InfoService infoService;
+>>>>>>> 8599cd278c32cbb189dc5157662e7182b7915bbe
 
     private final CategoryRepository categoryRepository;
 

@@ -29,10 +29,15 @@
                             <input type="checkbox">
                         </td>
                         <td th:field="*{qsCode}"></td>   <!-- 문의 코드 -->
+
                         <td th:field="*{category}"></td>   <!-- 문의 유형 -->
                         <td th:field="*{subject}"></td>   <!-- 문의 제목 -->
-                        <td th:text="${userJoin.userNm}"></td>   <!-- 회원명 -->
-                        <td th:text="${userJoin.userEmail}"></td>   <!-- 이메일 -->
+                        <td>
+                            <input type="text" naem="userNm" th:text="*{user.userNm == null ? '' : user.userNm}">
+                        </td>   <!-- 회원명 -->
+                        <td>
+                            <input type="text" name="userEmail" th:text="*{user.userEmail == null ? '':user.userEmail}">
+                        </td>   <!-- 이메일 -->
                         <td>
                             <select th:field="*{csProcess}">
                                 <option th:value="CLEAR">답변 완료</option>
@@ -45,7 +50,6 @@
                             <button class="btn2">
                                 <a th:href="@{/admin/cs/view/{code}(code=*{qsCode})}" th:text="*{qsCode}">상세보기</a>
                             </button>
-
                             <!-- 문의 내역 페이지로 이동 -->
                         </td>
                     </tr>

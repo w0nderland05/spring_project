@@ -44,9 +44,9 @@ public class User extends BaseEntity{
     @Column(length=13)
     private String birth;
 
-    @Enumerated(EnumType.STRING)
-    @Column(length=30)
-    private Gender gender = Gender.MAN; // 성별, 기본값은 Man
+    @Column(length=20)
+    private String gender;
+
 
     @Enumerated(EnumType.STRING)
     @Column(length=30, nullable = false)
@@ -57,10 +57,23 @@ public class User extends BaseEntity{
      * ++ 이용제한은 UserSaveService에도 추가해야함
      * 탈퇴일자, 이용제한 ( 만약 라디오로 할거면 Enum으로, 캘린더로 할거면 이건 강사님한테 물어보던가 구글링 )
     */
+<<<<<<< HEAD
     /**
     @OneToMany(mappedBy="user")
     private List<Report> reports = new ArrayList<>();
     */
+=======
+
+    @OneToMany(mappedBy="user")
+    private List<Studies> studies = new ArrayList<>();
+
+    @OneToMany(mappedBy="user")
+    private List<Report> reports = new ArrayList<>();
+
+    @OneToMany(mappedBy="user")
+    private List<Question> questions = new ArrayList<>();
+
+>>>>>>> 8599cd278c32cbb189dc5157662e7182b7915bbe
 
 
 }
