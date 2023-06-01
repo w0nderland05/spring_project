@@ -33,13 +33,23 @@
                 <div class="error" th:each="err : ${#fields.errors('cellphone')}" th:text="${err}"></div>
             </li>
             <!-- 생년월일 -->
-            <li class="rows">
+            <li class="rows flex">
+                <span class="tit">생년월일</span>
                 <input type="date" name="birth" th:min="${minDate}" th:field="*{birth}" th:placeholder="#{birth}">
             </li>
             <!-- 성별 -->
-            <li class="rows">
-                <input type="radio" name="gender" value="man">남
-                <input type="radio" name="gender" value="woman">여
+            <li class="rows flex">
+                <span class="tit">성별</span>
+                <div>
+                    <span>
+                        <input type="radio" name="gender" value="MAN" id="gender_man" th:field="*{gender}">
+                        <label for="gender_man">남</label>
+                    </span>
+                    <span>
+                        <input type="radio" name="gender" value="WOMAN" id="gender_woman" th:field="*{gender}">
+                        <label for="gender_woman">여</label>
+                    </span>
+                </div>
             </li>
         </ul>
     </th:block>

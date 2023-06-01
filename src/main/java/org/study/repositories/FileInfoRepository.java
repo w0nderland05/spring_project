@@ -7,8 +7,7 @@ import org.study.entities.FileInfo;
 import java.util.List;
 
 public interface FileInfoRepository extends JpaRepository<FileInfo, Long>, QuerydslPredicateExecutor<FileInfo> {
+    FileInfo findByFileNo(Long fileNo);
+
     List<FileInfo> findByGidOrderByCreatedAtAsc(String gid);
-
-    List<FileInfo> findByGidAndLocationOrderByCreatedAtAsc(String gid, String location);
-
 }

@@ -16,6 +16,8 @@ public class LoginController {
         userLogin.setSuccess(success);
 
         model.addAttribute("userLogin", userLogin);
+        model.addAttribute("addCss", new String[] { "user/style"} );
+        model.addAttribute("pageTitle", "로그인");
 
         return "front/user/login";
     }

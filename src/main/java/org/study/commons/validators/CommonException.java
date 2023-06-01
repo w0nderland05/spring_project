@@ -2,6 +2,8 @@ package org.study.commons.validators;
 
 import org.springframework.http.HttpStatus;
 
+import java.util.ResourceBundle;
+
 /**
  * 공통 예외
  *
@@ -9,6 +11,15 @@ import org.springframework.http.HttpStatus;
  * 모든 예외의 기준이 되는 예외이며 모든 예외가 상속 받아야 합니다.
  */
 public class CommonException extends RuntimeException {
+
+    protected static ResourceBundle bundleValidation;
+    protected static ResourceBundle bundleErrors;
+
+    static {
+        bundleValidation = ResourceBundle.getBundle("messages.validation");
+        bundleErrors = ResourceBundle.getBundle("messages.errors");
+    }
+
     private HttpStatus status;
 
     public CommonException(String message) {

@@ -2,7 +2,6 @@ package org.study.controllers.user.study;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,15 +10,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.study.commons.Areas;
 import org.study.commons.UserUtils;
 import org.study.controllers.admin.study.StudyConfig;
-import org.study.entities.Study;
-import org.study.models.study.StudyApplyService;
 
 //@Controller
 @RequestMapping("user/study")
 @RequiredArgsConstructor
 public class StudyServiceController {
-
-    private final StudyApplyService service;
 
     private final UserUtils userUtils;
 

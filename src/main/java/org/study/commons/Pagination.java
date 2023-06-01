@@ -1,10 +1,14 @@
 package org.study.commons;
 
+import lombok.Data;
 import org.springframework.data.domain.Page;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 import java.util.ArrayList;
 import java.util.List;
 
+@Data
 public class Pagination <T>{
     private int page; // 현재 페이지
     private long total; // 전체 레코드 수
@@ -19,14 +23,16 @@ public class Pagination <T>{
     private String baseUrl;
 
     public Pagination(Page<T> data, String url) {
-        this(data.getNumber() + 1, data.getTotalElements(), data.getSize(), url);
+        //this(data.getNumber() + 1, data.getTotalElements(), data.getSize(), url);
+        this(data.getNumber() + 1, data.getTotalElements(), 20, url);
     }
 
     public Pagination(int page, long total, String url) {
         this(page, total, 20, url);
+
     }
 
-    public Pagination(int _page, long _total, int _pagePerCnt, String url) {
+    public Pagination(int _page, long _total, int _pagePerCnt, String url)  {
         total = _total;
         pagePerCnt = _pagePerCnt;
         page = _page <= 0 ? 1 : page;
@@ -36,7 +42,12 @@ public class Pagination <T>{
         }
 
         baseUrl = url;
-        baseUrl = baseUrl == null ? "" : baseUrl;
+        baseUrl = (baseUrl == null) ? "" : baseUrl;
+        try {
+            baseUrl = URLDecoder.decode(baseUrl, "UTF-8");
+        } catch (UnsupportedEncodingException e) {
+            throw new RuntimeException(e);
+        }
 
         this.pageCnt = pageCnt < 1 ? 10 : pageCnt; // 페이지 구간이 0 이하 인 경우는 기본값 10 지정
         this.lastPage = (int)Math.ceil(total / (double)this.pagePerCnt);  // 마지막 페이지

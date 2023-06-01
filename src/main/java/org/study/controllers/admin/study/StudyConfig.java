@@ -1,6 +1,5 @@
 package org.study.controllers.admin.study;
 
-import jakarta.persistence.Column;
 import jakarta.persistence.Lob;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -9,12 +8,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.validator.constraints.Range;
-import org.modelmapper.ModelMapper;
 import org.study.commons.constants.RegionType;
 import org.study.commons.constants.Status;
-import org.study.controllers.admin.category.CategoryForm;
-import org.study.entities.Category;
-import org.study.entities.Study;
 import org.study.entities.User;
 
 import java.time.LocalDateTime;
@@ -45,7 +40,7 @@ public class StudyConfig {
     private LocalDateTime regStatusDt;//상태처리일시
 
     @NotNull
-    @Range(min =0, max =1000)
+    @Range(min = 0, max = 1000)
     private Long maxMember; //신청최대인원수
 
     private Long remainSeat = 0L; //남은 자리수
@@ -73,8 +68,4 @@ public class StudyConfig {
     private int limit = 20; // 1페이지당 출력 갯수
 
     private User user;
-
-    public static Study of (StudyConfig studyConfig) {
-        return new ModelMapper().map(studyConfig, Study.class);
-    }
 }
