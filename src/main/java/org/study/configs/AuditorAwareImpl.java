@@ -13,23 +13,14 @@ import java.util.Optional;
 public class AuditorAwareImpl implements AuditorAware<String> {
     private final UserUtils userUtils;
 
-    private final UserUtils userUtils;
-
     @Override
     public Optional<String> getCurrentAuditor() {
-<<<<<<< HEAD
-=======
-
->>>>>>> 8599cd278c32cbb189dc5157662e7182b7915bbe
         String userEmail = null;
         if (userUtils.isLogin()) {
             userEmail = userUtils.getUser().getUserEmail();
         }
 
         return Optional.ofNullable(userEmail);
-<<<<<<< HEAD
-=======
 
->>>>>>> 8599cd278c32cbb189dc5157662e7182b7915bbe
     }
 }

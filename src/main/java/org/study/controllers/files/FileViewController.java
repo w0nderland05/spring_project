@@ -27,8 +27,4 @@ public class FileViewController {
 
         return "file/view";
     }
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> 8599cd278c32cbb189dc5157662e7182b7915bbe

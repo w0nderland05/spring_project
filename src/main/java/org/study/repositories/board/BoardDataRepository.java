@@ -2,12 +2,6 @@ package org.study.repositories.board;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.querydsl.QuerydslPredicateExecutor;
-<<<<<<< HEAD
-=======
-import org.study.commons.constants.RegionType;
-import org.study.controllers.admin.community.CommunitySearch;
-import org.study.controllers.admin.study.StudySearch;
->>>>>>> 8599cd278c32cbb189dc5157662e7182b7915bbe
 import org.study.entities.board.BoardData;
 import org.study.entities.board.QBoardData;
 

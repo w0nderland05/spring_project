@@ -11,11 +11,10 @@ import org.study.commons.Pagination;
 import org.study.entities.Category;
 import org.study.entities.Studies;
 import org.study.models.category.CateListService;
-<<<<<<< HEAD
-import org.study.models.studies.StudyListService;
-=======
+
 import org.study.models.studies.ListService;
->>>>>>> 8599cd278c32cbb189dc5157662e7182b7915bbe
+import org.study.models.studies.StudyListService;
+
 
 import java.util.List;
 
@@ -25,11 +24,9 @@ import java.util.List;
 public class StudyListController {
 
     private final CateListService cateListService;
-<<<<<<< HEAD
-    private final StudyListService listService;
-=======
+
     private final ListService listService;
->>>>>>> 8599cd278c32cbb189dc5157662e7182b7915bbe
+
 
     @GetMapping
     public String list(@ModelAttribute  StudySearch search, Model model) {

@@ -1,48 +1,5 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<<<<<<< HEAD
-    <th:block th:fragment="user_form">
-        <ul class="user_form" th:object="${userJoin}">
-            <!-- 이메일 -->
-            <li class="rows">
-                <input type="text" name="userId" th:field="*{userEmail}" th:placeholder="#{userEmail}">
-                <div class="error" th:each="err : ${#fields.errors('userEmail')}" th:text="${err}"></div>
-            </li>
-            <!-- 비밀번호 -->
-            <li class="rows">
-                <input type="password" name="userPw" th:field="*{userPw}" th:placeholder="#{userPw}">
-                <div class="error" th:each="err : ${#fields.errors('userPw')}" th:text="${err}"></div>
-            </li>
-            <!-- 비밀번호 확인 -->
-            <li class="rows">
-                <input type="password" name="userPwCk" th:field="*{userPwCk}" th:placeholder="#{userPwCk}">
-                <div class="error" th:each="err : ${#fields.errors('userPwCk')}" th:text="${err}"></div>
-            </li>
-            <!-- 닉네임 -->
-            <li class="rows">
-                <input type="text" name="text" th:field="*{userNickNm}" th:placeholder="#{userNickNm}">
-                <div class="error" th:each="err : ${#fields.errors('userNickNm')}" th:text="${err}"></div>
-            </li>
-            <!-- 회원명 -->
-            <li class="rows">
-                <input type="text" name="userNm" th:field="*{userNm}" th:placeholder="#{userNm}">
-                <div class="error" th:each="err : ${#fields.errors('userNm')}" th:text="${err}"></div>
-            </li>
-            <!-- 전화번호 -->
-            <li class="rows">
-                <input type="text" name="cellPhone" th:field="*{cellphone}" th:placeholder="#{cellPhone}">
-                <div class="error" th:each="err : ${#fields.errors('cellphone')}" th:text="${err}"></div>
-            </li>
-            <!-- 생년월일 -->
-            <li class="rows flex">
-                <span class="tit">생년월일</span>
-                <input type="date" name="birth" th:min="${minDate}" th:field="*{birth}" th:placeholder="#{birth}">
-            </li>
-            <!-- 성별 -->
-            <li class="rows flex">
-                <span class="tit">성별</span>
-                <div>
-=======
 <th:block th:fragment="user_form">
     <ul class="user_form" th:object="${userJoin}">
         <!-- 이메일 -->
@@ -84,21 +41,11 @@
         <li class="rows flex">
             <span class="tit">성별</span>
             <div>
->>>>>>> 8599cd278c32cbb189dc5157662e7182b7915bbe
+
                     <span>
                         <input type="radio" name="gender" value="MAN" id="gender_man" th:field="*{gender}">
                         <label for="gender_man">남</label>
                     </span>
-<<<<<<< HEAD
-                    <span>
-                        <input type="radio" name="gender" value="WOMAN" id="gender_woman" th:field="*{gender}">
-                        <label for="gender_woman">여</label>
-                    </span>
-                </div>
-            </li>
-        </ul>
-    </th:block>
-=======
                 <span>
                         <input type="radio" name="gender" value="WOMAN" id="gender_woman" th:field="*{gender}">
                         <label for="gender_woman">여</label>
@@ -107,5 +54,4 @@
         </li>
     </ul>
 </th:block>
->>>>>>> 8599cd278c32cbb189dc5157662e7182b7915bbe
 </html>

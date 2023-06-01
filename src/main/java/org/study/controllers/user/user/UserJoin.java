@@ -34,12 +34,7 @@ public class UserJoin {
     @NotBlank
     private String userNm; // 회원명
 
-<<<<<<< HEAD
-    @Enumerated(EnumType.STRING)
-    private String gender = Gender.MAN.toString(); // 성별
-=======
     private String gender;
->>>>>>> 8599cd278c32cbb189dc5157662e7182b7915bbe
 
     private String birth; //생년월일
 

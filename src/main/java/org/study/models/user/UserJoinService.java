@@ -31,11 +31,7 @@ public class UserJoinService {
                 .userNm(join.getUserNm())
                 .userNickNm(join.getUserNickNm())
                 .cellPhone(join.getCellphone())
-<<<<<<< HEAD
-                .gender(Gender.valueOf(join.getGender()))
-=======
                 .gender(join.getGender()) //기본
->>>>>>> 8599cd278c32cbb189dc5157662e7182b7915bbe
                 .role(UserRole.USER) //기본
                 .birth(join.getBirth())
                 .build();

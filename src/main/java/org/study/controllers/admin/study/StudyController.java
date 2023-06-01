@@ -2,10 +2,7 @@ package org.study.controllers.admin.study;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-<<<<<<< HEAD
 
-=======
->>>>>>> 8599cd278c32cbb189dc5157662e7182b7915bbe
 @Controller
 @RequestMapping("/admin/study")
 public class StudyController {
