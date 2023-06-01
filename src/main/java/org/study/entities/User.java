@@ -5,14 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.data.annotation.CreatedDate;
 import org.study.commons.constants.Gender;
 import org.study.commons.constants.UserRole;
-
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
 /**
  * 회원 엔티티
  *
@@ -63,6 +57,12 @@ public class User extends BaseEntity{
      * ++ 이용제한은 UserSaveService에도 추가해야함
      * 탈퇴일자, 이용제한 ( 만약 라디오로 할거면 Enum으로, 캘린더로 할거면 이건 강사님한테 물어보던가 구글링 )
     */
+<<<<<<< HEAD
+    /**
+    @OneToMany(mappedBy="user")
+    private List<Report> reports = new ArrayList<>();
+    */
+=======
 
     @OneToMany(mappedBy="user")
     private List<Studies> studies = new ArrayList<>();
@@ -73,6 +73,7 @@ public class User extends BaseEntity{
     @OneToMany(mappedBy="user")
     private List<Question> questions = new ArrayList<>();
 
+>>>>>>> 8599cd278c32cbb189dc5157662e7182b7915bbe
 
 
 }
