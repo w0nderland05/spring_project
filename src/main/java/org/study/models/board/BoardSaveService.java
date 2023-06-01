@@ -67,13 +67,16 @@ public class BoardSaveService {
         board.setSkin(SkinType.valueOf(boardConfig.getSkin()));
         board.setReview(boardConfig.isReview());
 
-        /** category: '\n' 줄바꿈울 기준으로 인식 */
+        /**
+
+        // category: '\n' 줄바꿈울 기준으로 인식
         String getCate = boardConfig.getCategory();
         String[] categoryArr = getCate.split("\n");
 
         for (String category : categoryArr) {
             board.setCategory(category);
         }
+        */
 
         repository.saveAndFlush(board);
     }
