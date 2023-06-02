@@ -15,7 +15,7 @@
     <script th:each="jsFile : ${addScript}" th:src="@{/admin/js/{file}.js(file=${jsFile})}"></script>
     <th:block layout:fragment="addScript"></th:block>
 </head>
-<body>
+<body th:class="${bodyClass}">
 <!-- 위의 헤더 부분-->
 <header th:replace="~{admin/outlines/header::common}"></header>
 

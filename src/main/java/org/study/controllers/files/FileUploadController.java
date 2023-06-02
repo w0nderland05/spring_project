@@ -37,7 +37,7 @@ public class FileUploadController {
 
     @ResponseBody
     @PostMapping
-    public List<FileInfo> uploadPs(MultipartFile[] files, String gid, String location, boolean image) {
+    public List<FileInfo> uploadPs(MultipartFile[] files, String gid, String location, boolean image){
         /**
          * 1. 파일 정보 저장
          * 2. 파일 저장 처리 - getFilePath에 저장

@@ -2,6 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{front/layouts/main}">
+
 <main layout:fragment="content" class="layout_width">
     <form id="frmList" name="frmList" method="get" th:action="@{/study/list}" autocomplete="off" th:object="${studySearch}">
         <th:block th:replace="~{front/study2/_category::category}"></th:block>

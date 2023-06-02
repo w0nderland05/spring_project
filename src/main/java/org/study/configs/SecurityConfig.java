@@ -29,7 +29,6 @@ public class SecurityConfig {
                 .logoutRequestMatcher(new AntPathRequestMatcher("/user/logout"))
                 .logoutSuccessUrl("/");
 
-
         http.authorizeHttpRequests()
                 .requestMatchers("/mypage/**", "/study").authenticated()
                 //.requestMatchers("/admin/**").hasAuthority("ADMIN")

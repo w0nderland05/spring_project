@@ -44,7 +44,7 @@ public class FileDownloadController {
             response.setHeader("Pragma", "public");
             response.setHeader("Content-Length", String.valueOf(file.length()));
 
-            while(bis.available() > 0) {
+            while (bis.available() > 0) {
                 out.write(bis.read());
             }
             out.flush();

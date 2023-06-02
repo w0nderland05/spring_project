@@ -11,7 +11,10 @@ import org.study.commons.Pagination;
 import org.study.entities.Category;
 import org.study.entities.Studies;
 import org.study.models.category.CateListService;
+
 import org.study.models.studies.ListService;
+import org.study.models.studies.StudyListService;
+
 
 import java.util.List;
 
@@ -21,7 +24,9 @@ import java.util.List;
 public class StudyListController {
 
     private final CateListService cateListService;
+
     private final ListService listService;
+
 
     @GetMapping
     public String list(@ModelAttribute  StudySearch search, Model model) {

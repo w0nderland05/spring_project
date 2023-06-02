@@ -12,7 +12,7 @@ import org.study.models.file.FileDeleteService;
 @Controller
 @RequestMapping("/file/delete")
 @RequiredArgsConstructor
-public class FIleDeleteController {
+public class FileDeleteController {
     private final FileDeleteService deleteService;
 
     @RequestMapping("/{fileNo}")

@@ -17,15 +17,13 @@ import org.study.commons.interceptors.CommonInterceptor;
 @EnableJpaAuditing
 public class MvcConfig implements WebMvcConfigurer {
 
+
     // 파일 업로드 경로
     @Value("${file.upload.path}")
     private String fileUploadPath;
 
     @Autowired
     private CommonInterceptor commonInterceptor;
-
-
-
 
     /**
      * 정적 경로 설정

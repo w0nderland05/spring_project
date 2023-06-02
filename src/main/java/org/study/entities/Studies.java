@@ -62,6 +62,7 @@ public class Studies extends BaseEntity {
     @JoinColumn(name="userNo")
     private User user;
 
+
     @Transient
     private List<FileInfo> mainImages;
 
@@ -71,4 +72,3 @@ public class Studies extends BaseEntity {
     @Transient
     private Category category;
 }
-

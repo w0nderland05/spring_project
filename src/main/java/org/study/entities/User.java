@@ -5,14 +5,12 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.data.annotation.CreatedDate;
 import org.study.commons.constants.Gender;
 import org.study.commons.constants.UserRole;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+
 /**
  * 회원 엔티티
  *
@@ -72,7 +70,5 @@ public class User extends BaseEntity{
 
     @OneToMany(mappedBy="user")
     private List<Question> questions = new ArrayList<>();
-
-
 
 }

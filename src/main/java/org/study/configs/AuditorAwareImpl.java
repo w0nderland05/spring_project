@@ -11,12 +11,10 @@ import java.util.Optional;
 @Component
 @RequiredArgsConstructor
 public class AuditorAwareImpl implements AuditorAware<String> {
-
     private final UserUtils userUtils;
 
     @Override
     public Optional<String> getCurrentAuditor() {
-
         String userEmail = null;
         if (userUtils.isLogin()) {
             userEmail = userUtils.getUser().getUserEmail();
