@@ -21,8 +21,10 @@
         <dt>카테고리</dt>
         <dd>
             <th:block th:each="category, status : ${categories}">
-                <input type="radio" name="cateCd" th:id="${'cateCd_' + status.index}" th:value="${category.cateCd}" th:field="*{cateCd}">
-                <label th:for="${'cateCd_' + status.index}" th:text="${category.cateNm}"></label>
+                <span>
+                    <input type="radio" name="cateCd" th:id="${'cateCd_' + status.index}" th:value="${category.cateCd}" th:field="*{cateCd}">
+                    <label th:for="${'cateCd_' + status.index}" th:text="${category.cateNm}"></label>
+                </span>
             </th:block>
             <div class="error" th:each="err : ${#fields.errors('cateCd')}" th:text="${err}"></div>
         </dd>
@@ -38,10 +40,14 @@
     <dl>
         <dt>신청최대 인원수</dt>
         <dd>
-            <input type="radio" name="selMaxMember" class='selMaxMember' id="selMaxMember_all" value="all" th:field="*{selMaxMember}">
-            <label for="selMaxMember_all">무제한</label>
-            <input type="radio" name="selMaxMember" class='selMaxMember' id="selMaxMember_each" value="each" th:field="*{selMaxMember}">
-            <label for="selMaxMember_each">개별입력</label>
+            <span>
+                <input type="radio" name="selMaxMember" class='selMaxMember' id="selMaxMember_all" value="all" th:field="*{selMaxMember}">
+                <label for="selMaxMember_all">무제한</label>
+            </span>
+            <span>
+                <input type="radio" name="selMaxMember" class='selMaxMember' id="selMaxMember_each" value="each" th:field="*{selMaxMember}">
+                <label for="selMaxMember_each">개별입력</label>
+            </span>
 
             <div class="max_member" th:classappend="*{maxMember == 0} ? 'dn' : ''">
                 <input type="number" name="maxMember" th:field="*{maxMember}" class="ar w150">명
@@ -52,15 +58,22 @@
     <dl>
         <dt>스터디 주당횟수</dt>
         <dd>
-            <input type="radio" name="numOfWeek" value="1" id="numOfWeek_1" th:field="*{numOfWeek}">
-            <label for="numOfWeek_1">주1회</label>
-            <input type="radio" name="numOfWeek" value="2" id="numOfWeek_2" th:field="*{numOfWeek}">
-            <label for="numOfWeek_2">주2회</label>
-            <input type="radio" name="numOfWeek" value="3" id="numOfWeek_3" th:field="*{numOfWeek}">
-            <label for="numOfWeek_3">주3회</label>
-            <input type="radio" name="numOfWeek" value="4" id="numOfWeek_4">
-            <label for="numOfWeek_4" th:fied="*{numOfWeek}">주4회 이상</label>
-
+            <span>
+                <input type="radio" name="numOfWeek" value="1" id="numOfWeek_1" th:field="*{numOfWeek}">
+                <label for="numOfWeek_1">주1회</label>
+            </span>
+            <span>
+                <input type="radio" name="numOfWeek" value="2" id="numOfWeek_2" th:field="*{numOfWeek}">
+                <label for="numOfWeek_2">주2회</label>
+            </span>
+            <span>
+                <input type="radio" name="numOfWeek" value="3" id="numOfWeek_3" th:field="*{numOfWeek}">
+                <label for="numOfWeek_3">주3회</label>
+            </span>
+            <span>
+                <input type="radio" name="numOfWeek" value="4" id="numOfWeek_4">
+                <label for="numOfWeek_4" th:fied="*{numOfWeek}">주4회 이상</label>
+            </span>
             <div class="error" th:each="err : ${#fields.errors('numOfWeek')}" th:text="${err}"></div>
         </dd>
     </dl>
