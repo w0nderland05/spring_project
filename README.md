@@ -12,7 +12,7 @@
 ⑥ 마이페이지 (개설 및 가입된 스터디)<br>
 ***
 ## 사이트맵
-![사이트 맵](https://github.com/82everywin/spring_project/blob/study/%EC%82%AC%EC%9D%B4%ED%8A%B8%20%EB%A7%B5)
+![사이트 맵](https://github.com/82everywin/spring_project/blob/study/%EC%82%AC%EC%9D%B4%ED%8A%B8%20%EB%A7%B5.jpg?raw=true)
 
 ***
 ## ERD 설계하기 
