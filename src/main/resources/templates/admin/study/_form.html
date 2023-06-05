@@ -1,60 +1,64 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<th:block th:fragment="form" >
-
+<th:block th:fragment="form" th:object="${studyConfig}" >
+<div class="error" th:each="err : ${#fields.globalErrors()}" th:text="${err}"></div>
 <dl>
     <dt>스터디코드</dt>
     <dd>
-            <input  type="text" name="studyCode">
+        <th:block th:if="${mode != null && mode == 'update' }">
+            [[*{studyCode}]]
+            <input type="hidden" name="studyCode" th:field="*{studyCode}">
+        </th:block>
+        <input th:unless="${mode != null && mode == 'update' }" type="text" name="studyCode" th:field="*{studyCode}">
+        <div class="error" th:each="err :${#fields.errors('studyCode')}" th:text="${err}"></div>
     </dd>
 </dl>
 <dl>
     <dt>
-        <select name="stCategory">
-            <option value="scNm">---카테고리---</option>
+        <select name="category" th:field="*{category}">
+            <option value="">-카테고리-</option>
             <option value="a">a</option>
             <option value="b">b</option>
             <option value="c">c</option>
         </select>
+        <div class="error" th:each="err :${#fields.errors('category')}" th:text="${err}"></div>
     </dt>
     <dd>
-        <input type="text">
+        <input type="text" name="studyNm" placeholder="스터디명을 입력하세요." th:field="*{studyNm}">
+        <div class="error" th:each="err : ${#fields.errors('studyNm')}" th:text="${err}"></div>
     </dd>
 </dl>
 <dl>
     <dt>회원정보</dt>
-    <dd></dd>
+    <dd>
+        <span name="userEmail" th:text="*{user.userEmail == null ? '':user.userEmail}"/>
+        /
+        <span name="userNm" th:text="*{user.userNm == null ? '' : user.userNm}"/>
+    </dd>
 </dl>
 <dl>
     <dt>신청최대 인원수</dt>
     <dd>
-        <input type="radio" name="limit" value="true" id="limit_1">
-        <label for="limit_1">
-            제한있음
-            <input type="text" name="limit">
-        </label>
-        <input type="radio" name="limit" value="false" id="limit_0">
-        <label for="limit_0">
-            제한없음
-        </label>
+        <input type="number" name="maxMember"  th:field="*{maxMember}" >
+        <div class="error" th:each="err :${#fields.errors('maxMember')}" th:text="${err}"></div>
     </dd>
 </dl>
 <dl>
     <dt>스터디 주당횟수</dt>
     <dd>
-        <input type="radio" name="numOfWeek" value="true" id="num_1">
+        <input type="radio" name="numOfWeek" value="1" id="num_1" th:field="*{numOfWeek}">
         <label for="num_1">
             주1회
         </label>
-        <input type="radio" name="numOfWeek" value="true" id="num_2">
+        <input type="radio" name="numOfWeek" value="2" id="num_2" th:field="*{numOfWeek}">
         <label for="num_2">
             주2회
         </label>
-        <input type="radio" name="numOfWeek" value="true" id="num_3">
+        <input type="radio" name="numOfWeek" value="3" id="num_3" th:field="*{numOfWeek}">
         <label for="num_3">
             주3회
         </label>
-        <input type="radio" name="numOfWeek" value="true" id="num_4">
+        <input type="radio" name="numOfWeek" value="4" id="num_4" th:field="*{numOfWeek}">
         <label for="num_4">
             주4회이상
         </label>
@@ -62,26 +66,22 @@
 </dl>
 <dl>
     <dt>지역</dt>
+
     <dd>
-        <input type="radio" name="regionType" value="true" id="online">
+        <input type="radio" name="regionType" value="ONLINE" id="online" th:field="*{regionType}">
         <label for="online">
             온라인
         </label>
-        <input type="radio" name="regionType" value="false" id="offline">
+        <input type="radio" name="regionType" value="OFFLINE" id="offline" th:field="*{regionType}">
         <label for="offline">
             오프라인
-            <select>
-                <option value="state">---시/도---</option>
-                <option value="state">서울특별시</option>
-                <option value="state">경기도</option>
-                <option value="state">인천광역시</option>
-                <option value="city">a</option>
+            <select name="addressDo" class="ajax_sido" th:field="*{addressDo}">
+                <option value="">- 시도 선택 -</option>
+                <option th:each="sido : ${sidoList}" th:value="${sido}" th:text="${sido}"></option>
             </select>
-            <select>
-                <option value="city">---군/구---</option>
-                <option value="city">a</option>
-                <option value="city">a</option>
-                <option value="city">a</option>
+            <select name="addressSiGunGu" class="ajax_gigugun" th:field="*{addressSiGunGu}">
+                <option value="">- 시구군 선택 -</option>
+                <option th:if="${siguguns != null}" th:each="sigugun : ${siguguns}" th:value="${sigugun}" th:text="${sigugun}"></option>
             </select>
         </label>
     </dd>
@@ -89,23 +89,21 @@
 <dl>
     <dt>메인사진</dt>
     <dd>
-        <button type="button">첨부사진</button>
-        <button type="button">새로운 파일 업로드</button>
+        <button type="button">파일 업로드</button>
     </dd>
 </dl>
 <dl>
     <dt>한줄소개글</dt>
     <dd>
-        <input type="text">
+        <input type="text" name="simpleIntro" th:field="*{simpleIntro}">
     </dd>
 </dl>
 <dl>
     <dt>소개글</dt>
     <dd>
         <!--에디터 추가 -->
-        <input type="text">
-        <button type="button">첨부한 파일</button>
-        <button type="button">새로운 파일 업로드</button>
+        <textarea name="introduction" th:field="*{introduction}"></textarea>
+        <button type="button"> 파일 업로드</button>
     </dd>
 </dl>
 

@@ -9,6 +9,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+import org.study.models.user.LoginFailureHandler;
+import org.study.models.user.LoginSuccessHandler;
 
 @Configuration
 public class SecurityConfig {
@@ -18,39 +20,21 @@ public class SecurityConfig {
 
         http.formLogin()
                 .loginPage("/user/login")
-                .defaultSuccessUrl("/")
+                .successHandler(new LoginSuccessHandler())
                 .usernameParameter("userEmail")
                 .passwordParameter("userPw")
-                .failureUrl("/user/login?success=false")
+                .failureHandler(new LoginFailureHandler())
                 .and()
                 .logout()
                 .logoutRequestMatcher(new AntPathRequestMatcher("/user/logout"))
                 .logoutSuccessUrl("/");
 
-<<<<<<< HEAD
-        /**
         http.authorizeHttpRequests()
-                .requestMatchers("/", "/user/**", "/error/**").permitAll()
-                .requestMatchers("/user/mypage/**").hasAuthority("USER")
-                .requestMatchers("/admin/**").hasAuthority("ADMIN")
-                .anyRequest().authenticated();
-        */
-<<<<<<< HEAD
-        http.authorizeHttpRequests()
-                        .requestMatchers("/user/mypage/**").authenticated()
-                        .requestMatchers("/admin/**").hasAuthority("ADMIN")
-                        .anyRequest().permitAll();
-=======
-//        http.authorizeHttpRequests()
-//                .requestMatchers("/", "/user/**", "/error/**").permitAll()
-//                .requestMatchers("/user/mypage/**").hasAuthority("USER")
-//                .requestMatchers("/admin/**").hasAuthority("ADMIN")
-//                .anyRequest().authenticated();
+                .requestMatchers("/mypage/**", "/study").authenticated()
+                //.requestMatchers("/admin/**").hasAuthority("ADMIN")
+                .anyRequest().permitAll();
 
->>>>>>> 2aa59e21d66c1993d0bd0fcfeeb33aeac3aa71be
-=======
 
->>>>>>> 569d3cb91b44457436f568481e20338a4c959a44
         /**
          *  관리자 페이지에 권한없는 요청 URL 접속시 401 코드 및 오류 페이지 이동
          *  그 외에는 로그인 페이지로 이동
@@ -68,12 +52,14 @@ public class SecurityConfig {
                     res.sendRedirect(req.getContextPath() + redirectUrl);
                 });
 
+        http.headers().frameOptions().sameOrigin();
+
         return http.build();
     }
 
     @Bean
     public WebSecurityCustomizer webSecurityCustomizer() {
-        return w -> w.ignoring()
+        return w -> w.ignoring() // 시큐리티가 무시할 정적 경로 설정
                 .requestMatchers(
                         "/front/images/**",
                             "/mobile/images/**",
@@ -83,7 +69,8 @@ public class SecurityConfig {
                             "/admin/js/**",
                             "/front/css/**",
                             "/mobile/css/**",
-                            "/admin/css/**");
+                            "/admin/css/**",
+                            "/uploads/**");
     }
 
     @Bean

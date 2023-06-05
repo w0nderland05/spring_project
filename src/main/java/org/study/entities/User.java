@@ -5,14 +5,12 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.data.annotation.CreatedDate;
 import org.study.commons.constants.Gender;
 import org.study.commons.constants.UserRole;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+
 /**
  * 회원 엔티티
  *
@@ -24,7 +22,6 @@ import java.util.List;
 @Table(name="member"
         ,indexes={ // 이메일 및 사용자 역할은 조회가 많이 될 수 있으므로 인덱스 부여
         // 관리자 페이지에서 최신 회원순으로 조회를 많이 할 수 있으므로 인덱스 부여
-        @Index(name="idx_user_email", columnList = "userEmail"),
         @Index(name="idx_user_role", columnList = "role"),
         @Index(name="idx_user_createdAt", columnList = "createdAt DESC")
 })
@@ -48,12 +45,12 @@ public class User extends BaseEntity{
     @Column(length=11)
     private String cellPhone;
 
-    @Column(length=8)
-    private LocalDate birth;
+    @Column(length=13)
+    private String birth;
 
-    @Enumerated(EnumType.STRING)
-    @Column(length=30)
-    private Gender gender = Gender.MAN; // 성별, 기본값은 Man
+    @Column(length=20)
+    private String gender;
+
 
     @Enumerated(EnumType.STRING)
     @Column(length=30, nullable = false)
@@ -66,7 +63,12 @@ public class User extends BaseEntity{
     */
 
     @OneToMany(mappedBy="user")
-    private List<Study> studies = new ArrayList<>();
+    private List<Studies> studies = new ArrayList<>();
 
+    @OneToMany(mappedBy="user")
+    private List<Report> reports = new ArrayList<>();
+
+    @OneToMany(mappedBy="user")
+    private List<Question> questions = new ArrayList<>();
 
 }

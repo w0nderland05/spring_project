@@ -3,22 +3,8 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{front/layouts/main}">
 <section layout:fragment="content">
-    <div class="search">
-        <div class="search-text">
-            <input type="text" spellcheck="false" placeholder="커뮤니티 검색" enterkeyhint="search">
-            <button class="btn1">검색</button>
-        </div>
-        <div class="search-text">
-            <input type="text" spellcheck="false" placeholder="태그 검색" enterkeyhint="search">
-        </div>
-        <nav class="tabs">
-            <button class="btn1">전체</button>
-            <button class="btn1">질문과 답변</button>
-            <button class="btn1">자유게시판</button>
-            <button class="btn1">
-                <a href="/community/register">글쓰기</a>
-            </button>
-        </nav>
-    </div>
+    <form method="post" th:action="@{/user/community}" autocomplete="off">
+        <th:block th:replace="~{front/community/_form::form}"></th:block>
+    </form>
 </section>
 </html>

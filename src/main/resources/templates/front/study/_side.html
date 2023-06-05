@@ -1,0 +1,8 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<aside th:fragment="study_menus">
+    <div th:each="category: ${categories}" >
+        <a th:href="@{user/study/{categories.location}" th:text="${cateNm}"></a>
+    </div>
+</aside>
+</html>

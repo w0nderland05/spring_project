@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{front/layouts/main}">
+<section layout:fragment="content">
+    <aside th:replace="~{front/study/_side::study_menus}"></aside>
+    <div class="search">
+          <span class="search-text">
+            <input type="radio" name="regionType" value="true" id="online">
+            <label for="online">
+                온라인
+            </label>
+            <input type="radio" name="regionType" value="false" id="offline">
+            <label for="offline">
+                오프라인
+                <select name="addressDo" class="ajax_sido">
+                    <option value="">- 시도 선택 -</option>
+                    <option th:each="sido : ${sidoList}" th:value="${sido}" th:text="${sido}"></option>
+                </select>
+                <select name="addressSiGunGu" class="ajax_gigugun">
+                    <option value="">- 시구군 선택 -</option>
+                </select>
+            </label>
+              <input type="text" spellcheck="false" placeholder="스터디명 검색" enterkeyhint="search">
+            <button class="btn1">검색</button>
+          </span>
+    </div>
+
+</section>
+</html>

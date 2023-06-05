@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{front/mypage/main_mp}">
+
+<div class="error" th:each="err : ${#fields.globalErrors()}" th:text="${err}"></div>
+<section layout:fragment="content">
+    <form method="post" th:action="@{/user/mypage/edit}" th:object="${userJoin}" autocomplete="off">
+        <div>
+            <h1>내 정보 관리</h1>
+        </div>
+        <div>
+            <dl>
+                <dt>사용자 이름</dt>
+                <dd>
+                    <p th:field="*{userNm}" th:text="${userNm}"></p>
+                </dd>
+            </dl>
+        </div>
+
+        <br>
+
+        <div>
+            <dl>
+                <dt>아이디 ( 이메일 )</dt>
+                <dd>
+                    <p th:field="*{userEmail}" th:text="${userEmail}"></p>
+                </dd>
+            </dl>
+        </div>
+
+        <br>
+
+        <div>
+            <dl>
+                <dt>닉네임 변경</dt>
+                <dd>
+                    <input type="text" name="userNickNm" th:field="*{userNickNm}" placeholder="특수문자를 제외하고 입력해주세요.">
+                    <div class="error" th:each="err : ${#fields.errors('userNickNm')}" th:text="${err}"></div>
+                </dd>
+            </dl>
+
+            <br>
+
+            <dl>
+                <dt>현재 비밀번호</dt>
+                <dd>
+                    <input type="password" name="nowPw" th:field="*{nowPw}" placeholder="필수 항목입니다.">
+                    <div class="error" th:each="err : ${#fields.errors('nowPw')}" th:text="${err}"></div>
+                </dd>
+            </dl>
+
+            <br>
+
+            <dl>
+                <dt>비밀번호 변경</dt>
+                <dd>
+                    <input type="text" name="userPw" th:field="*{userPw}" placeholder="8~16자, 알파벳, 숫자, 특수문자를 1개 이상 포함해주세요.">
+                </dd>
+            </dl>
+
+            <br>
+
+            <dl>
+                <dt>비밀번호 변경 확인</dt>
+                <dd>
+                    <input type="text" name="userPwCk" th:field="*{userPwCk}" placeholder="위의 비밀번호를 동일하게 입력해주세요.">
+                    <div class="error" th:each="err : ${#fields.errors('userPwCk')}" th:text="${err}"></div>
+                </dd>
+            </dl>
+
+            <br>
+
+            <dl>
+                <dt>핸드폰 번호 변경</dt>
+                <dd>
+                    <input type="text" name="cellphone" th:field="*{cellphone}" placeholder=" ' - ' 를 제외하고 입력해주세요.">
+                    <div class="error" th:each="err : ${#fields.errors('cellphone')}" th:text="${err}"></div>
+                </dd>
+            </dl>
+        </div>
+
+        <br>
+
+        <div>
+            <button type="submit" class="btn1">
+                저장하기
+            </button>
+            <button type="button" class="btn1">탈퇴하기</button>
+            <!-- 탈퇴하기 버튼 누르면 팝업창 ( 탈퇴하시겠습니까? ) -->
+        </div>
+
+    </form>
+</section>
+</html>

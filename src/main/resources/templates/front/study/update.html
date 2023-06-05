@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{front/layouts/main}">
+<section layout:fragment="content">
+    <h1>스터디 개설정보 수정</h1>
+    <form class='form' method="post" th:action="@{/user/study/save}">
+        <input type="hidden" name="mode" value="update">
+        <th:block th:replace="~{front/study/_form::form}"></th:block>
+        <button type="submit" class="submit_btn">수정하기</button>
+    </form>
+</section>
+</html>

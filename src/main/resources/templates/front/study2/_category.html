@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <th:block th:fragment="category">
+        <ul th:if="${categories != null}">
+            <li th:each="category, status : ${categories}" th:object="${category}">
+                <input type="radio" name="catCd" th:value="*{cateCd}" th:field="${studySearch.cateCd}" th:id="${'cateCd_' + status.index}">
+                <label th:for="${'cateCd_' + status.index}">[[*{cateNm}]]</label>
+            </li>
+        </ul>
+    </th:block>
+</html>

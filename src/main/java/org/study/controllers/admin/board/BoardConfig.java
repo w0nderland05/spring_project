@@ -1,10 +1,16 @@
 package org.study.controllers.admin.board;
 
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.modelmapper.ModelMapper;
+import org.study.entities.User;
+import org.study.entities.board.Board;
 
 import java.util.List;
 
@@ -17,21 +23,22 @@ public class BoardConfig {
 
     private String mode; // mode가 update면 수정
 
-    @NotBlank(message = "게시판 아이디를 입력하세요")
+    @NotBlank
     private String bId;
 
-    @NotBlank(message="게시판명을 입력하세요")
+    @NotBlank
     private String boardNm;
+
+    private String createdAt, modifiedAt;
 
     private boolean isUse;
 
+    @NotNull
     private Long rowsPerPage; // 1페이지에 노출될 게시글 수
-    // 숫자를 입력 혹은 선택 안할 시 메세지 출력 ??
 
     private boolean useViewList; // 게시글 하단에 목록 노출
 
     private String category; // 분류
-    // 분류는 안적어도 메세지 출력 안해도 되는지 ??
 
     private String viewType; // 출력구분 (관리자, 회원)
 
@@ -46,9 +53,19 @@ public class BoardConfig {
     private boolean useComment; // 댓글 사용여부
 
     private String skin; // 스킨명
-    // 스킨 선택 안할 시 메세지 출력 ??
 
     private boolean isReview; // 후기 게시판 여부
 
+    @ManyToOne
+    @JoinColumn(name="userNo")
+    private User user;
 
+    /**
+     * Board Entity 변환
+     * @param boardConfig
+     * @return
+     */
+    public static Board of (BoardConfig boardConfig) {
+        return new ModelMapper().map(boardConfig, Board.class);
+    }
 }

@@ -5,43 +5,61 @@
 <section layout:fragment="content">
 
     <nav th:replace="~{admin/study/_submenu::menus}"></nav>
-
+    <div class="search" th:object="${studySearch}">
+          <span class="search-text">
+              <label for="studyCode">스터디코드</label>
+               <input type="text" enterkeyhint="search" id="studyCode" th:field="*{studyCode}" >
+               <input type="radio" name="searchType" value="studyNm" id="studyNm" th:field="*{sopt}">
+              <label for="studyNm">스터디명</label>
+               <input type="radio" name="searchType" value="approveStatus" id="approveStatus" th:field="*{sopt}">
+              <label for="approveStatus">승인상태</label>
+              <input type="text" enterkeyhint="search" th:field="*{skey}">
+            <button class="btn1">검색</button>
+          </span>
+    </div>
     <div role="region" aria-label="data table" tabindex="0" class="primary">
         <table>
             <thead>
-                <tr>
-                    <th class="checkbox">
-                        <input type="checkbox">
-                    </th>
-                    <th>스터디 코드</th>
-                    <th>스터디명</th>
-                    <th>카테고리</th>
-                    <th>회원명</th>
-                    <th>이메일</th>
-                    <th>개설신청일시</th>
-                    <th>승인상태</th>
-                    <th>처리일시</th>
-                    <th>잔여자리수</th>
-                    <th>비고란</th>
-                </tr>
+            <tr>
+                <th class="checkbox">
+                    <input type="checkbox">
+                </th>
+                <th>스터디 코드</th>
+                <th>스터디명</th>
+                <th>카테고리</th>
+                <th>회원명</th>
+                <th>이메일</th>
+                <th>개설신청일시</th>
+                <th>승인상태</th>
+                <th>처리일시</th>
+                <th>잔여자리수</th>
+                <th>비고란</th>
+            </tr>
             </thead>
             <tbody>
-            <!--th:each="study: ${studies}" 컨트롤러 완성후 추가예정-->
-                <tr>
-                    <td>
-                        <input type="checkbox">
-                    </td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
+            <tr th:each="study: ${studies}" th:object="${study}">
+                <td>
+                    <input type="checkbox" name="studyCode" th:value="*{studyCode}">
+                </td>
+                <td th:text="*{studyCode}"></td>
+                <td th:text="*{studyNm}"></td>
+                <td th:text="*{category}"></td>
+                <td th:text="*{user.userNm}"></td>
+                <td th:text="*{user.userEmail}"></td>
+                <td th:text="*{requestDt}"></td>
+                <td th:text="*{approveStatus}"></td>
+                <td th:text="*{regStatusDt}"></td>
+                <td th:text="*{remainSeat}"></td>
+                <td>
+                    <div th:if="*{approveStatus == 'APPROVE'}">
+                    <button type="button" th:href="@{admin/study/update/{studyCode}(studyCode=*{studyCode})}" class="btn2">스터디관리</button>
+                    <button type="button" th:href="#" class="btn2">회원관리</button>
+                    </div>
+                    <th:block th:unless="*{approveStatus != 'APPROVE' }">
+                        <button type="button" th:href="#">거절사유</button>
+                    </th:block>
+                </td>
+            </tr>
             </tbody>
         </table>
     </div>

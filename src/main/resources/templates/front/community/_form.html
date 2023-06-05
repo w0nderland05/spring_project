@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<th:block th:fragment="form">
+    <div class="error" th:each="err : ${#fields.globalErrors()}" th:text="${err}"></div>
+    <div class="search">
+        <span class="search-text">
+            <input type="text" spellcheck="false" placeholder="커뮤니티 검색" enterkeyhint="search">
+            <button class="btn1">검색</button>
+        </span>
+        <span class="search-text">
+            <input type="text" spellcheck="false" placeholder="태그 검색" enterkeyhint="search">
+        </span>
+        <nav class="tabs">
+            <button class="btn1">
+                <a th:href="@{/user/community}">전체</a>
+            </button>
+            <button class="btn1">
+                <a th:href="@{/user/community/free}">자유게시판</a>
+            </button>
+            <button class="btn1">
+                <a th:href="@{/user/community/qna}">질문과답변</a>
+            </button>
+            <button class="btn1">
+                <a th:href="@{/user/community/register}">글쓰기</a>
+            </button>
+        </nav>
+        <div class="userLists">
+            <ul>
+                <li th:each="data : ${datas}" th:object="${data}">
+                    <div class="list-top">
+                        <span th:text="*{userNm}"></span>
+                        <span>·</span>
+                        <span><!-- DB에서 생성일자 자동 추가 -->2023-04-19</span>
+                    </div>
+                    <div class="list-mid">
+                        <a href="#"><!-- 게시글 이동 -->백엔드 공부하려면 어떻게 해야하나요?</a>
+                    </div>
+                    <div class="list-bot">
+                        <span class="bot-left">
+                            <a href="#"><!-- 선택한 카테고리로 이동 -->질문과 답변</a>
+                            <span class="tags">
+                                <a href="#"><!-- 태그 검색결과 이동(#OO) -->#개발</a>
+                                <!-- 태그 개수마다  자동으로 추가 -->
+                            </span>
+                        </span>
+                        <span class="bot-right">
+                            <span class="viewCnt">
+                                <i class="xi-eye-o"></i>
+                                <span><!-- 조회수 자동 증가 -->300</span>
+                            </span>
+                            <span class="totalComments">
+                                <i class="xi-comment-o"></i>
+                                <span><!-- 댓글 수에 따라 자동 증가 -->10</span>
+                            </span>
+                        </span>
+                    </div>
+                </li>
+                <!-- 게시글 생성되면 최신순으로 자동 추가 -->
+                <!-- 게시글 생성되면 최신순으로 자동 추가 -->
+                <!-- 게시글 생성되면 최신순으로 자동 추가 -->
+            </ul>
+        </div>
+    </div>
+    </section>
+</th:block>
+</html>

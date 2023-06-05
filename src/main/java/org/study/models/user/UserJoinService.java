@@ -6,11 +6,10 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.study.commons.constants.Gender;
 import org.study.commons.constants.UserRole;
-import org.study.controllers.user.UserJoin;
+import org.study.controllers.user.user.UserJoin;
 import org.study.entities.User;
 import org.study.repositories.UserRepository;
 
-import java.time.LocalDate;
 
 @Service
 @RequiredArgsConstructor
@@ -20,7 +19,9 @@ public class UserJoinService {
 
     private final PasswordEncoder passwordEncoder;
 
+
     public void join(UserJoin join){
+
 
         String hash = passwordEncoder.encode(join.getUserPw());
 
@@ -30,9 +31,9 @@ public class UserJoinService {
                 .userNm(join.getUserNm())
                 .userNickNm(join.getUserNickNm())
                 .cellPhone(join.getCellphone())
-                .gender(join.getGender())
+                .gender(join.getGender()) //기본
                 .role(UserRole.USER) //기본
-                .birth(LocalDate.of(2000,3,1))
+                .birth(join.getBirth())
                 .build();
 
         repository.save(user);

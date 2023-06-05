@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{front/mypage/main_mp}">
+<section layout:fragment="content">
+    <form method="post" th:action="@{/user/mypage/mystudy}" autocomplete="off">
+        <section>
+            <div>
+                <h1>내가 신청한 스터디</h1>
+            </div>
+            <ul>
+                <li>
+                    <div id="stcate">
+                        <!--스터디 메인 사진 그대로 출력-->
+                    </div>
+                    <div>
+                        <span>스터디 명 / 설명</span>
+                    </div>
+                    <div>
+                        <a href="#">리뷰 남기기</a>
+                        <a href="#">스터디 나가기</a>
+                    </div>
+                </li>
+
+            </ul>
+        </section>
+
+        <section>
+            <div>
+                <h1>내가 개설한 스터디</h1>
+            </div>
+            <ul>
+                <li>
+                    <div>
+                        <!--스터디 메인 사진 그대로 출력-->
+                    </div>
+                    <div>
+                        <span>스터디 명 / 설명</span>
+                    </div>
+                    <div>
+                        <div>
+                            <span>>  스터디원</span>
+                            <div>DB에서 스터디원 추가</div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </section>
+    </form>
+</section>
+</html>

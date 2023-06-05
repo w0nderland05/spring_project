@@ -1,13 +1,26 @@
 package org.study.controllers.admin.cs;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.study.entities.Question;
+import org.study.models.cs.CsReportService;
+import org.study.models.cs.ReportListService;
+
+import java.util.List;
 
 @Controller
 @RequestMapping("/admin/cs")
 public class CsController {
 
+    @Autowired
+    private ReportListService listService;
+
+    @Autowired
+    private CsReportService reportService;
     /**
      * <CS 관리> 클릭시 나오는 페이지
      * == 신고 목록
@@ -15,7 +28,10 @@ public class CsController {
      * @return
      */
     @GetMapping
-    public String index(){
+    public String index(Model model){
+        List<CsConfig> configs = listService.gets();
+        model.addAttribute("csConfig",configs);
+
         return "admin/cs/index";
     }
 
@@ -26,7 +42,9 @@ public class CsController {
      * @return
      */
     @GetMapping("/qna")
-    public String qna(){
+    public String qna(Model model){
+        List<QuestionConfig> questionList = reportService.getList();
+        model.addAttribute("questionList",questionList);
         return "admin/cs/qna";
     }
 
@@ -36,8 +54,10 @@ public class CsController {
      *
      * @return
      */
-    @GetMapping("/view")
-    public String view(){
+    @GetMapping("/view/{qsCode}")
+    public String view(@PathVariable Long qsCode, Model model){
+        QuestionConfig question = reportService.getQuestion(qsCode);
+        model.addAttribute("question", question);
         return "admin/cs/view";
     }
 

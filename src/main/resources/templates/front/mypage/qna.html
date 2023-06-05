@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{front/mypage/main_mp}">
+<section layout:fragment="content">
+    <form method="get" th:action="@{/user/mypage/qna}" autocomplete="off">
+        <div>
+            <h1>문의 내역</h1>
+        </div>
+        <!-- 접었다 펼쳤다 하는 형식으로 만들 예정 , 한 페이지에 5개 정도 -->
+
+        <div class="faq-content">
+            <button class="question" id="que-1"><span id="que-1-toggle">+</span>
+                <span>DB에서 자동 제목 추가</span>
+            </button>
+            <div class="answer" id="ans-1">DB에서 자동 답글 추가</div>
+        </div>
+        <div class="faq-content">
+            <button class="question" id="que-2"><span id="que-2-toggle">+</span><span>DB에서 자동 제목 추가</span></button>
+            <div class="answer" id="ans-2">DB에서 자동 답글 추가</div>
+        </div>
+        <div class="faq-content">
+            <button class="question" id="que-3"><span id="que-3-toggle">+</span><span>DB에서 자동 제목 추가</span></button>
+            <div class="answer" id="ans-3">DB에서 자동 답글 추가</div>
+        </div>
+        <br>
+        <div>
+            <button type="button" class="btn1">
+                <a th:href="@{register}">문의하기</a>
+            </button>
+
+            <button type="button" class="btn1">
+                <a th:href="@{report_register}">신고하기</a>
+            </button>
+        </div>
+    </form>
+</section>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{front/mypage/main_mp}">
+<div class="error" th:each="err : ${#fields.globalErrors()}" th:text="${err}"></div>
+<section layout:fragment="content">
+    <form method="post" th:action="@{/user/mypage/saves}" autocomplete="off" th:object="${csConfig}">
+        <div>
+            <dl>
+                <dt>신고 유형</dt>
+                <dd>
+                    <select th:field="*{division}">
+                        <option th:value="'USER'" >회원 신고</option>
+                        <option th:value="'STUDY'">스터디 신고</option>
+                        <option th:value="'COMMUNITY'">커뮤니티 신고</option>
+                    </select>
+                </dd>
+            </dl>
+
+            <br>
+
+            <dl>
+                <dt>신고 내용</dt>
+                <dd>
+                    <textarea name="detail" th:field="*{detail}" placeholder="신고 내용을 입력해주세요."></textarea>
+                </dd>
+            </dl>
+        </div>
+        <div>
+            <button type="submit" class="btn1">신고하기</button>
+        </div>
+    </form>
+</section>
+
+</html>
