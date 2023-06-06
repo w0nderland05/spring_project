@@ -24,14 +24,24 @@ public class UserController {
 
 
     /**
+     * 회원 목록에서 '이용 관리' 버튼 클릭시 나오는 페이지
      * 회원 정보 상세
      *
      * @return
      */
-    @GetMapping("/detail")
+    @GetMapping("/manage")
     public String detail(){
 
-        return "admin/user/detail";
+        return "admin/user/manage/detail";
+    }
+
+    /**
+     * 회원 목록에서 '스터디 보기' 버튼 클릭시 나오는 페이지
+     */
+    @GetMapping("/manage/study")
+    public String manageToStudy(){
+
+        return "admin/user/manage/study";
     }
 
     /**
@@ -42,7 +52,7 @@ public class UserController {
      * @param userNo
      * @return
      */
-    @PostMapping("/manage")
+    @PostMapping("/manage/{userNo}")
     public String manage(@PathVariable Long userNo){
 
         // 이 부분 좀 더 생각해보고, 수정 바랍니다.

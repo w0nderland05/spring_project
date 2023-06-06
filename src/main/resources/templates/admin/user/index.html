@@ -44,8 +44,10 @@
                         <td></td>
                         <!-- 관리 -->
                         <td>
-                            <a class="btn2">스터디보기</a>
-                            <a class="btn2">이용관리</a>
+                            <a th:href="@{/admin/user/manage/study}" class="btn2">
+                                스터디보기</a>
+                            <a th:href="@{/admin/user/manage}" class="btn2">
+                                이용관리</a>
                         </td>
                     </tr>
                 </tbody>
