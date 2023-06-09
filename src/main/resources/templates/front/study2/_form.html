@@ -80,10 +80,14 @@
     <dl>
         <dt>스터디 구분</dt>
         <dd>
-            <input type="radio" name="regionType" class='regionType' value="ONLINE" id="regionType_ONLINE" th:field="*{regionType}">
-            <label for="regionType_ONLINE">온라인</label>
-            <input type="radio" name="regionType" class='regionType' value="OFFLINE" id="regionType_OFFLINE" th:field="*{regionType}">
-            <label for="regionType_OFFLINE">오프라인</label>
+            <span>
+                <input type="radio" name="regionType" class='regionType' value="ONLINE" id="regionType_ONLINE" th:field="*{regionType}">
+                <label for="regionType_ONLINE">온라인</label>
+            </span>
+            <span>
+                <input type="radio" name="regionType" class='regionType' value="OFFLINE" id="regionType_OFFLINE" th:field="*{regionType}">
+                <label for="regionType_OFFLINE">오프라인</label>
+            </span>
             <div class="error" th:each="err : ${#fields.errors('regionType')}" th:text="${err}"></div>
         </dd>
     </dl>
