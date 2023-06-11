@@ -24,4 +24,29 @@
 ## 기능 설계, 화면 구상 
 https://www.notion.so/7350235726844e8888cc2718200452e3?pvs=4
 
+***
+## 구현된 스터디기능 이미지 및 시현 영상 
+### 어드민페이지
+* 스터디관리자 페이지
+![스터디관리자 페이지](https://github.com/w0nderland05/spring_project/assets/111275210/d4885a6d-75f2-4426-b7d1-94a8ead9cf3e)
+
+* 스터디 관리자 페이지 기능 시현
+![스터디관리자 페이지 기능시현 영상](https://github.com/w0nderland05/spring_project/assets/111275210/d5edb3b2-b7f5-471b-b1fc-0df39ec8bff6)
+
+### 사용자페이지
+* 스터디만들기
+![스터디만들기](https://github.com/w0nderland05/spring_project/assets/111275210/7fb11ee2-086c-4daf-aa26-84a1adf425cf)
+
+* 스터디 함께해요
+![스터디 함께해요](https://github.com/w0nderland05/spring_project/assets/111275210/61aad145-3082-4a26-8e98-0a441d32ce36)
+
+* 개설된 스터디 상세페이지 
+![개설된 스터디 상세페이지](https://github.com/w0nderland05/spring_project/assets/111275210/39ecc4f6-4513-4955-a938-e2ac178655d2)
+
+* 스터디 검색 기능시현
+![스터디 검색 기능시현](https://github.com/w0nderland05/spring_project/assets/111275210/4288cf38-b967-40cc-ba04-c899256aa07b)
+
+
+
+
 
